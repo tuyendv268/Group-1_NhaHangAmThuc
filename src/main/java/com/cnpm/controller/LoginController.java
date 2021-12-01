@@ -15,27 +15,13 @@ public class LoginController {
 	UserService user;
 	
 	@GetMapping(value = "/")
+	public String customerPage() {
+
+		return "customerPage";
+	}
+	@GetMapping(value = "/login")
 	public String login() {
-//		List<UserEntity> users = user.findAll();
-//        for (UserEntity userEntity : users) {
-//			System.out.println(userEntity.getUserName());
-//			System.out.println(userEntity.getPassword());
-//		}
-//		List<UserEntity> users = user.findByUserName("user1");
-//		for (UserEntity userEntity : users) {
-//			System.out.println(userEntity.getUserName());
-//			System.out.println(userEntity.getPassword());
-//		}
-		
-//		String role = user.checkLogin("user1");
-//		if(role != null) {
-//			if(role.equals("admin")) {
-//				return "welcomeAdmin";
-//			}else if(role.equals("staff")) {
-//				return "welcomeStaff";
-//			}
-//			return "index";
-//		}
+
 		return "index";
 	}
 	
