@@ -17,7 +17,7 @@ public class LoginController {
 	@GetMapping(value = "/")
 	public String customerPage() {
 
-		return "customerPage";
+		return "menu";
 	}
 	@GetMapping(value = "/login")
 	public String login() {
@@ -25,8 +25,14 @@ public class LoginController {
 		return "index";
 	}
 	
+	@GetMapping(value = "/contact")
+	public String contact() {
+		return "contact";
+	}
+	
 	@GetMapping("/about")
 	public String about() {
+		
 		return "about";
 	}
 	
