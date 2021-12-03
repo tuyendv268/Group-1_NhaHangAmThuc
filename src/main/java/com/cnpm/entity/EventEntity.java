@@ -37,12 +37,16 @@ public class EventEntity {
 	@Column(name = "url")
 	private String url;
 	
-	@Column(name = "member_discount_rate")
-	private int memberDiscountRate;
-	
-	@Column(name = "non_member_discount_rate")
-	private int nonMemberDiscountRate;
+	@Column(name = "discount_rate")
+	private int discountRate;
 
+	public EventEntity(String eventName, String description, LocalDate timeStart, LocalDate timeEnd, int discountRate) {
+		this.eventName = eventName;
+		this.description = description;
+		this.timeStart = timeStart;
+		this.timeEnd = timeEnd;
+		this.discountRate = discountRate;
+	}
 	public Long getEventId() {
 		return eventId;
 	}
@@ -98,22 +102,14 @@ public class EventEntity {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public int getMemberDiscountRate() {
-		return memberDiscountRate;
+	public int getDiscountRate() {
+		return discountRate;
+	}
+	public void setDiscountRate(int discountRate) {
+		this.discountRate = discountRate;
 	}
 
-	public void setMemberDiscountRate(int memberDiscountRate) {
-		this.memberDiscountRate = memberDiscountRate;
-	}
-
-	public int getNonMemberDiscountRate() {
-		return nonMemberDiscountRate;
-	}
-
-	public void setNonMemberDiscountRate(int nonMemberDiscountRate) {
-		this.nonMemberDiscountRate = nonMemberDiscountRate;
-	}
+	
 	
 	
 }
