@@ -4,7 +4,10 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.entity.EventEntity;
@@ -20,24 +23,52 @@ public class EventController {
 			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
 			, @RequestParam int discountRate) {
 		EventEntity newEvent = new EventEntity(eventName, description, timeStart, timeEnd, discountRate);
-		
+		if(eventService.save(newEvent)) {
+			System.out.println("Success");
+		}else {
+			System.out.println("False");
+		}
 	}
 	
-	@PostMapping(value = "/test")
-	public String test() {
-//		String eventName = "demo1";
-//		String description = "demo1";
+	@PutMapping(value = "/event")
+	public String editEvent(@RequestParam Long id,@RequestParam String eventName, @RequestParam String description
+			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
+			, @RequestParam int discountRate) {
+//		Long id = 1L;
+//		String eventName = "helloworld";
+//		String description = "hello world";
 //		LocalDate timeStart = LocalDate.now();
 //		LocalDate timeEnd = LocalDate.now();
-//		int discountRate = 100;
-//		EventEntity newEvent = new EventEntity(eventName, description, timeStart, timeEnd, discountRate);
-//		if(eventService.save(newEvent)) {
-//			System.out.println("Success");
-//		}else {
-//			System.out.println("False");
-//		}
+//		int discountRate = 10;
+		EventEntity event = eventService.findEventById(id);
+		if(event == null) {
+			System.out.println("Error");
+			return "login";
+		}else {
+			System.out.println("Success");
+			event.setEventName(eventName);
+			event.setDescription(description);
+			event.setTimeStart(timeStart);
+			event.setTimeEnd(timeEnd);
+			event.setDiscountRate(discountRate);
+			eventService.save(event);
+			return "login";
+		}
+	}
+	
+	@GetMapping(value = "/event")
+	public String searchEvent(@RequestParam String eventName) {
+		EventEntity event = eventService.findEventByName(eventName);
+		System.out.println(event.getEventName());
 		return "login";
 	}
+	
+	@DeleteMapping(value = "/event")
+	public String deleteEvent(@RequestParam Long id) {
+		eventService.delete(id);
+		return "login";
+	}
+
 }
 
 

@@ -18,4 +18,18 @@ public class EventService {
 		}
 		return true;
 	}
+	
+	public EventEntity findEventByName(String eventName) {
+		EventEntity event = eventRepository.findByEventName(eventName);
+		return event;
+	}
+	
+	public void delete(Long id) {
+		eventRepository.deleteById(id);
+	}
+	
+	public EventEntity findEventById(Long id) {
+		EventEntity event = eventRepository.findByEventId(id);
+		return event;
+	}
 }
