@@ -27,7 +27,7 @@ public class WebController {
 //		user.setPassword(passwordEncoder.encode("tien"));
 //		userRepository.save(user);
 //		System.out.println(user);
-		return "login";
+		return "index";
 	}
 	@GetMapping("/menu")
 	public String menu() {

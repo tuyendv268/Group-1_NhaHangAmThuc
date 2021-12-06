@@ -1,6 +1,7 @@
 package com.cnpm.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,9 @@ import com.cnpm.service.EventService;
 public class EventController {
 	@Autowired
 	EventService eventService;
-	
+	/*
+	 * This method is used to create a event
+	 */
 	@PostMapping(value = "/event")
 	public void newEvent(@RequestParam String eventName, @RequestParam String description
 			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
@@ -29,7 +32,22 @@ public class EventController {
 			System.out.println("False");
 		}
 	}
+	/*
+	 * This method is used to get event's information and display it in dashboard 
+	 */
+	@GetMapping(value = "/dashboard")
+	public String display() {
+		List<EventEntity> events = eventService.findAll();
+		for (EventEntity eventEntity : events) {
+			System.out.println(eventEntity.getEventName());
+		}
+		return "menu";
+	}
 	
+/*
+ * This method is used to edit event
+ * Input : id, eventName, description, time start, time end , discountRate 
+ */
 	@PutMapping(value = "/event")
 	public String editEvent(@RequestParam Long id,@RequestParam String eventName, @RequestParam String description
 			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
@@ -56,6 +74,9 @@ public class EventController {
 		}
 	}
 	
+	/*
+	 * This method is used to search event with name of event
+	 */
 	@GetMapping(value = "/event")
 	public String searchEvent(@RequestParam String eventName) {
 		EventEntity event = eventService.findEventByName(eventName);
@@ -63,12 +84,15 @@ public class EventController {
 		return "login";
 	}
 	
+	/*
+	 * This method is used to delete event with event's id. 
+	 */
 	@DeleteMapping(value = "/event")
 	public String deleteEvent(@RequestParam Long id) {
 		eventService.delete(id);
 		return "login";
 	}
-
+	
 }
 
 
