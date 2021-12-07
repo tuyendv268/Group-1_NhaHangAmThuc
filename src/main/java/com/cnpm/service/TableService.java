@@ -16,4 +16,8 @@ public class TableService {
 	public List<TableEntity> findAll(){
 		return tableRepository.findAll();
 	}
+	
+	public void delete(Long id) {
+		tableRepository.deleteById(id);
+	}
 }
