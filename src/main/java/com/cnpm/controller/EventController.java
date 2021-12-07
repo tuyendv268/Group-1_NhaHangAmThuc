@@ -41,7 +41,7 @@ public class EventController {
 		for (EventEntity eventEntity : events) {
 			System.out.println(eventEntity.getEventName());
 		}
-		return "menu";
+		return "index";
 	}
 	
 /*

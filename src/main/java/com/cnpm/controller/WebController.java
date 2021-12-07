@@ -15,23 +15,23 @@ public class WebController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
-	@GetMapping(value = { "/", "/home" })
+	@GetMapping(value = {"/home" })
 	public String homepage() {
-		return "menu";
+		return "home";
 	}
 
-	@GetMapping("/login")
+	@GetMapping(value = {"/" ,"/login"})
 	public String login() {
 //		UserEntity user = new UserEntity();
 //		user.setUserName("tien");
 //		user.setPassword(passwordEncoder.encode("tien"));
 //		userRepository.save(user);
 //		System.out.println(user);
-		return "index";
+		return "login";
 	}
 	@GetMapping("/menu")
 	public String menu() {
-		return "menu";
+		return "index";
 	}
 
 }

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- main part -->
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- seat part -->
+	<link rel="stylesheet" href="css/seat.css">
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+
+	<title>Seat</title>
+</head>
+
+<body>
+	<div id="container">
+		<header>
+			<h1 class="logo">
+				<a href="#">Manager</a>
+			</h1>
+
+			<div class="search">
+				<input type="text" placeholder="search">
+				<a href="#">
+					<i class="material-icons">search</i>
+				</a>
+			</div>
+
+			<div class="home">
+				<a href="#">
+					<i class="material-icons">home</i>
+				</a>
+			</div>
+		</header>
+
+		<div id="main">
+			<div class="menu">
+				<ul>
+					<li class="active">
+						<a href="/table">
+							<i class="material-icons">event_seat</i>
+							<span>Seat</span>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">menu</i>
+							<span>Menu</span>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">event_available</i>
+							<span>Event</span>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">person</i>
+							<span>Membership</span>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">note_alt</i>
+							<span>Report</span>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">receipt_long</i>
+							<span>Bill</span>
+						</a>
+
+					</li>
+
+				</ul>
+			</div>
+
+			<div class="content content_seat">
+				<div class="info">
+					<ul>
+						<li>Name of table: ____________________</li>
+						<li>Status: ____________________</li>
+						<li>Rest of time: ____________________</li>
+						<li>Name of customer: ____________________</li>
+						<li>Phone: ____________________</li>
+						<li>Bill: ____________________</li>
+					</ul>
+					<button class="close-info">close</button>
+					<div style="clear: both;"></div>
+				</div>
+
+				<div class="change_status">
+					<h2>Change</h2>
+					<ul>
+						<li class="getColor">
+							<span class="green"></span>
+							<span>Avaible</span>
+						</li>
+
+						<li class="getColor">
+							<span class="yellow"></span>
+							<span>Reserved</span>
+						</li>
+
+						<li class="getColor">
+							<span class="red"></span>
+							<span>Occupied</span>
+						</li>
+
+						<li class="getColor">
+							<span class="dark"></span>
+							<span>Out of Order</span>
+						</li>
+
+					</ul>
+					<div>
+						<button class="close_status">close</button>
+					</div>
+				</div>
+
+				<div class="wrap">
+					<ul>
+						<li><a href="#">Change Status</a></li>
+						<li><a href="#">Information</a></li>
+						<li><a href="#">Delete</a></li>
+					</ul>
+					<button class="done">Done</button>
+				</div>
+
+				<div class="multy-table">
+					<span style="font-size: 30px; margin-right: 20px;">A</span>
+					<tr th:each="tables: ${tables}">
+						<div class="table">
+							<div class="t1">
+								<span></span>
+								<span></span>
+							</div>
+							<div class="mid green"></div>
+							<div class="t1">
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+						<td th:utext="${tables.getTableName()}">name</td>
+					</tr>
+
+
+				</div>
+
+				<div class="multy-table">
+					<span style="font-size: 30px; margin-right: 20px;">B</span>
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<!-- <div class="table">
+                        <div class="t1">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="mid green"></div>
+                        <div class="t1">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div> -->
+				</div>
+
+				<div class="multy-table">
+					<span style="font-size: 30px; margin-right: 20px;">C</span>
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<div class="table">
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="mid green"></div>
+						<div class="t1">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+
+					<!-- <div class="table">
+                        <div class="t1">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="mid green"></div>
+                        <div class="t1">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/main.js"></script>
+<script src="js/seat.js"></script>
+
+</html>

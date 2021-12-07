@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-   <!----<title>Login Form Design | CodeLab</title>---->
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body background='images/img_bg_1.jpg'>
-    <div class="wrapper">
-      <div class="title">Login Form</div>
-      <form name='f' th:action="@{/j_spring_security_check}" method="post">
-        <div class="field">
-          <input type="text" required name = "userId">
-          <label>User ID</label>
-        </div>
-        <div class="field">
-          <input type="password" required name="password">
-          <label>Password</label>
-        </div>
-        <div class="content">
-          <div class="checkbox">
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me">Remember me</label>
-          </div>
-          <div class="pass-link"><a href="#">Forgot password?</a></div>
-        </div>
-        <div class="field">
-          <input type="submit" value="Login">
-        </div>
-        <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
-      </form>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/login.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Nhà Hàng Ẩm Thực</title>
+    <link rel="icon" type="x-icon" href="image\favicon.ico">
+</head>
+<body>
+    <img src="image\login.png" alt="restaurant">
+    
+    <div class="login-box">
+        <ul class="nav" style="width: 100%;">
+            <li><a id="homeNav" href="#">Trang chủ</a></li>
+            <h4>Chất lượng tạo niềm tin</h4>
+        </ul>
+        <h2 class="active">Đăng nhập</h2>
+        <hr>
+        <form>
+            <input type="text" class="text" name="username">
+            <span>tài khoản</span>
+            <br>
+            <br>
+            <input type="password" class="text" name="password">
+            <span>mật khẩu</span>
+            <br>
+            <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
+            <label for="checkbox-1-1">Duy trì đăng nhập?</label>
+            
+            <button class="signin">
+                Đăng nhập
+            </button>
+            <hr>
+            <a href="#">Quên mật khẩu?</a>
+        </form>
     </div>
-  </body >
+</body>
 </html>

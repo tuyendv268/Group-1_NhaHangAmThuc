@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+<body>
+    <h1>th:each</h1>
+    <table border="1">
+        <tr>
+          <th>id</th>
+          <th>name</th>
+        </tr>
+        <tr th:each="tables: ${tables}">
+          <td th:utext="${tables.getTableId()}">id</td>
+          <td th:utext="${tables.getTableName()}">name</td>
+        </tr>
+    </table>
+</body>
+</html>
