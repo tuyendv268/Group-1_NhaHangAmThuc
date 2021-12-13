@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("button").click(function () {
+				alert("Hello world")
+				$(".test").hide();
+			});
+		});
+	</script>
+</head>
+
 <body>
 
-<p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+	<h2 class="test">This is a heading</h2>
 
-<p>A function is triggered when the p element is clicked. The function sets the color of the p element to red.</p>
+	<p class="test">This is a paragraph.</p>
+	<p>This is another paragraph.</p>
 
-<script>
-function myFunction() {
-  document.getElementsByClassName("demo").style.color = "red";
-}
-</script>
+	<button>Click me</button>
 
 </body>
+
 </html>

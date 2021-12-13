@@ -12,19 +12,21 @@
 	<link rel="stylesheet" href="css/seat.css">
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
-
 	<title>Seat</title>
+
 </head>
 
 <body>
+	
 	<div id="container">
 		<header>
 			<h1 class="logo">
 				<a href="#">Manager</a>
 			</h1>
-
+			<button id="hello">
+				Helloworld
+			</button>
 			<div class="search">
 				<input type="text" placeholder="search">
 				<a href="#">
@@ -47,7 +49,6 @@
 							<i class="material-icons">event_seat</i>
 							<span>Seat</span>
 						</a>
-
 					</li>
 
 					<li>
@@ -55,7 +56,6 @@
 							<i class="material-icons">menu</i>
 							<span>Menu</span>
 						</a>
-
 					</li>
 
 					<li>
@@ -63,7 +63,6 @@
 							<i class="material-icons">event_available</i>
 							<span>Event</span>
 						</a>
-
 					</li>
 
 					<li>
@@ -71,7 +70,6 @@
 							<i class="material-icons">person</i>
 							<span>Membership</span>
 						</a>
-
 					</li>
 
 					<li>
@@ -79,7 +77,6 @@
 							<i class="material-icons">note_alt</i>
 							<span>Report</span>
 						</a>
-
 					</li>
 
 					<li>
@@ -87,9 +84,7 @@
 							<i class="material-icons">receipt_long</i>
 							<span>Bill</span>
 						</a>
-
 					</li>
-
 				</ul>
 			</div>
 
@@ -140,234 +135,41 @@
 					<ul>
 						<li><a href="#">Change Status</a></li>
 						<li><a href="#">Information</a></li>
-						<li><a href="#">Delete</a></li>
+						<li><a id="delete" href="#">Delete</a></li>
 					</ul>
 					<button class="done">Done</button>
 				</div>
-
 				<div class="multy-table">
 					<span style="font-size: 30px; margin-right: 20px;">A</span>
 					<tr th:each="tables: ${tables}">
-						<div class="table">
-							<div class="t1">
-								<span></span>
-								<span></span>
+						<div id="${tables.getTableName()}">
+							<div class="table">
+								<div class="t1">
+									<span></span>
+									<span></span>
+								</div>
+								<div class="mid green"></div>
+								<div class="t1">
+									<span></span>
+									<span></span>
+								</div>
+								<td th:utext="${tables.getTableName()}">name</td>
 							</div>
-							<div class="mid green"></div>
-							<div class="t1">
-								<span></span>
-								<span></span>
-							</div>
-							<td th:utext="${tables.getTableName()}">name</td>
 						</div>
-
 					</tr>
-
-
 				</div>
-
-				<div class="multy-table">
-					<span style="font-size: 30px; margin-right: 20px;">B</span>
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<!-- <div class="table">
-                        <div class="t1">
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="mid green"></div>
-                        <div class="t1">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div> -->
-				</div>
-
-				<div class="multy-table">
-					<span style="font-size: 30px; margin-right: 20px;">C</span>
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<div class="table">
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-						<div class="mid green"></div>
-						<div class="t1">
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-
-					<!-- <div class="table">
-                        <div class="t1">
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="mid green"></div>
-                        <div class="t1">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div> -->
-				</div>
-
 			</div>
 		</div>
 	</div>
+	<button id="demo">Click me to hide paragraphs</button>
 </body>
+<script>
+		$(document).ready(function () {
+			$("#hello").click(function () {
+				alert("Hello world")
+			});
+		});
+	</script>
 <script src="js/main.js"></script>
 <script src="js/seat.js"></script>
 

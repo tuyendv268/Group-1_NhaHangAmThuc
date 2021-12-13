@@ -47,9 +47,26 @@ close_status.addEventListener('click', () => {
     isDisplay = false
 })
 
-let getColor = document.getElementsByClassName('getColor')
-for (let i = 0; i < table.length; i++) {
-    
+let color = document.querySelectorAll('.getColor span:first-child')
+let mid = document.getElementsByClassName('mid')
+
+let index
+for (let i = 0; i < table.length; i++){
+    table[i].addEventListener('click', () => {
+        index = i; // Vị trí bàn đang trỏ tới
+    })
 }
 
+for (let j = 0; j < color.length; j++){
+    color[j].addEventListener('click', () => {
+        let tableColor = color[j].className // Màu option
+        let midClass = mid[index].className
+        let midColor = midClass.split(' ')[1] // Màu hiện tại
+        
+        // Thay đổi màu trạng thái
+        mid[index].classList.remove(midColor)
+        mid[index].classList.add(tableColor)
+    })
+}
+// ----------- delete ---------------
 
