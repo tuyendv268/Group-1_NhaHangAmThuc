@@ -50,12 +50,7 @@ close_status.addEventListener('click', () => {
 let color = document.querySelectorAll('.getColor span:first-child')
 let mid = document.getElementsByClassName('mid')
 
-let index
-for (let i = 0; i < table.length; i++){
-    table[i].addEventListener('click', () => {
-        index = i; // Vị trí bàn đang trỏ tới
-    })
-}
+
 
 for (let j = 0; j < color.length; j++){
     color[j].addEventListener('click', () => {
@@ -69,4 +64,15 @@ for (let j = 0; j < color.length; j++){
     })
 }
 // ----------- delete ---------------
-
+let index
+for (let i = 0; i < table.length; i++){
+    table[i].addEventListener('click', () => {
+        index = i; // Vị trí bàn đang trỏ tới
+    })
+}
+$(document).ready(function () {
+			$("#delete").click(function () {
+				alert(index)
+				$("#delete").attr("href", "/table/"+index);
+			});
+		});

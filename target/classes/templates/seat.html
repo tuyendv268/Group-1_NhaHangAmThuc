@@ -6,13 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- main part -->
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" th:href="@{css/main.css}">
 
 	<!-- seat part -->
-	<link rel="stylesheet" href="css/seat.css">
+	<link rel="stylesheet" th:href="@{css/seat.css}">
 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+	<link th:href = "@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet">
+	<link th:href = "@{https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese}" rel="stylesheet">
 	<title>Seat</title>
 
 </head>
@@ -135,7 +135,7 @@
 					<ul>
 						<li><a href="#">Change Status</a></li>
 						<li><a href="#">Information</a></li>
-						<li><a id="delete" href="#">Delete</a></li>
+						<li><a id="delete" href="#" method = "GET">Delete</a></li>
 					</ul>
 					<button class="done">Done</button>
 				</div>
@@ -163,13 +163,7 @@
 	</div>
 	<button id="demo">Click me to hide paragraphs</button>
 </body>
-<script>
-		$(document).ready(function () {
-			$("#hello").click(function () {
-				alert("Hello world")
-			});
-		});
-	</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/seat.js"></script>
 

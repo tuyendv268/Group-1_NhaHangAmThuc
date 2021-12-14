@@ -17,9 +17,9 @@ public class TableController {
 	@Autowired
 	private TableService tableService;
 	
-	@DeleteMapping(value = "/table/{id}")
+	@GetMapping(value = "/table/{id}")
 	public String delete(@PathVariable int id) {
-		tableService.delete(Long.getLong(""+id));
+//		tableService.delete(Long.getLong(""+id));
 		System.out.println(id);
 		return "seat";
 	}
