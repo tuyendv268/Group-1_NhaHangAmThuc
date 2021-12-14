@@ -72,7 +72,26 @@ for (let i = 0; i < table.length; i++){
 }
 $(document).ready(function () {
 			$("#delete").click(function () {
-				alert(index)
-				$("#delete").attr("href", "/table/"+index);
+				alert("/table/"+$("#"+index).attr("id") + index)
+				$("#delete").attr("href", "/table/"+$("#1").attr("id"));
 			});
 		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
