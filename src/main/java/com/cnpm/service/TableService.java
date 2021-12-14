@@ -20,4 +20,8 @@ public class TableService {
 	public void delete(Long id) {
 		tableRepository.deleteById(id);
 	}
+	
+	public TableEntity findByID(Long id) {
+		return tableRepository.findByTableId(id);
+	}
 }

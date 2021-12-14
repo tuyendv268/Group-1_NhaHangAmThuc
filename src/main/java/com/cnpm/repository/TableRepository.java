@@ -8,4 +8,5 @@ import com.cnpm.entity.TableEntity;
 
 public interface TableRepository extends CrudRepository<TableEntity, Long>{
 	List<TableEntity> findAll();
+	TableEntity findByTableId(Long tableId);
 }

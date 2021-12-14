@@ -17,7 +17,6 @@ public class TableController {
 	@Autowired
 	private TableService tableService;
 
-
 	@GetMapping(value = "/table/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		tableService.delete(id);
@@ -28,6 +27,17 @@ public class TableController {
 	@GetMapping(value = "/test")
 	public String demo() {
 		return "test";
+	}
+	
+	@GetMapping(value = "/table/{id}/info")
+	public String getInfo(@PathVariable Long id, Model model) {
+		TableEntity table = tableService.findByID(id);
+		if(table != null) {
+			model.addAttribute("table_info", table);
+		}else {
+			System.out.println("NULL");
+		}
+		return "seat";
 	}
 
 	@GetMapping(value = "/table")

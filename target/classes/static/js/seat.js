@@ -16,7 +16,12 @@ let info = document.getElementsByClassName('info')[0]
 info_Wrap.addEventListener('click', () => {
     wrap.style.display = 'none'
     info.style.display = 'block'
+    var id = $('#'+index).data('myval');
+    var a = document.getElementById("infor");
+	a.href = "/table/"+id+"/info";
+	
     isDisplay = true
+    
 })
 
 let close_info = document.getElementsByClassName('close-info')[0]
@@ -76,8 +81,9 @@ for (let i = 0; i < table.length; i++){
 }
 
 $(document).ready(function () {
-	$("#delete").click(function () {
-		
+	$("#delete").click(function () {});
+	$("#info").click(function () {
+		isDisplay = true
 	});
 });
 
