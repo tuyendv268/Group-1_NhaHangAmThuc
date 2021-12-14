@@ -68,15 +68,18 @@ let index
 for (let i = 0; i < table.length; i++){
     table[i].addEventListener('click', () => {
         index = i; // Vị trí bàn đang trỏ tới
+        var id = $('#'+index).data('myval'); //getter
+        var a = document.getElementById("delete");
+//        alert(id);
+        a.href = "/table/"+id;
     })
 }
-$(document).ready(function () {
-			$("#delete").click(function () {
-				alert("/table/"+$("#"+index).attr("id") + index)
-				$("#delete").attr("href", "/table/"+$("#1").attr("id"));
-			});
-		});
 
+$(document).ready(function () {
+	$("#delete").click(function () {
+		
+	});
+});
 
 
 

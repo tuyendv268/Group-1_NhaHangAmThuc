@@ -17,14 +17,12 @@ public class TableController {
 	@Autowired
 	private TableService tableService;
 
+
 	@GetMapping(value = "/table/{id}")
 	public String delete(@PathVariable Long id, Model model) {
-		ArrayList<TableEntity> tables = (ArrayList<TableEntity>) tableService.findAll();
-
-		model.addAttribute("tables", tables);
-//		tableService.delete(id);
+		tableService.delete(id);
 		System.out.println(id);
-		return "seat";
+		return "redirect:/table";
 	}
 
 	@GetMapping(value = "/test")

@@ -132,7 +132,7 @@
 					<ul>
 						<li><a href="#">Change Status</a></li>
 						<li><a href="#">Information</a></li>
-						<li><a id="delete" href="#" method="get">Delete</a></li>
+						<li><a id="delete" href="#" method="GET">Delete</a></li>
 					</ul>
 					<button class="done">Done</button>
 				</div>
@@ -149,9 +149,9 @@
 								<span></span>
 								<span></span>
 							</div>
-							<td th:text="${table_index.index}" th:id="${table_index.index}">id</td>
-							<td th:text="${table.getTableName()}" id="name">name</td>
-						</div>
+							<h1 th:data-myval="${table.getTableId()}" th:id="${table_index.index}"></h1>
+a							<h2 th:text="${table.getTableName()}" id="abc"></h2>
+a						</div>
 					</tr>
 				</div>
 			</div>
