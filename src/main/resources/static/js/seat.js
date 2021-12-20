@@ -1,6 +1,6 @@
 let table = document.getElementsByClassName('table')
 console.log(table);
-let wrap = document.getElementsByClassName('wrap')[0]
+let wrap = document.getElementsByClassName('wrap')
 
 let isDisplay = false
 
@@ -22,9 +22,21 @@ done3.addEventListener('click', () => {
     wrap[3].style.display = 'none'
 })
 
+// ----------- delete ---------------
+let colorChange = document.querySelectorAll('.getColor span:first-child')
+let mid = document.getElementsByClassName('mid')
+let index
+let midClass
+let midColor
+
 for (let i = 0; i < table.length; i++){
     table[i].addEventListener('click', () => {
-        index = i; // Vị trí bàn đang trỏ tới
+        index = i // Vị trí bàn đang trỏ tới
+        console.log(index)
+        var id = $('#'+index).data('myval'); //getter
+        var a = document.getElementById("delete");
+        // alert(id);
+        a.href = "/table/"+id;
         if(isDisplay) return
         midClass = mid[index].className
         midColor = midClass.split(' ')[1] // Màu hiện tại
@@ -89,14 +101,6 @@ for (let j = 0; j < colorChange.length; j++){
         mid[index].classList.add(tableColor)
     })
 }
-// ----------- delete ---------------
-let index
-for (let i = 0; i < table.length; i++){
-    table[i].addEventListener('click', () => {
-        index = i; // Vị trí bàn đang trỏ tới
-        var id = $('#'+index).data('myval'); //getter
-        var a = document.getElementById("delete");
-//        alert(id);
-        a.href = "/table/"+id;
-    })
-}
+
+
+
