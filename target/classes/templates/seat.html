@@ -86,19 +86,78 @@
 			</div>
 
 			<div class="content content_seat">
-				<div class="info">
-					<ul>
-						<li>Name of table: ____________________</li >
-						<li>Status: ____________________</li>
-						<li>Rest of time: ____________________</li>
-						<li>Name of customer: ____________________</li>
-						<li>Phone: ____________________</li>
-						<li>Bill: ____________________</li>
-					</ul>
-					<button class="close-info">close</button>
-					<div style="clear: both;"></div>
-				</div>
+				<!-- Tạo pop-up chứa info bàn và các button tùy chỉnh -->
+				<!-- Mỗi loại bàn có đối tượng pop-up khác nhau -->
+				<div class="wrap free">
+                    <ul class="wrap-left_content">
+                        <div>
+                            <span>Table Name</span>
+                            <span>Available</span>
+                        </div>
+                        <div>Reservation Timeout: N/A</div>
+                        <p>Customer: N/A</p>
+                        <p>Tel: N/A</p>
+                    </ul>
+                    <ul class="wrap-right_content">
+                        <li><a href="#">Change Status</a></li>
+                        <li><a href="#">Bill detail</a></li>
+                        <li><a href="#" class="done">Done</a></li>
+                        <button id="delete" href="#" method="GET">Delete table</button>
+                    </ul>
+                </div>
 
+                <div class="wrap reserved">
+                    <ul class="wrap-left_content">
+                        <div>
+                            <span>Table Name</span>
+                            <span>Reserved</span>
+                        </div>
+                        <div>Reservation Timeout: </div>
+                        <p>Customer: </p>
+                        <p>Tel: </p>
+                    </ul>
+                    <ul class="wrap-right_content">
+                        <li><a href="#">Change Status</a></li>
+                        <li><a href="#">Bill detail</a></li>
+                        <li><a href="#" class="done">Done</a></li>
+                        <button id="delete" href="#" method="GET">Delete table</button>
+                    </ul>                    
+                </div>
+
+                <div class="wrap occupied">
+                    <ul class="wrap-left_content">
+                        <div>
+                            <span>Table Name</span>
+                            <span>Occupied</span>
+                        </div>
+                        <br>
+                        <p>Customer: </p>
+                        <p>Tel: </p>
+                    </ul>
+                    <ul class="wrap-right_content">
+                        <li><a href="#">Change Status</a></li>
+                        <li><a href="#">Bill detail</a></li>
+                        <li><a href="#" class="done">Done</a></li>
+                        <button id="delete" href="#" method="GET">Delete table</button>
+                    </ul>                   
+                </div>
+
+                <div class="wrap outOfOrder">
+                    <ul class="wrap-left_content">
+                        <div>
+                            <span>Table Name</span>
+                            <span>Out of Order</span>
+                        </div>
+                        <br>
+                        <p>This table is currently not in use.</p>
+                    </ul>
+                    <ul class="wrap-right_content">
+                        <li><a href="#">Change Status</a></li>
+                        <li><a href="#">Bill detail</a></li>
+                        <li><a href="#" class="done">Done</a></li>
+                        <button id="delete" href="#" method="GET">Delete table</button>
+                    </ul>                    
+                </div>
 				<div class="change_status">
 					<h2>Change</h2>
 					<ul>
@@ -128,16 +187,7 @@
 					</div>
 				</div>
 
-				<div class="wrap">
-					<ul>
-						<li><a href="#">Change Status</a></li>
-						<li><a id="info" href="#" method = "GET">Information</a></li>
-						<li><a id="delete" href="#" method="GET">Delete</a></li>
-					</ul>
-					<button class="done">Done</button>
-				</div>
 				<div class="multy-table">
-					<span style="font-size: 30px; margin-right: 20px;">A</span>
 					<tr th:each="table, table_index: ${tables}">
 						<div class="table">
 							<div class="t1">
@@ -150,10 +200,38 @@
 								<span></span>
 							</div>
 							<h1 th:data-myval="${table.getTableId()}" th:id="${table_index.index}"></h1>
-a							<h2 th:text="${table.getTableName()}" id="abc"></h2>
-a						</div>
+							<h2 th:text="${table.getTableName()}" id="abc"></h2>
+						</div>
 					</tr>
 				</div>
+
+				<div class="content_footer">
+					<!-- Đếm số lượng bàn mỗi loại -->
+					<div class="countTable"> 
+						<ul>
+							<li>
+								<span class="green"></span>
+								<span>Avaible: </span>
+							</li>
+							<li>
+								<span class="yellow"></span>
+								<span>Reserved: </span>
+							</li>
+							<li>
+								<span class="red"></span>
+								<span>Occupied: </span>
+							</li>
+							<li>
+								<span class="dark"></span>
+								<span>Out of Order: </span>
+							</li>
+						</ul>
+					</div>
+					<!-- Thêm bàn -->
+					<button class="AddTable">ADD</button>
+					
+				</div>
+
 			</div>
 		</div>
 	</div>

@@ -110,8 +110,8 @@ header .home i {
 }
 
 .content {
-    margin-left: 240px;
-    width: calc(100% - 240px);
+    margin-left: 250px;
+    width: calc(100% - 250px);
 }
 
 @media screen and (max-width: 990px) {
@@ -141,13 +141,18 @@ header .home i {
     header {
         justify-content: space-between;
     }
-    header .logo {
-        
+    .content {
+        margin-left: 120px;
+        width: calc(100% - 120px);
     }
 }
 
 @media screen and (max-width: 500px) {
     header input, header .search i{
         display: none;
+    }
+    .content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
     }
 }

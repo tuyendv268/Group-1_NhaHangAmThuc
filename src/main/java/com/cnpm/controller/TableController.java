@@ -24,10 +24,10 @@ public class TableController {
 		return "redirect:/table";
 	}
 
-	@GetMapping(value = "/test")
-	public String demo() {
-		return "test";
-	}
+//	@GetMapping(value = "/test")
+//	public String demo() {
+//		return "test";
+//	}
 	
 	@GetMapping(value = "/table/{id}/info")
 	public String getInfo(@PathVariable Long id, Model model) {
