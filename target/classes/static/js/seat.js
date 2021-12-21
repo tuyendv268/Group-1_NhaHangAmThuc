@@ -32,9 +32,6 @@ for (let i = 0; i < table.length; i++){
     table[i].addEventListener('click', () => {
         index = i // Vị trí bàn đang trỏ tới
         console.log(index)
-        var id = $('#'+index).data('myval'); //getter
-        var a = document.getElementById("delete");
-        a.href = "/table/"+id;
         if(isDisplay) return
         midClass = mid[index].className
         midColor = midClass.split(' ')[1] // Màu hiện tại
@@ -94,14 +91,16 @@ for (let j = 0; j < colorChange.length; j++){
         let tableColor = colorChange[j].className // Màu option      
         let midClass = mid[index].className
         let midColor = midClass.split(' ')[1] // Màu hiện tại
-        // Thay đổi màu trạng thái
-        mid[index].classList.remove(midColor)
-        mid[index].classList.add(tableColor)
         // Nếu chuyển sang reserved thì hiện pop-up lấy thông tin
         if (tableColor=='yellow'){
             change_status_display.style.display = 'none'
             show_reservation_info()
         }
+        else {
+			// Thay đổi màu trạng thái
+	        mid[index].classList.remove(midColor)
+	        mid[index].classList.add(tableColor)
+		}
     })
 }
 
@@ -113,10 +112,14 @@ show_reservation_info = () => {
 let reservation_cancel = document.getElementById("reservation_cancel")
 reservation_cancel.addEventListener('click', () => {
     popup_reservation.style.display = 'none'
+    isDisplay = false
 })
 let reservation_add = document.getElementById("reservation_add")
 reservation_add.addEventListener('click', () => {
+	mid[index].classList.remove(mid[index].className.split(' ')[1])
+	mid[index].classList.add("yellow")
     popup_reservation.style.display = 'none'
+    isDisplay = false
     countTable()
 })
 
@@ -161,23 +164,38 @@ let countTable = () => {
 countTable()
 
 // -------------- confirm Delete ------------------
-let confirmDelete_free = document.querySelector('.free > ul > li:nth-child(3)')
-let confirmDelete_outOfOrder = document.querySelector('.outOfOrder > ul > li:nth-child(3)')
-let confirmDelete_display = document.getElementsByClassName('confirmDelete')[0]
+let DeleteButton_free = document.querySelector('.free > ul > li:nth-child(3)')
+let DeleteButton_outOfOrder = document.querySelector('.outOfOrder > ul > li:nth-child(3)')
+let Delete_display = document.getElementsByClassName('confirmDelete')[0]
 
-confirmDelete_free.addEventListener('click', () => {  
+DeleteButton_free.addEventListener('click', () => {  
     wrap[0].style.display = 'none'
-    confirmDelete_display.style.display = 'block'
+    Delete_display.style.display = 'block'
     isDisplay = true
 })
-confirmDelete_outOfOrder.addEventListener('click', () => {
+DeleteButton_outOfOrder.addEventListener('click', () => {
     wrap[3].style.display = 'none'
-    confirmDelete_display.style.display = 'block'
+    Delete_display.style.display = 'block'
     isDisplay = true
 })
 
 let close_delete = document.getElementById('confirmDelete_no')
 close_delete.addEventListener('click', () => {
-    confirmDelete_display.style.display = 'none'
+    Delete_display.style.display = 'none'
+    isDisplay = false
+})
+
+let confirmDelete = document.getElementById('confirmDelete_yes')
+confirmDelete.addEventListener('click', () => {
+    var id = $('#'+index).data('myval'); //getter
+    var deleteTable = document.getElementsByClassName("delete")
+    let classColor = mid[index].getAttribute('class').split(' ')[1].trim()
+    if (classColor=="green"){
+        deleteTable[0].href = "/table/" + id
+    }
+    else {
+        deleteTable[1].href = "/table/" + id
+    }
+    Delete_display.style.display = 'none'
     isDisplay = false
 })
