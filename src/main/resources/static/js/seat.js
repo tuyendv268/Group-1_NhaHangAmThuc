@@ -1,5 +1,4 @@
 let table = document.getElementsByClassName('table')
-console.log(table);
 let wrap = document.getElementsByClassName('wrap')
 
 let isDisplay = false
@@ -35,7 +34,6 @@ for (let i = 0; i < table.length; i++){
         console.log(index)
         var id = $('#'+index).data('myval'); //getter
         var a = document.getElementById("delete");
-        // alert(id);
         a.href = "/table/"+id;
         if(isDisplay) return
         midClass = mid[index].className
@@ -86,6 +84,7 @@ change_status_outOfOrder.addEventListener('click', () => {
 
 let close_status = document.getElementsByClassName('close_status')[0]
 close_status.addEventListener('click', () => {
+    countTable()
     change_status_display.style.display = 'none'
     isDisplay = false
 })
@@ -95,12 +94,68 @@ for (let j = 0; j < colorChange.length; j++){
         let tableColor = colorChange[j].className // Màu option      
         let midClass = mid[index].className
         let midColor = midClass.split(' ')[1] // Màu hiện tại
-
         // Thay đổi màu trạng thái
         mid[index].classList.remove(midColor)
         mid[index].classList.add(tableColor)
+        // Nếu chuyển sang reserved thì hiện pop-up lấy thông tin
+        if (tableColor=='yellow'){
+            change_status_display.style.display = 'none'
+            show_reservation_info()
+        }
     })
 }
 
+// --------- Pop-up Reservation Info -----------
+let popup_reservation = document.getElementsByClassName("reservation_info")[0]
+show_reservation_info = () => {
+    popup_reservation.style.display = 'block'
+}
+let reservation_cancel = document.getElementById("reservation_cancel")
+reservation_cancel.addEventListener('click', () => {
+    popup_reservation.style.display = 'none'
+})
+let reservation_add = document.getElementById("reservation_add")
+reservation_add.addEventListener('click', () => {
+    popup_reservation.style.display = 'none'
+    countTable()
+})
 
+// --------- Pop-up Add Table ------------------
+let AddTable = document.getElementById("table_add")
+let popup_NewTable = document.getElementsByClassName("NewTable")[0]
+AddTable.addEventListener('click', () => {
+    popup_NewTable.style.display = 'block'
+})
+let addTable_cancel = document.getElementById("addTable_cancel")
+addTable_cancel.addEventListener('click', () => {
+    popup_NewTable.style.display = 'none'
+})
 
+// ------------ Count Table ------------------------
+let countTable = () => {
+    let countGreen = 0, countYellow = 0, countRed = 0, countGrey = 0
+
+    for (let i = 0; i < mid.length; i++) {
+        //get color
+        let classColor = mid[i].getAttribute('class').split(' ')[1].trim()
+        if(classColor == 'green') {
+            countGreen++;
+        }
+        else if(classColor == 'yellow') {
+            countYellow++
+        }
+        else if(classColor == 'red') {
+            countRed++
+        }
+        else if(classColor == 'dark') {
+            countGrey++;
+        }
+    }
+    let count = document.getElementsByClassName('count')
+    count[0].textContent = `Avaible: ${countGreen}`
+    count[1].textContent = `Reserved: ${countYellow}`
+    count[2].textContent = `Occupied: ${countRed}`
+    count[3].textContent = `Out of Order: ${countGrey}`
+}
+
+countTable()
