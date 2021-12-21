@@ -94,7 +94,7 @@
                             <span>Table Name</span>
                             <span>Available</span>
                         </div>
-                        <div>Reservation Timeout: N/A</div>
+						<br>
                         <p>Customer: N/A</p>
                         <p>Tel: N/A</p>
                     </ul>
@@ -155,7 +155,7 @@
                         <li><a href="#">Change Status</a></li>
                         <li><a href="#">Bill detail</a></li>
                         <li><a href="#" class="done">Done</a></li>
-                        <button id="delete" href="#" method="GET">Delete table</button>
+                        <li><a id="delete" href="#" method="GET">Delete table</a></li>
                     </ul>                    
                 </div>
 				<div class="change_status">
@@ -187,6 +187,22 @@
 					</div>
 				</div>
 
+				<!-- pop-up đặt bàn -->
+                <div class="reservation_info">
+                    <h2>Reservation for Table</h2>
+                    <span>Customer Name</span>
+                    <input type="text" class="text">
+                    <span>Phone</span>
+                    <input type="text" class="text">
+                    <span>Reservation Timeout (mins)</span>
+                    <input type="text" class="text">
+                    <ul>
+                        <li><button id="reservation_add">Add</button></li>
+                        <li><button id="reservation_cancel">Cancel</button></li>
+                    </ul>
+
+                </div>
+
 				<div class="multy-table">
 					<tr th:each="table, table_index: ${tables}">
 						<div class="table">
@@ -205,30 +221,48 @@
 					</tr>
 				</div>
 
-				<div class="content_footer">
-					<!-- Đếm số lượng bàn mỗi loại -->
-					<div class="countTable"> 
-						<ul>
-							<li>
-								<span class="green"></span>
-								<span>Avaible: </span>
-							</li>
-							<li>
-								<span class="yellow"></span>
-								<span>Reserved: </span>
-							</li>
-							<li>
-								<span class="red"></span>
-								<span>Occupied: </span>
-							</li>
-							<li>
-								<span class="dark"></span>
-								<span>Out of Order: </span>
-							</li>
-						</ul>
-					</div>
-					<!-- Thêm bàn -->
-					<button class="AddTable">ADD</button>
+				<!-- pop-up New Table -->
+                <div class="NewTable">
+                    <h2>Add New Table</h2>
+                    <br>
+                    <span>Enter Table Name:</span>
+                    <br>
+                    <input type="text" class="text">
+                    <ul>
+                        <!-- button Add và Cancel trên pop-up -->
+                        <li><button id="addTable_add">Add</button></li>
+                        <li><button id="addTable_cancel">Cancel</button></li>
+                    </ul>
+                </div>
+
+                <!-- count Table và add -->
+                <footer>
+                    <div id="table-count">
+                        <div>
+                            <div>
+                                <span class="green box"></span>
+                                <span class="count">Avaible: </span>
+                            </div>
+                            <div>
+                                <span class="yellow box"></span>
+                                <span class="count">Reserved: </span>
+                            </div>
+                        </div>
+    
+                        <div>
+                            <div>
+                                <span class="red box"></span>
+                                <span class="count">Occupied: </span>
+                            </div>
+                            <div>
+                                <span class="dark box"></span>
+                                <span class="count">Out of Order: </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div id="table_add">Add</div>
+                </footer>
 					
 				</div>
 

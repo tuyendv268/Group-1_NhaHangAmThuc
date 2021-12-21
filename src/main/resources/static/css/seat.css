@@ -65,7 +65,7 @@
 }
 
 .wrap {
-    height: 250px;
+    height: 270px;
     width: 500px;
     background-color: #C3C3C4;
     border-radius: 30px;
@@ -101,7 +101,7 @@
     width: 200px;
 }
 
-.wrap-right_content button {
+/* .wrap-right_content button {
     padding: 7px 15px;
     text-align: right!important;
     display: block;
@@ -109,7 +109,7 @@
     border: none;
     background-color: #484848;
     color: #fff;
-}
+} */
 
 .wrap-left_content {
     border-right: 1px solid #333;
@@ -139,6 +139,12 @@
     background-color:whitesmoke ;
 }
 .outOfOrder .wrap-right_content li:nth-child(2) a {
+    background-color:whitesmoke ;
+}
+.reserved .wrap-right_content li:nth-child(3) a {
+    background-color:whitesmoke ;
+}
+.occupied .wrap-right_content li:nth-child(3) a {
     background-color:whitesmoke ;
 }
 .free .wrap-left_content div:first-child > span:nth-child(2) {
@@ -323,7 +329,7 @@
     z-index: 1000;
 }
 
-.NewTable, .reservation_info h2 {
+.NewTable h2 {
     text-align: center;
     font-size: 30px;
     font-weight: normal;
@@ -383,6 +389,8 @@
 }
 .reservation_info h2{
     font-size: 25px;
+    text-align: center;
+    font-weight: normal;
 }
 .reservation_info span {
     font-size: 16px;
@@ -419,4 +427,56 @@
     #table_add{
         right: 5px;
     }
+}
+
+.confirmDelete {
+    width: 300px;
+    top: 40%;
+    left: 48%;
+    padding: 12px 30px;
+    position: absolute;
+    border-radius: 40px;
+    background-color: #e6e6e6;
+    z-index: 1000;
+    display: none;
+}
+
+.confirmDelete h2 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 22px;
+}
+
+.confirmDelete ul {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirmDelete ul li {
+    color: white;
+    background-color: #222;
+    padding: 5px 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.confirmDelete ul li {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    background-color: #4b4b4b;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 80px;
+}
+.confirmDelete ul li:hover{
+    background-color: #34aad4;
 }

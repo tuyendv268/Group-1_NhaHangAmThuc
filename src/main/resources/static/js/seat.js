@@ -159,3 +159,25 @@ let countTable = () => {
 }
 
 countTable()
+
+// -------------- confirm Delete ------------------
+let confirmDelete_free = document.querySelector('.free > ul > li:nth-child(3)')
+let confirmDelete_outOfOrder = document.querySelector('.outOfOrder > ul > li:nth-child(3)')
+let confirmDelete_display = document.getElementsByClassName('confirmDelete')[0]
+
+confirmDelete_free.addEventListener('click', () => {  
+    wrap[0].style.display = 'none'
+    confirmDelete_display.style.display = 'block'
+    isDisplay = true
+})
+confirmDelete_outOfOrder.addEventListener('click', () => {
+    wrap[3].style.display = 'none'
+    confirmDelete_display.style.display = 'block'
+    isDisplay = true
+})
+
+let close_delete = document.getElementById('confirmDelete_no')
+close_delete.addEventListener('click', () => {
+    confirmDelete_display.style.display = 'none'
+    isDisplay = false
+})
