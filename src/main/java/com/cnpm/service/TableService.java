@@ -24,4 +24,8 @@ public class TableService {
 	public TableEntity findByID(Long id) {
 		return tableRepository.findByTableId(id);
 	}
+	
+	public TableEntity save(TableEntity newTable) {
+		return tableRepository.save(newTable);
+	}
 }

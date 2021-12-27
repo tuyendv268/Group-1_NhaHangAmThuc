@@ -24,6 +24,7 @@ done3.addEventListener('click', () => {
 // ----------- delete ---------------
 let colorChange = document.querySelectorAll('.getColor span:first-child')
 let mid = document.getElementsByClassName('mid')
+// vị trí bàn đang được trỏ tới
 let index
 let midClass
 let midColor
@@ -36,6 +37,7 @@ for (let i = 0; i < table.length; i++){
         midClass = mid[index].className
         midColor = midClass.split(' ')[1] // Màu hiện tại
         // Chọn pop-up phù hợp với bàn để hiển thị
+        
         if (midColor=='green'){
             wrap[0].style.display = 'flex'
         }
@@ -48,6 +50,7 @@ for (let i = 0; i < table.length; i++){
         else{
             wrap[3].style.display = 'flex'
         }
+        
     })
 }
 
@@ -187,14 +190,15 @@ close_delete.addEventListener('click', () => {
 
 let confirmDelete = document.getElementById('confirmDelete_yes')
 confirmDelete.addEventListener('click', () => {
-    var id = $('#'+index).data('myval'); //getter
-    var deleteTable = document.getElementsByClassName("delete")
+	//getter
     let classColor = mid[index].getAttribute('class').split(' ')[1].trim()
     if (classColor=="green"){
-        deleteTable[0].href = "/table/" + id
-    }
-    else {
-        deleteTable[1].href = "/table/" + id
+		// set href cho button
+        var id = $('#'+index).data('myval');
+        $("#confirmDelete_yes").attr("href", "/table/" + id);
+//		alert($('#confirmDelete_yes').attr('href'));
+    }else if(classColor=="dark") {
+		alert("Không thể xóa bàn này")
     }
     Delete_display.style.display = 'none'
     isDisplay = false
