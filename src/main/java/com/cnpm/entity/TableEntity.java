@@ -24,10 +24,21 @@ public class TableEntity {
 	@ManyToOne
 	@JoinColumn(name = "bill_id")
 	private BillEntity bill;
+	
+	public TableEntity(Long tableId, String tableName, String status) {
+		this.tableId = tableId;
+		this.tableName = tableName;
+		this.status = status;
+	}
+	public TableEntity() {
+		
+	}
 
 	public String getTableName() {
 		return tableName;
 	}
+	
+	
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;

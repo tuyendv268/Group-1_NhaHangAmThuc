@@ -1,6 +1,5 @@
 package com.cnpm.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.service.TableService;
 
@@ -37,7 +36,7 @@ public class TableController {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
 		tableService.save(newTable);
-		ArrayList<TableEntity> tables = (ArrayList<TableEntity>) tableService.findAll();
+		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.findAll();
 
 		model.addAttribute("tables", tables);
 		return "seat";
@@ -53,12 +52,15 @@ public class TableController {
 		}
 		return "seat";
 	}
-
+//	th:data-customerName="${table.getBill().getCustomer().getCustormerName()}"
 	@GetMapping(value = "/table")
 	public String display(Model model) {
-		ArrayList<TableEntity> tables = (ArrayList<TableEntity>) tableService.findAll();
-
+		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
+		
+		TableDTO temp = tables.get(0);
+		System.out.println(temp.getCustormerName());
 		model.addAttribute("tables", tables);
 		return "seat";
 	}
+
 }

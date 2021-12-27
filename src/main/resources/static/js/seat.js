@@ -37,7 +37,6 @@ for (let i = 0; i < table.length; i++){
         midClass = mid[index].className
         midColor = midClass.split(' ')[1] // Màu hiện tại
         // Chọn pop-up phù hợp với bàn để hiển thị
-        
         if (midColor=='green'){
             wrap[0].style.display = 'flex'
         }
@@ -45,6 +44,11 @@ for (let i = 0; i < table.length; i++){
             wrap[1].style.display = 'flex'
         }
         else if (midColor=='red'){
+			var customername = $('#'+index).data('customername');
+			var telephone = $('#'+index).data('telephone');
+			//alert(customername);
+			document.getElementsByClassName("customer occupied")[0].innerHTML = "Customer: "+ customername;
+			document.getElementsByClassName("tel occupied")[0].innerHTML = "Tel: "+ telephone; 
             wrap[2].style.display = 'flex'
         }
         else{
@@ -196,7 +200,7 @@ confirmDelete.addEventListener('click', () => {
 		// set href cho button
         var id = $('#'+index).data('myval');
         $("#confirmDelete_yes").attr("href", "/table/" + id);
-//		alert($('#confirmDelete_yes').attr('href'));
+		//alert($('#confirmDelete_yes').attr('href'));
     }else if(classColor=="dark") {
 		alert("Không thể xóa bàn này")
     }
