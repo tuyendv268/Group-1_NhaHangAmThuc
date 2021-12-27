@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- main part -->
+	<link rel="stylesheet" href="http://localhost:8080/css/main.css" />
+
+	<!-- seat part -->
+	<link rel="stylesheet" href="http://localhost:8080/css/seat.css" />
+
+	<link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet">
+	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese}" rel="stylesheet">
+	<title>Seat</title>
+	<link rel="icon" type="x-icon" href="image\favicon.ico">
+</head>
+
+<body>
+
+	<div id="container">
+		<header>
+			<h1 class="logo">
+				<a href="#">Manager</a>
+			</h1>
+			<div class="search">
+				<input type="text" placeholder="search">
+				<a href="#">
+					<i class="material-icons">search</i>
+				</a>
+			</div>
+
+			<div class="home">
+				<a href="#">
+					<i class="material-icons">home</i>
+				</a>
+			</div>
+		</header>
+
+		<div id="main">
+			<div class="menu">
+				<ul>
+					<li class="active">
+						<a href="/table">
+							<i class="material-icons">event_seat</i>
+							<span>Seat</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">menu</i>
+							<span>Menu</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">event_available</i>
+							<span>Event</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">person</i>
+							<span>Membership</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">note_alt</i>
+							<span>Report</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#">
+							<i class="material-icons">receipt_long</i>
+							<span>Bill</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="content content_seat">
+				<!-- Tạo pop-up chứa info bàn và các button tùy chỉnh -->
+				<!-- Mỗi loại bàn có đối tượng pop-up khác nhau -->
+				<div class="wrap free">
+					<ul class="wrap-left_content">
+						<div>
+							<span>Table Name</span>
+							<span>Available</span>
+						</div>
+						<br>
+						<p>Customer: N/A</p>
+						<p>Tel: N/A</p>
+					</ul>
+					<ul class="wrap-right_content">
+						<li><a href="#">Change Status</a></li>
+						<li><a href="#">Bill detail</a></li>
+						<li><a href="#">Delete table</a></li>
+						<li><a href="#" class="done">Done</a></li>
+					</ul>
+				</div>
+
+				<div class="wrap reserved">
+					<ul class="wrap-left_content">
+						<div>
+							<span>Table Name</span>
+							<span>Reserved</span>
+						</div>
+						<div>Reservation Timeout: </div>
+						<p>Customer: </p>
+						<p>Tel: </p>
+					</ul>
+					<ul class="wrap-right_content">
+						<li><a href="#">Change Status</a></li>
+						<li><a href="#">Bill detail</a></li>
+						<li><a href="#">Delete table</a></li>
+						<li><a href="#" class="done">Done</a></li>
+					</ul>
+				</div>
+
+				<div class="wrap occupied">
+					<ul class="wrap-left_content">
+						<div>
+							<span>Table Name</span>
+							<span>Occupied</span>
+						</div>
+						<br>
+						<p class = "customer occupied">Customer: </p >
+						<p class = "tel occupied">Tel: </p >
+					</ul>
+					<ul class="wrap-right_content">
+						<li><a href="#">Change Status</a></li>
+						<li><a href="#">Bill detail</a></li>
+						<li><a href="#">Delete table</a></li>
+						<li><a href="#" class="done">Done</a></li>
+					</ul>
+				</div>
+
+				<div class="wrap outOfOrder">
+					<ul class="wrap-left_content">
+						<div>
+							<span>Table Name</span>
+							<span>Out of Order</span>
+						</div>
+						<br>
+						<p>This table is currently not in use.</p>
+					</ul>
+					<ul class="wrap-right_content">
+						<li><a href="#">Change Status</a></li>
+						<li><a href="#">Bill detail</a></li>
+						<li><a href="#">Delete table</a></li>
+						<li><a href="#" class="done">Done</a></li>
+					</ul>
+				</div>
+				<div class="change_status">
+					<h2>Change</h2>
+					<ul>
+						<li class="getColor">
+							<span class="green"></span>
+							<span>Avaible</span>
+						</li>
+
+						<li class="getColor">
+							<span class="yellow"></span>
+							<span>Reserved</span>
+						</li>
+
+						<li class="getColor">
+							<span class="red"></span>
+							<span>Occupied</span>
+						</li>
+
+						<li class="getColor">
+							<span class="dark"></span>
+							<span>Out of Order</span>
+						</li>
+
+					</ul>
+					<div>
+						<button class="close_status">close</button>
+					</div>
+				</div>
+
+				<!-- pop-up đặt bàn -->
+				<div class="reservation_info">
+					<h2>Reservation for Table</h2>
+					<span>Customer Name</span>
+					<input type="text" class="text">
+					<span>Phone</span>
+					<input type="text" class="text">
+					<span>Reservation Timeout (mins)</span>
+					<input type="text" class="text">
+					<ul>
+						<li><button id="reservation_add">Add</button></li>
+						<li><button id="reservation_cancel">Cancel</button></li>
+					</ul>
+
+				</div>
+
+				<div class="multy-table">
+					<tr th:each="table, table_index: ${tables}">
+						<div class="table" th:switch="${table.status}">
+							<div class="t1">
+								<span></span>
+								<span></span>
+							</div>
+							<!-- <div class="mid green" onclick="myFunction()"></div> -->
+							<div th:case = "${table.available}" class="mid green"></div>
+							<div th:case = "${table.reserved}" class="mid yellow"></div>
+							<div th:case = "${table.occupied}" class="mid red"></div>
+							<div th:case = "${table.outoforder}" class="mid green"></div>
+							<div class="t1">
+								<span></span>
+								<span></span>
+							</div>
+							
+							<h2 th:data-myval="${table.getTableId()}"
+								th:data-customername="${table.custormerName}"
+								th:data-telephone="${table.telephone}"
+								th:data-tablestatus = "${table.status}"
+								th:data-statuspayment="${table.statusPayment}"
+								th:id="${table_index.index}"
+								th:text="${table.getTableName()}"></h2>
+						</div>
+					</tr>
+				</div>
+
+				<!-- pop-up New Table -->
+				<div class="NewTable">
+					<h2>Add New Table</h2>
+					<br>
+					<span>Enter Table Name:</span>
+					<br>
+					<form th:action="@{/table/new-table}">
+						<input type="text" class="text" th:name="tableName">
+						<ul>
+							<!-- button Add và Cancel trên pop-up -->
+							<li><button id="addTable_add">Add</button></li>
+						</ul>
+					</form>
+					<ul>
+						<li><button id="addTable_cancel">Cancel</button></li>
+					</ul>
+				</div>
+
+				<!-- pop-up confirm Delete -->
+				<div class="confirmDelete">
+					<h2>Delete Table N?</h2>
+					<ul>
+
+						<li><a id="confirmDelete_yes" href="#" method="GET">Yes</a></li>
+						<li><a id="confirmDelete_no" href="#">No</a></li>
+					</ul>
+				</div>
+
+				<!-- count Table và add -->
+				<footer>
+					<div id="table-count">
+						<div>
+							<div>
+								<span class="green box"></span>
+								<span class="count">Avaible: </span>
+							</div>
+							<div>
+								<span class="yellow box"></span>
+								<span class="count">Reserved: </span>
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<span class="red box"></span>
+								<span class="count">Occupied: </span>
+							</div>
+							<div>
+								<span class="dark box"></span>
+								<span class="count">Out of Order: </span>
+							</div>
+						</div>
+					</div>
+
+					<div id="table_add">Add</div>
+				</footer>
+
+			</div>
+
+		</div>
+	</div>
+	</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://localhost:8080/js/seat.js"></script>
+<script>
+	function order() {
+  		document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+	}
+</script> 
+
+</html>

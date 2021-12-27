@@ -30,13 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("HIIIIIIIII");
-		http.authorizeRequests().antMatchers("/", "/home", "/login").permitAll().and().formLogin()
-				.loginProcessingUrl("/j_spring_security_check").loginPage("/login").defaultSuccessUrl("/menu")
-				.usernameParameter("userId").passwordParameter("password").permitAll();
-		http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository())
-				.tokenValiditySeconds(1 * 24 * 60 * 60);
+		
+		//http.anonymous().principal("guest").authorities("GUEST_ROLE").and().authorizeRequests().antMatchers("/resources/**").permitAll();
+		http.authorizeRequests().antMatchers("/", "/home", "/login").permitAll();
+		http.authorizeRequests().antMatchers("/table").authenticated();
+		http.formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login").defaultSuccessUrl("/table").usernameParameter("userId").passwordParameter("password").permitAll();
+		http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository()).tokenValiditySeconds(1 * 24 * 60 * 60);
 	}
-
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
 		InMemoryTokenRepositoryImpl memory = new InMemoryTokenRepositoryImpl();

@@ -1,10 +1,14 @@
 package com.cnpm.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
 
 import com.cnpm.entity.EventEntity;
 
-public interface EventRepository extends JpaRepository<EventEntity, Long>{
+public interface EventRepository extends CrudRepository<EventEntity, Long>{
 	EventEntity findByEventName(String eventName);
+	EventEntity findByEventId(Long id);
 	EventEntity save(EventEntity event);
+	List<EventEntity> findAll();
 }

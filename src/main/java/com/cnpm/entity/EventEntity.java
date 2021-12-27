@@ -39,6 +39,19 @@ public class EventEntity {
 	
 	@Column(name = "discount_rate")
 	private int discountRate;
+	
+	public EventEntity() {
+		
+	}
+	
+	public EventEntity(Long id, String eventName, String description, LocalDate timeStart, LocalDate timeEnd, int discountRate) {
+		this.eventName = eventName;
+		this.eventId = id;
+		this.description = description;
+		this.timeStart = timeStart;
+		this.timeEnd = timeEnd;
+		this.discountRate = discountRate;
+	}
 
 	public EventEntity(String eventName, String description, LocalDate timeStart, LocalDate timeEnd, int discountRate) {
 		this.eventName = eventName;
