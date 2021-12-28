@@ -39,7 +39,21 @@ public class TableService {
 		return tableRepository.save(table);
 	}
 	
+	public List<TableDTO> find(String tableName){
+		List<TableDTO> tables = convert2DTO(tableRepository.findByTableName(tableName));
+		if(tables.size() == 0) {
+			return null;
+		}
+		return tables;
+	}
+	
 	public TableEntity save(TableEntity newTable) {
+		List<TableEntity> tables = tableRepository.findAll();
+		for (TableEntity tableEntity : tables) {
+			if(newTable.getTableName().equals(tableEntity.getTableName())) {
+				return null;
+			}
+		}
 		return tableRepository.save(newTable);
 	}
 	

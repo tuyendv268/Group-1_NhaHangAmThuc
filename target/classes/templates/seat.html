@@ -25,10 +25,12 @@
 				<a href="#">Manager</a>
 			</h1>
 			<div class="search">
-				<input type="text" placeholder="search">
-				<a href="#">
-					<i class="material-icons">search</i>
-				</a>
+				<form th:action="@{/table/search}">
+					<input type="text" placeholder="search" th:name="tableName">
+					<a href="#">
+						<i class="material-icons">search</i>
+					</a>
+				</form >
 			</div>
 
 			<div class="home">
@@ -192,11 +194,11 @@
 					<form th:action="@{/table/order}">
 						<h2>Reservation for Table</h2>
 						<span>Table ID</span>
-						<input type="text" class="text" id = "reserved_table_id" th:name = "id" readonly>
+						<input type="text" class="text" id="reserved_table_id" th:name="id" readonly>
 						<span>Customer Name</span>
-						<input type="text" class="text" th:name = "guestName">
+						<input type="text" class="text" th:name="guestName">
 						<span>Phone</span>
-						<input type="text" class="text" th:name = "phone">
+						<input type="text" class="text" th:name="phone">
 						<ul>
 							<li><button id="reservation_add">Add</button></li>
 						</ul>

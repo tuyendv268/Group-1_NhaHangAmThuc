@@ -1,6 +1,7 @@
 package com.cnpm.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,17 +31,25 @@ public class TableController {
 		return "test";
 	}
 	
+	@GetMapping(value = "/table/search")
+	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model) {
+		ArrayList<TableDTO> tables =(ArrayList<TableDTO>) tableService.find(tableName);
+		if(tables != null) {
+			model.addAttribute("tables", tables);
+		}
+		return "seat";
+	}
+	
 	@GetMapping(value = "/table/new-table")
-	public String newTable(@RequestParam(value = "tableName") String tableName
-			,Model model) {
+	public String newTable(@RequestParam(value = "tableName") String tableName) {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
 		newTable.setStatus(TableDTO.available);
-		tableService.save(newTable);
-		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.findAll();
-
-		model.addAttribute("tables", tables);
-		return "seat";
+		
+		if(tableService.save(newTable) == null) {
+			System.out.println("Trùng Tên");
+		}
+		return "redirect:/table";
 	}
 	
 	@GetMapping(value = "/table/order")
@@ -53,6 +62,7 @@ public class TableController {
 		return "redirect:/table";
 	}
 //	th:data-customerName="${table.getBill().getCustomer().getCustormerName()}"
+	
 	@GetMapping(value = "/table")
 	public String display(Model model) {
 		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
