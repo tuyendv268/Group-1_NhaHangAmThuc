@@ -9,33 +9,41 @@ public class TableDTO {
 	private String status;
 	private String tableName;
 	private Long billId;
-	private Long customerId;
-	private String custormerName;
+	private String guestName;
 	private String telephone;
 	private boolean statusPayment;
 	
-	public TableDTO(Long tableId, String tableName, String status) {
+	public TableDTO(Long tableId, String tableName, String guestName,String phone ,String status) {
 		this.tableId = tableId;
+		this.guestName = guestName;
+		this.telephone = phone;
 		this.tableName = tableName;
 		this.status = status;
 	}
 	
 	public TableDTO(Long tableId, String status,
 			String tableName, Long billId, 
-			Long customerId, String custormerName, 
+			String guestName, 
 			String telephone, boolean statusPayment) {
 		this.tableId = tableId;
 		this.status = status;
 		this.tableName = tableName;
 		this.billId = billId;
-		this.customerId = customerId;
-		this.custormerName = custormerName;
+		this.guestName = guestName;
 		this.telephone = telephone;
 		this.statusPayment = statusPayment;
 	}
 
 	public Long getTableId() {
 		return tableId;
+	}
+
+	public String getGuestName() {
+		return guestName;
+	}
+
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
 	}
 
 	public void setTableId(Long tableId) {
@@ -64,22 +72,6 @@ public class TableDTO {
 
 	public void setBillId(Long billId) {
 		this.billId = billId;
-	}
-
-	public Long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getCustormerName() {
-		return custormerName;
-	}
-
-	public void setCustormerName(String custormerName) {
-		this.custormerName = custormerName;
 	}
 
 	public String getTelephone() {
