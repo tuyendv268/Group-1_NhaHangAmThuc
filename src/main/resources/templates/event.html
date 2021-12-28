@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <link rel="stylesheet" href="./assets/css/event.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+
+    <title>Event</title>
+
+    <link rel="icon" type="x-icon" href="image\favicon.ico">
+
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 class="logo">
+                <a href="#">Manager</a>
+            </h1>
+
+            <div class="search">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="material-icons">search</i>
+                </a>
+            </div>
+
+            <div class="home">
+                <a href="#">
+                    <i class="material-icons">home</i>
+                </a>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="/table">
+                            <i class="material-icons">event_seat</i>
+                            <span>Seat</span>
+                        </a>
+                        
+                    </li>
+
+                    <li >
+                        <a href="#">
+                            <i class="material-icons">menu</i>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="active">
+                        <a href="/event.html">
+                            <i class="material-icons">event_available</i>
+                            <span>Event</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">person</i>
+                            <span>Membership</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">note_alt</i>
+                            <span>Report</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">receipt_long</i>
+                            <span>Bill</span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="content content_event">
+
+                <div class="event">
+                    <div class="event-item">
+                        <img src="./image/login.png" alt="">
+                        <span>Event 1</span>
+                    </div>
+
+                    <div class="event-item">
+                        <img src="./image/login.png" alt="">
+                        <span>Event 1</span>
+                    </div>
+
+                </div>
+
+                <div class="new_event">
+                    <ul>
+                        <li id="name_event">
+                            <span>Name event</span>
+                            <input type="text" class="text">
+                        </li>
+                        <li id="describe_event">
+                            <span>Event description</span>
+                            <input type="text" class="text">
+                        </li>
+                        <div id="poster_upload">
+                            <p>Poster</p>
+
+                            <label for="input-pic">Upload
+                            </label>
+                            <input type="file" onchange="encodeImageFileAsURL(this)" id="input-pic" style="display: none;"/>
+                        </div>
+                        <li id="start_event">
+                            <span>Start time</span>
+                            <input type="text" class="text">
+                        </li>
+                        <li id="end_event">
+                            <span>End time</span>
+                            <input type="text" class="text">
+                        </li>
+                        <div class="discount">
+                            <li>
+                                <span>Sale</span>
+                                <p>Preferential rate<input type="text" class="text">%</p>
+                            </li>
+                            <button>Select in menu</button>
+                        </div>
+                    </ul>
+                    <div class="end_popup">
+                        <button class="create_button">Create</button>
+                        <button class="close_button">Close</button>
+                    </div>
+
+                </div>
+
+                <div class="event-info-popup">
+                    <h2>Infomation</h2>
+                    <ul>
+                        <li>Name event <p>1</p> </li>
+                        <li>Event description <p>1</p></li>
+                        <li>End time <p>1</p></li>
+                        <li>Sale <p>1</p></li>
+                    </ul>
+                    <div>
+                        <button>Delete</button>
+                        <button class="close_if">Done</button>
+                    </div>
+                </div>
+
+                <div id="create_event">Create</div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/event.js"></script>
+
+</html>
