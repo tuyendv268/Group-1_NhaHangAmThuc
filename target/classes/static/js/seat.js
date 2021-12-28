@@ -41,14 +41,19 @@ for (let i = 0; i < table.length; i++){
             wrap[0].style.display = 'flex'
         }
         else if (midColor=='yellow'){
+			var customername = $('#'+index).data('customername');
+			var telephone = $('#'+index).data('telephone');
+			//alert(customername);
+			document.getElementsByClassName("customer reserved")[0].innerHTML = "Customer : "+ customername;
+			document.getElementsByClassName("tel reserved")[0].innerHTML 	  = "Tel	  : "+ telephone; 
             wrap[1].style.display = 'flex'
         }
         else if (midColor=='red'){
 			var customername = $('#'+index).data('customername');
 			var telephone = $('#'+index).data('telephone');
 			//alert(customername);
-			document.getElementsByClassName("customer occupied")[0].innerHTML = "Customer: "+ customername;
-			document.getElementsByClassName("tel occupied")[0].innerHTML = "Tel: "+ telephone; 
+			document.getElementsByClassName("customer occupied")[0].innerHTML = "Customer : "+ customername;
+			document.getElementsByClassName("tel occupied")[0].innerHTML      = "Tel      : "+ telephone; 
             wrap[2].style.display = 'flex'
         }
         else{
@@ -114,6 +119,9 @@ for (let j = 0; j < colorChange.length; j++){
 // --------- Pop-up Reservation Info -----------
 let popup_reservation = document.getElementsByClassName("reservation_info")[0]
 show_reservation_info = () => {
+	var id = $('#'+index).data('myval');
+	alert(id)
+	document.getElementById("reserved_table_id").value = id;
     popup_reservation.style.display = 'block'
 }
 let reservation_cancel = document.getElementById("reservation_cancel")

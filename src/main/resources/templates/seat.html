@@ -113,8 +113,8 @@
 							<span>Reserved</span>
 						</div>
 						<div>Reservation Timeout: </div>
-						<p>Customer: </p>
-						<p>Tel: </p>
+						<p class="customer reserved">Customer: </p>
+						<p class="tel reserved">Tel: </p>
 					</ul>
 					<ul class="wrap-right_content">
 						<li><a href="#">Change Status</a></li>
@@ -131,8 +131,8 @@
 							<span>Occupied</span>
 						</div>
 						<br>
-						<p class = "customer occupied">Customer: </p >
-						<p class = "tel occupied">Tel: </p >
+						<p class="customer occupied">Customer: </p>
+						<p class="tel occupied">Tel: </p>
 					</ul>
 					<ul class="wrap-right_content">
 						<li><a href="#">Change Status</a></li>
@@ -189,18 +189,21 @@
 
 				<!-- pop-up đặt bàn -->
 				<div class="reservation_info">
-					<h2>Reservation for Table</h2>
-					<span>Customer Name</span>
-					<input type="text" class="text">
-					<span>Phone</span>
-					<input type="text" class="text">
-					<span>Reservation Timeout (mins)</span>
-					<input type="text" class="text">
+					<form th:action="@{/table/order}">
+						<h2>Reservation for Table</h2>
+						<span>Table ID</span>
+						<input type="text" class="text" id = "reserved_table_id" th:name = "id" readonly>
+						<span>Customer Name</span>
+						<input type="text" class="text" th:name = "guestName">
+						<span>Phone</span>
+						<input type="text" class="text" th:name = "phone">
+						<ul>
+							<li><button id="reservation_add">Add</button></li>
+						</ul>
+					</form>
 					<ul>
-						<li><button id="reservation_add">Add</button></li>
 						<li><button id="reservation_cancel">Cancel</button></li>
 					</ul>
-
 				</div>
 
 				<div class="multy-table">
@@ -211,21 +214,18 @@
 								<span></span>
 							</div>
 							<!-- <div class="mid green" onclick="myFunction()"></div> -->
-							<div th:case = "${table.available}" class="mid green"></div>
-							<div th:case = "${table.reserved}" class="mid yellow"></div>
-							<div th:case = "${table.occupied}" class="mid red"></div>
-							<div th:case = "${table.outoforder}" class="mid green"></div>
+							<div th:case="${table.available}" class="mid green"></div>
+							<div th:case="${table.reserved}" class="mid yellow"></div>
+							<div th:case="${table.occupied}" class="mid red"></div>
+							<div th:case="${table.outoforder}" class="mid green"></div>
 							<div class="t1">
 								<span></span>
 								<span></span>
 							</div>
-							
-							<h2 th:data-myval="${table.getTableId()}"
-								th:data-customername="${table.custormerName}"
-								th:data-telephone="${table.telephone}"
-								th:data-tablestatus = "${table.status}"
-								th:data-statuspayment="${table.statusPayment}"
-								th:id="${table_index.index}"
+
+							<h2 th:data-myval="${table.getTableId()}" th:data-customername="${table.guestName}"
+								th:data-telephone="${table.telephone}" th:data-tablestatus="${table.status}"
+								th:data-statuspayment="${table.statusPayment}" th:id="${table_index.index}"
 								th:text="${table.getTableName()}"></h2>
 						</div>
 					</tr>
@@ -299,8 +299,8 @@
 <script src="http://localhost:8080/js/seat.js"></script>
 <script>
 	function order() {
-  		document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+		document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
 	}
-</script> 
+</script>
 
 </html>

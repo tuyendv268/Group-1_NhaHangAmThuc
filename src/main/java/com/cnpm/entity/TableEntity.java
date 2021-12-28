@@ -20,6 +20,10 @@ public class TableEntity {
 	private String tableName;
 	@Column(name = "status")
 	private String status;
+	@Column(name = "guest_name")
+	private String guest;
+	@Column(name = "phone")
+	private String phone;
 	
 	@ManyToOne
 	@JoinColumn(name = "bill_id")
@@ -40,6 +44,18 @@ public class TableEntity {
 	
 	
 
+	public String getGuest() {
+		return guest;
+	}
+	public void setGuest(String guest) {
+		this.guest = guest;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}

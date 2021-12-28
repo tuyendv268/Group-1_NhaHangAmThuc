@@ -35,6 +35,7 @@ public class TableController {
 			,Model model) {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
+		newTable.setStatus(TableDTO.available);
 		tableService.save(newTable);
 		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.findAll();
 
@@ -42,23 +43,23 @@ public class TableController {
 		return "seat";
 	}
 	
-	@GetMapping(value = "/table/{id}/info")
-	public String getInfo(@PathVariable Long id, Model model) {
-		TableEntity table = tableService.findByID(id);
-		if(table != null) {
-			model.addAttribute("table_info", table);
-		}else {
-			System.out.println("NULL");
-		}
-		return "seat";
+	@GetMapping(value = "/table/order")
+	public String orderTable(
+			@RequestParam(value = "id") Long id, 
+			@RequestParam(value = "guestName") String guestName,
+			@RequestParam(value = "phone") String phone
+			) {
+		tableService.orderTable(id, guestName, phone);
+		return "redirect:/table";
 	}
 //	th:data-customerName="${table.getBill().getCustomer().getCustormerName()}"
 	@GetMapping(value = "/table")
 	public String display(Model model) {
 		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
 		
-		TableDTO temp = tables.get(0);
-		System.out.println(temp.getCustormerName());
+		TableDTO temp = tables.get(3);
+		System.out.println(temp.getGuestName());
+		System.out.println(temp.getTelephone());
 		model.addAttribute("tables", tables);
 		return "seat";
 	}

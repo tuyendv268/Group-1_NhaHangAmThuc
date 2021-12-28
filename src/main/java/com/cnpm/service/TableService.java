@@ -29,6 +29,16 @@ public class TableService {
 		return tableRepository.findByTableId(id);
 	}
 	
+	public TableEntity orderTable(Long id, String guestName, String phone) {
+		TableEntity table = findByID(id);
+		table.setGuest(guestName);
+		table.setPhone(phone);
+		table.setStatus(TableDTO.reserved);
+		System.out.println(table.getGuest());
+		System.out.println(table.getPhone());
+		return tableRepository.save(table);
+	}
+	
 	public TableEntity save(TableEntity newTable) {
 		return tableRepository.save(newTable);
 	}
@@ -37,17 +47,15 @@ public class TableService {
 		Long tableId = tableEntity.getTableId();
 		String status = tableEntity.getStatus();
 		String tableName = tableEntity.getTableName();
+		String guestName = tableEntity.getGuest();
+		String phone = tableEntity.getPhone();
 		BillEntity billEntity = tableEntity.getBill();
 		if(billEntity != null) {
-			CustomerEntity customerEntity = billEntity.getCustomer();
 			Long billId = billEntity.getBillId();
-			Long customerId = customerEntity.getCustomerId();
-			String custormerName = customerEntity.getCustormerName();
-			String telephone = customerEntity.getTelephone();
 			boolean statusPayment = billEntity.isStatusPayment();
-			return new TableDTO(tableId, status, tableName, billId, customerId, custormerName, telephone, statusPayment);
+			return new TableDTO(tableId, status, tableName, billId, guestName, phone, statusPayment);
 		}else {
-			return new TableDTO(tableId, tableName, status);
+			return new TableDTO(tableId, tableName, guestName, phone, status);
 		}
 	}
 	
