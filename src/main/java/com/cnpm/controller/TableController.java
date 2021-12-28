@@ -1,7 +1,6 @@
 package com.cnpm.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +35,10 @@ public class TableController {
 		ArrayList<TableDTO> tables =(ArrayList<TableDTO>) tableService.find(tableName);
 		if(tables != null) {
 			model.addAttribute("tables", tables);
+			return "seat";
+		}else {
+			return "redirect:/table";
 		}
-		return "seat";
 	}
 	
 	@GetMapping(value = "/table/new-table")
