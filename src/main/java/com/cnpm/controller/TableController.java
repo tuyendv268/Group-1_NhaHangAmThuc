@@ -25,10 +25,10 @@ public class TableController {
 		return "redirect:/table";
 	}
 
-	@GetMapping(value = "/test")
-	public String demo() {
-		return "test";
-	}
+//	@GetMapping(value = "/test")
+//	public String demo() {
+//		return "test";
+//	}
 	
 	@GetMapping(value = "/table/search")
 	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model) {

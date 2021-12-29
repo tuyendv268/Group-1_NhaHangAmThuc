@@ -29,6 +29,7 @@ let index
 let midClass
 let midColor
 
+// ------ Thêm bàn cần cho vòng for này vào để add JS cho bàn mới --------
 for (let i = 0; i < table.length; i++){
     table[i].addEventListener('click', () => {
         index = i // Vị trí bàn đang trỏ tới
@@ -104,7 +105,7 @@ for (let j = 0; j < colorChange.length; j++){
         let midClass = mid[index].className
         let midColor = midClass.split(' ')[1] // Màu hiện tại
         // Nếu chuyển sang reserved thì hiện pop-up lấy thông tin
-        if (tableColor=='yellow'){
+        if (tableColor=='yellow' && midColor!='yellow'){
             change_status_display.style.display = 'none'
             show_reservation_info()
         }

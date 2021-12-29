@@ -35,13 +35,13 @@ public class EventController {
 	/*
 	 * This method is used to get event's information and display it in dashboard 
 	 */
-	@GetMapping(value = "/dashboard")
+	@GetMapping(value = "/test")
 	public String display() {
-		List<EventEntity> events = eventService.findAll();
-		for (EventEntity eventEntity : events) {
-			System.out.println(eventEntity.getEventName());
-		}
-		return "index";
+//		List<EventEntity> events = eventService.findAll();
+//		for (EventEntity eventEntity : events) {
+//			System.out.println(eventEntity.getEventName());
+//		}
+		return "event";
 	}
 	
 /*
