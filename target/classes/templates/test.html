@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!-- HTML5 Input Form Elements -->
+<input id="fileupload" type="file" name="fileupload" /> 
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
 
-<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			$("button").click(function () {
-				alert("Hello world")
-				$(".test").hide();
-			});
-		});
-	</script>
-</head>
+<!-- Ajax JavaScript File Upload to Spring Boot Logic -->
+<script>
+async function uploadFile() {
+  let formData = new FormData(); 
+  formData.append("file", fileupload.files[0]);
+  let response = await fetch('/upload', {
+    method: "POST", 
+    body: formData
+  }); 
 
-<body>
+  alert("File successfully uploaded.");
+}
+</script>
 
-	<h2 class="test">This is a heading</h2>
-
-	<p class="test">This is a paragraph.</p>
-	<p>This is another paragraph.</p>
-
-	<button>Click me</button>
-
-</body>
-
+</body> 
 </html>

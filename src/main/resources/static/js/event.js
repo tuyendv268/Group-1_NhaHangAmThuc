@@ -17,7 +17,11 @@ let closeIf = document.getElementsByClassName('close_if')[0]
 // open pop up
 // ------------ event-item --------------------------------
 let eventItems = document.getElementsByClassName('event-item')
-
+for (let i = 0; i < eventItems.length; i++) {
+        eventItems[i].addEventListener('click', () => {
+            infoPopup.style.display = 'block'
+        })
+    }
 closeIf.addEventListener('click', (e) => {
     infoPopup.style.display = 'none'
 })
