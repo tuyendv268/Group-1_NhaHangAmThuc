@@ -121,7 +121,6 @@ for (let j = 0; j < colorChange.length; j++){
 let popup_reservation = document.getElementsByClassName("reservation_info")[0]
 show_reservation_info = () => {
 	var id = $('#'+index).data('myval');
-	alert(id)
 	document.getElementById("reserved_table_id").value = id;
     popup_reservation.style.display = 'block'
 }

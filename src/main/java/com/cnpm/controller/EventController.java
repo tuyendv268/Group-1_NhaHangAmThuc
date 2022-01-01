@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,10 +118,11 @@ public class EventController {
 	/*
 	 * This method is used to delete event with event's id. 
 	 */
-	@DeleteMapping(value = "/test")
-	public String deleteEvent(@RequestParam Long id) {
+	@GetMapping(value = "/event/{id}")
+	public String deleteEvent(@PathVariable Long id, Model model) {
 		eventService.delete(id);
-		return "login";
+		System.out.println("Delete event : "+ id);
+		return "redirect:/event";
 	}
 	
 }
