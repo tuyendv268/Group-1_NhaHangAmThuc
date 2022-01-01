@@ -99,12 +99,9 @@
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
 						<img src="./image/login.png" alt="">
-						<span th:id="${event_index.index}" 
-							th:text="${event.eventName}"
-							th:data-eventid="${event.eventId}" 
-							th:data-eventname="${event.eventName}"
-							th:data-discount="${event.discountRate}"
-							th:data-time="${event.timeStart}"
+						<span th:id="${event_index.index}" th:text="${event.eventName}"
+							th:data-eventid="${event.eventId}" th:data-eventname="${event.eventName}"
+							th:data-discount="${event.discountRate}" th:data-time="${event.timeStart}"
 							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
@@ -122,10 +119,8 @@
 							</li>
 							<div id="poster_upload">
 								<p>Poster</p>
-								<label for="input-pic">Upload
-								</label>
-								<input type="file" onchange="encodeImageFileAsURL(this)" id="input-pic"
-									style="display: none;" th:name="file" />
+								<input id="fileupload" type="file" th:name="fileupload" />
+								<button id="upload-button" onclick="uploadFile()"> Upload </button>
 							</div>
 							<li id="start_event">
 								<span>Start time</span>
@@ -157,13 +152,13 @@
 							<p class="event name">1</p>
 						</li>
 						<li>Event description
-							<p class="event description">1</p >
+							<p class="event description">1</p>
 						</li>
 						<li>End time
-							<p class="event time">1</p >
+							<p class="event time">1</p>
 						</li>
 						<li>Sale
-							<p class="event sale">1</p >
+							<p class="event sale">1</p>
 						</li>
 					</ul>
 					<div>
@@ -179,6 +174,20 @@
 
 
 </body>
+<script>
+	async function uploadFile() {
+		let formData = new FormData();
+		formData.append("file", fileupload.files[0]);
+		let response = await fetch('/upload', {
+			method: "POST",
+			body: formData
+		});
+
+		if (response.status == 200) {
+			alert("File successfully uploaded.");
+		}
+	}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/event.js"></script>

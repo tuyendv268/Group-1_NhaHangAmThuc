@@ -200,12 +200,10 @@
 						<span>Phone</span>
 						<input type="text" class="text" th:name="phone">
 						<ul>
-							<li><button id="reservation_add">Add</button></li>
+							<li><button id="reservation_add" value = "add">Add</button></li>
+							<li><button id="reservation_cancel" value = "cancel">Cancel</button></li>
 						</ul>
 					</form>
-					<ul>
-						<li><button id="reservation_cancel">Cancel</button></li>
-					</ul>
 				</div>
 
 				<div class="multy-table">
@@ -239,16 +237,14 @@
 					<br>
 					<span>Enter Table Name:</span>
 					<br>
-					<form th:action="@{/table/new-table}">
+					<form action="#">
 						<input type="text" class="text" th:name="tableName">
 						<ul>
 							<!-- button Add và Cancel trên pop-up -->
-							<li><button id="addTable_add">Add</button></li>
+							<li><button id="addTable_add" th:formaction="@{/table/new-table}">Add</button></li>
+							<li><button id="addTable_cancel" value = "cancel">Cancel</button></li>
 						</ul>
 					</form>
-					<ul>
-						<li><button id="addTable_cancel">Cancel</button></li>
-					</ul>
 				</div>
 
 				<!-- pop-up confirm Delete -->
