@@ -99,13 +99,13 @@
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
 						<img src="./image/login.png" alt="">
-						<h4 th:id="${event_index.index}" 
+						<span th:id="${event_index.index}" 
 							th:text="${event.eventName}"
 							th:data-eventid="${event.eventId}" 
 							th:data-eventname="${event.eventName}"
 							th:data-discount="${event.discountRate}"
 							th:data-time="${event.timeStart}"
-							th:data-eventdescription="${event.description}"></h4>
+							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
 

@@ -37,19 +37,27 @@ public class EventController {
 //        System.out.println("lưu thành công : ");
 //        return new RedirectView("/demo1", true);
 //    }
-//	@GetMapping("/demo1")
-//    public String display() {
-////        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-////        event.setPhotos(fileName);
-////        
-//        System.out.println("lưu thành công : ");
-//        return "test";
-//    }
 	
 	@GetMapping(value = "/event/new")
-	public String newEvent(@RequestParam MultipartFile file, @RequestParam String eventName, @RequestParam String description
+	public String newEvent(@RequestParam String eventName, @RequestParam String description
 			,@RequestParam String timeStart,@RequestParam String timeEnd
 			, @RequestParam int discountRate) {
+		LocalDate start = LocalDate.parse(timeStart);
+		LocalDate end = LocalDate.parse(timeEnd);
+		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
+		if(eventService.save(newEvent)) {
+			System.out.println("Success");
+		}else {
+			System.out.println("False");
+		}
+		System.out.println("dmeo");
+//		eventService.saveEvent(eventName, description, timeStart, timeEnd, discountRate);
+		return "redirect:/event";
+	}
+//	@GetMapping(value = "/event/new")
+//	public String newEvent(@RequestParam MultipartFile file, @RequestParam String eventName, @RequestParam String description
+//			,@RequestParam String timeStart,@RequestParam String timeEnd
+//			, @RequestParam int discountRate) {
 //		LocalDate start = LocalDate.parse(timeStart);
 //		LocalDate end = LocalDate.parse(timeEnd);
 //		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
@@ -58,19 +66,16 @@ public class EventController {
 //		}else {
 //			System.out.println("False");
 //		}
-		System.out.println("dmeo");
-		eventService.saveEvent(file, eventName, description, timeStart, timeEnd, discountRate);
-		return "redirect:/event";
-	}
+//		System.out.println("dmeo");
+//		eventService.saveEvent(file, eventName, description, timeStart, timeEnd, discountRate);
+//		return "redirect:/event";
+//	}
 	/*
 	 * This method is used to get event's information and display it in dashboard 
 	 */
 	@GetMapping(value = "/event")
 	public String display(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
-//		for (EventEntity eventEntity : events) {
-//			System.out.println(eventEntity.getEventName());
-//		}
 		model.addAttribute("events", events);
 		return "event";
 	}
