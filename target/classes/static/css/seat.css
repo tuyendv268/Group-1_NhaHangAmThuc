@@ -355,9 +355,9 @@
 .NewTable ul {
     width: 100%;
     padding: 0 5px;
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
 }
 .NewTable ul li button {
     font-size: 18px;

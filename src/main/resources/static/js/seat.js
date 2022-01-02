@@ -143,11 +143,15 @@ reservation_add.addEventListener('click', () => {
 let AddTable = document.getElementById("table_add")
 let popup_NewTable = document.getElementsByClassName("NewTable")[0]
 AddTable.addEventListener('click', () => {
-    popup_NewTable.style.display = 'block'
+    if (!isDisplay){
+        popup_NewTable.style.display = 'block'
+        isDisplay=true
+    }
 })
 let addTable_cancel = document.getElementById("addTable_cancel")
 addTable_cancel.addEventListener('click', () => {
     popup_NewTable.style.display = 'none'
+    isDisplay=false
 })
 
 // ------------ Count Table ------------------------

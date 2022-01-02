@@ -1,0 +1,401 @@
+.active {
+    background-color: #C3C3C4;
+    background: linear-gradient(180deg, #1326D6, #BDBEC0);
+}
+
+.content {
+    display: flex;
+    font-size: 16px;
+}
+
+.menu_dish {
+    width: 65%;
+    /* border: 1px solid red; */
+    position: relative;
+}
+
+.menu_dish .ulDish {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu_dish .ulDish li {
+    width: 25%;
+    padding-left: 5px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.menu_dish .ulDish li:nth-child(4n + 4),
+.menu_dish .ulDish li:nth-child(4n + 2),
+.menu_dish .ulDish li:nth-child(4n + 3) {
+    border-left: 1px solid #000;
+}
+
+.menu_dish .ulDish img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: rg;
+}
+
+.addMenu_button {
+    position: absolute;
+    bottom: 35px;
+    right: 60px;
+    padding: 15px 25px;
+    background-color: #34AED4;
+    color: #fff;
+    border: none;
+    overflow: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/*------------------ menu combo -------------------*/
+.box_InfoFood {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.box_InfoFood .button_Dish {
+    float: right;
+    display: block!important;
+}
+
+.menu_combo {
+    width: 35%;
+    /* border: 1px solid green; */
+    background-color: #FDE8D0;
+    padding: 20px;
+
+    position: relative;
+
+}
+
+.menu_combo .ulCombo {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+}
+
+.menu_combo .ulCombo li {
+    margin-bottom: 20px;
+    width: 50%;
+    text-align: center;
+}
+
+.menu_combo .ulCombo img {
+    width: 150px;
+    border-radius: 40px;
+    height: 140px;
+    cursor: pointer;
+}
+
+/* css add button */
+.box_add {
+    width: 300px;
+    height: auto;
+    background-color: #B0DFEA;
+    border-radius: 50px;
+
+    padding: 20px 40px;
+}
+
+.box_add ul {
+    width: 100%;
+}
+
+.box_add ul span {
+    display: block;
+    width: 100%;
+    text-indent: 7px;
+    font-size: 15px;
+}
+
+.box_add ul li input {
+    display: block;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.box_add ul li input:focus {
+    outline: 0;
+    border: 2px solid rgba(25, 200, 20, 0.5);
+}
+
+/* box_add_dish */
+.box_add_dish {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+
+.button_Dish {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_Dish label, .button_Dish button {
+    padding: 8px 10px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button_Dish label {
+    background-color: #484848;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.button_Dish button {
+    font-size: 15px;
+    outline: none;
+    border: none;
+    background-color: #484848;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.button_Dish label:hover,
+.button_Dish button:hover {
+    background-color: #34aed4;
+}
+
+/* ------------------------------- */
+
+
+.box_add_combo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.button_Combo {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.button_Combo label, .button_Combo button {
+    padding: 8px 10px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button_Combo label:hover,
+.button_Combo button:hover {
+    background-color: #34aed4;
+}
+
+.button_Combo label {
+    background-color: #484848;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.button_Combo button {
+    font-size: 15px;
+    outline: none;
+    border: none;
+    background-color: #484848;
+    color: #fff;
+    border-radius: 20px;
+}
+
+/* box dish info */
+.box_dish_info {
+    background-color: #B0DFEA;
+    width: 350px;
+    padding: 30px;
+    height: auto;
+    border-radius: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: none;
+}
+
+.box_dish_info h2 {
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.box_dish_info ul li {
+    margin-bottom: 12px;
+}
+
+.box_dish_info .info_button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.box_dish_info .info_button button {
+    font-size: 18px!important;
+    background-color: #484848;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.box_dish_info .info_button button:hover {
+    background-color: #34AED4;
+}
+
+/* Combo Detail Main box */
+.boxComboItem {
+    width: 350px;
+    height: auto;
+    background-color: #B0DFEA;
+    padding: 20px;
+    border-radius: 30px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: none;
+}
+
+.boxComboItem h2 {
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.boxComboItem ul li {
+    margin-bottom: 10px;
+}
+
+.button_boxComboItem {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_boxComboItem button {
+    background-color: #484848;
+    padding: 9px 18px;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button_boxComboItem button:hover {
+    background-color: #34aed4;
+}
+
+.button_boxComboItem button:nth-child(2) span {
+    font-size: 13px;
+}
+
+/* box combo edit */
+.boxComboEdit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: none;
+}
+
+.boxComboEdit div {
+    float: right;
+}
+
+.addFoodCombo {
+    width: 330px;
+    height: 350px;
+    overflow-y: auto; 
+    background-color: #C1C1C1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    padding: 25px;
+    border: 2px solid #34aed4;
+    
+    display: none;
+}
+
+.addFoodCombo::-webkit-scrollbar {
+    display: none;
+}
+
+.exit i {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: #484848;
+
+    cursor: pointer;
+}
+
+.addFoodCombo ul {
+    width: 100%;
+}
+
+.addFoodCombo ul li {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.addFoodCombo ul li:hover {
+    background-color: #34aed4;
+}
+
+.addFoodCombo ul li span:first-child {
+    width: 15%;
+}
+
+.addFoodCombo ul li span img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.addFoodCombo ul li p {
+    width: 70%;
+    padding-left: 25px;
+    font-size: 14px;
+}
+
+.addFoodCombo ul li span:last-child {
+    width: 15%;
+}
+
+.addFoodCombo input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}

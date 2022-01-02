@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- main part -->
+    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
+
+    <!-- menu part -->
+    <link rel="stylesheet" href="http://localhost:8080/css/menu.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Menu</title>
+    <link rel="icon" type="x-icon" href="image\favicon.ico">
+
+</head>
+<body>
+    
+    <div id="container">
+        <header>
+            <h1 class="logo">
+                <a href="#">Manager</a>
+            </h1>
+
+            <div class="search">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="material-icons">search</i>
+                </a>
+            </div>
+
+            <div class="home">
+                <a href="#">
+                    <i class="material-icons">home</i>
+                </a>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="/table">
+                            <i class="material-icons">event_seat</i>
+                            <span>Seat</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="active">
+                        <a href="./menu.html">
+                            <i class="material-icons">menu</i>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="/event">
+                            <i class="material-icons">event_available</i>
+                            <span>Event</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">person</i>
+                            <span>Membership</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">note_alt</i>
+                            <span>Report</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">receipt_long</i>
+                            <span>Bill</span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="content">
+                <div class="menu_dish">
+                    <ul class="ulDish">
+                        <li>
+                            <img src="./image/dish/dish01.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish02.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish03.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish04.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish05.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish06.jpg" alt="">
+                        </li>
+                        
+                        <li>
+                            <img src="./image/dish/dish07.jpg" alt="">
+                        </li>
+                    </ul>
+
+                    <!-- box dish info -->
+                    <div class="box_dish_info">
+                        <h2>Information Food</h2>
+                        <ul>
+                            <li>
+                                Code <span>____</span>
+                            </li>
+
+                            <li>
+                                Name <span>____</span>
+                            </li>
+
+                            <li>
+                                Price <span>____</span>
+                            </li>
+
+                            <li>
+                                Description <span>____</span>
+                            </li>
+
+                            <li>
+                                Category <span>____</span>
+                            </li>
+
+                            <li>
+                                Ingredient <span>____</span>
+                            </li>
+
+                            <li>
+                                Creation time <span>____</span>
+                            </li>
+
+                            <li>
+                                Modification time <span>____</span>
+                            </li>
+
+                            <li>
+                                Status of existence <span>____</span>
+                            </li>
+
+                        </ul>
+
+                        <div class="info_button">
+                            <button class="edit_Info">Edit</button>
+                            <button>Delete</button>
+                        </div>
+
+                    </div>
+
+                    <!-- box edit info food -->
+                    <div class="box_add box_InfoFood">
+                        <ul>
+                            <li>
+                                <span>Name</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Price</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Description</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Category</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Ingridient</span>
+                                <input type="text">
+                            </li>
+
+                        </ul>
+
+                        <div class="button_Dish">
+                            <button>Done</button>
+                        </div>
+                    </div>
+
+                    <!-- box add dish -->
+                    <div class="box_add_dish box_add">
+                        <ul>
+                            <li>
+                                <span>Name</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Price</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Description</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Category</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Ingridient</span>
+                                <input type="text">
+                            </li>
+
+                        </ul>
+
+                        <div class="button_Dish">
+                            <label for="upload">Upload</label>
+                            <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
+                            <button class="done_Dish">Done</button>
+                        </div>
+                    </div>
+
+                    <!-- add dish -->
+                    <button class="add_Dish addMenu_button">Add</button>
+                </div>
+
+                <!-- Menu Combo -->
+                <div class="menu_combo">
+                    <ul class="ulCombo">
+                        <li>
+                            <img src="./image/dish/combo.jpg" alt="">
+                        </li>
+
+                        <li>
+                            <img src="./image/dish/combo2.jpg" alt="">
+                        </li>
+
+                        <li>
+                            <img src="./image/dish/combo3.jpg" alt="">
+                        </li>
+
+                    </ul>
+
+                    <!-- box add combo -->
+                    <!-- box add dish -->
+                    <div class="box_add_combo box_add">
+                        <ul>
+                            <li>
+                                <span>Name</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Price</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Description</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Amount of people</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Offer</span>
+                                <input type="text">
+                            </li>
+                        </ul>
+
+                        <div class="button_Combo">
+                            <label for="upload">Upload</label>
+                            <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
+                            <button class="done_Combo">Done</button>
+                        </div>
+                    </div>
+
+                    <!-- Combo Detail Main box -->
+                    <div class="boxComboItem">
+                        <h2>Combo Infomation</h2>
+                        <ul>
+                            <li>Code:              <span></span></li>
+                            
+                            <li>Name:              <span></span></li>
+
+                            <li>Price:             <span></span></li>
+
+                            <li>Description:       <span></span></li>
+
+                            <li>Creation time:     <span></span></li>
+
+                            <li>Modification time: <span></span></li>
+
+                            <li>List of food:      <span></span></li>
+
+                            <li>Amount of people:  <span></span></li>
+
+                            <li>Offer:             <span></span></li>
+
+                        </ul>
+
+                        <div class="button_boxComboItem">
+                            <button class="editCombo_button">Edit</button>
+                            <button class="food2Combo_button">
+                                <span>Add/Remove food</span>
+                            </button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                    <!-- ------ End combo ---- -->
+                    <!-- ---- Exit combo item ---- -->
+                    <div class="box_add boxComboEdit">
+                        <ul>
+                            <li>
+                                <span>Name</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Price</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Description</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Category</span>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <span>Ingredient</span>
+                                <input type="text">
+                            </li>
+
+                        </ul>
+
+                        <div class="button_Dish">
+                            <button>Done</button>
+                        </div>
+                    </div>
+                    <!-- add/remove food -->
+                    <div class="addFoodCombo">
+                        <div class="exit">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <ul class="listChooseFood">
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish01.jpg" alt="">
+                                </span>
+                                <p>Food Name 1</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish02.jpg" alt="">
+                                </span>
+                                <p>Food Name 2</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish03.jpg" alt="">
+                                </span>
+                                <p>Food Name 3</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish04.jpg" alt="">
+                                </span>
+                                <p>Food Name 4</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish05.jpg" alt="">
+                                </span>
+                                <p>Food Name 5</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish06.jpg" alt="">
+                                </span>
+                                <p>Food Name 6</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+
+                            <li>
+                                <span>
+                                    <img src="./image/dish/dish07.jpg" alt="">
+                                </span>
+                                <p>Food Name 7</p>
+                                <span>
+                                    <input type="checkbox">
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- button add combo -->
+                    <button class="add_combo addMenu_button">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/menu.js"></script>
+</html>
