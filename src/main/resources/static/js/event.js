@@ -14,15 +14,27 @@ close_event_popup.addEventListener('click', () => {
 // event-info-popup
 let infoPopup = document.getElementsByClassName('event-info-popup')[0]
 let closeIf = document.getElementsByClassName('close_if')[0]
+let deleteBtn = document.getElementById('deletebtn')
 // open pop up
 // ------------ event-item --------------------------------
 let eventItems = document.getElementsByClassName('event-item')
 for (let i = 0; i < eventItems.length; i++) {
         eventItems[i].addEventListener('click', () => {
             infoPopup.style.display = 'block'
+            var id = $('#'+i).data('eventid');
+            $("#deletebtn").attr("href", "/event/" + id);
+            document.getElementsByClassName("event name")[0].innerHTML = $('#'+i).data('eventname');
+            document.getElementsByClassName("event description")[0].innerHTML = $('#'+i).data('eventdescription');
+            document.getElementsByClassName("event time")[0].innerHTML = $('#'+i).data('time');
+            document.getElementsByClassName("event sale")[0].innerHTML= $('#'+i).data('discount');
         })
     }
 closeIf.addEventListener('click', (e) => {
+    infoPopup.style.display = 'none'
+})
+
+deleteBtn.addEventListener('click', () => {
+	alert($('#deletebtn').attr('href'));
     infoPopup.style.display = 'none'
 })
 
