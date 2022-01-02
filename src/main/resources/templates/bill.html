@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/bill.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+    <title>Bill</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 class="logo">
+                <a href="#">Manager</a>
+            </h1>
+
+            <div class="search">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="material-icons">search</i>
+                </a>
+            </div>
+
+            <div class="home">
+                <a href="#">
+                    <i class="material-icons">home</i>
+                </a>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="./seat.html">
+                            <i class="material-icons">event_seat</i>
+                            <span>Seat</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">menu</i>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">event_available</i>
+                            <span>Event</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="./membership.html">
+                            <i class="material-icons">person</i>
+                            <span>Membership</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">note_alt</i>
+                            <span>Report</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="active">
+                        <a href="#">
+                            <i class="material-icons">receipt_long</i>
+                            <span>Bill</span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="content">
+                <table id="customer-table">
+                    <thead>
+                        <th>Stt</th>
+                        <th>Code</th>
+                        <th>Customer</th>
+                        <th>Money</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody class="customer-list">
+                        <tr class="customer">
+                            <td></td>
+                            <td>#HD000001</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>1500</td>
+                            <td>Waiting</td>
+                        </tr>
+                        <tr class="customer">
+                            <td></td>
+                            <td>#HD000002</td>
+                            <td>Nguyễn Văn B</td>
+                            <td>1500</td>
+                            <td>Waiting</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button id="create-btn">Create</button>
+
+                <div id=bill>
+                    <h2>Infomation</h2>
+                    <div class="bill-id">
+                        <h3>ID:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-name">
+                        <h3>Customer’s name: </h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-phone">
+                        <h3>Phone:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-code">
+                        <h3>Customer’s code:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-seat">
+                        <h3>Seat:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-status">
+                        <h3>Payment status:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-list">
+                        <h3>Food list:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-creation-time">
+                        <h3>Creation times:</h3>
+                        <span></span>
+                    </div>
+                    <div id="bill-completion-time">
+                        <h3>Completion time:</h3>
+                        <span></span>
+                    </div>
+                    <div id="list">
+
+                    </div>
+                    <button id="edit-btn">Edit</button>
+                    <button id="delete-btn">Delete</button>
+                    <button id="done-btn">Done</button>
+                    <button id="add-btn">Add/Remove</button>
+                    <button id="pay-btn">Pay</button>
+                </div>
+
+                <div id="new">
+                    <h2>Create a new bill</h2>
+                    <h3>Customer’s name</h3>
+                    <input id="name-input" type="text">
+                    <h3>Phone</h3>
+                    <input id="phone-input" type="text">
+                    <h3>Customer’s Code</h3>
+                    <input id="code-input" type="text">
+                    <h3>Seat</h3>
+                    <input id="seat-input" type="text">
+                    <button id="new-done-btn">Done</button>
+                </div>
+
+                <div id="edit">
+                    <h2>Edit</h2>
+                    <h3>Customer’s name</h3>
+                    <input type="text">
+                    <h3>Phone</h3>
+                    <input type="text">
+                    <h3>Customer’s Code</h3>
+                    <input type="text">
+                    <h3>Seat</h3>
+                    <input type="text">
+                    <button id="edit-done-btn">Done</button>
+                </div>
+
+                <div id="delete">
+                    <h3>Do you really want to delete this bill?</h3>
+                    <button id="delete-yes-btn">Yes</button>
+                    <button id="delete-no-btn">No</button>
+                </div>
+
+                <div id="pay">
+                    <h5 id="pay-code">Code</h5>
+                    <h5>Money</h5>
+                    <button id="pay-cash-btn">Payment in cash</button>
+                    <button id="pay-atm-btn">Pay by ATM card</button>
+                </div>
+
+                <div id="pay-cash">
+                    <h4>Amount paid by customer</h4>
+                    <input type="text">
+                    <button id="cash-btn">OK</button>
+                </div>
+
+                <div id="pay-cash-conf">
+                    <h4>Amount paid by customer</h4>
+                    <h4>Excess amount</h4>
+                    <button id="cash-conf-btn">Payment confirm</button>
+                </div>
+
+                <div id="pay-atm">
+                    <h4>Code</h4>
+                    <h4>Money</h4>
+                    <h4>Trading code</h4>
+                    <input type="text">
+                    <button id="atm-conf-btn">Payment confirm</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://localhost:8080/js/bill.js"></script>
+</html>

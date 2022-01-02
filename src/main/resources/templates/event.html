@@ -106,7 +106,7 @@
 					</div>
 				</div>
 
-				<form th:action="@{/event/new}" enctype="multipart/form-data">
+				<form action="#">
 					<div class="new_event">
 						<ul>
 							<li id="name_event">
@@ -139,7 +139,7 @@
 							</div>
 						</ul>
 						<div class="end_popup">
-							<button class="create_button">Create</button>
+							<button class="create_button" th:formaction="@{/event/new}">Create</button>
 							<button class="close_button">Close</button>
 						</div>
 					</div>
