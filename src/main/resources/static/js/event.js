@@ -24,7 +24,7 @@ for (let i = 0; i < eventItems.length; i++) {
 		//alert("Hello");
 		var id = $('#' + i).data('eventid');
 		$("#deletebtn").attr("href", "/event/" + id);
-		alert($('#' + i).data('url'));
+		//alert($('#' + i).data('url'));
 		document.getElementsByClassName("event name")[0].innerHTML = $('#' + i).data('eventname');
 		document.getElementsByClassName("event description")[0].innerHTML = $('#' + i).data('eventdescription');
 		document.getElementsByClassName("event time")[0].innerHTML = $('#' + i).data('time');

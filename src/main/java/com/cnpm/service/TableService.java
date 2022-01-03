@@ -29,6 +29,28 @@ public class TableService {
 		return tableRepository.findByTableId(id);
 	}
 	
+	public TableEntity useTable(Long id) {
+		TableEntity table = tableRepository.findByTableId(id);
+		if(table == null) {
+			return null;
+		}
+		table.setStatus(TableDTO.occupied);
+		tableRepository.save(table);
+		
+		return table;
+	}
+	
+	public TableEntity cancelTable(Long id) {
+		TableEntity table = tableRepository.findByTableId(id);
+		if(table == null) {
+			return null;
+		}
+		table.setStatus(TableDTO.available);
+		tableRepository.save(table);
+		
+		return table;
+	}
+	
 	public TableEntity orderTable(Long id, String guestName, String phone) {
 		TableEntity table = findByID(id);
 		table.setGuest(guestName);

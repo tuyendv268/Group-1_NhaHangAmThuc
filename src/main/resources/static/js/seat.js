@@ -108,10 +108,21 @@ for (let j = 0; j < colorChange.length; j++){
         if (tableColor=='yellow' && midColor!='yellow'){
             change_status_display.style.display = 'none'
             show_reservation_info()
-        }
-        else {
+        }else if(tableColor =='red'){
 			// Thay đổi màu trạng thái
+			var id = $('#'+index).data('myval');
+			$(".close_status").attr("href", "/table/use/" + id);
+			//alert(id);
 	        mid[index].classList.remove(midColor)
+	        mid[index].classList.add(tableColor)
+		}else if(tableColor =='green'){
+			// Thay đổi màu trạng thái
+			var id = $('#'+index).data('myval');
+			$(".close_status").attr("href", "/table/cancel/" + id);
+	        mid[index].classList.remove(midColor)
+	        mid[index].classList.add(tableColor)
+		}else{
+			mid[index].classList.remove(midColor)
 	        mid[index].classList.add(tableColor)
 		}
     })

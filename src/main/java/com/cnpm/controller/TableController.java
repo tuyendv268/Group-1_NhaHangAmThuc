@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,18 @@ public class TableController {
 	public String delete(@PathVariable Long id, Model model) {
 		tableService.delete(id);
 		System.out.println(id);
+		return "redirect:/table";
+	}
+	
+	@GetMapping(value = "/table/use/{id}")
+	public String useTable(@PathVariable Long id) {
+		tableService.useTable(id);
+		return "redirect:/table";
+	}
+	
+	@GetMapping(value = "/table/cancel/{id}")
+	public String calcelTable(@PathVariable Long id) {
+		tableService.cancelTable(id);
 		return "redirect:/table";
 	}
 
@@ -54,13 +67,16 @@ public class TableController {
 		return "redirect:/table";
 	}
 	
-	@GetMapping(value = "/table/order")
+	@GetMapping(value = "/table/order", params = "add")
 	public String orderTable(
 			@RequestParam(value = "id") Long id, 
 			@RequestParam(value = "guestName") String guestName,
-			@RequestParam(value = "phone") String phone
-			) {
+			@RequestParam(value = "phone") String phone) {
 		tableService.orderTable(id, guestName, phone);
+		return "redirect:/table";
+	}
+	@GetMapping(value = "/table/order",params = "cancel")
+	public String cancelOrderTable() {
 		return "redirect:/table";
 	}
 	
