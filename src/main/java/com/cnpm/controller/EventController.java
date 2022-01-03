@@ -1,9 +1,11 @@
 package com.cnpm.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -35,6 +37,33 @@ public class EventController {
 	 public String cancelEvent(){
 		  return "redirect:/event";
 	  }
+//	 @RequestMapping(value = "/event/new", method = RequestMethod.POST, params="create")
+//	 public String newEvent(Model model,
+//			  @RequestParam("files") MultipartFile file,
+//			  @RequestParam("eventName") String eventName,
+//			  @RequestParam("description") String description,
+//			  @RequestParam("timeStart") String timeStart,
+//			  @RequestParam("timeEnd") String timeEnd,
+//			  @RequestParam("discountRate") int discountRate){
+//		  StringBuilder fileNames = new StringBuilder();
+//		  Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+//		  fileNames.append(file.getOriginalFilename());
+//		  try {
+//			  Files.write(fileNameAndPath, file.getBytes());
+//		  } catch (IOException e) {
+//			  e.printStackTrace();
+//		  }
+//		  LocalDate start = LocalDate.parse(timeStart);
+//		LocalDate end = LocalDate.parse(timeEnd);
+//		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
+//		newEvent.setUrl(fileNameAndPath.toString());
+//		if(eventService.save(newEvent) != null) {
+//			System.out.println("Success");
+//		}else {
+//			System.out.println("False");
+//		}
+//		  return "redirect:/event";
+//	  }
 	 @RequestMapping(value = "/event/new", method = RequestMethod.POST, params="create")
 	 public String newEvent(Model model,
 			  @RequestParam("files") MultipartFile file,
@@ -43,25 +72,26 @@ public class EventController {
 			  @RequestParam("timeStart") String timeStart,
 			  @RequestParam("timeEnd") String timeEnd,
 			  @RequestParam("discountRate") int discountRate){
-		  StringBuilder fileNames = new StringBuilder();
-		  System.out.println("Hello world");
-		  Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-		  fileNames.append(file.getOriginalFilename());
-		  try {
-			  Files.write(fileNameAndPath, file.getBytes());
-		  } catch (IOException e) {
-			  e.printStackTrace();
-		  }
-		  LocalDate start = LocalDate.parse(timeStart);
-		LocalDate end = LocalDate.parse(timeEnd);
-		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
-		newEvent.setUrl(fileNameAndPath.toString());
-		if(eventService.save(newEvent) != null) {
-			System.out.println("Success");
-		}else {
-			System.out.println("False");
+		 
+		 Path path = Paths.get("uploads/");
+		 try {
+			 InputStream inputStream = file.getInputStream();
+			 Files.copy(inputStream, path.resolve(file.getOriginalFilename()),
+					 StandardCopyOption.REPLACE_EXISTING);
+			 LocalDate start = LocalDate.parse(timeStart);
+			 LocalDate end = LocalDate.parse(timeEnd);
+			 EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
+			 newEvent.setUrl(file.getOriginalFilename().toLowerCase());
+			 
+			 if(eventService.save(newEvent) != null) {
+				 System.out.println("Success");
+			 }else {
+				 System.out.println("False");
+			 }
+		 }catch (Exception e) {
+
 		}
-		  return "redirect:/event";
+		 return "redirect:/event";
 	  }
 	/*
 	 * This method is used to get event's information and display it in dashboard 
