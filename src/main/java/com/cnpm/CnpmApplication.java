@@ -10,7 +10,7 @@ public class CnpmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CnpmApplication.class, args);
-
+		
 		System.out.print("hi");
 		
 	}
