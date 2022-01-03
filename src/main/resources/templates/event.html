@@ -98,7 +98,7 @@
 
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
-						<img th:src="${event.url}" alt="">
+						<img th:src="@{'getimage/'+${event.url}}" alt="">
 						<span th:id="${event_index.index}" 
 							  th:text="${event.eventName}"
 							  th:data-url="${event.url}"
