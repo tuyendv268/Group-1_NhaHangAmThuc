@@ -111,8 +111,8 @@ header .home i {
 }
 
 .content {
-    margin-left: 250px;
-    width: calc(100% - 250px);
+    margin-left: 240px;
+    width: calc(100% - 240px);
 }
 
 @media screen and (max-width: 990px) {
