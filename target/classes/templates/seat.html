@@ -237,12 +237,12 @@
 					<br>
 					<span>Enter Table Name:</span>
 					<br>
-					<form action="#">
+					<form th:action="@{/table/new-table}" method="post">
 						<input type="text" class="text" th:name="tableName">
 						<ul>
 							<!-- button Add và Cancel trên pop-up -->
-							<li><button id="addTable_add" th:formaction="@{/table/new-table}">Add</button></li>
-							<li><button id="addTable_cancel" value = "cancel">Cancel</button></li>
+							<li><button id="addTable_add" name="add" value="add">Add</button></li>
+							<li><button id="addTable_cancel" name="cancel" value="cancel">Cancel</button></li>
 						</ul>
 					</form>
 				</div>

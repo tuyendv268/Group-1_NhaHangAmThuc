@@ -1,75 +1,68 @@
 package com.cnpm.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.cnpm.entity.EventEntity;
 import com.cnpm.service.EventService;
 
 @Controller
 public class EventController {
+	public static String uploadDirectory = "C:\\images";
 	@Autowired
 	EventService eventService;
+	
 	/*
 	 * This method is used to create a event
 	 */
-	
-//	@GetMapping("/demo")
-//    public RedirectView saveUser(@RequestParam("image") MultipartFile multipartFile) throws IOException {
-//         
-////        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-////        event.setPhotos(fileName);
-////        
-//        System.out.println("lưu thành công : ");
-//        return new RedirectView("/demo1", true);
-//    }
-	
-	@GetMapping(value = "/event/new")
-	public String newEvent(@RequestParam String eventName, @RequestParam String description
-			,@RequestParam String timeStart,@RequestParam String timeEnd
-			, @RequestParam int discountRate) {
-		LocalDate start = LocalDate.parse(timeStart);
+	 @RequestMapping(value = "/event/new", method = RequestMethod.POST, params="close")
+	 public String cancelEvent(){
+		  return "redirect:/event";
+	  }
+	 @RequestMapping(value = "/event/new", method = RequestMethod.POST, params="create")
+	 public String newEvent(Model model,
+			  @RequestParam("files") MultipartFile file,
+			  @RequestParam("eventName") String eventName,
+			  @RequestParam("description") String description,
+			  @RequestParam("timeStart") String timeStart,
+			  @RequestParam("timeEnd") String timeEnd,
+			  @RequestParam("discountRate") int discountRate){
+		  StringBuilder fileNames = new StringBuilder();
+		  System.out.println("Hello world");
+		  Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+		  fileNames.append(file.getOriginalFilename());
+		  try {
+			  Files.write(fileNameAndPath, file.getBytes());
+		  } catch (IOException e) {
+			  e.printStackTrace();
+		  }
+		  LocalDate start = LocalDate.parse(timeStart);
 		LocalDate end = LocalDate.parse(timeEnd);
 		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
-		if(eventService.save(newEvent)) {
+		newEvent.setUrl(fileNameAndPath.toString());
+		if(eventService.save(newEvent) != null) {
 			System.out.println("Success");
 		}else {
 			System.out.println("False");
 		}
-		System.out.println("dmeo");
-//		eventService.saveEvent(eventName, description, timeStart, timeEnd, discountRate);
-		return "redirect:/event";
-	}
-//	@GetMapping(value = "/event/new")
-//	public String newEvent(@RequestParam MultipartFile file, @RequestParam String eventName, @RequestParam String description
-//			,@RequestParam String timeStart,@RequestParam String timeEnd
-//			, @RequestParam int discountRate) {
-//		LocalDate start = LocalDate.parse(timeStart);
-//		LocalDate end = LocalDate.parse(timeEnd);
-//		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
-//		if(eventService.save(newEvent)) {
-//			System.out.println("Success");
-//		}else {
-//			System.out.println("False");
-//		}
-//		System.out.println("dmeo");
-//		eventService.saveEvent(file, eventName, description, timeStart, timeEnd, discountRate);
-//		return "redirect:/event";
-//	}
+		  return "redirect:/event";
+	  }
 	/*
 	 * This method is used to get event's information and display it in dashboard 
 	 */
@@ -77,6 +70,9 @@ public class EventController {
 	public String display(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
 		model.addAttribute("events", events);
+		for (EventEntity eventEntity : events) {
+			System.out.println(eventEntity.getUrl());
+		}
 		return "event";
 	}
 	
@@ -88,12 +84,6 @@ public class EventController {
 	public String editEvent(@RequestParam Long id,@RequestParam String eventName, @RequestParam String description
 			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
 			, @RequestParam int discountRate) {
-//		Long id = 1L;
-//		String eventName = "helloworld";
-//		String description = "hello world";
-//		LocalDate timeStart = LocalDate.now();
-//		LocalDate timeEnd = LocalDate.now();
-//		int discountRate = 10;
 		EventEntity event = eventService.findEventById(id);
 		if(event == null) {
 			System.out.println("Error");

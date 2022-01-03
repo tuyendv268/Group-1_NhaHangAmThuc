@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.dto.TableDTO;
@@ -25,11 +27,6 @@ public class TableController {
 		return "redirect:/table";
 	}
 
-//	@GetMapping(value = "/test")
-//	public String demo() {
-//		return "test";
-//	}
-	
 	@GetMapping(value = "/table/search")
 	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model) {
 		ArrayList<TableDTO> tables =(ArrayList<TableDTO>) tableService.find(tableName);
@@ -41,7 +38,7 @@ public class TableController {
 		}
 	}
 	
-	@GetMapping(value = "/table/new-table")
+	@RequestMapping(value = "/table/new-table",method = RequestMethod.POST, params = "add")
 	public String newTable(@RequestParam(value = "tableName") String tableName) {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
@@ -50,6 +47,10 @@ public class TableController {
 		if(tableService.save(newTable) == null) {
 			System.out.println("Trùng Tên");
 		}
+		return "redirect:/table";
+	}
+	@RequestMapping(value = "/table/new-table", method=RequestMethod.POST,params = "cancel")
+	public String cancelAddTB() {
 		return "redirect:/table";
 	}
 	
@@ -62,7 +63,6 @@ public class TableController {
 		tableService.orderTable(id, guestName, phone);
 		return "redirect:/table";
 	}
-//	th:data-customerName="${table.getBill().getCustomer().getCustormerName()}"
 	
 	@GetMapping(value = "/table")
 	public String display(Model model) {

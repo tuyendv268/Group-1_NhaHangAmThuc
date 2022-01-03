@@ -98,15 +98,19 @@
 
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
-						<img src="./image/login.png" alt="">
-						<span th:id="${event_index.index}" th:text="${event.eventName}"
-							th:data-eventid="${event.eventId}" th:data-eventname="${event.eventName}"
-							th:data-discount="${event.discountRate}" th:data-time="${event.timeStart}"
-							th:data-eventdescription="${event.description}"></span>
+						<img th:src="${event.url}" alt="">
+						<span th:id="${event_index.index}" 
+							  th:text="${event.eventName}"
+							  th:data-url="${event.url}"
+							  th:data-eventid="${event.eventId}" 
+							  th:data-eventname="${event.eventName}"
+							  th:data-discount="${event.discountRate}" 
+							  th:data-time="${event.timeStart}"
+							  th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
 
-				<form action="#">
+				<form th:action="@{/event/new}" method="post" enctype="multipart/form-data">
 					<div class="new_event">
 						<ul>
 							<li id="name_event">
@@ -119,9 +123,11 @@
 							</li>
 							<div id="poster_upload">
 								<p>Poster</p>
-								<input id="fileupload" type="file" th:name="fileupload" />
-								<button id="upload-button" onclick="uploadFile()"> Upload </button>
+								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" />
 							</div>
+							<p>
+								<img id="thumbnail" alt="Image Preview" />
+							</p>
 							<li id="start_event">
 								<span>Start time</span>
 								<input type="text" class="text" th:name="timeStart">
@@ -139,8 +145,8 @@
 							</div>
 						</ul>
 						<div class="end_popup">
-							<button class="create_button" th:formaction="@{/event/new}">Create</button>
-							<button class="close_button">Close</button>
+							<button class="create_button" name="create" value="create">Create</button>
+							<button class="close_button" name="close" value="close">Close</button>
 						</div>
 					</div>
 				</form>
@@ -166,7 +172,6 @@
 						<button class="close_if">Done</button>
 					</div>
 				</div>
-
 				<div id="create_event">Create</div>
 			</div>
 		</div>
@@ -174,20 +179,6 @@
 
 
 </body>
-<script>
-	async function uploadFile() {
-		let formData = new FormData();
-		formData.append("file", fileupload.files[0]);
-		let response = await fetch('/upload', {
-			method: "POST",
-			body: formData
-		});
-
-		if (response.status == 200) {
-			alert("File successfully uploaded.");
-		}
-	}
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/event.js"></script>
