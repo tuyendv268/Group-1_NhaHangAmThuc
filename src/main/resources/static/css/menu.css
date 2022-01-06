@@ -6,6 +6,8 @@
 .content {
     display: flex;
     font-size: 16px;
+    background-image: url('/image/bgr_menu.png');
+    background-size: cover;
 }
 
 .menu_dish {
@@ -70,12 +72,10 @@
 
 .menu_combo {
     width: 35%;
-    /* border: 1px solid green; */
-    background-color: #FDE8D0;
     padding: 20px;
-
     position: relative;
-
+    border-left: 2px solid #FDE8D0;
+    background: linear-gradient(180deg, rgba(255, 150, 130, 0.5) 0%, rgba(255, 232, 208, 0.4) 100%);
 }
 
 .menu_combo .ulCombo {
