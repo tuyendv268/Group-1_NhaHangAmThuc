@@ -1,14 +1,15 @@
 package com.cnpm.service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.BillEntity;
-import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.TableRepository;
 
@@ -19,6 +20,27 @@ public class TableService {
 	
 	public List<TableDTO> findAll(){
 		return convert2DTO(tableRepository.findAll());
+	}
+	
+	@Scheduled(fixedDelay = 2000)
+	  public void updateTime() throws InterruptedException {
+	    System.out.println(LocalTime.now());
+	    List<TableEntity> tables = tableRepository.findAll();
+	    for (TableEntity table : tables) {
+	    	if(table.getExpired_time()!=null) {
+	    		if(LocalTime.now().isAfter(table.getExpired_time())
+	    				&&(table.getStatus().equals(TableDTO.reserved))) {
+	    			table.setStatus(TableDTO.available);
+	    			table.setGuest(null);
+	    			table.setPhone(null);
+	    			tableRepository.save(table);
+					System.out.println("Expried Order"+table.getTableName());
+				}
+	    	}
+		}
+	    // added sleep to simulate method 
+	    // which takes longer to execute.   
+	    Thread.sleep(4000); 
 	}
 	
 	public void delete(Long id) {
@@ -46,6 +68,10 @@ public class TableService {
 			return null;
 		}
 		table.setStatus(TableDTO.available);
+		table.setGuest(null);
+		table.setExpired_time(null);
+		table.setOrdered_time(null);
+		table.setPhone(null);
 		tableRepository.save(table);
 		
 		return table;
@@ -56,6 +82,8 @@ public class TableService {
 		table.setGuest(guestName);
 		table.setPhone(phone);
 		table.setStatus(TableDTO.reserved);
+		table.setOrdered_time(LocalTime.now());
+		table.setExpired_time(LocalTime.now().plusMinutes(30));
 		System.out.println(table.getGuest());
 		System.out.println(table.getPhone());
 		return tableRepository.save(table);
@@ -91,7 +119,7 @@ public class TableService {
 			boolean statusPayment = billEntity.isStatusPayment();
 			return new TableDTO(tableId, status, tableName, billId, guestName, phone, statusPayment);
 		}else {
-			return new TableDTO(tableId, tableName, guestName, phone, status);
+			return new TableDTO(tableId, tableName, guestName, phone, status, tableEntity.getExpired_time());
 		}
 	}
 	

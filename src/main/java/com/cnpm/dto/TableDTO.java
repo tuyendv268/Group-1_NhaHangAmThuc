@@ -1,5 +1,7 @@
 package com.cnpm.dto;
 
+import java.time.LocalTime;
+
 public class TableDTO {
 	public final static String available = "available";
 	public final static String reserved = "reserved";
@@ -11,14 +13,21 @@ public class TableDTO {
 	private Long billId;
 	private String guestName;
 	private String telephone;
+	private String expired_time;
+	private String ordered_time;
 	private boolean statusPayment;
 	
-	public TableDTO(Long tableId, String tableName, String guestName,String phone ,String status) {
+	public TableDTO(Long tableId, String tableName, String guestName,String phone ,String status,LocalTime expired_time) {
 		this.tableId = tableId;
 		this.guestName = guestName;
 		this.telephone = phone;
 		this.tableName = tableName;
 		this.status = status;
+		if(expired_time != null) {
+			this.expired_time = expired_time.toString();
+		}else {
+			this.expired_time = "none";
+		}
 	}
 	
 	public TableDTO(Long tableId, String status,
@@ -29,9 +38,27 @@ public class TableDTO {
 		this.status = status;
 		this.tableName = tableName;
 		this.billId = billId;
+
 		this.guestName = guestName;
 		this.telephone = telephone;
 		this.statusPayment = statusPayment;
+	}
+	
+
+	public String getExpired_time() {
+		return expired_time;
+	}
+
+	public void setExpired_time(String expired_time) {
+		this.expired_time = expired_time;
+	}
+
+	public String getOrdered_time() {
+		return ordered_time;
+	}
+
+	public void setOrdered_time(String ordered_time) {
+		this.ordered_time = ordered_time;
 	}
 
 	public Long getTableId() {

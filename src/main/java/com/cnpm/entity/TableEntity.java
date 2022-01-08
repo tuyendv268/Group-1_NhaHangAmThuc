@@ -1,5 +1,7 @@
 package com.cnpm.entity;
 
+import java.time.LocalTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,10 @@ public class TableEntity {
 	private String guest;
 	@Column(name = "phone")
 	private String phone;
+	@Column(name = "ordered_time")
+	private LocalTime ordered_time;
+	@Column(name = "expired_time")
+	private LocalTime expired_time;
 	
 	@ManyToOne
 	@JoinColumn(name = "bill_id")
@@ -82,6 +88,18 @@ public class TableEntity {
 
 	public void setBill(BillEntity bill) {
 		this.bill = bill;
+	}
+	public LocalTime getOrdered_time() {
+		return ordered_time;
+	}
+	public void setOrdered_time(LocalTime ordered_time) {
+		this.ordered_time = ordered_time;
+	}
+	public LocalTime getExpired_time() {
+		return expired_time;
+	}
+	public void setExpired_time(LocalTime expired_time) {
+		this.expired_time = expired_time;
 	}
 	
 	

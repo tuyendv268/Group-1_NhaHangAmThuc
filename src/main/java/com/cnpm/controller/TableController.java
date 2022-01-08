@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +32,7 @@ public class TableController {
 		tableService.useTable(id);
 		return "redirect:/table";
 	}
+	
 	
 	@GetMapping(value = "/table/cancel/{id}")
 	public String calcelTable(@PathVariable Long id) {

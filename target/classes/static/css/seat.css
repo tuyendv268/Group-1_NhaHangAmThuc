@@ -142,23 +142,18 @@
 }
 .free .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
-    cursor: not-allowed;
 }
 .reserved .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
-    cursor: not-allowed;
 }
 .outOfOrder .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
-    cursor: not-allowed;
 }
 .reserved .wrap-right_content li:nth-child(3) a {
     background-color:whitesmoke ;
-    cursor: not-allowed;
 }
 .occupied .wrap-right_content li:nth-child(3) a {
     background-color:whitesmoke ;
-    cursor: not-allowed;
 }
 .free .wrap-left_content div:first-child > span:nth-child(2) {
     background-color: #1CC136;    

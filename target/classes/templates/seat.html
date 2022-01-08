@@ -114,7 +114,7 @@
 							<span>Table Name</span>
 							<span>Reserved</span>
 						</div>
-						<div>Reservation Timeout: </div>
+						<div class="expired time">Reservation Timeout: </div >
 						<p class="customer reserved">Customer: </p>
 						<p class="tel reserved">Tel: </p>
 					</ul>
@@ -223,9 +223,13 @@
 								<span></span>
 							</div>
 
-							<h2 th:data-myval="${table.getTableId()}" th:data-customername="${table.guestName}"
-								th:data-telephone="${table.telephone}" th:data-tablestatus="${table.status}"
-								th:data-statuspayment="${table.statusPayment}" th:id="${table_index.index}"
+							<h2 th:data-myval="${table.getTableId()}" 
+								th:data-customername="${table.guestName}"
+								th:data-telephone="${table.telephone}"
+								th:data-expiredtime="${table.expired_time}"
+								th:data-tablestatus="${table.status}"
+								th:data-statuspayment="${table.statusPayment}" 
+								th:id="${table_index.index}"
 								th:text="${table.getTableName()}"></h2>
 						</div>
 					</tr>
