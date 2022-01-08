@@ -77,6 +77,10 @@ public class TableService {
 		return table;
 	}
 	
+	public List<TableEntity> findByBill(Long id) {
+		return tableRepository.findByBill(id);
+	}
+
 	public TableEntity orderTable(Long id, String guestName, String phone) {
 		TableEntity table = findByID(id);
 		table.setGuest(guestName);

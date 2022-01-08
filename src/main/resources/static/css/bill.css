@@ -5,7 +5,16 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+.bill-seat{
+	
+}
+.customer{
+  cursor: pointer;
+}
+.customer:hover{
+  background-color : #B1D0E0;
+  border-color : #406882;
+}
 .active {
     background-color: #C3C3C4;
     background: linear-gradient(180deg, #1326D6, #BDBEC0);

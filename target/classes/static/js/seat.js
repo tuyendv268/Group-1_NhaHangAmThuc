@@ -159,6 +159,7 @@ reservation_add.addEventListener('click', () => {
 let AddTable = document.getElementById("table_add")
 let popup_NewTable = document.getElementsByClassName("NewTable")[0]
 AddTable.addEventListener('click', () => {
+<<<<<<< HEAD
 	if (!isDisplay) {
 		popup_NewTable.style.display = 'block'
 		isDisplay = true
@@ -168,6 +169,17 @@ let addTable_cancel = document.getElementById("addTable_cancel")
 addTable_cancel.addEventListener('click', () => {
 	popup_NewTable.style.display = 'none'
 	isDisplay = false
+=======
+    if (!isDisplay){
+        popup_NewTable.style.display = 'block'
+        isDisplay=true
+    }
+})
+let addTable_cancel = document.getElementById("addTable_cancel")
+addTable_cancel.addEventListener('click', () => {
+    popup_NewTable.style.display = 'none'
+    isDisplay=false
+>>>>>>> 9afb4392d73c40175a8615f16d3557a882400097
 })
 
 // ------------ Count Table ------------------------
