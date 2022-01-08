@@ -31,10 +31,6 @@
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>
-<<<<<<< HEAD
-			<attribute name="test" value="true"/>
-=======
->>>>>>> 9afb4392d73c40175a8615f16d3557a882400097
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="ignore_optional_problems" value="true"/>
 			<attribute name="m2e-apt" value="true"/>

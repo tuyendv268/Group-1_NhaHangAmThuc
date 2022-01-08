@@ -1,10 +1,7 @@
 package com.cnpm.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.entity.BillEntity;
-import com.cnpm.entity.EventEntity;
-import com.cnpm.entity.TableEntity;
 import com.cnpm.service.BillService;
 import com.cnpm.service.TableService;
 @Controller
@@ -35,6 +30,7 @@ public class BillController {
 		
 		// call delete employee method 	
 		//List<TableEntity> tablebill = tableService.findByBill(id);
+//		BillEntity bill = billService.find
 		this.billService.deleteById(id);
 //		for(int i=0; i< tablebill.size(); i++) {
 //			tablebill.get(i).setBill(null);
