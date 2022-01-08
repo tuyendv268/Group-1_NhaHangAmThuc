@@ -88,33 +88,44 @@
             <div class="content">
                 <table id="customer-table">
                     <thead>
-                        <th>Stt</th>
-                        <th>Code</th>
+                        <th>No.</th>
+                        <th>Bill ID</th>
                         <th>Customer</th>
+                        <th>Table</th>
                         <th>Money</th>
                         <th>Status</th>
                     </thead>
                     <tbody class="customer-list">
-                        <tr class="customer">
-                            <td></td>
-                            <td>#HD000001</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>1500</td>
-                            <td>Waiting</td>
-                        </tr>
-                        <tr class="customer">
-                            <td></td>
-                            <td>#HD000002</td>
-                            <td>Nguyễn Văn B</td>
-                            <td>1500</td>
-                            <td>Waiting</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                        <tr class="customer" th:each="bill,bill_index : ${bills}">
+					<td th:id = "${bill_index.index}"
+						th:data-billid = "${bill.billId}" 
+						th:data-phone ="${bill.customer.telephone}"
+						th:data-memberank = "${bill.customer.membership.type}"
+						th:data-createdtime = "${bill.createdDate}"></td >                            
+					<td th:text="${bill.billId}" ></td>
+					<td th:text="${bill.customer.custormerName}"></td>
+					<td  >
+						<p th:each="table : ${bill.tables}">
+			                <span th:text="${table.tableName}"></span>
+						</p>
+					</td>
+					<td th:text= "${bill.finalTotal}"></td>
+					<td >
+						<p th:if="${bill.statusPayment}">
+							<span th:text="'Pay at '+ ${bill.timePayment}" ></span>
+						</p>
+						<p th:unless="${bill.statusPayment}">
+							<span >Waiting </span>
+						</p>
+					</td>  
+			
+                      </tr>
+                   </tbody>
+               </table>
+				
                 <button id="create-btn">Create</button>
 
-                <div id=bill>
+                <div id="bill">
                     <h2>Infomation</h2>
                     <div class="bill-id">
                         <h3>ID:</h3>
@@ -128,28 +139,25 @@
                         <h3>Phone:</h3>
                         <span></span>
                     </div>
-                    <div id="bill-code">
-                        <h3>Customer’s code:</h3>
+                    <div id="bill-rank">
+                        <h3>Member Rank:</h3>
                         <span></span>
                     </div>
                     <div id="bill-seat">
                         <h3>Seat:</h3>
                         <span></span>
                     </div>
-                    <div id="bill-status">
-                        <h3>Payment status:</h3>
+                    <div id="bill-total">
+                        <h3>Total: </h3>
                         <span></span>
                     </div>
-                    <div id="bill-list">
-                        <h3>Food list:</h3>
-                        <span></span>
-                    </div>
+                    
                     <div id="bill-creation-time">
-                        <h3>Creation times:</h3>
+                        <h3>Created:</h3>
                         <span></span>
                     </div>
                     <div id="bill-completion-time">
-                        <h3>Completion time:</h3>
+                        <h3>Status</h3>
                         <span></span>
                     </div>
                     <div id="list">
@@ -162,18 +170,20 @@
                     <button id="pay-btn">Pay</button>
                 </div>
 
-                <div id="new">
+                <form action="#" method="GET" >
+                    <div  id="new" >
                     <h2>Create a new bill</h2>
                     <h3>Customer’s name</h3>
-                    <input id="name-input" type="text">
+                    <input id="name-input" type="text" th:name ="customerName">
                     <h3>Phone</h3>
-                    <input id="phone-input" type="text">
+                    <input id="phone-input" type="text"th:name = "phone">
                     <h3>Customer’s Code</h3>
-                    <input id="code-input" type="text">
+                    <input id="code-input" type="text" th:name = "customerId">
                     <h3>Seat</h3>
-                    <input id="seat-input" type="text">
-                    <button id="new-done-btn">Done</button>
-                </div>
+                    <!--<input id="seat-input" type="text"> -->
+                    <button id="new-done-btn" th:formaction = "@{/newBill}">Done</button>
+                    </div >
+                </form  >
 
                 <div id="edit">
                     <h2>Edit</h2>
@@ -190,7 +200,9 @@
 
                 <div id="delete">
                     <h3>Do you really want to delete this bill?</h3>
-                    <button id="delete-yes-btn">Yes</button>
+                    <button > 
+                    <a id="delete-yes-btn" href="#" method="GET"> Yes</a>
+                    </button >
                     <button id="delete-no-btn">No</button>
                 </div>
 
@@ -225,6 +237,7 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/bill.js"></script>
 </html>

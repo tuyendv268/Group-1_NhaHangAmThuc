@@ -28,7 +28,9 @@ public class TableService {
 	public TableEntity findByID(Long id) {
 		return tableRepository.findByTableId(id);
 	}
-	
+	public List<TableEntity> findByBill(Long id) {
+		return tableRepository.findByBill(id);
+	}
 	public TableEntity orderTable(Long id, String guestName, String phone) {
 		TableEntity table = findByID(id);
 		table.setGuest(guestName);

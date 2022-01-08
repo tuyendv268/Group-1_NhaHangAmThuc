@@ -7,12 +7,27 @@ customer.addEventListener('click', function(event) {
     var bill = document.getElementById("bill");
     bill.style.display = "block";
     create.style.display = "none";
+    
+   	var id= event.target.parentElement.children[1].innerText;
+   	
+    const billid = document.querySelector('.bill-id span')
+    billid.innerHTML = id
     const name = document.querySelector('#bill-name span')
     name.innerHTML = event.target.parentElement.children[2].innerText;
-    const code = document.querySelector('#bill-code span')
-    code.innerHTML = event.target.parentElement.children[1].innerText;
-    const status = document.querySelector('#bill-status span')
-    status.innerHTML = event.target.parentElement.children[4].innerText;
+    const phone = document.querySelector('#bill-phone span')
+    phone.innerHTML = $('#'+index).data('phone');
+    const status = document.querySelector('#bill-completion-time span')
+    status.innerHTML = event.target.parentElement.children[5].innerText;
+    const total = document.querySelector('#bill-total span')
+    total.innerHTML = event.target.parentElement.children[4].innerText;
+    const createtime = document.querySelector('#bill-creation-time span')
+    createtime.innerHTML = $('#'+index).data('createdtime');
+    const rank = document.querySelector('#bill-rank span')
+    rank.innerHTML = $('#'+index).data('memberank');
+    const seat = document.querySelector('#bill-seat span')
+    seat.innerHTML = event.target.parentElement.children[3].innerHTML;
+    $("#delete-yes-btn").attr("href", "/deleteBill/" + id);
+    
 });
 
 
@@ -45,6 +60,7 @@ deleteBill.addEventListener('click', function(){
 
 
 //Xác nhận xóa hóa đơn
+/*
 const deleteYes = document.querySelector('#delete-yes-btn');
 deleteYes.addEventListener('click', function(){
     var bill = document.getElementById("bill");
@@ -55,7 +71,7 @@ deleteYes.addEventListener('click', function(){
     var item = customer.children[localStorage.getItem('target')];
     item.remove();
 });
-
+*/
 
 //Hủy xóa hóa đơn
 const deleteNo = document.querySelector('#delete-no-btn');
@@ -179,19 +195,3 @@ newDone.addEventListener('click', function(){
     newPhoneInput.value = '';
     newSeatInput.value = '';
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

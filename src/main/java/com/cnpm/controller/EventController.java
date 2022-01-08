@@ -112,7 +112,7 @@ public class EventController {
 	
 	/*
 	 * This method is used to search event with name of event
-	 */
+	 */ 
 	@GetMapping(value = "/test")
 	public String searchEvent(@RequestParam String eventName) {
 		EventEntity event = eventService.findEventByName(eventName);
