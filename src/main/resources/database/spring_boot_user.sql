@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL AUTO_INCREMENT,
   `user_password` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','tien');
+INSERT INTO `user` VALUES (1,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','tien'),(4,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','luynh'),(2,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','chinh'),(3,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','tuyen'),(5,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','duc'),(6,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','phong'),(7,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','huu'),(8,'$2a$10$hsSEIXy1Sg5.X6t9YyQzcOao1TP0I2jXewGSWeYuwFCPd3tM0P1tS','quynh');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-28 11:27:30
+-- Dump completed on 2022-01-08 20:31:42
