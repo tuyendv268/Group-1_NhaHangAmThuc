@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.entity.BillEntity;
+import com.cnpm.entity.TableEntity;
 import com.cnpm.service.BillService;
 import com.cnpm.service.TableService;
 @Controller
@@ -27,15 +28,14 @@ public class BillController {
 	}
 	@GetMapping("/deleteBill/{id}")
 	public String deleteBill(@PathVariable (value = "id") Long id) {
-		
-		// call delete employee method 	
-		//List<TableEntity> tablebill = tableService.findByBill(id);
-//		BillEntity bill = billService.find
+
+		BillEntity bill = billService.findBillById(id);
+		List<TableEntity> tables = bill.getTables();
+		for (TableEntity tableEntity : tables) {
+			tableEntity.setBill(null);
+			tableService.save(tableEntity);
+		}
 		this.billService.deleteById(id);
-//		for(int i=0; i< tablebill.size(); i++) {
-//			tablebill.get(i).setBill(null);
-//			tableService.save(tablebill.get(i));
-//		}
 		return "redirect:/bill";
 	}
 	

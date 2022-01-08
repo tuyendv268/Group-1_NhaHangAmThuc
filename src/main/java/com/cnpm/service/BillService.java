@@ -95,6 +95,10 @@ public class BillService {
 		return false;
 	}
 	
+	public BillEntity findBillById(Long id) {
+		return billRepository.findByBillId(id);
+	}
+	
 	public boolean deleteById(Long id) {
 		BillEntity bill = billRepository.getById(id);
 		if(bill != null) {
