@@ -42,9 +42,9 @@ for (let i = 0; i < table.length; i++) {
 			wrap[0].style.display = 'flex'
 		}
 		else if (midColor == 'yellow') {
-			var customername = $('#' + index).data('customername');
-			var telephone = $('#' + index).data('telephone');
-			var expired_time = $('#' + index).data('expiredtime');
+			var customername = $('#' + 'table'+index).data('customername');
+			var telephone = $('#' + 'table'+index).data('telephone');
+			var expired_time = $('#' + 'table'+index).data('expiredtime');
 			//alert(customername);
 			document.getElementsByClassName("expired time")[0].innerHTML = "Expired Time : " + expired_time;
 			document.getElementsByClassName("customer reserved")[0].innerHTML = "Customer : " + customername;
@@ -52,8 +52,8 @@ for (let i = 0; i < table.length; i++) {
 			wrap[1].style.display = 'flex'
 		}
 		else if (midColor == 'red') {
-			var customername = $('#' + index).data('customername');
-			var telephone = $('#' + index).data('telephone');
+			var customername = $('#' + 'table'+index).data('customername');
+			var telephone = $('#' + 'table'+index).data('telephone');
 			//alert(customername);
 			document.getElementsByClassName("customer occupied")[0].innerHTML = "Customer : " + customername;
 			document.getElementsByClassName("tel occupied")[0].innerHTML = "Tel      : " + telephone;
@@ -116,14 +116,14 @@ for (let j = 0; j < colorChange.length; j++) {
 			show_reservation_info()
 		} else if (tableColor == 'red') {
 			// Thay đổi màu trạng thái
-			var id = $('#' + index).data('myval');
+			var id = $('#' + 'table'+index).data('tableid');
 			$(".close_status").attr("href", "/table/use/" + id);
 			//alert(id);
 			mid[index].classList.remove(midColor)
 			mid[index].classList.add(tableColor)
 		} else if (tableColor == 'green') {
 			// Thay đổi màu trạng thái
-			var id = $('#' + index).data('myval');
+			var id = $('#' + 'table'+index).data('tableid');
 			$(".close_status").attr("href", "/table/cancel/" + id);
 			mid[index].classList.remove(midColor)
 			mid[index].classList.add(tableColor)
@@ -137,7 +137,7 @@ for (let j = 0; j < colorChange.length; j++) {
 // --------- Pop-up Reservation Info -----------
 let popup_reservation = document.getElementsByClassName("reservation_info")[0]
 show_reservation_info = () => {
-	var id = $('#' + index).data('myval');
+	var id = $('#' + 'table'+index).data('tableid');
 	document.getElementById("reserved_table_id").value = id;
 	popup_reservation.style.display = 'block'
 }
@@ -227,7 +227,7 @@ confirmDelete.addEventListener('click', () => {
 	let classColor = mid[index].getAttribute('class').split(' ')[1].trim()
 	if (classColor == "green") {
 		// set href cho button
-		var id = $('#' + index).data('myval');
+		var id = $('#' + 'table'+index).data('tableid');
 		$("#confirmDelete_yes").attr("href", "/table/" + id);
 		//alert($('#confirmDelete_yes').attr('href'));
 	} else if (classColor == "dark") {
@@ -235,4 +235,23 @@ confirmDelete.addEventListener('click', () => {
 	}
 	Delete_display.style.display = 'none'
 	isDisplay = false
+})
+
+// -------------- Bill Detail ------------------
+let billDetail = document.getElementById("billdetailid")
+
+billDetail.addEventListener('click', () => {
+	var tableId = $('#' + 'table'+index).data('tableid');
+	var billID = $('#' +  'table'+index).data('tblbillid');
+	var id = 1;
+	//alert(billID);
+	
+	while(true){
+		var temp = $('#' + id).data('billid');
+		if(billID == temp){
+			alert(id);
+			break;
+		}
+		id += 1;
+	}
 })

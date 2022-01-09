@@ -27,7 +27,6 @@ customer.addEventListener('click', function(event) {
     const seat = document.querySelector('#bill-seat span')
     seat.innerHTML = event.target.parentElement.children[3].innerHTML;
     $("#delete-yes-btn").attr("href", "/deleteBill/" + id);
-    
 });
 
 

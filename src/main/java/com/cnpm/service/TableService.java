@@ -87,8 +87,7 @@ public class TableService {
 		table.setStatus(TableDTO.reserved);
 		table.setOrdered_time(LocalTime.now());
 		table.setExpired_time(LocalTime.now().plusMinutes(30));
-		System.out.println(table.getGuest());
-		System.out.println(table.getPhone());
+		System.out.println("Order : "+table.getGuest()+"-"+table.getPhone());
 		return tableRepository.save(table);
 	}
 	
