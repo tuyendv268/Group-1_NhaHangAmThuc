@@ -14,7 +14,7 @@ public class EventService {
 	private EventRepository eventRepository;
 	
 	public EventEntity save(EventEntity eventEntity) {
-		if(eventEntity.getTimeStart().isBefore(eventEntity.getTimeEnd())) {
+		if(eventEntity.getTimeStart().before(eventEntity.getTimeEnd())) {
 			return eventRepository.save(eventEntity);
 		}
 		return null;

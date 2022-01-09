@@ -1,6 +1,6 @@
 package com.cnpm.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "bill")
@@ -24,15 +27,17 @@ public class BillEntity {
 	@OneToMany(mappedBy = "bill")
 	List<BillDetail> billDetails;
 	
-	@Column(name = "date")
-	private LocalDate createdDate;
+	@Column(name = "date",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private EventEntity event;
 	
-	@Column(name = "time_payment")
-	private LocalDate timePayment;
+	@Column(name = "time_payment",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timePayment;
 	
 	@OneToMany(mappedBy = "bill")
 	private List<TableEntity> tables;
@@ -54,23 +59,23 @@ public class BillEntity {
 	public void setBillId(Long billId) {
 		this.billId = billId;
 	}
+	
 
-	public LocalDate getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public LocalDate getTimePayment() {
+	public Date getTimePayment() {
 		return timePayment;
 	}
 
-	public void setTimePayment(LocalDate timePayment) {
+	public void setTimePayment(Date timePayment) {
 		this.timePayment = timePayment;
 	}
-
 
 	public Long getFinalTotal() {
 		return finalTotal;

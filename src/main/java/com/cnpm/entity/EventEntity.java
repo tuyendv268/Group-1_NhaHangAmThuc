@@ -1,6 +1,7 @@
 package com.cnpm.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "event")
@@ -28,11 +31,13 @@ public class EventEntity {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "time_start")
-	private LocalDate timeStart;
+	@Column(name = "time_start",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timeStart;
 	
-	@Column(name = "time_end")
-	private LocalDate timeEnd;
+	@Column(name = "time_end",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timeEnd;
 	
 	@Column(name = "url")
 	private String url;
@@ -44,7 +49,7 @@ public class EventEntity {
 		
 	}
 	
-	public EventEntity(Long id, String eventName, String description, LocalDate timeStart, LocalDate timeEnd, int discountRate) {
+	public EventEntity(Long id, String eventName, String description, Date timeStart, Date timeEnd, int discountRate) {
 		this.eventName = eventName;
 		this.eventId = id;
 		this.description = description;
@@ -53,7 +58,7 @@ public class EventEntity {
 		this.discountRate = discountRate;
 	}
 
-	public EventEntity(String eventName, String description, LocalDate timeStart, LocalDate timeEnd, int discountRate) {
+	public EventEntity(String eventName, String description, Date timeStart, Date timeEnd, int discountRate) {
 		this.eventName = eventName;
 		this.description = description;
 		this.timeStart = timeStart;
@@ -92,19 +97,19 @@ public class EventEntity {
 		this.description = description;
 	}
 
-	public LocalDate getTimeStart() {
+	public Date getTimeStart() {
 		return timeStart;
 	}
 
-	public void setTimeStart(LocalDate timeStart) {
+	public void setTimeStart(Date timeStart) {
 		this.timeStart = timeStart;
 	}
 
-	public LocalDate getTimeEnd() {
+	public Date getTimeEnd() {
 		return timeEnd;
 	}
 
-	public void setTimeEnd(LocalDate timeEnd) {
+	public void setTimeEnd(Date timeEnd) {
 		this.timeEnd = timeEnd;
 	}
 

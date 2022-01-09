@@ -1,6 +1,6 @@
 package com.cnpm.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "dish")
@@ -39,11 +41,13 @@ public class DishEntity {
 	@Column(name = "ingredient")
 	private String ingredient;
 	
-	@Column(name = "created_time")
-	private LocalDate createdTime;
+	@Column(name = "created_time",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdTime;
 	
-	@Column(name = "modified_time")
-	private LocalDate modifiedTime;
+	@Column(name = "modified_time",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedTime;
 	
 	@Column(name = "status")
 	private Boolean status;
@@ -126,19 +130,20 @@ public class DishEntity {
 		this.ingredient = ingredient;
 	}
 
-	public LocalDate getCreatedTime() {
+
+	public Date getCreatedTime() {
 		return createdTime;
 	}
 
-	public void setCreatedTime(LocalDate createdTime) {
+	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
 
-	public LocalDate getModifiedTime() {
+	public Date getModifiedTime() {
 		return modifiedTime;
 	}
 
-	public void setModifiedTime(LocalDate modifiedTime) {
+	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
 

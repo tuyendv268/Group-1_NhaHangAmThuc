@@ -5,8 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,8 +79,8 @@ public class EventController {
 			 InputStream inputStream = file.getInputStream();
 			 Files.copy(inputStream, path.resolve(file.getOriginalFilename()),
 					 StandardCopyOption.REPLACE_EXISTING);
-			 LocalDate start = LocalDate.parse(timeStart);
-			 LocalDate end = LocalDate.parse(timeEnd);
+			 Date start = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeStart);
+			 Date end = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeEnd);
 			 EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
 			 newEvent.setUrl(file.getOriginalFilename().toLowerCase());
 			 
@@ -88,7 +91,7 @@ public class EventController {
 			 }
 		 }catch (Exception e) {
 
-		}
+		 }
 		 return "redirect:/event";
 	  }
 	/*
@@ -110,20 +113,27 @@ public class EventController {
  */
 	@PutMapping(value = "/test")
 	public String editEvent(@RequestParam Long id,@RequestParam String eventName, @RequestParam String description
-			,@RequestParam LocalDate timeStart,@RequestParam LocalDate timeEnd
+			,@RequestParam String timeStart,@RequestParam String timeEnd
 			, @RequestParam int discountRate) {
 		EventEntity event = eventService.findEventById(id);
 		if(event == null) {
 			System.out.println("Error");
 			return "login";
 		}else {
-			System.out.println("Success");
-			event.setEventName(eventName);
-			event.setDescription(description);
-			event.setTimeStart(timeStart);
-			event.setTimeEnd(timeEnd);
-			event.setDiscountRate(discountRate);
-			eventService.save(event);
+			Date start = null,end = null;
+			try {
+				start = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeStart);
+				end = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeEnd);
+				System.out.println("Success");
+				event.setEventName(eventName);
+				event.setDescription(description);
+				event.setTimeStart(start);
+				event.setTimeEnd(end);
+				event.setDiscountRate(discountRate);
+				eventService.save(event);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			return "login";
 		}
 	}

@@ -1,6 +1,6 @@
 package com.cnpm.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "bill_detail")
@@ -33,8 +35,9 @@ public class BillDetail {
 	@Column(name = "total")
 	private int total;
 	
-	@Column(name = "modify_time")
-	private LocalDate modifyTime;
+	@Column(name = "modify_time",columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifyTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "combo_id")
@@ -80,11 +83,11 @@ public class BillDetail {
 		this.total = total;
 	}
 
-	public LocalDate getModifyTime() {
+	public Date getModifyTime() {
 		return modifyTime;
 	}
 
-	public void setModifyTime(LocalDate modifyTime) {
+	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
 	}
 
