@@ -30,10 +30,11 @@
             </h1>
 
             <div class="search">
-                <input type="text" placeholder="search">
-                <a href="#">
-                    <i class="material-icons">search</i>
-                </a>
+              	<form th:action="@{/menu}">
+					<input type="text" placeholder="search" th:name="combo_dish">
+					<a href="#">
+						<i class="material-icons">search</i>
+					</a>  
             </div>
 
             <div class="home">
@@ -44,6 +45,7 @@
         </header>
 
         <div id="main">
+        
             <div class="menu">
                 <ul>
                     <li>
@@ -55,7 +57,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="./menu.html">
+                        <a href="/menu">
                             <i class="material-icons">menu</i>
                             <span>Menu</span>
                         </a>
@@ -98,35 +100,24 @@
             </div>
 
             <div class="content">
-                <div class="menu_dish">
-                    <ul class="ulDish">
-                        <li>
-                            <img src="./image/dish/dish01.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish02.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish03.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish04.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish05.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish06.jpg" alt="">
-                        </li>
-                        
-                        <li>
-                            <img src="./image/dish/dish07.jpg" alt="">
-                        </li>
+                <div class="menu_dish" >
+                    <ul class="ulDish" th:each="dish, dish_index: ${dishes}">
+                        <li th:if="${dish.status}">
+                           <img th:src="@{'getimage/'+${dish.url}}" alt="">
+                           <span class="temp" th:id="${dish.dishId}"
+                           		 th:text="${dish.getDishName()}"                         	
+                          		 th:data-dishurl="${dish.url}"
+                          		 th:data-dishid="${dish.dishId}"
+                          		 th:data-dishname="${dish.dishName}"
+                          		 th:data-dishprice="${dish.price}"
+                          		 th:data-dishdescription="${dish.description}"
+                          		 th:data-dishcategory="${dish.category}"
+                          		 th:data-dishingredient="${dish.ingredient}"
+                          		 th:data-dishfeaturedDish="${dish.featureDish}"
+                          		 th:data-dishstatus="${dish.status}">
+                          		 
+                           </span>
+                        </li> 
                     </ul>
 
                     <!-- box dish info -->
@@ -134,120 +125,151 @@
                         <h2>Information Food</h2>
                         <ul>
                             <li>
-                                Code <span>____</span>
+                                Code: <span class="dish id">____</span>
+                                                     
                             </li>
 
                             <li>
-                                Name <span>____</span>
+                                Name: <span class="dish name">____</span>
+                                       
                             </li>
 
                             <li>
-                                Price <span>____</span>
+                                Price: <span class="dish price">____</span>
+                                    
                             </li>
 
                             <li>
-                                Description <span>____</span>
+                                Description: <span class="dish description">____</span>
+                             
                             </li>
 
                             <li>
-                                Category <span>____</span>
+                                Category: <span class="dish category">____</span>
+                             
                             </li>
 
                             <li>
-                                Ingredient <span>____</span>
+                                Ingredient: <span class="dish ingredient">____</span>
+                             
                             </li>
 
                             <li>
-                                Creation time <span>____</span>
+                                Creation time: <span class="dish creation time">____</span>
+                              
                             </li>
 
                             <li>
-                                Modification time <span>____</span>
+                                Modification time: <span class="dish modification time">____</span>
+                             
                             </li>
 
                             <li>
-                                Status of existence <span>____</span>
+                                Status of existence: <span class="dish status of existence">____</span>
+                             
                             </li>
 
                         </ul>
 
                         <div class="info_button">
-                            <button class="edit_Info">Edit</button>
-                            <button>Delete</button>
+                            <button class="edit_Info" id="edit_dish">Edit</button>
+                            <a href="#" method="GET" id="remove_dish0"><button id="remove_dish">Delete</button></a>
                         </div>
 
                     </div>
 
                     <!-- box edit info food -->
                     <div class="box_add box_InfoFood">
+                     <form th:action="@{/menu/edit-dish}" method="post" enctype="multipart/form-data" >
                         <ul>
+                      		<li>
+                                <span>Code:</span>
+                              	<input type="number" class="dish id" th:name="dishId" readonly>
+                            </li>
                             <li>
-                                <span>Name</span>
-                                <input type="text">
+                              	<span>Name:</span>
+                              	<input type="text" class="dish name" th:name="dishName">
                             </li>
 
                             <li>
                                 <span>Price</span>
-                                <input type="text">
+                                <input type="number" class="dish price" th:name="dishPrice">
                             </li>
 
                             <li>
                                 <span>Description</span>
-                                <input type="text">
+                                <input type="text" class="dish description" th:name="dishDescription">
                             </li>
 
                             <li>
                                 <span>Category</span>
-                                <input type="text">
+                                <input type="text" class="dish category" th:name="dishCategory">
                             </li>
 
                             <li>
-                                <span>Ingridient</span>
-                                <input type="text">
+                                <span>Ingredient</span>
+                                <input type="text" class="dish ingredient" th:name="dishIngredient">
+                            </li>
+                            
+                             <li>
+                                Status of existence: <input type="checkbox" class="dish status of existence" th:name="dishStatus" name="dishStatus">
                             </li>
 
                         </ul>
 
                         <div class="button_Dish">
-                            <button>Done</button>
+                            <button name="done" value="done">Done</button>
                         </div>
+                        </form>
                     </div>
 
                     <!-- box add dish -->
                     <div class="box_add_dish box_add">
-                        <ul>
+                    	<h2>Add New Dish</h2>
+						<br>
+							<span>Enter New Dish Information:</span>
+						<br>
+						 <form th:action="@{/menu/new-dish}" method="post" enctype="multipart/form-data" >
+                       		<ul>
+                        
                             <li>
                                 <span>Name</span>
-                                <input type="text">
+                                <input type="text" th:name="dishName" placeholder="Chicken soup" />
                             </li>
 
                             <li>
                                 <span>Price</span>
-                                <input type="text">
+                                <input type="number"  th:name="dishPrice" placeholder="100000"/>
                             </li>
 
                             <li>
                                 <span>Description</span>
-                                <input type="text">
+                               <input type="text" th:name="dishDescription" placeholder="Chicken soup"/>
                             </li>
 
                             <li>
                                 <span>Category</span>
-                                <input type="text">
+                               <input type="text" th:name="dishCategory" placeholder="Chicken" />
                             </li>
 
                             <li>
-                                <span>Ingridient</span>
-                                <input type="text">
+                                <span>Ingredient</span>
+                             	<input type="text" th:name="dishIngredient" placeholder="Chicken, Egg" />
                             </li>
 
-                        </ul>
-
-                        <div class="button_Dish">
-                            <label for="upload">Upload</label>
-                            <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
-                            <button class="done_Dish">Done</button>
-                        </div>
+                        	</ul>
+							<div id="poster_upload">
+									<p>Poster</p>
+									<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" />
+							</div>
+                        	<div class="button_Dish">
+                           		<!--  <label for="upload">Upload</label> -->
+                                <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
+                           		<button class="close_Dish" name="close" value="close">Close</button>
+                           		<button class="done_Dish" name="create" value="create">Done</button>
+                        	</div>
+                        </form>
+                       
                     </div>
 
                     <!-- add dish -->
@@ -256,200 +278,164 @@
 
                 <!-- Menu Combo -->
                 <div class="menu_combo">
-                    <ul class="ulCombo">
-                        <li>
-                            <img src="./image/dish/combo.jpg" alt="">
-                        </li>
-
-                        <li>
-                            <img src="./image/dish/combo2.jpg" alt="">
-                        </li>
-
-                        <li>
-                            <img src="./image/dish/combo3.jpg" alt="">
-                        </li>
-
+                    <ul class="ulCombo" th:each="combo, combo_index: ${combos}">                       
+                        <li th:if="${combo.status}">
+                           <img th:src="@{'getimage/'+${combo.url}}" alt="">
+                           <span class="temp2" th:id="${combo.comboId}"
+                           		 th:text="${combo.getComboName()}"                         	
+                          		 th:data-combourl="${combo.url}"
+                          		 th:data-comboid="${combo.comboId}"
+                          		 th:data-comboname="${combo.comboName}"
+                          		 th:data-comboprice="${combo.price}"
+                          		 th:data-combodescription="${combo.description}"
+                          		 th:data-combodiscountrate="${combo.discountRate}"
+                         		 th:data-combonumberofpeoplerecommend="${combo.numberOfPeopleRecommend}"
+                          		 th:data-combostatus="${combo.status}">
+                          		 
+                           </span>
+                        </li> 
                     </ul>
 
                     <!-- box add combo -->
-                    <!-- box add dish -->
+                   
                     <div class="box_add_combo box_add">
+                    	 <form th:action="@{/menu/new-combo}" method="post" enctype="multipart/form-data" >
                         <ul>
                             <li>
                                 <span>Name</span>
-                                <input type="text">
+                                <input type="text" th:name="comboName" placeholder="Chicken combo">
                             </li>
 
                             <li>
                                 <span>Price</span>
-                                <input type="text">
+                                <input type="number" th:name="comboPrice" placeholder="200000">
                             </li>
 
                             <li>
                                 <span>Description</span>
-                                <input type="text">
+                                <input type="text" th:name="comboDescription" placeholder="Combo for family">
                             </li>
 
                             <li>
                                 <span>Amount of people</span>
-                                <input type="text">
+                                <input type="number" th:name="comboAmountOfPeople" placeholder="5">
                             </li>
 
                             <li>
-                                <span>Offer</span>
-                                <input type="text">
+                                <span>Discount rate</span>
+                                <input type="number" th:name="comboDiscountRate" placeholder="20">
+                            </li>
+                            <li>
+                            	 <input type="text" id="list_of_dishes_in_combo" th:name="list_of_dishes_in_combo" value="0">
                             </li>
                         </ul>
-
+						<div id="poster_upload_combo">
+							<p>Poster Combo</p>
+							<input type="file" th:name="files" id="fileImageCombo" accept="image/png, image/jpeg" />
+						</div>
                         <div class="button_Combo">
-                            <label for="upload">Upload</label>
+                         <!--    <label for="upload">Upload</label> -->
                             <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
-                            <button class="done_Combo">Done</button>
+                           	<button class="add_or_remove_food" type="button" name="add_remove_dish" value="add_remove_dish">Add/Remove food</button>
+                            <button class="done_Combo" name="create" value="create">Done</button>
                         </div>
+                        </form>
                     </div>
 
                     <!-- Combo Detail Main box -->
                     <div class="boxComboItem">
                         <h2>Combo Infomation</h2>
                         <ul>
-                            <li>Code:              <span></span></li>
+                            <li>Code:              <span class="combo id">____</span></li>
                             
-                            <li>Name:              <span></span></li>
+                            <li>Name:              <span class="combo name">____</span></li>
 
-                            <li>Price:             <span></span></li>
+                            <li>Price:             <span class="combo price">____</span></li>
 
-                            <li>Description:       <span></span></li>
+                            <li>Description:       <span class="combo description">____</span></li>
 
-                            <li>Creation time:     <span></span></li>
+                            <li>Creation time:     <span class="combo creation time">____</span></li>
 
-                            <li>Modification time: <span></span></li>
+                            <li>Modification time: <span class="combo modification time">____</span></li>
 
-                            <li>List of food:      <span></span></li>
+                     
 
-                            <li>Amount of people:  <span></span></li>
+                            <li>Amount of people:  <span class="combo amount of people">____</span></li>
 
-                            <li>Offer:             <span></span></li>
+                            <li>Combo discount rate:<span class="combo discount rate">____</span></li>
 
                         </ul>
 
                         <div class="button_boxComboItem">
                             <button class="editCombo_button">Edit</button>
-                            <button class="food2Combo_button">
-                                <span>Add/Remove food</span>
+                           
                             </button>
-                            <button>Delete</button>
+                           
+                            <a href="#" method="GET" id="remove_combo0"><button id="remove_combo">Delete</button></a>
                         </div>
                     </div>
                     <!-- ------ End combo ---- -->
                     <!-- ---- Exit combo item ---- -->
                     <div class="box_add boxComboEdit">
+                      <form th:action="@{/menu/edit-combo}" method="post" enctype="multipart/form-data" >
                         <ul>
+                           <li> 
+                           		<span>Code:  </span>
+                           		<input type="number" class="combo id" th:name="comboId" readonly>
+                           </li>
+                            
+                           <li>
+                            	<span>Name:</span>              
+                              	<input type="text" class="combo name" th:name="comboName">
+ 						   </li>
+                           <li>
+                           		<span>Price:</span>              
+                              	<input type="number" class="combo price" th:name="comboPrice">
+						   </li>
+							
                             <li>
-                                <span>Name</span>
-                                <input type="text">
-                            </li>
-
+                            	<span>Description:</span>      
+								<input type="text" class="combo description" th:name="comboDescription">
+							</li>
                             <li>
-                                <span>Price</span>
-                                <input type="text">
-                            </li>
-
+                           	 	<span>Amount of people:</span> 
+                           	 	<input type="number" class="combo amount of people" th:name="comboAmountOfPeople">
+							</li>
                             <li>
-                                <span>Description</span>
-                                <input type="text">
+                             	<span>Combo discount rate:</span> 
+								<input type="number" class="combo discount rate" th:name="comboDiscountRate">
+                       		</li>
+                       		 <li>
+                            	 <input type="text" id="list_of_dishes_in_combo_edit" th:name="list_of_dishes_in_combo_edit" value="0">
                             </li>
-
-                            <li>
-                                <span>Category</span>
-                                <input type="text">
-                            </li>
-
-                            <li>
-                                <span>Ingredient</span>
-                                <input type="text">
-                            </li>
-
                         </ul>
 
                         <div class="button_Dish">
-                            <button>Done</button>
+                         	<button class="add_or_remove_food_edit" type="button" name="add_remove_dish_edit" value="add_remove_dish_edit">Add/Remove food</button>
+                            <button name="done"  value="done">Done</button>
                         </div>
+                      </form>
                     </div>
                     <!-- add/remove food -->
                     <div class="addFoodCombo">
                         <div class="exit">
                             <i class="fas fa-times"></i>
                         </div>
-                        <ul class="listChooseFood">
-                            <li>
+                        <ul class="listChooseFood" th:each="dish, dish_index: ${dishes}" >
+                            <li th:if="${dish.status}">
                                 <span>
-                                    <img src="./image/dish/dish01.jpg" alt="">
+                                    <img th:src="@{'getimage/'+${dish.url}}" alt="">
                                 </span>
-                                <p>Food Name 1</p>
-                                <span>
-                                    <input type="checkbox">
+                                <span th:id="${dish_index.index}"
+                           		 th:text="${dish.getDishName()}" name="listFoodValue">
+                           		 </span>
+                                <span >
+                                    <input type="checkbox" name="listFood">
                                 </span>
+                            	<input name="count" type="hidden"   >
+                                
                             </li>
 
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish02.jpg" alt="">
-                                </span>
-                                <p>Food Name 2</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
-
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish03.jpg" alt="">
-                                </span>
-                                <p>Food Name 3</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
-
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish04.jpg" alt="">
-                                </span>
-                                <p>Food Name 4</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
-
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish05.jpg" alt="">
-                                </span>
-                                <p>Food Name 5</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
-
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish06.jpg" alt="">
-                                </span>
-                                <p>Food Name 6</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
-
-                            <li>
-                                <span>
-                                    <img src="./image/dish/dish07.jpg" alt="">
-                                </span>
-                                <p>Food Name 7</p>
-                                <span>
-                                    <input type="checkbox">
-                                </span>
-                            </li>
                         </ul>
                     </div>
                     <!-- button add combo -->
@@ -460,6 +446,7 @@
     </div>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/menu.js"></script>
 </html>

@@ -51,6 +51,17 @@ public class DishEntity {
 	@Column(name = "feature_dish")
 	private Boolean featureDish;
 
+	@Column(name = "url")
+	private String url;
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public Long getDishId() {
 		return dishId;
 	}

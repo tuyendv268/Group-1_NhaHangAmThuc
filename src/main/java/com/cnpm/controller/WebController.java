@@ -29,9 +29,6 @@ public class WebController {
 //		System.out.println(user);
 		return "login";
 	}
-	@GetMapping("/menu")
-	public String menu() {
-		return "index";
-	}
+
 
 }

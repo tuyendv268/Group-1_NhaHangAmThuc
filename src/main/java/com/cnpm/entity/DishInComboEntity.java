@@ -25,6 +25,21 @@ public class DishInComboEntity {
 	@JoinColumn(name = "dish_id")
 	private DishEntity dish;
 
+	@Column(name = "quantity")
+	private Long quantity;
+	
+	public Long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+	public DishInComboEntity() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}
