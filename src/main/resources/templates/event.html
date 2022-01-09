@@ -52,7 +52,7 @@
 					</li>
 
 					<li>
-						<a href="./menu.html">
+						<a href="/menu">
 							<i class="material-icons">menu</i>
 							<span>Menu</span>
 						</a>
@@ -60,7 +60,7 @@
 					</li>
 
 					<li class="active">
-						<a href="/event.html">
+						<a href="/event">
 							<i class="material-icons">event_available</i>
 							<span>Event</span>
 						</a>
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 
-				<form th:action="@{/event/new}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data" >
 					<div class="new_event">
 						<ul>
 							<li id="name_event">

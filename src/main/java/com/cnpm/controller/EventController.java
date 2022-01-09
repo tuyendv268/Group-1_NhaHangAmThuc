@@ -53,9 +53,9 @@ public class EventController {
 			 Files.copy(inputStream, path.resolve(file.getOriginalFilename()),
 					 StandardCopyOption.REPLACE_EXISTING);
 			 System.out.println(timeEnd);
-			 Date start = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeStart);
+			 Date start = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(timeStart);
 			 System.out.println(start.toString());
-			 Date end = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(timeEnd);
+			 Date end = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(timeEnd);
 			 EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
 			 newEvent.setUrl(file.getOriginalFilename().toLowerCase());
 			 

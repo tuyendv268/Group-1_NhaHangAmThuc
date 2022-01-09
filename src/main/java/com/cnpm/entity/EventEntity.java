@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "event")
 public class EventEntity {
@@ -31,10 +33,12 @@ public class EventEntity {
 	@Column(name = "description")
 	private String description;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "time_start",columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeStart;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "time_end",columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeEnd;
