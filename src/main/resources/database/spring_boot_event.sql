@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
-  `discount_rate` int DEFAULT NULL,
+  `discount_rate` int(11) DEFAULT NULL,
   `event_name` varchar(255) DEFAULT NULL,
-  `time_end` date DEFAULT NULL,
-  `time_start` date DEFAULT NULL,
+  `time_end` datetime DEFAULT NULL,
+  `time_start` datetime DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -40,7 +40,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (2,'Khuyến mại cho đoàn thể giáo viên',5,'Nhà Giáo VN','2021-11-13','2021-11-20','none'),(1,'Dành cho các cặp đôi và gia đình',5,'Phụ nữ VN','2021-10-13','2021-10-20','none'),(4,'Tết an khang !',5,'Happy new year','2021-12-27','2022-01-02','none'),(3,'Noel ấm áp',5,'Noel','2021-12-24','2021-12-25','none');
+INSERT INTO `event` VALUES (2,'Khuyến mại cho đoàn thể giáo viên',5,'Nhà Giáo VN','2021-11-13 00:00:00','2021-11-20 00:00:00','8-3.jpg'),(1,'Dành cho các cặp đôi và gia đình',5,'Phụ nữ VN','2021-10-13 00:00:00','2021-10-20 00:00:00','event.png'),(4,'Tết an khang !',5,'Happy new year','2021-12-27 00:00:00','2022-01-02 00:00:00','1-6.jpg'),(3,'Noel ấm áp',5,'Noel','2021-12-24 00:00:00','2021-12-25 00:00:00','merry_christmas.jpg');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-08 20:31:41
+-- Dump completed on 2022-01-09 22:28:57

@@ -24,7 +24,6 @@ public class TableService {
 	
 	@Scheduled(fixedDelay = 2000)
 	  public void updateTime() throws InterruptedException {
-	    System.out.println(LocalTime.now());
 	    List<TableEntity> tables = tableRepository.findAll();
 	    for (TableEntity table : tables) {
 	    	if(table.getExpired_time()!=null) {
