@@ -27,7 +27,8 @@ for (let i = 0; i < eventItems.length; i++) {
 		//alert($('#' + i).data('url'));
 		document.getElementsByClassName("event name")[0].innerHTML = $('#' + i).data('eventname');
 		document.getElementsByClassName("event description")[0].innerHTML = $('#' + i).data('eventdescription');
-		document.getElementsByClassName("event time")[0].innerHTML = $('#' + i).data('time');
+		document.getElementsByClassName("start time")[0].innerHTML = $('#' + i).data('starttime');
+		document.getElementsByClassName("end time")[0].innerHTML = $('#' + i).data('endtime');
 		document.getElementsByClassName("event sale")[0].innerHTML = $('#' + i).data('discount');
 	})
 }

@@ -17,13 +17,13 @@ customer.addEventListener('click', function(event) {
     const name = document.querySelector('#bill-name span')
     name.innerHTML = event.target.parentElement.children[2].innerText;
     const phone = document.querySelector('#bill-phone span')
-    phone.innerHTML = $('#'+'bill'+billindex).data('phone');
+    phone.innerHTML = $('#'+billindex).data('phone');
     const status = document.querySelector('#bill-completion-time span')
     status.innerHTML = event.target.parentElement.children[5].innerText;
     const total = document.querySelector('#bill-total span')
     total.innerHTML = event.target.parentElement.children[4].innerText;
     const createtime = document.querySelector('#bill-creation-time span')
-    createtime.innerHTML = $('#'+'bill'+billindex).data('createdtime');
+    createtime.innerHTML = $('#'+billindex).data('createdtime');
     const rank = document.querySelector('#bill-rank span')
     rank.innerHTML = $('#'+'bill'+billindex).data('memberank');
     const seat = document.querySelector('#bill-seat span')

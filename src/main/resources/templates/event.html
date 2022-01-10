@@ -99,9 +99,14 @@
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
 						<img th:src="@{'getimage/'+${event.url}}" alt="">
-						<span th:id="${event_index.index}" th:text="${event.eventName}" th:data-url="${event.url}"
-							th:data-eventid="${event.eventId}" th:data-eventname="${event.eventName}"
-							th:data-discount="${event.discountRate}" th:data-time="${event.timeStart}"
+						<span th:id="${event_index.index}" 
+							th:text="${event.eventName}" 
+							th:data-url="${event.url}"
+							th:data-eventid="${event.eventId}" 
+							th:data-eventname="${event.eventName}"
+							th:data-discount="${event.discountRate}" 
+							th:data-starttime="${event.timeStart}"
+							th:data-endtime="${event.timeEnd}"
 							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
@@ -159,8 +164,11 @@
 						<li>Event description
 							<p class="event description">1</p>
 						</li>
+						<li>Start time
+							<p class="start time">1</p>
+						</li>
 						<li>End time
-							<p class="event time">1</p>
+							<p class="end time">1</p>
 						</li>
 						<li>Sale
 							<p class="event sale">1</p>
