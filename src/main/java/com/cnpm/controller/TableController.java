@@ -27,14 +27,13 @@ public class TableController {
 		System.out.println(id);
 		return "redirect:/table";
 	}
-	
+
 	@GetMapping(value = "/table/use/{id}")
 	public String useTable(@PathVariable Long id) {
 		tableService.useTable(id);
 		return "redirect:/table";
 	}
-	
-	
+
 	@GetMapping(value = "/table/cancel/{id}")
 	public String calcelTable(@PathVariable Long id) {
 		tableService.cancelTable(id);
@@ -43,48 +42,48 @@ public class TableController {
 
 	@GetMapping(value = "/table/search")
 	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model) {
-		ArrayList<TableDTO> tables =(ArrayList<TableDTO>) tableService.find(tableName);
-		if(tables != null) {
+		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.find(tableName);
+		if (tables != null) {
 			model.addAttribute("tables", tables);
 			return "seat";
-		}else {
+		} else {
 			return "redirect:/table";
 		}
 	}
-	
-	@RequestMapping(value = "/table/new-table",method = RequestMethod.POST, params = "add")
+
+	@RequestMapping(value = "/table/new-table", method = RequestMethod.POST, params = "add")
 	public String newTable(@RequestParam(value = "tableName") String tableName) {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
 		newTable.setStatus(TableDTO.available);
-		
-		if(tableService.save(newTable) == null) {
+
+		if (tableService.save(newTable) == null) {
 			System.out.println("Trùng Tên");
 		}
 		return "redirect:/table";
 	}
-	@RequestMapping(value = "/table/new-table", method=RequestMethod.POST,params = "cancel")
+
+	@RequestMapping(value = "/table/new-table", method = RequestMethod.POST, params = "cancel")
 	public String cancelAddTB() {
 		return "redirect:/table";
 	}
-	
+
 	@GetMapping(value = "/table/order", params = "add")
-	public String orderTable(
-			@RequestParam(value = "id") Long id, 
-			@RequestParam(value = "guestName") String guestName,
+	public String orderTable(@RequestParam(value = "id") Long id, @RequestParam(value = "guestName") String guestName,
 			@RequestParam(value = "phone") String phone) {
 		tableService.orderTable(id, guestName, phone);
 		return "redirect:/table";
 	}
-	@GetMapping(value = "/table/order",params = "cancel")
+
+	@GetMapping(value = "/table/order", params = "cancel")
 	public String cancelOrderTable() {
 		return "redirect:/table";
 	}
-	
+
 	@GetMapping(value = "/table")
 	public String display(Model model) {
-		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
-		
+		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.findAll();
+
 		TableDTO temp = tables.get(3);
 		model.addAttribute("tables", tables);
 		return "seat";

@@ -82,13 +82,16 @@ public class TableService {
 
 	public TableEntity orderTable(Long id, String guestName, String phone) {
 		TableEntity table = findByID(id);
-		table.setGuest(guestName);
-		table.setPhone(phone);
-		table.setStatus(TableDTO.reserved);
-		table.setOrdered_time(LocalTime.now());
-		table.setExpired_time(LocalTime.now().plusMinutes(30));
-		System.out.println("Order : "+table.getGuest()+"-"+table.getPhone());
-		return tableRepository.save(table);
+		if(guestName.length() != 0 && phone.length() != 0) {
+			table.setGuest(guestName);
+			table.setPhone(phone);
+			table.setStatus(TableDTO.reserved);
+			table.setOrdered_time(LocalTime.now());
+			table.setExpired_time(LocalTime.now().plusMinutes(30));
+			System.out.println("Order : "+table.getGuest()+"-"+table.getPhone());
+			return tableRepository.save(table);
+		}
+		return null;
 	}
 	
 	public List<TableDTO> find(String tableName){
