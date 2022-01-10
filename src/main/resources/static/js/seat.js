@@ -25,26 +25,26 @@ done3.addEventListener('click', () => {
 let colorChange = document.querySelectorAll('.getColor span:first-child')
 let mid = document.getElementsByClassName('mid')
 // vị trí bàn đang được trỏ tới
-let index
+let table_index
 let midClass
 let midColor
 
 // ------ Thêm bàn cần cho vòng for này vào để add JS cho bàn mới --------
 for (let i = 0; i < table.length; i++) {
 	table[i].addEventListener('click', () => {
-		index = i // Vị trí bàn đang trỏ tới
-		console.log(index)
+		table_index = i // Vị trí bàn đang trỏ tới
+		console.log(table_index)
 		if (isDisplay) return
-		midClass = mid[index].className
+		midClass = mid[table_index].className
 		midColor = midClass.split(' ')[1] // Màu hiện tại
 		// Chọn pop-up phù hợp với bàn để hiển thị
 		if (midColor == 'green') {
 			wrap[0].style.display = 'flex'
 		}
 		else if (midColor == 'yellow') {
-			var customername = $('#' + 'table'+index).data('customername');
-			var telephone = $('#' + 'table'+index).data('telephone');
-			var expired_time = $('#' + 'table'+index).data('expiredtime');
+			var customername = $('#' + 'table'+table_index).data('customername');
+			var telephone = $('#' + 'table'+table_index).data('telephone');
+			var expired_time = $('#' + 'table'+table_index).data('expiredtime');
 			//alert(customername);
 			document.getElementsByClassName("expired time")[0].innerHTML = "Expired Time : " + expired_time;
 			document.getElementsByClassName("customer reserved")[0].innerHTML = "Customer : " + customername;
@@ -52,8 +52,8 @@ for (let i = 0; i < table.length; i++) {
 			wrap[1].style.display = 'flex'
 		}
 		else if (midColor == 'red') {
-			var customername = $('#' + 'table'+index).data('customername');
-			var telephone = $('#' + 'table'+index).data('telephone');
+			var customername = $('#' + 'table'+table_index).data('customername');
+			var telephone = $('#' + 'table'+table_index).data('telephone');
 			//alert(customername);
 			document.getElementsByClassName("customer occupied")[0].innerHTML = "Customer : " + customername;
 			document.getElementsByClassName("tel occupied")[0].innerHTML = "Tel      : " + telephone;
@@ -104,7 +104,7 @@ close_status.addEventListener('click', () => {
 for (let j = 0; j < colorChange.length; j++) {
 	colorChange[j].addEventListener('click', () => {
 		let tableColor = colorChange[j].className // Màu option      
-		let midClass = mid[index].className
+		let midClass = mid[table_index].className
 		let midColor = midClass.split(' ')[1] // Màu hiện tại
 		// Nếu chuyển sang reserved thì hiện pop-up lấy thông tin
 
@@ -116,20 +116,20 @@ for (let j = 0; j < colorChange.length; j++) {
 			show_reservation_info()
 		} else if (tableColor == 'red') {
 			// Thay đổi màu trạng thái
-			var id = $('#' + 'table'+index).data('tableid');
+			var id = $('#' + 'table'+table_index).data('tableid');
 			$(".close_status").attr("href", "/table/use/" + id);
 			//alert(id);
-			mid[index].classList.remove(midColor)
-			mid[index].classList.add(tableColor)
+			mid[table_index].classList.remove(midColor)
+			mid[table_index].classList.add(tableColor)
 		} else if (tableColor == 'green') {
 			// Thay đổi màu trạng thái
-			var id = $('#' + 'table'+index).data('tableid');
+			var id = $('#' + 'table'+table_index).data('tableid');
 			$(".close_status").attr("href", "/table/cancel/" + id);
-			mid[index].classList.remove(midColor)
-			mid[index].classList.add(tableColor)
+			mid[table_index].classList.remove(midColor)
+			mid[table_index].classList.add(tableColor)
 		} else {
-			mid[index].classList.remove(midColor)
-			mid[index].classList.add(tableColor)
+			mid[table_index].classList.remove(midColor)
+			mid[table_index].classList.add(tableColor)
 		}
 	})
 }
@@ -137,7 +137,7 @@ for (let j = 0; j < colorChange.length; j++) {
 // --------- Pop-up Reservation Info -----------
 let popup_reservation = document.getElementsByClassName("reservation_info")[0]
 show_reservation_info = () => {
-	var id = $('#' + 'table'+index).data('tableid');
+	var id = $('#' + 'table'+table_index).data('tableid');
 	document.getElementById("reserved_table_id").value = id;
 	popup_reservation.style.display = 'block'
 }
@@ -148,8 +148,8 @@ reservation_cancel.addEventListener('click', () => {
 })
 let reservation_add = document.getElementById("reservation_add")
 reservation_add.addEventListener('click', () => {
-	mid[index].classList.remove(mid[index].className.split(' ')[1])
-	mid[index].classList.add("yellow")
+	mid[table_index].classList.remove(mid[table_index].className.split(' ')[1])
+	mid[table_index].classList.add("yellow")
 	popup_reservation.style.display = 'none'
 	isDisplay = false
 	countTable()
@@ -224,10 +224,10 @@ close_delete.addEventListener('click', () => {
 let confirmDelete = document.getElementById('confirmDelete_yes')
 confirmDelete.addEventListener('click', () => {
 	//getter
-	let classColor = mid[index].getAttribute('class').split(' ')[1].trim()
+	let classColor = mid[table_index].getAttribute('class').split(' ')[1].trim()
 	if (classColor == "green") {
 		// set href cho button
-		var id = $('#' + 'table'+index).data('tableid');
+		var id = $('#' + 'table'+table_index).data('tableid');
 		$("#confirmDelete_yes").attr("href", "/table/" + id);
 		//alert($('#confirmDelete_yes').attr('href'));
 	} else if (classColor == "dark") {
@@ -241,17 +241,20 @@ confirmDelete.addEventListener('click', () => {
 let billDetail = document.getElementById("billdetailid")
 
 billDetail.addEventListener('click', () => {
-	var tableId = $('#' + 'table'+index).data('tableid');
-	var billID = $('#' +  'table'+index).data('tblbillid');
-	var id = 1;
-	//alert(billID);
+//	var tableId = $('#' + 'table'+table_index).data('tableid');
+	var billID = $('#' +  'table'+table_index).data('tblbillid');
+	sessionStorage.setItem("bill_id_get_from_table", billID);
+//	var id = 0;
+//	alert(billID);
 	
-	while(true){
-		var temp = $('#' + id).data('billid');
-		if(billID == temp){
-			alert(id);
-			break;
-		}
-		id += 1;
-	}
+//	while(true){
+//		var temp = $('#' +'bill'+ id).data('billid');
+//		alert('#' +'bill'+ id);
+//		alert(temp);
+//		if(billID == temp){
+//			alert(id);
+//			break;
+//		}
+//		id += 1;
+//	}
 })

@@ -1,244 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
-    <link rel="stylesheet" href="http://localhost:8080/css/bill.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
-    <title>Bill</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://localhost:8080/css/main.css">
+	<link rel="stylesheet" href="http://localhost:8080/css/bill.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+	<title>Bill</title>
 </head>
+
 <body>
-    <div id="container">
-        <header>
-            <h1 class="logo">
-                <a href="#">Manager</a>
-            </h1>
+	<div id="container">
+		<header>
+			<h1 class="logo">
+				<a href="#">Manager</a>
+			</h1>
 
-            <div class="search">
-                <input type="text" placeholder="search">
-                <a href="#">
-                    <i class="material-icons">search</i>
-                </a>
-            </div>
+			<div class="search">
+				<input type="text" placeholder="search">
+				<a href="#">
+					<i class="material-icons">search</i>
+				</a>
+			</div>
 
-            <div class="home">
-                <a href="#">
-                    <i class="material-icons">home</i>
-                </a>
-            </div>
-        </header>
+			<div class="home">
+				<a href="#">
+					<i class="material-icons">home</i>
+				</a>
+			</div>
+		</header>
 
-        <div id="main">
-            <div class="menu">
-                <ul>
-                    <li>
-                        <a href="/table">
-                            <i class="material-icons">event_seat</i>
-                            <span>Seat</span>
-                        </a>
-                        
-                    </li>
+		<div id="main">
+			<div class="menu">
+				<ul>
+					<li>
+						<a href="/table">
+							<i class="material-icons">event_seat</i>
+							<span>Seat</span>
+						</a>
 
-                    <li>
-                        <a href="/menu">
-                            <i class="material-icons">menu</i>
-                            <span>Menu</span>
-                        </a>
-                        
-                    </li>
+					</li>
 
-                    <li>
-                        <a href="/event">
-                            <i class="material-icons">event_available</i>
-                            <span>Event</span>
-                        </a>
-                        
-                    </li>
+					<li>
+						<a href="/menu">
+							<i class="material-icons">menu</i>
+							<span>Menu</span>
+						</a>
 
-                    <li>
-                        <a href="./membership.html">
-                            <i class="material-icons">person</i>
-                            <span>Membership</span>
-                        </a>
-                        
-                    </li>
+					</li>
 
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">note_alt</i>
-                            <span>Report</span>
-                        </a>
-                        
-                    </li>
+					<li>
+						<a href="/event">
+							<i class="material-icons">event_available</i>
+							<span>Event</span>
+						</a>
 
-                    <li class="active">
-                        <a href="#">
-                            <i class="material-icons">receipt_long</i>
-                            <span>Bill</span>
-                        </a>
-                        
-                    </li>
+					</li>
 
-                </ul>
-            </div>
+					<li>
+						<a href="./membership.html">
+							<i class="material-icons">person</i>
+							<span>Membership</span>
+						</a>
 
-            <div class="content">
-                <table id="customer-table">
-                    <thead>
-                        <th>No.</th>
-                        <th>Bill ID</th>
-                        <th>Customer</th>
-                        <th>Table</th>
-                        <th>Money</th>
-                        <th>Status</th>
-                    </thead>
-                    <tbody class="customer-list">
-                        <tr class="customer" th:each="bill,bill_index : ${bills}">
-					<td th:id = "${bill_index.index}"
-						th:data-billid = "${bill.billId}" 
-						th:data-phone ="${bill.customer.telephone}"
-						th:data-memberank = "${bill.customer.membership.type}"
-						th:data-createdtime = "${bill.createdDate}"></td >                            
-					<td th:text="${bill.billId}" ></td>
-					<td th:text="${bill.customer.custormerName}"></td>
-					<td  >
-						<p th:each="table : ${bill.tables}">
-			                <span th:text="${table.tableName}"></span>
-						</p>
-					</td>
-					<td th:text= "${bill.finalTotal}"></td>
-					<td >
-						<p th:if="${bill.statusPayment}">
-							<span th:text="'Pay at '+ ${bill.timePayment}" ></span>
-						</p>
-						<p th:unless="${bill.statusPayment}">
-							<span >Waiting </span>
-						</p>
-					</td>  
-			
-                      </tr>
-                   </tbody>
-               </table>
-				
-                <button id="create-btn">Create</button>
+					</li>
 
-                <div id="bill">
-                    <h2>Infomation</h2>
-                    <div class="bill-id">
-                        <h3>ID:</h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-name">
-                        <h3>Customer’s name: </h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-phone">
-                        <h3>Phone:</h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-rank">
-                        <h3>Member Rank:</h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-seat">
-                        <h3>Seat:</h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-total">
-                        <h3>Total: </h3>
-                        <span></span>
-                    </div>
-                    
-                    <div id="bill-creation-time">
-                        <h3>Created:</h3>
-                        <span></span>
-                    </div>
-                    <div id="bill-completion-time">
-                        <h3>Status</h3>
-                        <span></span>
-                    </div>
-                    <div id="list">
+					<li>
+						<a href="#">
+							<i class="material-icons">note_alt</i>
+							<span>Report</span>
+						</a>
 
-                    </div>
-                    <button id="edit-btn">Edit</button>
-                    <button id="delete-btn">Delete</button>
-                    <button id="done-btn">Done</button>
-                    <button id="add-btn">Add/Remove</button>
-                    <button id="pay-btn">Pay</button>
-                </div>
+					</li>
 
-                <form action="#" method="GET" >
-                    <div  id="new" >
-                    <h2>Create a new bill</h2>
-                    <h3>Customer’s name</h3>
-                    <input id="name-input" type="text" th:name ="customerName">
-                    <h3>Phone</h3>
-                    <input id="phone-input" type="text"th:name = "phone">
-                    <h3>Customer’s Code</h3>
-                    <input id="code-input" type="text" th:name = "customerId">
-                    <h3>Seat</h3>
-                    <!--<input id="seat-input" type="text"> -->
-                    <button id="new-done-btn" th:formaction = "@{/newBill}">Done</button>
-                    </div >
-                </form  >
+					<li class="active">
+						<a href="#">
+							<i class="material-icons">receipt_long</i>
+							<span>Bill</span>
+						</a>
 
-                <div id="edit">
-                    <h2>Edit</h2>
-                    <h3>Customer’s name</h3>
-                    <input type="text">
-                    <h3>Phone</h3>
-                    <input type="text">
-                    <h3>Customer’s Code</h3>
-                    <input type="text">
-                    <h3>Seat</h3>
-                    <input type="text">
-                    <button id="edit-done-btn">Done</button>
-                </div>
+					</li>
 
-                <div id="delete">
-                    <h3>Do you really want to delete this bill?</h3>
-                    <button > 
-                    <a id="delete-yes-btn" href="#" method="GET"> Yes</a>
-                    </button >
-                    <button id="delete-no-btn">No</button>
-                </div>
+				</ul>
+			</div>
 
-                <div id="pay">
-                    <h5 id="pay-code">Code</h5>
-                    <h5>Money</h5>
-                    <button id="pay-cash-btn">Payment in cash</button>
-                    <button id="pay-atm-btn">Pay by ATM card</button>
-                </div>
+			<div class="content">
+				<table id="customer-table">
+					<thead>
+						<th>No.</th>
+						<th>Bill ID</th>
+						<th>Customer</th>
+						<th>Table</th>
+						<th>Money</th>
+						<th>Status</th>
+					</thead>
+					<tbody class="customer-list">
+						<tr class="customer" th:each="bill,bill_index : ${bills}">
+							<td th:id="${bill_index.index}" 
+								th:data-billid="${bill.billId}"
+								th:data-phone="${bill.customer.telephone}"
+								th:data-customer="${bill.customer.custormerName}"
+								th:data-total="${bill.finalTotal}"
+								th:data-statuspayment="${bill.statusPayment}"
+								th:data-memberank="${bill.customer.membership.type}"
+								th:data-createdtime="${bill.createdDate}"></td>
+							<td th:text="${'bill'+bill_index.index}"></td>
+							<td th:text="${bill.customer.custormerName}"></td>
+							<td>
+								<p th:each="table : ${bill.tables}">
+									<span th:text="${table.tableName}"></span>
+								</p>
+							</td>
+							<td th:text="${bill.finalTotal}"></td>
+							<td>
+								<p th:if="${bill.statusPayment}">
+									<span th:text="'Pay at '+ ${bill.timePayment}"></span>
+								</p>
+								<p th:unless="${bill.statusPayment}">
+									<span>Waiting </span>
+								</p>
+							</td>
 
-                <div id="pay-cash">
-                    <h4>Amount paid by customer</h4>
-                    <input type="text">
-                    <button id="cash-btn">OK</button>
-                </div>
+						</tr>
+					</tbody>
+				</table>
 
-                <div id="pay-cash-conf">
-                    <h4>Amount paid by customer</h4>
-                    <h4>Excess amount</h4>
-                    <button id="cash-conf-btn">Payment confirm</button>
-                </div>
+				<button id="create-btn">Create</button>
 
-                <div id="pay-atm">
-                    <h4>Code</h4>
-                    <h4>Money</h4>
-                    <h4>Trading code</h4>
-                    <input type="text">
-                    <button id="atm-conf-btn">Payment confirm</button>
-                </div>
+				<div id="bill">
+					<h2>Infomation</h2>
+					<div class="bill-id">
+						<h3 class="popup-bill-id">ID:</h3 >
+						<span></span>
+					</div>
+					<div id="bill-name">
+						<h3 class="popup-bill-name">Customer’s name: </h3 >
+						<span></span>
+					</div>
+					<div id="bill-phone">
+						<h3 class="popup-bill-phone">Phone:</h3 >
+						<span></span>
+					</div>
+					<div id="bill-rank">
+						<h3 class="popup-bill-rank">Member Rank:</h3 >
+						<span></span>
+					</div>
+					<div id="bill-seat">
+						<h3>Seat:</h3>
+						<span></span>
+					</div>
+					<div id="bill-total">
+						<h3 class="popup-bill-total">Total: </h3 >
+						<span></span>
+					</div>
 
-            </div>
-        </div>
-    </div>
+					<div id="bill-creation-time">
+						<h3 class="popup-bill-creation-time">Created:</h3 >
+						<span></span>
+					</div>
+					<div id="bill-completion-time">
+						<h3 class="popup-bill-completion-time">Status:</h3 >
+						<span></span>
+					</div>
+					<div id="list">
+
+					</div>
+					<button id="edit-btn">Edit</button>
+					<button id="delete-btn">Delete</button>
+					<button id="done-btn">Done</button>
+					<button id="add-btn">Add/Remove</button>
+					<button id="pay-btn">Pay</button>
+				</div>
+
+				<form action="#" method="GET">
+					<div id="new">
+						<h2>Create a new bill</h2>
+						<h3>Customer’s name</h3>
+						<input id="name-input" type="text" th:name="customerName">
+						<h3>Phone</h3>
+						<input id="phone-input" type="text" th:name="phone">
+						<h3>Customer’s Code</h3>
+						<input id="code-input" type="text" th:name="customerId">
+						<h3>Seat</h3>
+						<!--<input id="seat-input" type="text"> -->
+						<button id="new-done-btn" th:formaction="@{/newBill}">Done</button>
+					</div>
+				</form>
+
+				<div id="edit">
+					<h2>Edit</h2>
+					<h3>Customer’s name</h3>
+					<input type="text">
+					<h3>Phone</h3>
+					<input type="text">
+					<h3>Customer’s Code</h3>
+					<input type="text">
+					<h3>Seat</h3>
+					<input type="text">
+					<button id="edit-done-btn">Done</button>
+				</div>
+
+				<div id="delete">
+					<h3>Do you really want to delete this bill?</h3>
+					<button>
+						<a id="delete-yes-btn" href="#" method="GET"> Yes</a>
+					</button>
+					<button id="delete-no-btn">No</button>
+				</div>
+
+				<div id="pay">
+					<h5 id="pay-code">Code</h5>
+					<h5>Money</h5>
+					<button id="pay-cash-btn">Payment in cash</button>
+					<button id="pay-atm-btn">Pay by ATM card</button>
+				</div>
+
+				<div id="pay-cash">
+					<h4>Amount paid by customer</h4>
+					<input type="text">
+					<button id="cash-btn">OK</button>
+				</div>
+
+				<div id="pay-cash-conf">
+					<h4>Amount paid by customer</h4>
+					<h4>Excess amount</h4>
+					<button id="cash-conf-btn">Payment confirm</button>
+				</div>
+
+				<div id="pay-atm">
+					<h4>Code</h4>
+					<h4>Money</h4>
+					<h4>Trading code</h4>
+					<input type="text">
+					<button id="atm-conf-btn">Payment confirm</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/bill.js"></script>
-<!--<script src="http://localhost:8080/js/seat.js"></script>-->
+
 </html>
