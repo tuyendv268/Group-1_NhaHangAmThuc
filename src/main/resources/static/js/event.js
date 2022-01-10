@@ -66,17 +66,17 @@ let nameEvent = document.querySelector('#name_event input')
 let events = document.getElementsByClassName('event')[0]
 
 // upload pic
-createEventButton.addEventListener('click', () => {
-	let item = createEventItem(nameEvent.value, url)
-	events.innerHTML += item
-	new_event_popup.style.display = 'none'
+//createEventButton.addEventListener('click', () => {
+//	let item = createEventItem(nameEvent.value, url)
+//	events.innerHTML += item
+//	new_event_popup.style.display = 'none'
 
-	for (let i = 0; i < eventItems.length; i++) {
-		eventItems[i].addEventListener('click', () => {
-			infoPopup.style.display = 'block'
-		})
-	}
-})
+//	for (let i = 0; i < eventItems.length; i++) {
+//		eventItems[i].addEventListener('click', () => {
+//			infoPopup.style.display = 'block'
+//		})
+//	}
+//})
 
 // hiển thị ảnh demo khi tải ảnh lên
 //$(document).ready(function() {
