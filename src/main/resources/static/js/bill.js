@@ -25,7 +25,7 @@ customer.addEventListener('click', function(event) {
     const createtime = document.querySelector('#bill-creation-time span')
     createtime.innerHTML = $('#'+billindex).data('createdtime');
     const rank = document.querySelector('#bill-rank span')
-    rank.innerHTML = $('#'+'bill'+billindex).data('memberank');
+    rank.innerHTML = $('#'+billindex).data('memberank');
     const seat = document.querySelector('#bill-seat span')
     seat.innerHTML = event.target.parentElement.children[3].innerHTML;
     $("#delete-yes-btn").attr("href", "/deleteBill/" + id);
