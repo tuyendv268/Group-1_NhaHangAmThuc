@@ -33,7 +33,7 @@ CREATE TABLE `_table` (
   `ordered_time` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK2ecuoq82wttgauvgi97yi42t3` (`bill_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `_table` (
 
 LOCK TABLES `_table` WRITE;
 /*!40000 ALTER TABLE `_table` DISABLE KEYS */;
-INSERT INTO `_table` VALUES (1,'occupied','Bàn số 01',1,'Trương Vô Kỵ','0123654987','21:56:16','21:26:16'),(2,'occupied','Bàn số 02',2,'David Villa','0886688668','21:56:16','21:26:16'),(3,'available','Bàn số 03',3,NULL,NULL,'21:56:16','21:26:16'),(4,'available','Bàn số 04',NULL,NULL,NULL,'22:28:06','21:58:06'),(5,'available','Bàn số 05',NULL,NULL,NULL,'21:56:16','21:26:16'),(6,'available','Bàn số 06',NULL,NULL,NULL,'22:28:19','21:58:19'),(7,'available','Bàn số 07',NULL,NULL,NULL,'22:28:27','21:58:27'),(8,'available','Bàn số 08',NULL,NULL,NULL,NULL,NULL),(9,'available','Bàn số 09',NULL,NULL,NULL,NULL,NULL),(10,'occupied','Bàn số 10',4,'Đông Tà','0987456321',NULL,NULL),(11,'occupied','Bàn số 11',5,'Lâm Xung','0345657467',NULL,NULL),(12,'reserved','Bàn số 12',NULL,'Dương Văn Tuyển','0999999999','22:51:15','22:21:15'),(13,'available','Bàn số 13',NULL,NULL,NULL,'21:56:16','21:26:16'),(14,'available','Bàn số 14',NULL,NULL,NULL,'21:56:16','21:26:16'),(15,'available','Bàn số 15',NULL,NULL,NULL,NULL,NULL),(16,'available','Bàn số 16',NULL,NULL,NULL,'22:28:38','21:58:38');
+INSERT INTO `_table` VALUES (1,'occupied','Bàn số 01',2,'Phạm Bá Chinh','0999999999','21:56:16','21:26:16'),(2,'occupied','Bàn số 02',2,'Phạm Bá Chinh','0999999999','21:56:16','21:26:16'),(3,'occupied','Bàn số 03',2,'Phạm Bá Chinh','0999999999','21:56:16','21:26:16'),(4,'occupied','Bàn số 04',2,'Phạm Bá Chinh','0999999999','00:31:05','00:01:05'),(5,'available','Bàn số 05',NULL,NULL,NULL,NULL,NULL),(6,'available','Bàn số 06',NULL,NULL,NULL,'22:28:19','21:58:19'),(7,'available','Bàn số 07',NULL,NULL,NULL,'22:28:27','21:58:27'),(8,'available','Bàn số 08',NULL,NULL,NULL,NULL,NULL),(9,'reserved','Bàn số 09',NULL,'Dương Văn Tuyển','0999999999','13:40:04','13:10:04'),(10,'available','Bàn số 10',1,NULL,NULL,NULL,NULL),(12,'available','Bàn số 11',NULL,NULL,NULL,'00:42:22','00:12:22'),(13,'available','Bàn số 12',NULL,NULL,NULL,'00:46:56','00:16:56'),(14,'available','Bàn số 13',NULL,NULL,NULL,'21:56:16','21:26:16'),(15,'available','Bàn số 14',NULL,NULL,NULL,'00:32:47','00:02:47'),(16,'available','Bàn số 15',NULL,NULL,NULL,'00:42:29','00:12:29'),(34,'occupied','Bàn Số 16',3,'Lê Văn Đức','0999999999','00:46:44','00:16:44'),(35,'reserved','Bàn số 17',NULL,'Lê Văn Đức','0999999999','13:26:23','12:56:23');
 /*!40000 ALTER TABLE `_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-09 22:28:57
+-- Dump completed on 2022-01-10 14:14:32
