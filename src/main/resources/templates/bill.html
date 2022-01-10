@@ -107,7 +107,7 @@
 								th:data-statuspayment="${bill.statusPayment}"
 								th:data-memberank="${bill.customer.membership.type}"
 								th:data-createdtime="${bill.createdDate}"></td>
-							<td th:text="${'bill'+bill_index.index}"></td>
+							<td th:text="${bill.billId}"></td>
 							<td th:text="${bill.customer.custormerName}"></td>
 							<td>
 								<p th:each="table : ${bill.tables}">
