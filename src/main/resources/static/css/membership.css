@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.active {
+    background-color: #C3C3C4;
+    background: linear-gradient(180deg, #1326D6, #BDBEC0);
+}
+
+.content{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+#customer-table {
+    font-family: 'Poppins', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    counter-reset: Serial; 
+}
+
+#customer-table th {
+    border: 1px solid #ddd;
+    background: linear-gradient(180deg, rgb(196, 196, 196), rgb(154, 154, 154));
+}
+
+#customer-table thead tr{
+    height: 30px;
+}
+
+#customer-table tr td:first-child:before{
+    counter-increment: Serial;      
+	content: counter(Serial); 
+}
+  
+#customer-table td, #customer-table th {  
+    padding: 8px;
+}
+  
+/* #customers tr:nth-child(even){background-color: #f2f2f2;} */
+  
+#customer-table th {
+    text-align: center;
+    background-color: #AEB1B4;
+    color: #1a150e;
+}
+
+.customer-list tr{
+    background-color: rgb(255,249,249);
+    height: 80px;
+    border-bottom: 3px solid rgb(196, 196, 196);
+}
+
+.customer-list tr td{
+    text-align: center;
+}
+
+.content>button{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    height: 60px;
+    width: 120px;
+    border: none;
+    border-radius: 45px;
+    background: rgb(72,72,72);;
+    font-size: 24px;
+    position: absolute;
+    right: 100px;
+    top: 550px;
+    cursor: pointer;
+}
+
+#manage-btn{
+    font-size: 19px;
+    right: none;
+    left: 100px;
+}
+
+#action{
+    position: absolute;
+    border-radius: 30px;
+    width: 280px;
+    height: 220px;
+    background: rgb(196, 196, 196);
+    top: 145px;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+
+}
+
+#action button {
+    border: none;
+    position: absolute;
+    height: 55px;
+    width: 190px;
+    margin-top: 18px;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    font-size: 27px;
+    cursor: pointer;
+}
+#action #change-btn{
+    color: white;
+    background: rgb(72,72,72);
+}
+
+#action #delete-btn{
+    margin-top: 100px;
+    background: white;
+}
+
+.bx{
+    /* display: inline-block;  */
+    position: absolute;
+    top: 152px;
+    font-size: 70px;
+    cursor: pointer;
+    left: 37%;
+
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+
+#add{
+    position: absolute;
+    border-radius: 35px;
+    width: 350px;
+    height: 380px;
+    background: rgb(196, 196, 196);
+    top: 70px;
+    left: 470px;
+    display: none;
+}
+
+#add h3{
+    font-size: 20px;
+    margin-left: 33px;
+    margin-top: 18px;
+    font-weight: 500;
+}
+
+#add input{
+    border: none;
+    height: 30px;
+    /* margin-top: 15px; */
+    margin-left: 33px;
+    width: 80%;
+}
+
+#add h3:first-child {
+    margin-top: 40px;
+}
+
+#add button{
+    font-size: 16px;
+    font-weight: 500;
+    height: 43px;
+    width: 80px;
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+#add #add-cancel-btn{
+    left: 55px;
+    color: black;
+    background: white;
+}
+
+#add #add-done-btn{
+    right: 55px;
+    color: white;
+    background: rgb(72,72,72);
+}
+
+#change{
+    position: absolute;
+    border-radius: 35px;
+    width: 350px;
+    height: 300px;
+    background: rgb(196, 196, 196);
+    top: 90px;
+    left: 470px;
+    display: none;
+}
+
+#change h3{
+    font-size: 20px;
+    margin-left: 33px;
+    margin-top: 18px;
+    font-weight: 500;
+}
+
+#change input{
+    border: none;
+    height: 30px;
+    /* margin-top: 15px; */
+    margin-left: 33px;
+    width: 80%;
+}
+
+#change h3:first-child {
+    margin-top: 40px;
+}
+
+#change button{
+    font-size: 16px;
+    font-weight: 500;
+    height: 43px;
+    width: 80px;
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+#change #change-cancel-btn{
+    left: 55px;
+    color: black;
+    background: white;
+}
+
+#change #change-done-btn{
+    right: 55px;
+    color: white;
+    background: rgb(72,72,72);
+}
+
+#delete{
+    color: white;
+    position: absolute;
+    border-radius: 30px;
+    width: 550px;
+    height: 130px;
+    background: rgb(61, 61, 61);
+    top: 240px;
+    left: 370px;
+    display: none;
+}
+
+#delete h3{
+    text-align: center;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+#delete button{
+    border: none;
+    border-radius: 30px;
+    color: black;
+    position: absolute;
+    height: 35px;
+    width: 80px;
+    bottom: 27px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#delete-yes-btn{
+    background: white;
+    left: 100px;
+}
+
+#delete-no-btn{
+    background: rgb(196, 196, 196);
+    right: 100px;
+}
+
+#manage{
+    position: absolute;
+    width: 435px;
+    height: 320px;
+    background: rgb(255, 219, 219);
+    top: 100px;
+    left: 400px;
+    display: none;
+}
+
+#manage-table th,
+#manage-table td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+#manage-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#manage-table thead{
+    background: rgb(105, 105, 105);
+}
+
+#manage-table tbody{
+    background: rgb(255, 219, 219);
+}
+
+/* #manage-table td, #manage th {  
+    
+}
+
+#manage-table th, #manage td{
+    
+} */
+
+#manage td button{
+    font-size: 13px;
+    height: 24px;
+    width: 75px;
+    border: none;
+    border-radius: 30px;
+    /* position: absolute;
+    bottom: 12px;
+    left: 180px; */
+    cursor: pointer;
+    color: black;
+    background: rgb(196,196,196);
+    margin-left: 25px;
+}
+
+#manage-done-btn{
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    width: 75px;
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 12px;
+    cursor: pointer;
+    left: 180px;
+    color: white;
+    background: rgb(72,72,72);
+}
+
+
+
+
+

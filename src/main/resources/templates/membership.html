@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/membership.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Membership</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 class="logo">
+                <a href="#">Manager</a>
+            </h1>
+
+            <div class="search">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="material-icons">search</i>
+                </a>
+            </div>
+
+            <div class="home">
+                <a href="#">
+                    <i class="material-icons">home</i>
+                </a>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="/table">
+                            <i class="material-icons">event_seat</i>
+                            <span>Seat</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="/menu">
+                            <i class="material-icons">menu</i>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="/event">
+                            <i class="material-icons">event_available</i>
+                            <span>Event</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="active">
+                        <a href="/membership">
+                            <i class="material-icons">person</i>
+                            <span>Membership</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">note_alt</i>
+                            <span>Report</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="/bill">
+                            <i class="material-icons">receipt_long</i>
+                            <span>Bill</span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="content">
+                <table id="customer-table">
+                    <thead>
+                        <th>Stt</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Point</th>
+                        <th>Rank</th>
+                    </thead>
+                    <tbody class="customer-list">
+                        <tr class="customer">
+                            <td></td>
+                            <td>Nguyễn Văn A</td>
+                            <td>0123456789</td>
+                            <td>5000</td>
+                            <td></td>
+                        </tr>
+                        <tr class="customer">
+                            <td></td>
+                            <td>Nguyễn Thị B</td>
+                            <td>0969696969</td>
+                            <td>2000</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button id="manage-btn">Manage discounts</button>
+                <button id="add-btn">Add</button>
+
+                <div id=action>
+                    <button id="change-btn">Change</button>
+                    <button id="delete-btn">Delete</button>
+                    <i class='bx bx-redo'></i>   
+                </div>
+
+                <div id="add">
+                    <h3>Name</h3>
+                    <input id="name-input" type="text">
+                    <h3>Phone</h3>
+                    <input id="phone-input" type="text">
+                    <h3>Point</h3>
+                    <input id="point-input" type="text">
+                    <button id="add-cancel-btn">Cancel</button>
+                    <button id="add-done-btn">Done</button>
+                </div>
+
+                <div id="change">
+                    <h3>Name</h3>
+                    <input id="name-input" type="text">
+                    <h3>Phone</h3>
+                    <input id="phone-input" type="text">
+                    <button id="change-cancel-btn">Cancel</button>
+                    <button id="change-done-btn">Done</button>
+                </div>
+
+                <div id="delete">
+                    <h3>Do you really want to delete this customer?</h3>
+                    <button id="delete-yes-btn">Yes</button>
+                    <button id="delete-no-btn">No</button>
+                </div>
+
+                <div id="manage">
+                    <table id="manage-table">
+                        <thead>
+                            <th>Rank</th>
+                            <th>Point</th>
+                            <th>Sale</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bronze</td>
+                                <td>100</td>
+                                <td>2%
+                                    <button>Change</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sliver</td>
+                                <td>700</td>
+                                <td>5%
+                                    <button>Change</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gold</td>
+                                <td>1500</td>
+                                <td>10%
+                                    <button>Change</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Platinum</td>
+                                <td>3000</td>
+                                <td>20%
+                                    <button>Change</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Diamond</td>
+                                <td>10000</td>
+                                <td>30%
+                                    <button>Change</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="manage-done-btn">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://localhost:8080/js/membership.js"></script>
+</html>
