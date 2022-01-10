@@ -99,18 +99,14 @@
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
 						<img th:src="@{'getimage/'+${event.url}}" alt="">
-						<span th:id="${event_index.index}" 
-							  th:text="${event.eventName}"
-							  th:data-url="${event.url}"
-							  th:data-eventid="${event.eventId}" 
-							  th:data-eventname="${event.eventName}"
-							  th:data-discount="${event.discountRate}" 
-							  th:data-time="${event.timeStart}"
-							  th:data-eventdescription="${event.description}"></span>
+						<span th:id="${event_index.index}" th:text="${event.eventName}" th:data-url="${event.url}"
+							th:data-eventid="${event.eventId}" th:data-eventname="${event.eventName}"
+							th:data-discount="${event.discountRate}" th:data-time="${event.timeStart}"
+							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
 
-				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data" >
+				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data">
 					<div class="new_event">
 						<ul>
 							<li id="name_event">
@@ -124,8 +120,9 @@
 							<div id="poster_upload">
 								<p>Poster</p>
 								<label for="fileImage">Upload
-                            	</label>
-								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" style="display:none;" />
+								</label>
+								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg"
+									style="display:none;" />
 							</div>
 							<!--<p>
 								<img id="thumbnail" alt="Image Preview" />
@@ -171,7 +168,7 @@
 					</ul>
 					<div>
 						<!--<button type="button" id="deletebtn" action="#" method="GET">Delete</button >-->
-						<li><a type="button" id="deletebtn" href="#" method="GET">Delete</a></li>
+						<button><a id="deletebtn" href="#" method="GET">Delete</a></button>
 						<button class="close_if">Done</button>
 					</div>
 				</div>
