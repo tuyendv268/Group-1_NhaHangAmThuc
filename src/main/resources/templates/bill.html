@@ -175,7 +175,7 @@
 					<button id="pay-btn">Pay</button>
 				</div>
 
-				<form action="#" method="GET">
+				<form th:action="@{/newBill}" method="GET">
 					<div id="new">
 						<h2>Create a new bill</h2>
 						<h3>Customer’s name</h3>
@@ -186,7 +186,7 @@
 						<input id="code-input" type="text" th:name="customerId">
 						<h3>Seat</h3>
 						<!--<input id="seat-input" type="text"> -->
-						<button id="new-done-btn" th:formaction="@{/newBill}">Done</button>
+						<button id="new-done-btn">Done</button>
 					</div>
 				</form>
 

@@ -12,6 +12,12 @@ customer.addEventListener('click', function(event) {
     
    	var id= event.target.parentElement.children[1].innerText;
    	
+	document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : ";
+	document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : ";
+	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : ";
+	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : ";
+	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :";
+   	
     const billid = document.querySelector('.bill-id span')
     billid.innerHTML = id
     const name = document.querySelector('#bill-name span')
