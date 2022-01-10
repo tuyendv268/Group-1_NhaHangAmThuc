@@ -18,8 +18,11 @@ public class MembershipEntity {
 	@Column(name = "id")
 	private Long Id;
 	
-	@Column(name = "type")
-	private String type;
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "exp")
+	private int exp;
 	
 	@Column(name = "discount_rate")
 	private int discountRate;
@@ -43,12 +46,20 @@ public class MembershipEntity {
 		Id = id;
 	}
 
-	public String getType() {
-		return type;
+	public String getName() {
+		return name;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getExp() {
+		return exp;
+	}
+
+	public void setExp(int exp) {
+		this.exp = exp;
 	}
 
 	public int getDiscountRate() {

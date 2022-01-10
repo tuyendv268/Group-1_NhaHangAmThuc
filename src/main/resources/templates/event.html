@@ -27,10 +27,12 @@
 			</h1>
 
 			<div class="search">
-				<input type="text" placeholder="search">
-				<a href="#">
-					<i class="material-icons">search</i>
-				</a>
+				<form th:action="@{/event/search}" method="GET">
+					<input type="text" placeholder="search" th:name="eventName" required>
+					<a href="#">
+						<i class="material-icons">search</i>
+					</a>
+				</form>
 			</div>
 
 			<div class="home">
@@ -98,50 +100,53 @@
 
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
-						<img th:src="@{'getimage/'+${event.url}}" alt="">
+						<img th:src="@{'/getimage/'+${event.url}}" alt="">
 						<span th:id="${event_index.index}" 
-							  th:text="${event.eventName}"
-							  th:data-url="${event.url}"
-							  th:data-eventid="${event.eventId}" 
-							  th:data-eventname="${event.eventName}"
-							  th:data-discount="${event.discountRate}" 
-							  th:data-time="${event.timeStart}"
-							  th:data-eventdescription="${event.description}"></span>
+							th:text="${event.eventName}" 
+							th:data-url="${event.url}"
+							th:data-eventid="${event.eventId}" 
+							th:data-eventname="${event.eventName}"
+							th:data-discount="${event.discountRate}" 
+							th:data-starttime="${event.timeStart}"
+							th:data-endtime="${event.timeEnd}" 
+							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
 
-				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data" >
+				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data">
 					<div class="new_event">
 						<ul>
 							<li id="name_event">
 								<span>Name event</span>
-								<input type="text" class="text" th:name="eventName">
+								<input type="text" class="text" th:name="eventName" required>
 							</li>
 							<li id="describe_event">
 								<span>Event description</span>
-								<input type="text" class="text" th:name="description">
+								<input type="text" class="text" th:name="description" required>
 							</li>
 							<div id="poster_upload">
 								<p>Poster</p>
 								<label for="fileImage">Upload
-                            	</label>
-								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" style="display:none;" />
+								</label>
+								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg"
+									required />
 							</div>
 							<!--<p>
 								<img id="thumbnail" alt="Image Preview" />
 							</p>-->
 							<li id="start_event">
 								<span>Start time</span>
-								<input type="datetime-local" class="text" th:name="timeStart">
+								<input type="datetime-local" class="text" th:name="timeStart" required>
 							</li>
 							<li id="end_event">
 								<span>End time</span>
-								<input type="datetime-local" class="text" th:name="timeEnd">
+								<input type="datetime-local" class="text" th:name="timeEnd" required>
 							</li>
 							<div class="discount">
 								<li>
 									<span>Sale</span>
-									<p>Preferential rate<input type="text" class="text" th:name="discountRate">%</p>
+									<p>Preferential rate<input type="text" class="text" th:name="discountRate"
+											required>%</p>
 								</li>
 								<button>Select in menu</button>
 							</div>
@@ -162,8 +167,11 @@
 						<li>Event description
 							<p class="event description">1</p>
 						</li>
+						<li>Start time
+							<p class="start time">1</p>
+						</li>
 						<li>End time
-							<p class="event time">1</p>
+							<p class="end time">1</p>
 						</li>
 						<li>Sale
 							<p class="event sale">1</p>
@@ -171,7 +179,7 @@
 					</ul>
 					<div>
 						<!--<button type="button" id="deletebtn" action="#" method="GET">Delete</button >-->
-						<li><a type="button" id="deletebtn" href="#" method="GET">Delete</a></li>
+						<button><a id="deletebtn" href="#" method="GET">Delete</a></button>
 						<button class="close_if">Done</button>
 					</div>
 				</div>

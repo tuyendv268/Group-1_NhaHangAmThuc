@@ -101,6 +101,4 @@ public class TableEntity {
 	public void setExpired_time(LocalTime expired_time) {
 		this.expired_time = expired_time;
 	}
-	
-	
 }

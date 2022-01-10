@@ -180,7 +180,7 @@
 
                     <!-- box edit info food -->
                     <div class="box_add box_InfoFood">
-                     <form th:action="@{/menu/edit-dish}" method="post" enctype="multipart/form-data" >
+                     <form action="#" method="post" enctype="multipart/form-data" >
                         <ul>
                       		<li>
                                 <span>Code:</span>
@@ -218,7 +218,7 @@
                         </ul>
 
                         <div class="button_Dish">
-                            <button name="done" value="done">Done</button>
+                            <button name="done" value="done" th:formaction="@{/menu/edit-dish}">Done</button>
                         </div>
                         </form>
                     </div>
@@ -229,7 +229,7 @@
 						<br>
 							<span>Enter New Dish Information:</span>
 						<br>
-						 <form th:action="@{/menu/new-dish}" method="post" enctype="multipart/form-data" >
+						 <form action="#" method="post" enctype="multipart/form-data" >
                        		<ul>
                         
                             <li>
@@ -266,7 +266,7 @@
                            		<!--  <label for="upload">Upload</label> -->
                                 <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
                            		<button class="close_Dish" name="close" value="close">Close</button>
-                           		<button class="done_Dish" name="create" value="create">Done</button>
+                           		<button class="done_Dish" name="create" th:formaction="@{/menu/new-dish}" value="create">Done</button>
                         	</div>
                         </form>
                        

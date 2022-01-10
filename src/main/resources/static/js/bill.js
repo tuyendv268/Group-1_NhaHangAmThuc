@@ -2,32 +2,39 @@
 const customer = document.querySelector('.customer-list');
 customer.addEventListener('click', function(event) {
     var list = Array.prototype.slice.call( customer.children );
-    index = list.indexOf(event.target.parentElement);
-    localStorage.setItem('target', index);
+   
+    billindex = list.indexOf(event.target.parentElement);
+    localStorage.setItem('target', billindex);
+    
     var bill = document.getElementById("bill");
     bill.style.display = "block";
     create.style.display = "none";
     
    	var id= event.target.parentElement.children[1].innerText;
    	
+	document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : ";
+	document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : ";
+	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : ";
+	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : ";
+	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :";
+   	
     const billid = document.querySelector('.bill-id span')
     billid.innerHTML = id
     const name = document.querySelector('#bill-name span')
     name.innerHTML = event.target.parentElement.children[2].innerText;
     const phone = document.querySelector('#bill-phone span')
-    phone.innerHTML = $('#'+index).data('phone');
+    phone.innerHTML = $('#'+billindex).data('phone');
     const status = document.querySelector('#bill-completion-time span')
     status.innerHTML = event.target.parentElement.children[5].innerText;
     const total = document.querySelector('#bill-total span')
     total.innerHTML = event.target.parentElement.children[4].innerText;
     const createtime = document.querySelector('#bill-creation-time span')
-    createtime.innerHTML = $('#'+index).data('createdtime');
+    createtime.innerHTML = $('#'+billindex).data('createdtime');
     const rank = document.querySelector('#bill-rank span')
-    rank.innerHTML = $('#'+index).data('memberank');
+    rank.innerHTML = $('#'+billindex).data('memberank');
     const seat = document.querySelector('#bill-seat span')
     seat.innerHTML = event.target.parentElement.children[3].innerHTML;
     $("#delete-yes-btn").attr("href", "/deleteBill/" + id);
-    
 });
 
 
@@ -195,3 +202,32 @@ newDone.addEventListener('click', function(){
     newPhoneInput.value = '';
     newSeatInput.value = '';
 });
+
+var bill_id_get_from_table = sessionStorage.getItem("bill_id_get_from_table");
+if(bill_id_get_from_table != null){
+	var idx = 0;
+	var temp = $('#'+ idx).data('billid');
+	while(temp!=undefined){
+		if(temp == bill_id_get_from_table){
+			bill.style.display = "block";
+   			create.style.display = "none";
+   			
+   			var billID = bill_id_get_from_table;
+   			var customername = $('#'+idx).data('customer');
+			var phone = $('#'+idx).data('phone');
+			var total = $('#'+idx).data('total');
+			var statuspayment = $('#'+idx).data('statuspayment');
+			var createdtime = $('#'+idx).data('createdtime');
+			document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : " + billID;
+			document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : " + customername;
+			document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : " + phone;
+			document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : " + total;
+			document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :" + createdtime;
+   			break;
+		}
+		idx = idx + 1;
+		temp = $('#'+ idx).data('billid');
+	}
+	sessionStorage.removeItem("bill_id_get_from_table");
+	bill_id_get_from_table = null;
+}

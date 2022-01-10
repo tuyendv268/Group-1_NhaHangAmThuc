@@ -86,8 +86,6 @@ public class TableController {
 		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
 		
 		TableDTO temp = tables.get(3);
-		System.out.println(temp.getGuestName());
-		System.out.println(temp.getTelephone());
 		model.addAttribute("tables", tables);
 		return "seat";
 	}

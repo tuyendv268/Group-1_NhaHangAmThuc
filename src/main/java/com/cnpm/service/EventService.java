@@ -47,9 +47,8 @@ public class EventService {
 		return eventRepository.findAll();
 	}
 	
-	public EventEntity findEventByName(String eventName) {
-		EventEntity event = eventRepository.findByEventName(eventName);
-		return event;
+	public List<EventEntity> findEventByName(String eventName) {
+		return eventRepository.findByEventName(eventName);
 	}
 	
 	public void delete(Long id) {
