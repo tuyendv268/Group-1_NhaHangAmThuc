@@ -8,7 +8,8 @@
         <link rel="stylesheet" href="http://localhost:8080/css/homestyle.css">
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     </head>
-    <body style="background-image: url('./image/bgimg.png');">
+    <!-- style="background-image: url('./image/bgimg.png');"-->
+    <body>
         <div class="top">
             <div class="top-welcome">Welcome!</div>
             <button class="top-home">
@@ -56,8 +57,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="event" style="background-image: url('./image/bgevent.png');">
+            
+            <!-- style="background-image: url('./image/bgevent.png');"-->
+            <div class="event">
 
                 <div class="serve-meal">
                     <span class="title">
@@ -69,26 +71,22 @@
                 </div>
 
                 <div class="show-event">
-                    <div class="slideshow-container">
-    
+                    <div class="slideshow-container" th:each="event, event_index: ${events}">
                         <div class="mySlides fade">
-                            <img src="" style="width:100%">
+                            <img th:src="@{'/getimage/'+${event.url}}" style="width:100%; height:100%">
                         </div>
-                      
+                        <!--<div class="mySlides fade">
+                            <img src="" style="width:100%; height:100%">
+                        </div>
                         <div class="mySlides fade">
-                            <img src="" style="width:100%">
-                        </div>
-                      
-                        <div class="mySlides fade">
-                            <img src="" style="width:100%">
-                        </div>
-                      
+                            <img src="" style="width:100%; height:100%">
+                        </div>-->
                     </div>
                       
                     <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" th:onclick="'currentSlide(' + ${event_index} + ')'"></span>
+                        <!--<span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>-->
                     </div>
                 </div>
             </div>
