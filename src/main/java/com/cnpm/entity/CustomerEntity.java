@@ -35,8 +35,9 @@ public class CustomerEntity {
 	@ManyToOne
 	@JoinColumn(name = "membership_id")
 	private MembershipEntity membership;
+	
 
-	public Long getCustomerId() {
+	public Long getCustomerId(){
 		return customerId;
 	}
 

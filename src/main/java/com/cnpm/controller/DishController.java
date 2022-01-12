@@ -77,7 +77,8 @@ public class DishController {
 
 	
 	@RequestMapping(value = "/menu/new-dish", method = RequestMethod.POST, params = "create")
-	public String addDish(@RequestParam("files") MultipartFile file, @RequestParam(value = "dishName") String dishName,
+	public String addDish(Model model, @RequestParam("files") MultipartFile file, 
+			@RequestParam(value = "dishName") String dishName,
 			@RequestParam(value = "dishPrice") int dishPrice,
 			@RequestParam(value = "dishDescription") String dishDescription,
 			@RequestParam(value = "dishCategory") String dishCategory,
@@ -114,12 +115,9 @@ public class DishController {
 			@RequestParam(value = "dishPrice") int dishPrice,
 			@RequestParam(value = "dishDescription") String dishDescription,
 			@RequestParam(value = "dishCategory") String dishCategory,
-			@RequestParam(value = "dishIngredient") String dishIngredient,
-			@RequestParam(value = "dishStatus",required = false) String dishStatus) {
-		if(dishStatus!=null)
-			dishService.editDish(dishId, dishName, dishPrice, dishDescription, dishCategory, dishIngredient, "true");
-		else if(dishStatus==null)
-			dishService.editDish(dishId, dishName, dishPrice, dishDescription, dishCategory, dishIngredient, "false");
+			@RequestParam(value = "dishIngredient") String dishIngredient) {
+			dishService.editDish(dishId, dishName, dishPrice, dishDescription, dishCategory, dishIngredient);
+	
 		return "redirect:/menu";
 	}
 	

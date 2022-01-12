@@ -25,7 +25,7 @@ function encodeImageFileAsURL(element) {
 let isDisplay = false
 
 //------------------- menu dish -----------------------
-// done dish //done for add a new Dish
+// done dish
 let doneDish = document.querySelector('.box_add_dish button')
 // box_add_dish
 let boxDish = document.querySelector('.box_add_dish')
@@ -43,12 +43,10 @@ let editInfo = document.querySelector('.edit_Info')
 let boxEditDish = document.querySelector('.box_InfoFood')
 // done edit info dish
 let doneBoxInfoDish = document.querySelector('.box_InfoFood button')
-//remove dish
-let remove_dish = document.getElementById('remove_dish')
-let remove_dish0 = document.getElementById('remove_dish0')
+
 // infomation food item
 let getInfoDish = () => {
-	var id;
+    var id;
 	var index;
     ulDishItem = document.querySelectorAll('.ulDish li')
     for (let i = 0; i < ulDishItem.length; i++) {
@@ -56,6 +54,8 @@ let getInfoDish = () => {
             boxDishInfo.style.display = 'block'
 
 			index=document.getElementsByClassName('temp')[i].id;
+		
+			
 			id = $('#' + index).data('dishid');
 			$("#remove_dish0").attr("href", "/menu/delete/"+id);
 			
@@ -88,10 +88,7 @@ let getInfoDish = () => {
 			document.getElementsByClassName("dish ingredient")[1].value = $('#' + index).data('dishingredient');
 			//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
 			//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
-			if($('#' + index).data('dishstatus')===true)
-				document.getElementsByClassName("dish status of existence")[1].checked=true;
-			else if($('#' + index).data('dishstatus')===false)
-				document.getElementsByClassName("dish status of existence")[1].checked=false;
+		
     })
     console.log(1);
 }
@@ -142,10 +139,6 @@ doneDish.addEventListener('click', (e) => {
 //------------------ menu combo ------------------- 
 // done combo
 let doneCombo = document.querySelector('.done_Combo')
-
-//Tiến thêm chỗ này
-let add_or_remove_food = document.querySelector('.add_or_remove_food')
-
 // box add combo
 let boxCombo = document.querySelector('.box_add_combo')
 // add combo
@@ -165,37 +158,35 @@ let boxComboEdit = document.querySelector('.boxComboEdit')
 let buttonEditCombo = document.getElementsByClassName('editCombo_button')[0]
 // doneEditCombo
 let doneEditCombo = document.querySelector('.boxComboEdit button')
-
 // exit list choose food
 let exitListChooseFood = document.getElementsByClassName('exit')[0]
-
-
-
 // list add food
 let listAddFood = document.querySelector('.addFoodCombo')
+// edit Food on Combo
+/*let Food2Combo_button = document.getElementsByClassName('food2Combo_button')[0]*/
 
-let addOrRemove = document.getElementsByClassName('add_or_remove_food_edit')[0]
-
+//Tiến thêm chỗ này
+let add_or_remove_food = document.querySelector('.add_or_remove_food')
 
 let comboDetail = () => {
-	var id;
+  	var id;
 	var index;
     ulComboItem = document.querySelectorAll('.ulCombo li')
     for (let i = 0; i < ulComboItem.length; i++) {
         ulComboItem[i].addEventListener('click', () => {
          
-                boxComboItem.style.display = 'block'
-                isDisplay=true
+            boxComboItem.style.display = 'block'
+            isDisplay=true  
 				
 			index=document.getElementsByClassName('temp2')[i].id;
 			id = $('#' + index).data('comboid');
+		
 			$("#remove_combo0").attr("href", "/menu/delete/combo/"+id);
 			
-			document.getElementsByClassName("combo id")[0].innerHTML = $('#' + index).data('comboid');
+			document.getElementsByClassName("combo id")[0].innerHTML = $('#' + index ).data('comboid');
 			document.getElementsByClassName("combo name")[0].innerHTML = $('#' + index).data('comboname');
 			document.getElementsByClassName("combo price")[0].innerHTML = $('#' + index).data('comboprice');
-			document.getElementsByClassName("combo description")[0].innerHTML = $('#' + index).data('combodescription');
-			
+			document.getElementsByClassName("combo description")[0].innerHTML = $('#' + index).data('combodescription');		
 			document.getElementsByClassName("combo amount of people")[0].innerHTML = $('#' + index).data('combonumberofpeoplerecommend');
 			document.getElementsByClassName("combo discount rate")[0].innerHTML = $('#' + index).data('combodiscountrate');
 			//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
@@ -215,14 +206,8 @@ let comboDetail = () => {
 			
 			document.getElementsByClassName("combo amount of people")[1].value = $('#' + index).data('combonumberofpeoplerecommend');
 			document.getElementsByClassName("combo discount rate")[1].value = $('#' + index).data('combodiscountrate');
-  	 	
- 	})
-	addOrRemove.addEventListener('click', () => {
-		 listAddFood.style.display = 'block' 
-	 	
-	})
-	
-	
+    })
+
     doneEditCombo.addEventListener('click', () => {
         boxComboEdit.style.display = 'none'
         isDisplay=false
@@ -247,7 +232,10 @@ let comboDetail = () => {
 		document.getElementById('list_of_dishes_in_combo').value= listSelectedFoodValue;
     })
 
-   
+/*    Food2Combo_button.addEventListener('click', (e) => {
+        listAddFood.style.display = 'block'
+        boxComboItem.style.display = 'none'
+    })*/
 
 }
 comboDetail()
@@ -298,5 +286,3 @@ add_or_remove_food.addEventListener('click', (e) => {
 		}
 		  	
 })
-
-		

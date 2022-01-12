@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
@@ -32,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("HIIIIIIIII");
-		
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 		//http.anonymous().principal("guest").authorities("GUEST_ROLE").and().authorizeRequests().antMatchers("/resources/**").permitAll();
 		http.authorizeRequests().antMatchers("/", "/home", "/login").permitAll();
 		http.authorizeRequests().antMatchers("/table").authenticated();

@@ -16,7 +16,7 @@ public class MembershipEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long Id;
+	private Long membershipId;
 	
 	@Column(name = "name")
 	private String name;
@@ -38,12 +38,12 @@ public class MembershipEntity {
 		this.customerEntitys = customerEntitys;
 	}
 
-	public Long getId() {
-		return Id;
+	public Long getMembershipId() {
+		return membershipId;
 	}
 
-	public void setId(Long id) {
-		Id = id;
+	public void setMembershipId(Long id) {
+		membershipId = id;
 	}
 
 	public String getName() {

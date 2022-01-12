@@ -1,5 +1,5 @@
 //Hiển thị action
-const customer = document.querySelector('.customer-list');
+const customer = document.querySelector('.member-list');
 customer.addEventListener('click', function(event) {
     var list = Array.prototype.slice.call( customer.children );
     index = list.indexOf(event.target.parentElement);

@@ -1,74 +1,69 @@
 package com.cnpm.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.cnpm.service.ComboService;
-import com.cnpm.service.DishService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cnpm.dto.TableDTO;
+import com.cnpm.entity.CustomerEntity;
+import com.cnpm.entity.MembershipEntity;
+import com.cnpm.entity.TableEntity;
+import com.cnpm.service.CustomerService;
+import com.cnpm.service.MembershipService;
 
 @Controller
 public class MembershipController {
 	@Autowired
-	private DishService dishService;
+	private MembershipService membershipService;
 	@Autowired
-	private ComboService comboService;
+	private CustomerService customerService;
 
 	@GetMapping(value = "/membership")
 	public String display(Model model) {
-//		ArrayList<TableDTO> tables = (ArrayList<TableDTO>)tableService.findAll();
-//		
-//		TableDTO temp = tables.get(3);
-//		System.out.println(temp.getGuestName());
-//		System.out.println(temp.getTelephone());
-//		model.addAttribute("tables", tables);
+		customerService.updateRankAllCustomers();		
+		ArrayList<MembershipEntity> memberships = (ArrayList<MembershipEntity>)membershipService.findAll();
+		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>)customerService.findAll();
+		
+		
+		model.addAttribute("memberships", memberships);
+		model.addAttribute("customers", customers);
 		return "membership";
 	}
 	
-//	@GetMapping(value = "/menu");
-//	public String menu(Model model, @RequestParam(value = "combo_dish",required= false) String combo_dish) {
-//		if(combo_dish==null || combo_dish=="") {
-//			ArrayList<DishEntity> dishes = (ArrayList<DishEntity>) dishService.findAll();
-//			model.addAttribute("dishes", dishes);
-//			ArrayList<ComboEntity> combos = (ArrayList<ComboEntity>) comboService.findAll();
-//			model.addAttribute("combos", combos);
-//		}else {
-//			//thử tìm combo trước
-//			ArrayList<ComboEntity> combos =(ArrayList<ComboEntity>) comboService.findByName(combo_dish);
-//			//thấy combo
-//			if(combos.size()!=0) {
-//				System.out.println(" thấy combo");	
-//				model.addAttribute("combos", combos);
-//				ArrayList<DishEntity> dishes = (ArrayList<DishEntity>) dishService.findAll();
-//				model.addAttribute("dishes", dishes);
-//			}
-//			//combo không thấy thì thử tìm bằng dish
-//			else {
-//				System.out.println("không thấy combo");
-//				ArrayList<DishEntity> dishes = new ArrayList<DishEntity>();
-//				DishEntity dish= dishService.findByName(combo_dish);
-//				//thấy dish
-//				if(dish!=null) {
-//					System.out.println("thấy dish");
-//					dishes.add(dish);
-//					model.addAttribute("dishes", dishes);
-//					combos = (ArrayList<ComboEntity>) comboService.findAll();
-//					model.addAttribute("combos", combos);
-//				}
-//				//không thấy dish và combo
-//				else {
-//					System.out.println("không thấy dish");
-//					combos = (ArrayList<ComboEntity>) comboService.findAll();
-//					model.addAttribute("combos", combos);
-//					dishes = (ArrayList<DishEntity>) dishService.findAll();
-//					model.addAttribute("dishes", dishes);
-//				}
-//			}
-//		}
-//		return "menu";
-//	}
-//
-//	
+	@RequestMapping(value = "/membership/new-customer", method = RequestMethod.POST, params = "add")
+	public String newCustomer(Model model,
+						   @RequestParam(value = "customerName") String customerName,
+						   @RequestParam(value = "phone") String phone) {
+		CustomerEntity newCustomer = new CustomerEntity();
+		newCustomer.setCustormerName(customerName);
+		newCustomer.setTelephone(phone);
+		
+		System.out.println("dis 1");
+		
+		customerService.addCustomer(newCustomer);
+		return "redirect:/membership";
+	}
+	
+	@RequestMapping(value = "/membership/new-customer", method=RequestMethod.POST, params = "cancel")
+	public String cancelNewCustomer() {
+		return "redirect:/membership";
+	}
+	
+	@GetMapping(value = "/membership/{id}")
+	public String deleteCustomer(@PathVariable Long id, Model model) {
+		customerService.deleteById(id);
+		System.out.println("Deleted Customer: "+ id);
+		return "redirect:/event";
+	}
+
+
 //	@RequestMapping(value = "/menu/new-dish", method = RequestMethod.POST, params = "create")
 //	public String addDish(@RequestParam("files") MultipartFile file, @RequestParam(value = "dishName") String dishName,
 //			@RequestParam(value = "dishPrice") int dishPrice,

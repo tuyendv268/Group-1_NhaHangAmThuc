@@ -88,28 +88,25 @@
 
             <div class="content">
                 <table id="customer-table">
-                    <thead>
-                        <th>Stt</th>
+                    <thead id="table-head">
+                        <th>No.</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Point</th>
                         <th>Rank</th>
-                    </thead>
-                    <tbody class="customer-list">
-                        <tr class="customer">
-                            <td></td>
-                            <td>Nguyễn Văn A</td>
-                            <td>0123456789</td>
-                            <td>5000</td>
-                            <td></td>
-                        </tr>
-                        <tr class="customer">
-                            <td></td>
-                            <td>Nguyễn Thị B</td>
-                            <td>0969696969</td>
-                            <td>2000</td>
-                            <td></td>
-                        </tr>
+                    </thead >
+                    <tbody class="member-list">
+                    	<tr class="member" th:each="customer, customer_index : ${customers}">
+							<td th:id="${customer_index.index}"></td>
+							<!--td th:data-name="${customer.custormerName}"
+								th:data-phone="${customer.telephone}"
+								th:data-point="${customer.point}"
+								th:data-rank="${customer.membership.name}"-->
+							<td th:text="${customer.custormerName}"></td>
+							<td th:text="${customer.telephone}"></td>
+							<td th:text="${customer.point}"></td>
+							<td th:text="${customer.membership.name}"></td>
+						</tr>
                     </tbody>
                 </table>
 
@@ -123,14 +120,14 @@
                 </div>
 
                 <div id="add">
-                    <h3>Name</h3>
-                    <input id="name-input" type="text">
-                    <h3>Phone</h3>
-                    <input id="phone-input" type="text">
-                    <h3>Point</h3>
-                    <input id="point-input" type="text">
-                    <button id="add-cancel-btn">Cancel</button>
-                    <button id="add-done-btn">Done</button>
+                	<form th:action="@{/membership/new-customer}" method="post" enctype="multipart/form-data"> 
+	                    <h3>Name</h3>
+	                    <input type="text" th:name="customerName" placeholder="Yaylmao">
+	                    <h3>Phone</h3>
+	                    <input type="text" th:name="phone">
+	                    <button id="add-cancel-btn" name="cancel" value="cancel">Cancel</button>
+	                    <button id="add-done-btn" name="add" value="add">Done</button>
+                    </form>
                 </div>
 
                 <div id="change">
@@ -152,49 +149,25 @@
                     <table id="manage-table">
                         <thead>
                             <th>Rank</th>
-                            <th>Point</th>
-                            <th>Sale</th>
+                            <th>Point Required</th>
+                            <th>Discount Rate</th>
                         </thead>
+                        
                         <tbody>
-                            <tr>
-                                <td>Bronze</td>
-                                <td>100</td>
-                                <td>2%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Silver</td>
-                                <td>700</td>
-                                <td>5%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Gold</td>
-                                <td>1500</td>
-                                <td>10%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Platinum</td>
-                                <td>3000</td>
-                                <td>20%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Diamond</td>
-                                <td>10000</td>
-                                <td>30%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
+                        <tr th:each="rank, rank_index : ${memberships}">
+							<td th:text="${rank.name}"></td>
+							<td th:text="${rank.exp} "></td>
+							<td th:inline="text">[[${rank.discountRate}]]
+							<button class="manage-change-btn">Change</button ></td>
+						</tr>
                         </tbody>
                     </table>
                     <button id="manage-done-btn">Done</button>
                 </div>
+            </div>
+            
+            <div class="footer">
+            
             </div>
         </div>
     </div>

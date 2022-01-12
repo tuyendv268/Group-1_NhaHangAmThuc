@@ -117,4 +117,7 @@ public class ComboController {
 			comboService.editCombo(comboId, comboName, comboPrice, comboDescription, comboAmountOfPeople, comboDiscountRate);
 		return "redirect:/menu";
 	}
+	
+	
+
 }
