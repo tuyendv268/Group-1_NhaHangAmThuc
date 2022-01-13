@@ -101,6 +101,7 @@
 
             <div class="content">
                 <div class="menu_dish">
+                  <h1>Menu Food</h1>
                   <ul class="ulDish" th:each="dish, dish_index: ${dishes}">
                         <li th:if="${dish.status}">
                            <img th:src="@{'getimage/'+${dish.url}}" alt="">
@@ -174,11 +175,12 @@
                         <div class="info_button">
                             <button class="edit_Info" id="edit_dish">Edit</button>
                             <a href="#" method="GET" id="remove_dish0"><button id="remove_dish">Delete</button></a>
+                            <button class="close_Info">Close</button>
                         </div>
 
                     </div>
 
-                      <!-- box edit info food -->
+                    <!-- box edit info food -->
                     <div class="box_add box_InfoFood">
                      <form th:action="@{/menu/edit-dish}" method="POST" enctype="multipart/form-data" >
                         <ul>
@@ -256,13 +258,12 @@
                         	</ul>
 							<div id="poster_upload">
 								<p>Poster</p>
-							
-								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg"  />
+								<label for="fileImage">Upload</label>
+                              	<!--  <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/> -->
+								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" style="display:none" />
 							</div>
 							
                         	<div class="button_Dish">
-                           		<!--  <label for="upload">Upload</label> -->
-                              <!--   <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/> -->
                            		<button class="close_Dish" name="close" value="close">Close</button>
                            		<button class="done_Dish" name="create" value="create">Done</button>
                         	</div>
@@ -275,7 +276,8 @@
 
                  <!-- Menu Combo -->
                 <div class="menu_combo">
-                 <ul class="ulCombo" th:each="combo, combo_index: ${combos}">                       
+                  <h1>Menu Combo</h1>
+                  <ul class="ulCombo" th:each="combo, combo_index: ${combos}">                       
                         <li th:if="${combo.status}">
                            <img th:src="@{'getimage/'+${combo.url}}" alt="">
                            <span class="temp2" th:id="${combo.comboId}+'_'"
@@ -328,15 +330,11 @@
                         </ul>
                         <div id="poster_upload_combo">
 							<p>Poster Combo</p>
-							<input type="file" th:name="files" id="fileImageCombo" accept="image/png, image/jpeg" />
+                            <label for="fileImageCombo">Upload</label>
+							<input type="file" th:name="files" id="fileImageCombo" accept="image/png, image/jpeg" style="display:none" />
 						</div>
 
                         <div class="button_Combo">
-                            <label for="upload">Upload</label>
-                            <input type="file" onchange="encodeImageFileAsURL(this)" id="upload" style="display: none;"/>
-                           <!--  <button class="food2Combo_button">
-                                <span>Add/Remove food</span>
-                            </button> -->
                             <button class="add_or_remove_food" type="button" name="add_remove_dish" value="add_remove_dish">Add/Remove food</button>
                             <button class="done_Combo" name="create" value="create">Done</button>
                         </div>
@@ -366,11 +364,9 @@
                         </ul>
 
                         <div class="button_boxComboItem">
-                            <button class="editCombo_button">Edit</button>
-                            <!-- <button class="food2Combo_button">
-                                <span>Add/Remove food</span>
-                            </button> -->
+                             <button class="editCombo_button">Edit</button>
                              <a href="#" method="GET" id="remove_combo0"><button id="remove_combo">Delete</button></a>
+                             <button class="close_comboItem">Close</button>
                         </div>
                     </div>
                     
@@ -411,7 +407,8 @@
                             </li>
                         </ul>
 
-                        <div class="button_Dish">
+                        <div class="button_editCombo">
+                          <button class="change_food" type="button" name="change_dish" value="change_dish">Change Food</button>
                           <button name="done"  value="done">Done</button>
                         </div>
                          </form>
