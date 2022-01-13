@@ -42,6 +42,12 @@ public class BillService {
 		return billRepository.findAll();
 		
 	}
+	public List<BillEntity> findUnpaidBill(){
+		return billRepository.findByStatusPayment(false);
+	}
+	public List<BillEntity> findPaidBill(){
+		return billRepository.findByStatusPayment(true);
+	}
 	public BillEntity updateInfoByID(long id, BillEntity bill) {
 		BillEntity preBill = billRepository.getById(id);
 		if(preBill != null && bill != null) {
@@ -99,6 +105,17 @@ public class BillService {
 		return billRepository.findByBillId(id);
 	}
 	
+	public Long updateTotal(BillEntity bill) {
+		Long Total = (long) 0;
+		List<BillDetail> billdetails = bill.getBillDetails();
+		for(BillDetail billdetail : billdetails) {
+			Total = Total + billdetail.getTotal();
+		}
+		Total = Total*(100 + bill.getCustomer().getMembership().getDiscountRate())/100;
+		Total = Total*(100 + bill.getEvent().getDiscountRate())/100;
+		bill.setFinalTotal(Total);
+		return Total;
+	}
 	public boolean deleteById(Long id) {
 		BillEntity bill = billRepository.getById(id);
 		if(bill != null) {
