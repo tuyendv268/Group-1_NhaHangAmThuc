@@ -25,9 +25,19 @@ public class WebController {
 	@GetMapping(value = {"/home" })
 	public String homepage(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
+		System.out.println(events.size());
+		for(int i = 0; i < events.size();i++) {
+			EventEntity event = events.get(i);
+			System.out.println(event.getEventName());
+			System.out.println(event.isDisplayed());
+			if(event.isDisplayed() == true) {
+				events.remove(i);
+			}
+		}
 		if(events.size() != 0) {
 			model.addAttribute("events", events);
 		}
+		
 		return "home";
 	}
 

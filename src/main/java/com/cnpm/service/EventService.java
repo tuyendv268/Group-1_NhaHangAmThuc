@@ -54,29 +54,6 @@ public class EventService {
 			e.printStackTrace();
 		}
 	}
-//	public void saveEvent(MultipartFile file,String eventName, String description
-//			,String timeStart, String timeEnd, int discountRate) {
-//		LocalDate start = LocalDate.parse(timeStart);
-//		LocalDate end = LocalDate.parse(timeEnd);
-//		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
-////		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-////		if(fileName.contains("..")) {
-////			System.out.println("invalid file");
-////		}
-////		try {
-////			newEvent.setUrl(Base64.getEncoder().encodeToString(file.getBytes()));
-////		} catch (IOException e) {
-////			e.printStackTrace();
-////		}
-//		eventRepository.save(newEvent);
-//	}
-//	public void saveEvent(String eventName, String description
-//			,String timeStart, String timeEnd, int discountRate) {
-//		LocalDate start = LocalDate.parse(timeStart);
-//		LocalDate end = LocalDate.parse(timeEnd);
-//		EventEntity newEvent = new EventEntity(eventName, description, start, end, discountRate);
-//		eventRepository.save(newEvent);
-//	}
 
 	public List<EventEntity> findAll() {
 		return eventRepository.findAll();
