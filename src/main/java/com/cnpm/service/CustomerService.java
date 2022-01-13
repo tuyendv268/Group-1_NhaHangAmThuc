@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cnpm.entity.CustomerEntity;
@@ -20,8 +21,6 @@ public class CustomerService {
 	private CustomerRepository customerRepository;
 @Autowired
 	private MembershipRepository membershipRepository;
-	
-
 	
 	public CustomerEntity addCustomer(CustomerEntity customer) {
 		customer.setPoint(Long.valueOf(0));
@@ -112,7 +111,17 @@ public class CustomerService {
 			}
 		}
 	}
-	
-
+	public CustomerEntity newCustomer(String customerName, String phone, Long membershipId) {
+		CustomerEntity customer = new CustomerEntity();
+		customer.setCustomerName(customerName);
+		customer.setTelephone(phone);
+		MembershipEntity membership = membershipRepository.getById(membershipId);
+		customer.setMembership(membership);
+		return customer;
+	}
+	public CustomerEntity getById(Long id) {
+		CustomerEntity customer = customerRepository.getById(id);
+		return customer;
+	}
 	
 }
