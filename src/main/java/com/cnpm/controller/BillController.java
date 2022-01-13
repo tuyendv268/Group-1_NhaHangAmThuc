@@ -14,6 +14,7 @@ import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.TableEntity;
+import com.cnpm.repository.TableRepository;
 import com.cnpm.service.BillService;
 import com.cnpm.service.CustomerService;
 import com.cnpm.service.TableService;
@@ -23,6 +24,8 @@ public class BillController {
 	private BillService billService;
 	@Autowired
 	private TableService tableService;
+	@Autowired
+	private TableRepository tableRepository;
 	@Autowired
 	private CustomerService customerService;
 	@GetMapping(value = "/bill")
@@ -63,14 +66,16 @@ public class BillController {
 		
 		
 		bill.setTables(tables);
-		for(TableEntity table : tables ) {
-			table.setBill(bill);
-			table.setStatus("occupied");
-		}
 		bill.setCustomer(customer);
 		billService.save(bill);
+		for(TableEntity table : tables ) {
+			table.setBill(bill);
+			table.setGuest(customerName);
+			table.setPhone(phone);
+			table.setStatus("occupied");
+			tableRepository.save(table);
+		}
 		System.out.println(selectTables.get(0));
 		return("redirect:/bill");
 	}
-	// @GetMapping(value = "/editBill/{id}")
 }
