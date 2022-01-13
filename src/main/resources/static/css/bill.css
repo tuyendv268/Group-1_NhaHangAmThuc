@@ -173,13 +173,13 @@ tbody tr td{
 }
 
 #new{
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 450px;
     height: 500px;
     background: rgb(196, 196, 196);
-    top: 70px;
-    left: 400px;
+    top: 100px;
+    left: 600px;
     display: none;
 }
 

@@ -286,8 +286,11 @@
 		for (var i = 0; inputElements[i]; ++i) {
 			if (inputElements[i].checked) {
 				checkedValue = inputElements[i].value;
-				name_array.push(inputElements[i].dataset.customername);
-				phone_array.push(inputElements[i].dataset.customerphone);
+				if((inputElements[i].dataset.customername != null) 
+				|| (inputElements[i].dataset.customerphone != null)){
+					name_array.push(inputElements[i].dataset.customername);
+					phone_array.push(inputElements[i].dataset.customerphone);
+				}
 			}
 		}
 		let flag = 1;

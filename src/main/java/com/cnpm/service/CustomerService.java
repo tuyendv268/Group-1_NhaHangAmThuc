@@ -28,8 +28,23 @@ public class CustomerService {
 		return customerRepository.save(customer);
 	}
 	
+	public CustomerEntity addStranger(CustomerEntity stranger) {
+		stranger.setPoint(Long.valueOf(-1));
+		return customerRepository.save(stranger);
+	}
+	
 	public List<CustomerEntity> findAll(){
 		return customerRepository.findAll();
+	}
+	
+	public List<CustomerEntity> findAllMembers(){
+		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>) findAll();
+		ArrayList<CustomerEntity> members = new ArrayList<CustomerEntity>();
+		
+		for(int i=0; i<customers.size(); i++)
+			if(customers.get(i).getMembership().getExp() != -1)
+				members.add(customers.get(i));
+		return members;
 	}
 	
 	
@@ -92,15 +107,11 @@ public class CustomerService {
 		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>) customerRepository.findAll();
 		
 		//Update Membership Rank
-		for(int i=0; i<customers.size(); i++)
-		{
-			if(customers.get(i).getPoint() < 0)
-			{
-				customers.get(i).setPoint(Long.valueOf(0));
-				customers.get(i).setMembership(membershipRepository.findAll(Sort.by(Sort.Direction.ASC, "exp")).get(0));
-			}
-			else
-			{
+		for(int i=0; i<customers.size(); i++){
+//			if(customers.get(i).getPoint() < 0){
+//				customers.get(i).setPoint(Long.valueOf(0));
+//				customers.get(i).setMembership(membershipRepository.findAll(Sort.by(Sort.Direction.ASC, "exp")).get(0));
+//			}else{
 				List<MembershipEntity> ranks = membershipRepository.findAll(Sort.by(Sort.Direction.ASC, "exp"));
 				int j;
 				for(j=0; j<ranks.size(); j++)
@@ -110,7 +121,8 @@ public class CustomerService {
 				customerRepository.save(customers.get(i));
 			}
 		}
-	}
+	
+	
 	public CustomerEntity newCustomer(String customerName, String phone, Long membershipId) {
 		CustomerEntity customer = new CustomerEntity();
 		customer.setCustomerName(customerName);
