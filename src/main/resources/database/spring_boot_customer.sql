@@ -39,7 +39,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',1),(2,'Phạm Bá Chinh',670,'0143567982',2),(3,'Đào Minh Tiến',700,'0987654312',3),(4,'Lê Văn Đức',4454,'0968754123',4),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',5);
+INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',1),(2,'Phạm Bá Chinh',670,'0143567982',2),(3,'Đào Minh Tiến',700,'0987654312',3),(4,'Lê Văn Đức',4454,'0968754123',4),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-10 22:29:31
+-- Dump completed on 2022-01-12 10:34:43

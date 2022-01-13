@@ -26,7 +26,7 @@
 			</h1>
 			<div class="search">
 				<form th:action="@{/table/search}">
-					<input type="text" placeholder="search" th:name="tableName">
+					<input type="text" placeholder="search" th:name="tableName" required>
 					<a href="#">
 						<i class="material-icons">search</i>
 					</a>
@@ -34,7 +34,7 @@
 			</div>
 
 			<div class="home">
-				<a href="#">
+				<a href="/home">
 					<i class="material-icons">home</i>
 				</a>
 			</div>
@@ -196,9 +196,9 @@
 						<span>Table ID</span>
 						<input type="text" class="text" id="reserved_table_id" th:name="id" readonly>
 						<span>Customer Name</span>
-						<input type="text" class="text" th:name="guestName">
+						<input type="text" class="text" th:name="guestName" required>
 						<span>Phone</span>
-						<input type="text" class="text" th:name="phone">
+						<input type="text" class="text" th:name="phone" required>
 						<ul>
 							<li><button id="reservation_add" name="add" value="add">Add</button></li>
 							<li><button id="reservation_cancel" name="cancel" value="cancel">Cancel</button></li>
@@ -243,7 +243,7 @@
 					<span>Enter Table Name:</span>
 					<br>
 					<form th:action="@{/table/new-table}" method="post">
-						<input type="text" class="text" th:name="tableName">
+						<input type="text" class="text" th:name="tableName" required>
 						<ul>
 							<!-- button Add và Cancel trên pop-up -->
 							<li><button id="addTable_add" name="add" value="add">Add</button></li>
