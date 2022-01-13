@@ -21,6 +21,13 @@ public class TableService {
 	public List<TableDTO> findAll(){
 		return convert2DTO(tableRepository.findAll());
 	}
+	public List<TableEntity> getByIds(List<Long> Ids){
+		List<TableEntity> tables = new ArrayList<TableEntity>();
+		for (Long id : Ids ) {
+			tables.add(tableRepository.findByTableId(id));
+		}
+		return tables;
+	}
 	
 	@Scheduled(fixedDelay = 2000)
 	  public void updateTime() throws InterruptedException {

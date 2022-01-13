@@ -157,44 +157,31 @@ const newSeatInput = document.querySelector('#seat-input');
 
 //Thêm hóa đơn mới
 const create = document.querySelector('#create-btn');
+
 create.addEventListener('click', function(){   
-    var createBill = document.getElementById("new");
+	var createBill = document.getElementById("new");
     createBill.style.display = "block";
     create.style.display = "none";
 });
+//tat nút tạo mới
+const cancel_new = document.querySelector('#cancel-new-btn')
+cancel_new.addEventListener('click', function(){
+	var createBill = document.getElementById("new");
+	createBill.style.display = 'none';
+	create.style.display = 'block';
+})
 
-//Xác nhận hoá đơn mới
-const newDone = document.querySelector('#new-done-btn');
-newDone.addEventListener('click', function(){
-    var createBill = document.getElementById("new");
-    createBill.style.display = "none";
-    create.style.display = "block";
-    
-    //Thêm dòng
-    const customerTr = document.createElement("tr");
-    customerTr.classList.add('customer');
+// bật tab chọn bàn
 
-    const newCustomerStt = document.createElement('td');
-    const newCustomerCode = document.createElement('td');
-    const newCustomerName = document.createElement('td');
-    const newCustomerMoney = document.createElement('td');
-    const newCustomerStatus = document.createElement('td');
-
-    customerTr.appendChild(newCustomerStt);
-    newCustomerCode.innerText = newCodeInput.value;
-    customerTr.appendChild(newCustomerCode);
-    console.log(newCustomerCode);
-    newCustomerName.innerText = newNameInput.value;
-    customerTr.appendChild(newCustomerName);
-    console.log(newCustomerName);
-    customerTr.appendChild(newCustomerMoney);
-    customerTr.appendChild(newCustomerStatus);
-    customer.appendChild(customerTr);
-    console.log(customerTr);
-    newCodeInput.value = '';
-    newNameInput.value = '';
-    newPhoneInput.value = '';
-    newSeatInput.value = '';
+const selectTablebtn = document.getElementById('new-select-btn');
+selectTablebtn.addEventListener('click', function(){
+	var selectTable = document.getElementById('select-table');
+	selectTable.style.display = "block";
+});
+const doneTablebtn = document.getElementById('done-select-table');
+doneTablebtn.addEventListener('click', function(){
+	var selectTable = document.getElementById('select-table');
+	selectTable.style.display = "none";
 });
 
 var bill_id_get_from_table = sessionStorage.getItem("bill_id_get_from_table");

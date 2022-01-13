@@ -175,18 +175,61 @@
 					<button id="pay-btn">Pay</button>
 				</div>
 
-				<form action="#" method="GET">
+				<form  th:action="@{/newBill}" method="POST">
 					<div id="new">
 						<h2>Create a new bill</h2>
 						<h3>Customer’s name</h3>
-						<input id="name-input" type="text" th:name="customerName">
+						<input id="name-input" type="text" th:name="customerName" >
 						<h3>Phone</h3>
 						<input id="phone-input" type="text" th:name="phone">
 						<h3>Customer’s Code</h3>
 						<input id="code-input" type="text" th:name="customerId">
 						<h3>Seat</h3>
+						<span id = "checked-table"></span >
+			
+						<div id="new-select-btn">Select</div>					
 						<!--<input id="seat-input" type="text"> -->
-						<button id="new-done-btn" th:formaction="@{/newBill}">Done</button>
+						<button id="new-done-btn" type = "submit"  >Done</button>
+						<div id="cancel-new-btn"> Cancel</div>
+						<div id="select-table">
+		                    <h2>Select table</h2>
+		                    <div>
+		                        <ul>
+									<li th:each="table : ${tables}" th:switch= "${table.status}">
+										<label class="container" th:case  = "available">
+										    <span class="table-free"></span>
+		                                    <p class="table-name" th:text ="${table.tableName}" ></p>
+		                                    <p >Available</p >
+		                                    <input id="checkbox-table" 
+		                                    	th:data-name = "${table.tableName}" 
+		                                    	type="checkbox" 
+		                                    	name="selectTables" 
+		                                    	th:value="${table.tableId}"/>
+		                                    <span class="checkmark"></span>
+		                                    
+		                                </label>
+		                                <label class="container" th:case  = "reserved">
+										    <span class="table-reserved"></span>
+		                                    <p class="table-name" th:text ="${table.tableName}" ></p>
+		                                    <p th:text = "'Reserved by: ' + ${table.guestName }"></p >
+		                                    <input id="checkbox-table" 
+		                                    	th:data-name = "${table.tableName}" 
+		                                    	type="checkbox" 
+		                                    	name="selectTables" 
+		                                    	th:value="${table.tableId}"/>
+		                                    <span class="checkmark"></span>
+		                                    
+		                                </label>
+		                                
+						        	</li>
+						 
+		                        </ul>
+		                    </div>
+		                    <a id= "done-select-table">
+		                        Done
+		                    </a >
+			             </div>
+						        	
 					</div>
 				</form>
 
@@ -200,6 +243,7 @@
 					<input type="text">
 					<h3>Seat</h3>
 					<input type="text">
+					
 					<button id="edit-done-btn">Done</button>
 				</div>
 
@@ -237,7 +281,8 @@
 					<input type="text">
 					<button id="atm-conf-btn">Payment confirm</button>
 				</div>
-
+				
+				
 			</div>
 		</div>
 	</div>
