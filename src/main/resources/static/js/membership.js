@@ -1,30 +1,48 @@
+var chosenIndex;
 //Hiển thị action
-const customer = document.querySelector('.member-list');
-customer.addEventListener('click', function(event) {
-    var list = Array.prototype.slice.call( customer.children );
-    index = list.indexOf(event.target.parentElement);
-    localStorage.setItem('target-member', index);
-    var action = document.getElementById("action");
-    action.style.display = "block";
-});
+let customers = document.getElementsByClassName('member')
+for (let i = 0; i < customers.length; i++) {
+	customers[i].addEventListener('click', () => {
+		var id = $('#' + i).data('customerid');
+		chosenIndex = i;
+		$("#delete-yes-btn").attr("href", "/membership/delete/" + id);
+		
+		action = document.getElementById("action");
+    	action.style.display = "block";
+	})
+}
+//const customer = document.querySelector('.member-list');
+//customer.addEventListener('click', function(event) {	
+//  var list = Array.prototype.slice.call( customer.children );
+//    index = list.indexOf(event.target.parentElement);
+//    localStorage.setItem('target-member', index);
+//    var action = document.getElementById("action");
+//    action.style.display = "block";
+//});
 
 //Thay đổi thông tin member
-const changeMember = document.querySelector('#change-btn');
+let changeMember = document.getElementById("change-btn");
 changeMember.addEventListener('click', function(){
+	
+	
     var action = document.getElementById("action");
     action.style.display = "none";
     var change = document.getElementById("change");
     change.style.display = "block";
+    
+    document.getElementById("edit-id").value = $('#' + chosenIndex).data('customerid');
+    document.getElementById("edit-name").value = $('#' + chosenIndex).data('name');
+    document.getElementById("edit-phone").value = $('#' + chosenIndex).data('phone');
 });
 
 //Hủy thay đổi thông tin member
-const changeCancel = document.querySelector('#change-cancel-btn');
-changeCancel.addEventListener('click', function(){
-    var action = document.getElementById("action");
-    action.style.display = "block";
-    var change = document.getElementById("change");
-    change.style.display = "none";
-});
+//const changeCancel = document.querySelector('#change-cancel-btn');
+//changeCancel.addEventListener('click', function(){
+//    var action = document.getElementById("action");
+//    action.style.display = "block";
+//    var change = document.getElementById("change");
+//    change.style.display = "none";
+//});
 
 //Xác nhận thay đổi thông tin member
 const changeDone = document.querySelector('#change-done-btn');
@@ -52,13 +70,11 @@ deleteNo.addEventListener('click', function(){
 });
 
 //Xác nhận xóa member
-const deleteYes = document.querySelector('#delete-yes-btn');
-deleteYes.addEventListener('click', function(){
-    var delete0 = document.getElementById("delete");
-    delete0.style.display = "none";
-    var item = customer.children[localStorage.getItem('target-member')];
-    item.remove();
-});
+//const deleteYes = document.querySelector('#delete-yes-btn');
+//deleteYes.addEventListener('click', function(){
+//    var delete0 = document.getElementById("delete");
+//    delete0.style.display = "none";
+//});
 
 //Đóng action
 const back = document.querySelector('#action i');

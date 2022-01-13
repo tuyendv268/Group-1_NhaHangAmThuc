@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +43,7 @@ public class MembershipController {
 						   @RequestParam(value = "customerName") String customerName,
 						   @RequestParam(value = "phone") String phone) {
 		CustomerEntity newCustomer = new CustomerEntity();
-		newCustomer.setCustormerName(customerName);
+		newCustomer.setCustomerName(customerName);
 		newCustomer.setTelephone(phone);
 		
 		System.out.println("dis 1");
@@ -56,66 +57,27 @@ public class MembershipController {
 		return "redirect:/membership";
 	}
 	
-	@GetMapping(value = "/membership/{id}")
+	@GetMapping(value = "/membership/delete/{id}")
 	public String deleteCustomer(@PathVariable Long id, Model model) {
-		customerService.deleteById(id);
-		System.out.println("Deleted Customer: "+ id);
-		return "redirect:/event";
+		customerService.deleteCustomer(id);
+		System.out.println("Deleted Customer: " + id);
+		return "redirect:/membership";
 	}
-
-
-//	@RequestMapping(value = "/menu/new-dish", method = RequestMethod.POST, params = "create")
-//	public String addDish(@RequestParam("files") MultipartFile file, @RequestParam(value = "dishName") String dishName,
-//			@RequestParam(value = "dishPrice") int dishPrice,
-//			@RequestParam(value = "dishDescription") String dishDescription,
-//			@RequestParam(value = "dishCategory") String dishCategory,
-//			@RequestParam(value = "dishIngredient") String dishIngredient) {
-//		
-//		Path path = Paths.get("uploads/");
-//		try {
-//			InputStream inputStream = file.getInputStream();
-//			Files.copy(inputStream, path.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-//			DishEntity newDish = new DishEntity();
-//			newDish.setDishName(dishName);
-//			newDish.setPrice(dishPrice);
-//			newDish.setDescription(dishDescription);
-//			newDish.setCategory(dishCategory);
-//			newDish.setIngredient(dishIngredient);
-//			newDish.setStatus(true);
-//			newDish.setUrl(file.getOriginalFilename().toLowerCase());
-//			dishService.addDish(newDish);
-//
-//		} catch (Exception e) {
-//
-//		}
-//		return "redirect:/menu";
-//	}
-//	
-//	@RequestMapping(value = "/menu/new-dish", method = RequestMethod.POST, params = "close")
-//	 public String closeDish(){
-//		  return "redirect:/menu";
-//	  }
-//	
-//	@RequestMapping(value = "/menu/edit-dish", method = RequestMethod.POST, params = "done")
-//	public String editDish(@RequestParam(value = "dishId") Long dishId, 
-//			@RequestParam(value = "dishName") String dishName,
-//			@RequestParam(value = "dishPrice") int dishPrice,
-//			@RequestParam(value = "dishDescription") String dishDescription,
-//			@RequestParam(value = "dishCategory") String dishCategory,
-//			@RequestParam(value = "dishIngredient") String dishIngredient,
-//			@RequestParam(value = "dishStatus",required = false) String dishStatus) {
-//		if(dishStatus!=null)
-//			dishService.editDish(dishId, dishName, dishPrice, dishDescription, dishCategory, dishIngredient, "true");
-//		else if(dishStatus==null)
-//			dishService.editDish(dishId, dishName, dishPrice, dishDescription, dishCategory, dishIngredient, "false");
-//		return "redirect:/menu";
-//	}
-//	
-//	@GetMapping(value="/menu/delete/{id}")
-//	public String deleteDish(@PathVariable Long id) {
-//		dishService.deleteDish(id);
-//		return "redirect:/menu";
-//	}
 	
+	
+	@RequestMapping(value = "/membership/edit-customer/", method = RequestMethod.POST, params = "edit")
+	public String editCustomer(Model model,
+				 @RequestParam(value = "customerId") Long id,
+				 @RequestParam(value = "customerName") String customerName,
+				 @RequestParam(value = "phone") String phone) {
+		customerService.editCustomerInfo(id, customerName, phone);
+		System.out.print("edited");
+		return "redirect:/membership";
+	}
+	
+	@RequestMapping(value = "/membership/edit-customer/", method = RequestMethod.POST, params = "cancel")
+	public String cancelEditCustomer() {
+		return "redirect:/membership";
+	}
 
 }

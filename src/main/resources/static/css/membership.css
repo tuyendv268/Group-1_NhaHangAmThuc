@@ -157,9 +157,9 @@
     position: absolute;
     border-radius: 35px;
     width: 350px;
-    height: 380px;
+    height: 300px;
     background: rgb(196, 196, 196);
-    top: 70px;
+    top: 90px;
     left: 470px;
     display: none;
 }
@@ -373,6 +373,18 @@
     color: white;
     background: rgb(72,72,72);
 }
+
+#edit-discount{
+    position: absolute;
+    border-radius: 35px;
+    width: 350px;
+    height: 300px;
+    background: rgb(196, 196, 196);
+    top: 90px;
+    left: 470px;
+    display: none;
+}
+
 
 
 

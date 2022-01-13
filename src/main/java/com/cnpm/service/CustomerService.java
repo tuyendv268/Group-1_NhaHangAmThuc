@@ -26,8 +26,6 @@ public class CustomerService {
 	public CustomerEntity addCustomer(CustomerEntity customer) {
 		customer.setPoint(Long.valueOf(0));
 		customer.setMembership(membershipRepository.findAll(Sort.by(Sort.Direction.ASC, "exp")).get(0));
-		
-		System.out.println("dis 2");
 		return customerRepository.save(customer);
 	}
 	
@@ -41,19 +39,20 @@ public class CustomerService {
 	}
 	
 	public List<CustomerEntity> findByName (String customerName) {
-		return customerRepository.findByCustormerName(customerName);
+		return customerRepository.findByCustomerName(customerName);
 	}
 	
 	public CustomerEntity editCustomerInfo(Long id, String customerName, String telephone) {
+		
 		CustomerEntity customer = findById(id);
-		customer.setCustormerName(customerName);
+		customer.setCustomerName(customerName);
 		customer.setTelephone(telephone);
-	
+		System.out.print("editing");
 		return customerRepository.save(customer);
 	}
 	
 	
-	public boolean deleteById(Long id) {
+	public boolean deleteCustomer(Long id) {
 		CustomerEntity customer = customerRepository.getById(id);
 		if(customer != null) {
 			customerRepository.deleteById(id);

@@ -24,7 +24,7 @@ public class CustomerEntity {
 	private String telephone;
 	
 	@Column(name = "customer_name")
-	private String custormerName;
+	private String customerName;
 	
 	@OneToMany(mappedBy = "customer")
 	List<BillEntity> bills;
@@ -53,12 +53,12 @@ public class CustomerEntity {
 		this.telephone = telephone;
 	}
 
-	public String getCustormerName() {
-		return custormerName;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setCustormerName(String custormerName) {
-		this.custormerName = custormerName;
+	public void setCustomerName(String custormerName) {
+		this.customerName = custormerName;
 	}
 
 	public Long getPoint() {

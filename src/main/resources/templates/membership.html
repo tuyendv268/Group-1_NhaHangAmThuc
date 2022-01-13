@@ -97,12 +97,11 @@
                     </thead >
                     <tbody class="member-list">
                     	<tr class="member" th:each="customer, customer_index : ${customers}">
-							<td th:id="${customer_index.index}"></td>
-							<!--td th:data-name="${customer.custormerName}"
-								th:data-phone="${customer.telephone}"
-								th:data-point="${customer.point}"
-								th:data-rank="${customer.membership.name}"-->
-							<td th:text="${customer.custormerName}"></td>
+							<td th:id="${customer_index.index}"
+								th:data-customerid="${customer.customerId}"
+								th:data-name="${customer.customerName}"
+								th:data-phone="${customer.telephone}"></td>
+							<td th:text="${customer.customerName}"></td>
 							<td th:text="${customer.telephone}"></td>
 							<td th:text="${customer.point}"></td>
 							<td th:text="${customer.membership.name}"></td>
@@ -114,7 +113,7 @@
                 <button id="add-btn">Add</button>
 
                 <div id=action>
-                    <button id="change-btn">Change</button>
+                    <button id="change-btn">Edit Info</button>
                     <button id="delete-btn">Delete</button>
                     <i class='bx bx-redo'></i>   
                 </div>
@@ -122,26 +121,30 @@
                 <div id="add">
                 	<form th:action="@{/membership/new-customer}" method="post" enctype="multipart/form-data"> 
 	                    <h3>Name</h3>
-	                    <input type="text" th:name="customerName" placeholder="Yaylmao">
+	                    <input type="text" th:name="customerName">
 	                    <h3>Phone</h3>
 	                    <input type="text" th:name="phone">
 	                    <button id="add-cancel-btn" name="cancel" value="cancel">Cancel</button>
-	                    <button id="add-done-btn" name="add" value="add">Done</button>
+	                    <button id="add-done-btn" name="add" value="add">Add</button>
                     </form>
                 </div>
 
                 <div id="change">
-                    <h3>Name</h3>
-                    <input id="name-input" type="text">
-                    <h3>Phone</h3>
-                    <input id="phone-input" type="text">
-                    <button id="change-cancel-btn">Cancel</button>
-                    <button id="change-done-btn">Done</button>
+                	<form th:action="@{/membership/edit-customer/}" method="post" enctype="multipart/form-data">
+	                    
+	                    <input id="edit-id" type="hidden"  th:name="customerId">
+	                    <h3>Name</h3>
+	                    <input id="edit-name" type="text" th:name="customerName">
+	                    <h3>Phone</h3>
+	                    <input id="edit-phone" type="text" th:name="phone">
+	                    <button id="change-cancel-btn" name="cancel" value="cancel">Cancel</button>
+	                    <button id="change-done-btn" name="edit" value="edit">Done</button>
+                	</form>
                 </div>
 
                 <div id="delete">
                     <h3>Do you really want to delete this customer?</h3>
-                    <button id="delete-yes-btn">Yes</button>
+                    <a id="delete-yes-btn" href="#" method="GET"><button>Yes</button></a>
                     <button id="delete-no-btn">No</button>
                 </div>
 
@@ -157,17 +160,20 @@
                         <tr th:each="rank, rank_index : ${memberships}">
 							<td th:text="${rank.name}"></td>
 							<td th:text="${rank.exp} "></td>
-							<td th:inline="text">[[${rank.discountRate}]]
-							<button class="manage-change-btn">Change</button ></td>
+							<td th:inline="text">[[${rank.discountRate}]]%
+								<button th:id="'discountChange' + ${rank_index.index}" class="manage-change-btn">Edit</button >
+								<form th:id="'discountChange' + ${rank_index.index}" class="manage-form" th:action="@{/membership/edit-discountrate/}" method="post" enctype="multipart/form-data">
+				                    <input id="edit-membershipid" type="hidden" th:name="customerId">
+				                    <input id="edit-discountrate" type="text" th:name="customerName">
+								</form >
+							</td>
 						</tr>
                         </tbody>
                     </table>
                     <button id="manage-done-btn">Done</button>
                 </div>
-            </div>
-            
-            <div class="footer">
-            
+                
+                                
             </div>
         </div>
     </div>
