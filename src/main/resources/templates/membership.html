@@ -88,28 +88,24 @@
 
             <div class="content">
                 <table id="customer-table">
-                    <thead>
-                        <th>Stt</th>
+                    <thead id="table-head">
+                        <th>No.</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Point</th>
                         <th>Rank</th>
-                    </thead>
-                    <tbody class="customer-list">
-                        <tr class="customer">
-                            <td></td>
-                            <td>Nguyễn Văn A</td>
-                            <td>0123456789</td>
-                            <td>5000</td>
-                            <td></td>
-                        </tr>
-                        <tr class="customer">
-                            <td></td>
-                            <td>Nguyễn Thị B</td>
-                            <td>0969696969</td>
-                            <td>2000</td>
-                            <td></td>
-                        </tr>
+                    </thead >
+                    <tbody class="member-list">
+                    	<tr class="member" th:each="customer, customer_index : ${customers}">
+							<td th:id="${customer_index.index}"
+								th:data-customerid="${customer.customerId}"
+								th:data-name="${customer.customerName}"
+								th:data-phone="${customer.telephone}"></td>
+							<td th:text="${customer.customerName}"></td>
+							<td th:text="${customer.telephone}"></td>
+							<td th:text="${customer.point}"></td>
+							<td th:text="${customer.membership.name}"></td>
+						</tr>
                     </tbody>
                 </table>
 
@@ -117,34 +113,38 @@
                 <button id="add-btn">Add</button>
 
                 <div id=action>
-                    <button id="change-btn">Change</button>
+                    <button id="change-btn">Edit Info</button>
                     <button id="delete-btn">Delete</button>
                     <i class='bx bx-redo'></i>   
                 </div>
 
                 <div id="add">
-                    <h3>Name</h3>
-                    <input id="name-input" type="text">
-                    <h3>Phone</h3>
-                    <input id="phone-input" type="text">
-                    <h3>Point</h3>
-                    <input id="point-input" type="text">
-                    <button id="add-cancel-btn">Cancel</button>
-                    <button id="add-done-btn">Done</button>
+                	<form th:action="@{/membership/new-customer}" method="post" enctype="multipart/form-data"> 
+	                    <h3>Name</h3>
+	                    <input type="text" th:name="customerName">
+	                    <h3>Phone</h3>
+	                    <input type="text" th:name="phone">
+	                    <button id="add-cancel-btn" name="cancel" value="cancel">Cancel</button>
+	                    <button id="add-done-btn" name="add" value="add">Add</button>
+                    </form>
                 </div>
 
                 <div id="change">
-                    <h3>Name</h3>
-                    <input id="name-input" type="text">
-                    <h3>Phone</h3>
-                    <input id="phone-input" type="text">
-                    <button id="change-cancel-btn">Cancel</button>
-                    <button id="change-done-btn">Done</button>
+                	<form th:action="@{/membership/edit-customer/}" method="post" enctype="multipart/form-data">
+	                    
+	                    <input id="edit-id" type="hidden"  th:name="customerId">
+	                    <h3>Name</h3>
+	                    <input id="edit-name" type="text" th:name="customerName">
+	                    <h3>Phone</h3>
+	                    <input id="edit-phone" type="text" th:name="phone">
+	                    <button id="change-cancel-btn" name="cancel" value="cancel">Cancel</button>
+	                    <button id="change-done-btn" name="edit" value="edit">Done</button>
+                	</form>
                 </div>
 
                 <div id="delete">
                     <h3>Do you really want to delete this customer?</h3>
-                    <button id="delete-yes-btn">Yes</button>
+                    <a id="delete-yes-btn" href="#" method="GET"><button>Yes</button></a>
                     <button id="delete-no-btn">No</button>
                 </div>
 
@@ -152,49 +152,28 @@
                     <table id="manage-table">
                         <thead>
                             <th>Rank</th>
-                            <th>Point</th>
-                            <th>Sale</th>
+                            <th>Point Required</th>
+                            <th>Discount Rate</th>
                         </thead>
+                        
                         <tbody>
-                            <tr>
-                                <td>Bronze</td>
-                                <td>100</td>
-                                <td>2%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Silver</td>
-                                <td>700</td>
-                                <td>5%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Gold</td>
-                                <td>1500</td>
-                                <td>10%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Platinum</td>
-                                <td>3000</td>
-                                <td>20%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Diamond</td>
-                                <td>10000</td>
-                                <td>30%
-                                    <button>Change</button>
-                                </td>
-                            </tr>
+                        <tr th:each="rank, rank_index : ${memberships}">
+							<td th:text="${rank.name}"></td>
+							<td th:text="${rank.exp} "></td>
+							<td th:inline="text">[[${rank.discountRate}]]%
+								<button th:id="'discountChange' + ${rank_index.index}" class="manage-change-btn">Edit</button >
+								<form th:id="'discountChange' + ${rank_index.index}" class="manage-form" th:action="@{/membership/edit-discountrate/}" method="post" enctype="multipart/form-data">
+				                    <input id="edit-membershipid" type="hidden" th:name="customerId">
+				                    <input id="edit-discountrate" type="text" th:name="customerName">
+								</form >
+							</td>
+						</tr>
                         </tbody>
                     </table>
                     <button id="manage-done-btn">Done</button>
                 </div>
+                
+                                
             </div>
         </div>
     </div>

@@ -16,6 +16,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+#table-head{
+	position: sticky;
+    top: 80px;
+}
+
 #customer-table {
     font-family: 'Poppins', sans-serif;
     border-collapse: collapse;
@@ -49,13 +54,13 @@
     color: #1a150e;
 }
 
-.customer-list tr{
+.member-list tr{
     background-color: rgb(255,249,249);
     height: 80px;
     border-bottom: 3px solid rgb(196, 196, 196);
 }
 
-.customer-list tr td{
+.member-list tr td{
     text-align: center;
 }
 
@@ -74,10 +79,24 @@
     cursor: pointer;
 }
 
+.manage-change-btn
+{
+	float: right;
+	padding: 5px;
+}
+
 #manage-btn{
     font-size: 19px;
-    right: none;
-    left: 100px;
+    position: sticky;
+    left: 35px;
+    bottom: 35px;
+}
+
+#add-btn{
+    font-size: 19px;
+    position: sticky;
+    right: 35px;
+    bottom: 35px;
 }
 
 #action{
@@ -138,9 +157,9 @@
     position: absolute;
     border-radius: 35px;
     width: 350px;
-    height: 380px;
+    height: 300px;
     background: rgb(196, 196, 196);
-    top: 70px;
+    top: 90px;
     left: 470px;
     display: none;
 }
@@ -285,7 +304,7 @@
 #manage{
     position: absolute;
     width: 435px;
-    height: 320px;
+    height: auto;
     background: rgb(255, 219, 219);
     top: 100px;
     left: 400px;
@@ -342,13 +361,30 @@
     width: 75px;
     border: none;
     border-radius: 30px;
-    position: absolute;
-    bottom: 12px;
+    
+    
+    display: block;
+    margin-left: auto;
+ 	margin-right: auto;
+ 	margin-top: 10px;
+ 	margin-bottom: 10px;
+    
     cursor: pointer;
-    left: 180px;
     color: white;
     background: rgb(72,72,72);
 }
+
+#edit-discount{
+    position: absolute;
+    border-radius: 35px;
+    width: 350px;
+    height: 300px;
+    background: rgb(196, 196, 196);
+    top: 90px;
+    left: 470px;
+    display: none;
+}
+
 
 
 

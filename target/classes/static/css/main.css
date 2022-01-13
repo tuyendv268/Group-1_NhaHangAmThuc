@@ -146,6 +146,7 @@ header .home i {
         margin-left: 120px;
         width: calc(100% - 120px);
     }
+    
 }
 
 @media screen and (max-width: 500px) {

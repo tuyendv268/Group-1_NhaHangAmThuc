@@ -4,15 +4,22 @@
 }
 
 .content {
+	min-height: 95vh;
     display: flex;
     font-size: 16px;
-    background-image: url('/image/bgr_menu.png');
+    background: linear-gradient(0deg, rgba(25, 25, 25, 0.1), rgba(25, 25, 25, 0.3)), url('/image/bgr_menu.png');
+    background-attachment: fixed;
     background-size: cover;
 }
 
+.content h1 {
+	margin-bottom: 20px;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .menu_dish {
+	padding-left: 20px;
     width: 65%;
-    /* border: 1px solid red; */
     position: relative;
 }
 
@@ -27,25 +34,20 @@
     padding-left: 5px;
     padding-top: 10px;
     cursor: pointer;
-}
-
-.menu_dish .ulDish li:nth-child(4n + 4),
-.menu_dish .ulDish li:nth-child(4n + 2),
-.menu_dish .ulDish li:nth-child(4n + 3) {
-    border-left: 1px solid #000;
+    border-bottom: 1px solid white;
 }
 
 .menu_dish .ulDish img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     cursor: rg;
 }
 
 .addMenu_button {
-    position: absolute;
-    bottom: 35px;
-    right: 60px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
     padding: 15px 25px;
     background-color: #34AED4;
     color: #fff;
@@ -54,6 +56,12 @@
     border-radius: 30px;
     font-size: 18px;
     cursor: pointer;
+    z-index: 10;
+}
+
+.add_Dish {
+	bottom: 50px;
+	right: 30vw;
 }
 
 /*------------------ menu combo -------------------*/
@@ -72,10 +80,10 @@
 
 .menu_combo {
     width: 35%;
-    padding: 20px;
+    padding: 0px 20px;
     position: relative;
     border-left: 2px solid #FDE8D0;
-    background: linear-gradient(180deg, rgba(255, 150, 130, 0.5) 0%, rgba(255, 232, 208, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(255, 150, 130, 0.5) 0%, rgba(255, 200, 200, 0.5) 100%);
 }
 
 .menu_combo .ulCombo {
@@ -92,9 +100,9 @@
 }
 
 .menu_combo .ulCombo img {
-    width: 150px;
+    width: 160px;
     border-radius: 40px;
-    height: 140px;
+    height: 160px;
     cursor: pointer;
 }
 
@@ -136,10 +144,11 @@
 
 /* box_add_dish */
 .box_add_dish {
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 100;
     display: none;
 }
 
@@ -172,9 +181,8 @@
     border-radius: 20px;
 }
 
-.button_Dish label:hover,
 .button_Dish button:hover {
-    background-color: #34aed4;
+    background-color: rgb(0, 128, 255);
 }
 
 /* ------------------------------- */
@@ -182,9 +190,10 @@
 
 .box_add_combo {
     position: fixed;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 100;
     display: none;
 }
 
@@ -194,15 +203,15 @@
 } 
 
 .button_Combo label, .button_Combo button {
-    padding: 8px 10px;
-    width: 80px;
+    padding: 3px 5px;
+    width: 100px;
     text-align: center;
     cursor: pointer;
 }
 
 .button_Combo label:hover,
 .button_Combo button:hover {
-    background-color: #34aed4;
+    background-color: rgb(0, 128, 255);
 }
 
 .button_Combo label {
@@ -228,11 +237,11 @@
     padding: 30px;
     height: auto;
     border-radius: 40px;
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+	z-index: 100;
     display: none;
 }
 
@@ -257,21 +266,21 @@
     background-color: #484848;
     color: #fff;
     font-size: 15px;
-    padding: 10px 20px;
+    padding: 8px 10px;
     border-radius: 20px;
     cursor: pointer;
-    width: 100px;
+    width: 80px;
 }
 
 .box_dish_info .info_button button:hover {
-    background-color: #34AED4;
+    background-color: rgb(0, 128, 255);
 }
 
 /* Combo Detail Main box */
 .boxComboItem {
     width: 350px;
     height: auto;
-    background-color: #B0DFEA;
+    background-color: #A0FFEA;
     padding: 20px;
     border-radius: 30px;
 
@@ -309,25 +318,46 @@
 }
 
 .button_boxComboItem button:hover {
-    background-color: #34aed4;
+    background-color: rgb(0, 128, 255);
 }
 
 .button_boxComboItem button:nth-child(2) span {
     font-size: 13px;
 }
 
-/* box combo edit */
+/* Box edit combo */
 .boxComboEdit {
     position: fixed;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+	z-index: 500;
     display: none;
 }
 
-.boxComboEdit div {
-    float: right;
+.button_editCombo {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.button_editCombo button {
+    padding: 8px 10px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button_editCombo button {
+    font-size: 15px;
+    outline: none;
+    border: none;
+    background-color: #484848;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.button_editCombo button:hover {
+    background-color: rgb(0, 128, 255);
 }
 
 .addFoodCombo {
@@ -341,8 +371,8 @@
     transform: translate(-50%, -50%);
     border-radius: 30px;
     padding: 25px;
-    border: 2px solid #34aed4;
-    
+    border: 2px solid rgb(0, 128, 255);
+    z-index: 1000;
     display: none;
 }
 
@@ -356,7 +386,6 @@
     right: 15px;
     font-size: 20px;
     color: #484848;
-
     cursor: pointer;
 }
 
@@ -372,7 +401,7 @@
 }
 
 .addFoodCombo ul li:hover {
-    background-color: #34aed4;
+    background-color: rgb(0, 128, 255);
 }
 
 .addFoodCombo ul li span:first-child {
@@ -398,4 +427,21 @@
 .addFoodCombo input[type="checkbox"] {
     width: 16px;
     height: 16px;
+}
+
+.box_add label {
+	margin:3px auto;
+	padding: 3px 8px;
+	border-radius: 25px;
+	background-color: #eee;
+	font-size: 14px;
+	display: inline-block;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.box_add label:focus{
+	background-color: rgb(0, 128, 255);
+	border: 2px solid rgba(5, 120, 250, 0.5)
 }
