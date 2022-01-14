@@ -115,7 +115,9 @@
                           		 th:data-dishcategory="${dish.category}"
                           		 th:data-dishingredient="${dish.ingredient}"
                           		 th:data-dishfeatureddish="${dish.featureDish}"
-                          		 th:data-dishstatus="${dish.status}">
+                          		 th:data-dishstatus="${dish.status}"
+                          		 th:data-dishcreatetime="${dish.createdTime}"
+                          		 th:data-dishmodifytime="${dish.modifiedTime}">
                           		 
                            </span>
                         </li> 
@@ -281,7 +283,8 @@
                         <li th:if="${combo.status}">
                            <img th:src="@{'getimage/'+${combo.url}}" alt="">
                            <span class="temp2" th:id="${combo.comboId}+'_'"
-                           		 th:text="${combo.getComboName()}"                         	
+                           		 th:text="${combo.getComboName()}"  
+                           		 th:data-listofdishes="${listofdishes.get(__${combo.comboId}__)}"                       	
                           		 th:data-combourl="${combo.url}"
                           		 th:data-comboid="${combo.comboId}"
                           		 th:data-comboname="${combo.comboName}"
@@ -289,7 +292,10 @@
                           		 th:data-combodescription="${combo.description}"
                           		 th:data-combodiscountrate="${combo.discountRate}"
                          		 th:data-combonumberofpeoplerecommend="${combo.numberOfPeopleRecommend}"
-                          		 th:data-combostatus="${combo.status}">
+                          		 th:data-combostatus="${combo.status}"
+                          		 th:data-combocreatetime="${combo.createdTime}"
+                          		 th:data-combomodifytime="${combo.modifiedTime}"
+                          		 >
                           		 
                            </span>
                         </li> 
@@ -325,6 +331,7 @@
                                 <input type="number" th:name="comboDiscountRate" placeholder="20">
                             </li>
                             <li>
+                            	<span>List of dishes</span>
                             	 <input type="text" id="list_of_dishes_in_combo" th:name="list_of_dishes_in_combo" value="0">
                             </li>
                         </ul>
@@ -403,6 +410,7 @@
 								<input type="number" class="combo discount rate" th:name="comboDiscountRate">
                        		</li>
                        		 <li>
+                       		 	 <span>List of dishes:</span>
                             	 <input type="text" id="list_of_dishes_in_combo_edit" th:name="list_of_dishes_in_combo_edit" value="0">
                             </li>
                         </ul>

@@ -26,36 +26,17 @@
                     FEATURED DISHES
                 </div>
 
-                <div class="dish">
+                <div class="dish" th:each="dish, dish_index: ${dishes}">
                     <div class="dish-info">
-                        <div class="dish-name">Soup</div>
-                        <div class="dish-price">20 USD</div>
+                        <div class="dish-name" th:text="${dish.getDishName()}"></div>
+                        <div class="dish-price" th:text="${dish.getPrice()}"></div>
                     </div>
                     <div class="dish-img">
-                        <img src="image/soup.png" alt="">
+                         <img th:src="@{'getimage/'+${dish.url}}" alt="">
                     </div>
                 </div>
 
-                <div class="dish">
-                    <div class="dish-info">
-                        <div class="dish-name">Hot Pot</div>
-                        <div class="dish-price">100 USD</div>
-                    </div>
-                    <div class="dish-img">
-                        <img src="image/hotpot.png" alt="">
-                    </div>
-                </div>
-
-                <div class="dish">
-                    <div class="dish-info">
-                        <div class="dish-name">Spaghetti</div>
-                        <div class="dish-price">30 USD</div>
-                    </div>
-
-                    <div class="dish-img">
-                        <img src="image/spaghetti.png" alt="">
-                    </div>
-                </div>
+            
             </div>
             
             <!-- style="background-image: url('./image/bgevent.png');"-->
