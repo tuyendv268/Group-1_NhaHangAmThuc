@@ -1,5 +1,6 @@
 package com.cnpm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.DishEntity;
+import com.cnpm.repository.DishInComboRepository;
 import com.cnpm.repository.DishRepository;
 
 @Service
 public class DishService {
 	@Autowired
 	private DishRepository dishRepository;
-	
+	@Autowired
+	private DishInComboRepository dishInComboRepository;
 	
 	
 	public DishEntity addDish(DishEntity dish) {
@@ -53,5 +56,10 @@ public class DishService {
 		DishEntity dish = findById(id);
 		dish.setStatus(false);		
 		return dishRepository.save(dish);
+	}
+	
+	public ArrayList<Object[]> findDishesInCombo(Long comboid){
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) dishInComboRepository.findDishesInCombo(comboid);
+		return cursor;
 	}
 }
