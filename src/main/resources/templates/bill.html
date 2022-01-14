@@ -96,9 +96,11 @@
 					</thead>
 					<tbody class="customer-list">
 						<tr class="customer" th:each="bill,bill_index : ${bills}">
-							<td th:id="${bill_index.index}" th:data-billid="${bill.billId}"
+							<td th:id="${bill_index.index}" 
+								th:data-billid="${bill.billId}"
 								th:data-phone="${bill.customer.telephone}"
-								th:data-customer="${bill.customer.customerName}" th:data-total="${bill.finalTotal}"
+								th:data-customer="${bill.customer.customerName}" 
+								th:data-total="${bill.finalTotal}"
 								th:data-statuspayment="${bill.statusPayment}"
 								th:data-memberank="${bill.customer.membership.name}"
 								th:data-createdtime="${bill.createdDate}"></td>
