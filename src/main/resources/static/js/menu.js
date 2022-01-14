@@ -58,8 +58,8 @@ let getInfoDish = () => {
 			document.getElementsByClassName("dish description")[0].innerHTML = $('#' + index).data('dishdescription');
 			document.getElementsByClassName("dish category")[0].innerHTML = $('#' + index).data('dishcategory');
 			document.getElementsByClassName("dish ingredient")[0].innerHTML = $('#' + index).data('dishingredient');
-			//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-			//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+			document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + index).data('dishcreatetime');
+			document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + index).data('dishmodifytime');
 			document.getElementsByClassName("dish status of existence")[0].innerHTML = $('#' + index).data('dishstatus');
         })
     }
@@ -82,8 +82,7 @@ let getInfoDish = () => {
 		document.getElementsByClassName("dish description")[1].value = $('#' + index).data('dishdescription');
 		document.getElementsByClassName("dish category")[1].value = $('#' + index).data('dishcategory');
 		document.getElementsByClassName("dish ingredient")[1].value = $('#' + index).data('dishingredient');
-		//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-		//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+		
 		
     })
 }
@@ -185,8 +184,8 @@ let comboDetail = () => {
 				document.getElementsByClassName("combo description")[0].innerHTML = $('#' + index).data('combodescription');		
 				document.getElementsByClassName("combo amount of people")[0].innerHTML = $('#' + index).data('combonumberofpeoplerecommend');
 				document.getElementsByClassName("combo discount rate")[0].innerHTML = $('#' + index).data('combodiscountrate');
-				//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-				//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+				document.getElementsByClassName("combo creation time")[0].innerHTML = $('#' + index).data('combocreatetime');
+				document.getElementsByClassName("combo modification time")[0].innerHTML = $('#' + index).data('combomodifytime');
 			}			
             
         })

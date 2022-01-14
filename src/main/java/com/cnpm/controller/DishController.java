@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,9 @@ public class DishController {
 			newDish.setIngredient(dishIngredient);
 			newDish.setStatus(true);
 			newDish.setUrl(file.getOriginalFilename().toLowerCase());
+			LocalDate date = LocalDate.now();
+			Date datesql=java.sql.Date.valueOf(date);
+			newDish.setCreatedTime(datesql);
 			dishService.addDish(newDish);
 
 		} catch (Exception e) {

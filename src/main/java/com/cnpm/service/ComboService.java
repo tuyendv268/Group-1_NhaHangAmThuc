@@ -1,5 +1,6 @@
 package com.cnpm.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,9 @@ public class ComboService {
 	
 	public ComboEntity deleteCombo(Long id) {
 		ComboEntity combo = findById(id);
-		combo.setStatus(false);		
+		combo.setStatus(false);
+		LocalDate date = LocalDate.now();			
+		combo.setModifiedTime(date);
 		return comboRepository.save(combo);
 	}
 	
@@ -75,7 +78,9 @@ public class ComboService {
 			dishService.addDish(dishEntity);
 			
 		}
-		combo.setDishInComboEntities(listOfDishInComboEntity);		
+		combo.setDishInComboEntities(listOfDishInComboEntity);
+		LocalDate date = LocalDate.now();			
+		combo.setModifiedTime(date);
 		return addCombo(combo);
 		
 	}

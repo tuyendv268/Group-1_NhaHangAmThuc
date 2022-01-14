@@ -1,6 +1,8 @@
 package com.cnpm.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,18 +50,36 @@ public class DishService {
 		dish.setDescription(dishDescription);
 		dish.setCategory(dishCategory);
 		dish.setIngredient(dishIngredient);
-	
+		LocalDate date = LocalDate.now();
+		Date datesql=java.sql.Date.valueOf(date);
+		dish.setModifiedTime(datesql);
 		return dishRepository.save(dish);
 	}
 	
 	public DishEntity deleteDish(Long id) {
 		DishEntity dish = findById(id);
-		dish.setStatus(false);		
+		dish.setStatus(false);
+		LocalDate date = LocalDate.now();
+		Date datesql=java.sql.Date.valueOf(date);
+		dish.setModifiedTime(datesql);
 		return dishRepository.save(dish);
 	}
 	
 	public ArrayList<Object[]> findDishesInCombo(Long comboid){
 		ArrayList<Object[]> cursor = (ArrayList<Object[]>) dishInComboRepository.findDishesInCombo(comboid);
 		return cursor;
+	}
+	
+	public ArrayList<DishEntity> findTopFeaturedDish(){
+		ArrayList<DishEntity> topFeaturedDish = new ArrayList<DishEntity>();
+		List<Object[]> topDishes = dishRepository.findTopFeaturedDish();
+		for(Object[] object: topDishes) {
+			String name = String.valueOf(object[0]);
+			int price = Integer.valueOf(String.valueOf(object[1])).intValue();
+			String url = String.valueOf(object[2]);
+			DishEntity dishEntity = new DishEntity(name,price,url);
+			topFeaturedDish.add(dishEntity);
+		}
+		return topFeaturedDish;
 	}
 }

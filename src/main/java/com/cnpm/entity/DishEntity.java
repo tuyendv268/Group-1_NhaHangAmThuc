@@ -59,6 +59,18 @@ public class DishEntity {
 	@Column(name = "url")
 	private String url;
 	
+	
+	public DishEntity() {
+		super();
+	}
+
+	public DishEntity(String dishName, int price, String url) {
+		super();
+		this.dishName = dishName;
+		this.price = price;
+		this.url = url;
+	}
+	
 	public String getUrl() {
 		return url;
 	}

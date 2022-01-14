@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,6 +91,8 @@ public class ComboController {
 				
 			}
 			newCombo.setDishInComboEntities(listOfDishInComboEntity);
+			LocalDate date = LocalDate.now();			
+			newCombo.setCreatedTime(date);
 			comboService.addCombo(newCombo);
 			
 		
