@@ -32,7 +32,7 @@ CREATE TABLE `event` (
   `url` varchar(255) DEFAULT NULL,
   `is_displayed` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (2,'Khuyến mại cho đoàn thể giáo viên',5,'Nhà Giáo VN','2022-11-13 00:00:00','2022-11-20 00:00:00','8-3.jpg',_binary '\0'),(1,'Dành cho các cặp đôi và gia đình',5,'Phụ nữ VN','2022-01-15 00:00:00','2022-01-11 00:00:00','event.png',_binary ''),(4,'Tết an khang !',5,'Happy new year','2022-01-15 00:00:00','2022-01-11 00:00:00','1-6.jpg',_binary ''),(3,'Noel ấm áp',5,'Noel','2022-12-24 00:00:00','2022-12-25 00:00:00','merry_christmas.jpg',_binary '\0');
+INSERT INTO `event` VALUES (1,'ông công ông táo ',50,'Ngày Ông Công Ông Táo','2022-01-26 22:35:00','2022-01-23 00:35:00','ong_cong_ong_tao.jpg',_binary '\0'),(2,'kỉ niệm ngày thương binh liệt sĩ',50,'Kỉ Niệm Ngày Thương Binh Liệt Sĩ','2022-07-28 22:37:00','2022-07-27 22:37:00','27-7.jpg',_binary '\0'),(3,'free tất',50,'Kỉ Niệm Ngày Thành Lập Trường BKHN','2022-10-15 12:34:00','2022-10-15 00:00:00','bka.jpg',_binary '\0'),(4,'Kỉ Niệm Ngày Lễ Valentine',50,'Kỉ Niệm Ngày Lễ Valentine','2022-02-15 22:38:00','2022-02-14 22:38:00','valentine.png',_binary '\0'),(5,'Kỉ Niệm Ngày Lễ Valentine Trắng',50,'Kỉ Niệm Ngày Lễ Valentine Trắng','2022-03-15 22:39:00','2022-03-14 22:39:00','white-valentine.jpg',_binary '\0'),(6,'Tất Niên',50,'Tất Niên','2022-01-21 22:40:00','2022-01-20 22:40:00','tat-nien.jpg',_binary '\0');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14  0:33:34
+-- Dump completed on 2022-01-14 22:43:47
