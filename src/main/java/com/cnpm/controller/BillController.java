@@ -16,10 +16,12 @@ import com.cnpm.entity.BillDetail;
 
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.CustomerEntity;
+import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.TableRepository;
 import com.cnpm.service.BillService;
 import com.cnpm.service.CustomerService;
+import com.cnpm.service.DishService;
 import com.cnpm.service.TableService;
 @Controller
 public class BillController {
@@ -30,14 +32,16 @@ public class BillController {
 	@Autowired
 	private CustomerService customerService;
 	@Autowired 
-	private TableRepository tableRepository;
+	private DishService dishService;
 	@GetMapping(value = "/bill")
 	public String display(Model model) {
 		List<BillEntity> bills = billService.findUnpaidBill();
 		List<TableDTO> tables = tableService.findAvailable();
 		tables.addAll(tableService.findReserved());
+		List<DishEntity> dishes = dishService.findAll();
 		model.addAttribute("tables", tables);
 		model.addAttribute("bills", bills);
+		model.addAttribute("dishes", dishes);
 		return "bill";
 	}
 	@GetMapping("/deleteBill/{id}")

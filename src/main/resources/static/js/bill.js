@@ -1,73 +1,73 @@
 //Hiển thị hóa đơn
 const customer = document.querySelector('.customer-list');
 customer.addEventListener('click', function(event) {
-    var list = Array.prototype.slice.call( customer.children );
-   
-    billindex = list.indexOf(event.target.parentElement);
-    localStorage.setItem('target', billindex);
-    
-    var bill = document.getElementById("bill");
-    bill.style.display = "block";
-    create.style.display = "none";
-    
-   	var id= event.target.parentElement.children[1].innerText;
-   	
+	var list = Array.prototype.slice.call(customer.children);
+
+	billindex = list.indexOf(event.target.parentElement);
+	localStorage.setItem('target', billindex);
+
+	var bill = document.getElementById("bill");
+	bill.style.display = "block";
+	create.style.display = "none";
+
+	var id = event.target.parentElement.children[1].innerText;
+
 	document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : ";
 	document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : ";
 	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : ";
 	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : ";
 	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :";
-   	
-    const billid = document.querySelector('.bill-id span')
-    billid.innerHTML = id
-    const name = document.querySelector('#bill-name span')
-    name.innerHTML = event.target.parentElement.children[2].innerText;
-    const phone = document.querySelector('#bill-phone span')
-    phone.innerHTML = $('#'+billindex).data('phone');
-    const status = document.querySelector('#bill-completion-time span')
-    status.innerHTML = event.target.parentElement.children[5].innerText;
-    const total = document.querySelector('#bill-total span')
-    total.innerHTML = event.target.parentElement.children[4].innerText;
-    const createtime = document.querySelector('#bill-creation-time span')
-    createtime.innerHTML = $('#'+billindex).data('createdtime');
-    const rank = document.querySelector('#bill-rank span')
-    if($('#'+billindex).data('memberank') !=null){
-   	 	rank.innerHTML = $('#'+billindex).data('memberank');
-    }
-    else{
+
+	const billid = document.querySelector('.bill-id span')
+	billid.innerHTML = id
+	const name = document.querySelector('#bill-name span')
+	name.innerHTML = event.target.parentElement.children[2].innerText;
+	const phone = document.querySelector('#bill-phone span')
+	phone.innerHTML = $('#' + billindex).data('phone');
+	const status = document.querySelector('#bill-completion-time span')
+	status.innerHTML = event.target.parentElement.children[5].innerText;
+	const total = document.querySelector('#bill-total span')
+	total.innerHTML = event.target.parentElement.children[4].innerText;
+	const createtime = document.querySelector('#bill-creation-time span')
+	createtime.innerHTML = $('#' + billindex).data('createdtime');
+	const rank = document.querySelector('#bill-rank span');
+	if ($('#' +   billindex).data('memberank') =  null){
+		rank.innerHTML = $('#' + billindex).data('memberank');
+	}
+	else {
 		rank.innerHTML = "Khách vãng lai";
 	}
-    const seat = document.querySelector('#bill-seat span')
-    seat.innerHTML = event.target.parentElement.children[3].innerHTML;
-    $("#delete-yes-btn").attr("href", "/deleteBill/" + id);
+	const seat = document.querySelector('#bill-seat span')
+	seat.innerHTML = event.target.parentElement.children[3].innerHTML;
+	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
 });
 
 
 //Chỉnh sửa hóa đơn
 const editBill = document.querySelector('#edit-btn');
-editBill.addEventListener('click', function(){
-    var bill = document.getElementById("bill");
-    bill.style.display = "none";
-    var edit = document.getElementById("edit");
-    edit.style.display = "block";
+editBill.addEventListener('click', function() {
+	var bill = document.getElementById("bill");
+	bill.style.display = "none";
+	var edit = document.getElementById("edit");
+	edit.style.display = "block";
 });
 
 
 //Xác nhận chỉnh sửa
 const editDone = document.querySelector('#edit-done-btn');
-editDone.addEventListener('click', function(){
-    var edit = document.getElementById("edit");
-    edit.style.display = "none";
-    var bill = document.getElementById("bill");
-    bill.style.display = "block";
+editDone.addEventListener('click', function() {
+	var edit = document.getElementById("edit");
+	edit.style.display = "none";
+	var bill = document.getElementById("bill");
+	bill.style.display = "block";
 });
 
 
 //Xóa hóa đơn
 const deleteBill = document.querySelector('#delete-btn');
-deleteBill.addEventListener('click', function(){
-    var delete1 = document.getElementById("delete");
-    delete1.style.display = "block";
+deleteBill.addEventListener('click', function() {
+	var delete1 = document.getElementById("delete");
+	delete1.style.display = "block";
 });
 
 
@@ -75,89 +75,89 @@ deleteBill.addEventListener('click', function(){
 /*
 const deleteYes = document.querySelector('#delete-yes-btn');
 deleteYes.addEventListener('click', function(){
-    var bill = document.getElementById("bill");
-    bill.style.display = "none";
-    var delete1 = document.getElementById("delete");
-    delete1.style.display = "none";
-    create.style.display = "block";
-    var item = customer.children[localStorage.getItem('target')];
-    item.remove();
+	var bill = document.getElementById("bill");
+	bill.style.display = "none";
+	var delete1 = document.getElementById("delete");
+	delete1.style.display = "none";
+	create.style.display = "block";
+	var item = customer.children[localStorage.getItem('target')];
+	item.remove();
 });
 */
 
 //Hủy xóa hóa đơn
 const deleteNo = document.querySelector('#delete-no-btn');
-deleteNo.addEventListener('click', function(){
-    var delete1 = document.getElementById("delete");
-    delete1.style.display = "none";
+deleteNo.addEventListener('click', function() {
+	var delete1 = document.getElementById("delete");
+	delete1.style.display = "none";
 });
 
 
 //Thanh toán hóa đơn
 const payBill = document.querySelector('#pay-btn');
-payBill.addEventListener('click', function(){
-    var pay = document.getElementById("pay");
-    pay.style.display = "block"; 
+payBill.addEventListener('click', function() {
+	var pay = document.getElementById("pay");
+	pay.style.display = "block";
 });
 
 
 //Thanh toán tiền mặt
 const payCash = document.querySelector('#pay-cash-btn');
-payCash.addEventListener('click', function(){
-    var pay = document.getElementById("pay");
-    pay.style.display = "none";
-    var cash = document.getElementById("pay-cash");
-    cash.style.display = "block";
+payCash.addEventListener('click', function() {
+	var pay = document.getElementById("pay");
+	pay.style.display = "none";
+	var cash = document.getElementById("pay-cash");
+	cash.style.display = "block";
 });
 
 
 //Xác nhận số tiền
 const payCashMoney = document.querySelector('#cash-btn');
-payCashMoney.addEventListener('click', function(){
-    var cash = document.getElementById("pay-cash");
-    cash.style.display = "none";
-    var cashConf = document.getElementById("pay-cash-conf");
-    cashConf.style.display = "block";
+payCashMoney.addEventListener('click', function() {
+	var cash = document.getElementById("pay-cash");
+	cash.style.display = "none";
+	var cashConf = document.getElementById("pay-cash-conf");
+	cashConf.style.display = "block";
 });
 
 
 //Hoàn tất thanh toán tiền mặt
 const cashConfirm = document.querySelector('#cash-conf-btn');
-cashConfirm.addEventListener('click', function(){
-    var cashConf = document.getElementById("pay-cash-conf");
-    cashConf.style.display = "none";
-    var bill = document.getElementById("bill");
-    bill.style.display = "none";
+cashConfirm.addEventListener('click', function() {
+	var cashConf = document.getElementById("pay-cash-conf");
+	cashConf.style.display = "none";
+	var bill = document.getElementById("bill");
+	bill.style.display = "none";
 });
 
 
 //Thanh toán thẻ ATM
 const payAtm = document.querySelector('#pay-atm-btn');
-payAtm.addEventListener('click', function(){
-    var pay = document.getElementById("pay");
-    pay.style.display = "none";
-    var atm = document.getElementById("pay-atm");
-    atm.style.display = "block";
+payAtm.addEventListener('click', function() {
+	var pay = document.getElementById("pay");
+	pay.style.display = "none";
+	var atm = document.getElementById("pay-atm");
+	atm.style.display = "block";
 });
 
 
 //Hoàn tất thanh toán thẻ ATM
 const atmConfirm = document.querySelector('#atm-conf-btn');
-atmConfirm.addEventListener('click', function(){
-    var atm = document.getElementById("pay-atm");
-    atm.style.display = "none";
-    var bill = document.getElementById("bill");
-    bill.style.display = "none";
+atmConfirm.addEventListener('click', function() {
+	var atm = document.getElementById("pay-atm");
+	atm.style.display = "none";
+	var bill = document.getElementById("bill");
+	bill.style.display = "none";
 });
 
 
 //Đóng hóa đơn
 const billDone = document.querySelector('#done-btn');
-billDone.addEventListener('click', function(){
-console.log(billDone);
-var bill = document.getElementById("bill");
-bill.style.display = "none";
-create.style.display = "block";
+billDone.addEventListener('click', function() {
+	console.log(billDone);
+	var bill = document.getElementById("bill");
+	bill.style.display = "none";
+	create.style.display = "block";
 });
 
 
@@ -169,14 +169,14 @@ const newSeatInput = document.querySelector('#seat-input');
 //Thêm hóa đơn mới
 const create = document.querySelector('#create-btn');
 
-create.addEventListener('click', function(){   
+create.addEventListener('click', function() {
 	var createBill = document.getElementById("new");
-    createBill.style.display = "block";
-    create.style.display = "none";
+	createBill.style.display = "block";
+	create.style.display = "none";
 });
 //tat nút tạo mới
 const cancel_new = document.querySelector('#cancel-new-btn')
-cancel_new.addEventListener('click', function(){
+cancel_new.addEventListener('click', function() {
 	var createBill = document.getElementById("new");
 	createBill.style.display = 'none';
 	create.style.display = 'block';
@@ -185,40 +185,82 @@ cancel_new.addEventListener('click', function(){
 // bật tab chọn bàn
 
 const selectTablebtn = document.getElementById('new-select-btn');
-selectTablebtn.addEventListener('click', function(){
+selectTablebtn.addEventListener('click', function() {
 	var selectTable = document.getElementById('select-table');
 	selectTable.style.display = "block";
 });
 const doneTablebtn = document.getElementById('done-select-table');
-doneTablebtn.addEventListener('click', function(){
+doneTablebtn.addEventListener('click', function() {
 	var selectTable = document.getElementById('select-table');
 	selectTable.style.display = "none";
 });
+// mở tab chọn món
+const selectDishbtn = document.getElementById('add-btn');
+const selectDish = document.getElementById('dish-select');
+const doneSelectDish = document.getElementById('done-select-dish');
+selectDishbtn.addEventListener('click', function() {
+	selectDish.style.display = "block";
+});
+
+
+
+// bật số lượng
+const listCheckbox = document.getElementsByName("dish-checkbox");
+const quantity = document.getElementsByName("quantity-dish");
+for (let i = 0; i < listCheckbox.length; i++) {
+	(function(index) {
+		listCheckbox[i].onclick = function() {
+			if (listCheckbox[index].checked) {
+				listCheckbox[index].parentElement.children[3].style.display = "inline-block"
+			} else {
+				listCheckbox[index].parentElement.children[3].style.display = "none";
+			}
+		}
+
+	})(i);
+}
+
+const dishlist = document.getElementsByClassName("dish-list")[0];
+doneSelectDish.addEventListener('click', function() {
+	selectDish.style.display = "none";
+	dishlist.innerHTML = '';
+	for (let i = 0; i < listCheckbox.length; i++) {
+		if (listCheckbox[i].checked) {
+			var dish = document.createElement("LI");
+			dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[3].cloneNode(true));
+			dishlist.appendChild(dish);
+		}
+	}
+});
+
+
+
 
 var bill_id_get_from_table = sessionStorage.getItem("bill_id_get_from_table");
-if(bill_id_get_from_table != null){
+if (bill_id_get_from_table != null) {
 	var idx = 0;
-	var temp = $('#'+ idx).data('billid');
-	while(temp!=undefined){
-		if(temp == bill_id_get_from_table){
+	var temp = $('#' + idx).data('billid');
+	while (temp != undefined) {
+		if (temp == bill_id_get_from_table) {
 			bill.style.display = "block";
-   			create.style.display = "none";
-   			
-   			var billID = bill_id_get_from_table;
-   			var customername = $('#'+idx).data('customer');
-			var phone = $('#'+idx).data('phone');
-			var total = $('#'+idx).data('total');
-			var statuspayment = $('#'+idx).data('statuspayment');
-			var createdtime = $('#'+idx).data('createdtime');
+			create.style.display = "none";
+
+			var billID = bill_id_get_from_table;
+			var customername = $('#' + idx).data('customer');
+			var phone = $('#' + idx).data('phone');
+			var total = $('#' + idx).data('total');
+			var statuspayment = $('#' + idx).data('statuspayment');
+			var createdtime = $('#' + idx).data('createdtime');
 			document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : " + billID;
 			document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : " + customername;
 			document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : " + phone;
 			document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : " + total;
 			document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :" + createdtime;
-   			break;
+			break;
 		}
 		idx = idx + 1;
-		temp = $('#'+ idx).data('billid');
+		temp = $('#' + idx).data('billid');
 	}
 	sessionStorage.removeItem("bill_id_get_from_table");
 	bill_id_get_from_table = null;

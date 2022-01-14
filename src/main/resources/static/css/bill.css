@@ -69,13 +69,13 @@ tbody tr td{
 }
 
 #bill{
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 800px;
     height: 500px;
     background: rgb(196, 196, 196);
-    top: 80px;
-    left: 240px;
+    top: 120px;
+    left: 400px;
     display: none;
 }
 
@@ -109,7 +109,7 @@ tbody tr td{
 }
 
 #bill #delete-btn{
-    left: 150px;
+    left: 150px; 
     color: black;
 }
 
@@ -146,7 +146,7 @@ tbody tr td{
     margin-left: 6px;
 }
 
-#dish-list{
+.dish-list{
     position: absolute;
     background: white;
     border-radius: 15px;
@@ -154,7 +154,53 @@ tbody tr td{
     height: 300px;
     right: 15px;
     top: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
+}
+#dish-select{
+    position: fixed;
+    background: rgb(196, 196, 196);
+    border-radius: 15px;
+    width: 500px;
+    height: 500px;
+    left: 500px;
+    top: 160px;
+    display:none;
+    
+}
+#dish-select h2{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#dish-select>div{
+    background: white;
+    /* border-radius: 15px; */
+    width:460px;
+    height: 330px;
+    margin-left: 21.5px;
+    overflow-y: scroll;
+}
+
+#dish-select>button{
+    font-size: 30px;
+    color: white;
+    background: rgb(72, 72, 72);
+    border: none;
+    border-radius: 35px;
+    position: absolute;
+    height: 48px;
+    width: 125px;
+    margin-top: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+#ulDish{
+	padding : 10px;
+	
 }
 
 #create-btn{

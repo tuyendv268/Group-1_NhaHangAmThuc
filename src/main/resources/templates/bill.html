@@ -160,24 +160,16 @@
 						<h3 class="popup-bill-completion-time">Status:</h3>
 						<span></span>
 					</div>
-					<div id="dish-list">
-					<!--	<ul class="ulDish" th:each=", dish_index: ${dishes}">
-                        	<li th:if="${dish.status}">
-                           	<img th:src="@{'getimage/'+${dish.url}}" alt="">
-                           	<span class="temp" th:id="${dish.dishId}"
-                           		 th:text="${dish.getDishName()}">
-                          		 
-                           	</span>
-                        	</li> 
-                    	</ul> >,-->
-					</div>
 					
+					<div class = "dish-list">
+					
+					</div>
 					<button id="edit-btn">Edit</button>
 					<button id="delete-btn">Delete</button>
 					<button id="done-btn">Done</button>
 					<button id="add-btn">Add/Remove</button>
 					<button id="pay-btn">Pay</button>
-				</div>
+				</div >
 
 				<form th:action="@{/newBill}" method="POST">
 					<div id="new">
@@ -229,7 +221,25 @@
 
 					</div>
 				</form>
-
+				<div id="dish-select">
+					<h2>Select Dish</h2>
+					<div>
+					<li>
+						<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
+                        	
+                           	<img th:src="@{'getimage/'+${dish.url}}" alt="">
+                           	<span  class= "dish-name" th:id= "'dish' + ${dish.dishId}"
+                           		 th:text="${dish.getDishName()}">
+                           	</span>
+                           	<input type = "checkbox" name = "dish-checkbox">
+                        	<input type = "number" style="display:none" name = "quantity-dish">
+                    	</ul> 
+                    </li>
+					</div>
+					<button id="done-select-dish" >
+								Done
+					</button>
+				</div>
 				<div id="edit">
 					<h2>Edit</h2>
 					<h3>Customer’s name</h3>
