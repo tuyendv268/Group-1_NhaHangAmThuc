@@ -38,14 +38,14 @@ public class DishService {
 		return dishRepository.findByDishName(dishName);
 	}
 	
-	public DishEntity editDish(Long id,String dishName,int dishPrice,String dishDescription, String dishCategory,String dishIngredient, String dishStatus) {
+	public DishEntity editDish(Long id,String dishName,int dishPrice,String dishDescription, String dishCategory,String dishIngredient) {
 		DishEntity dish = findById(id);
 		dish.setDishName(dishName);
 		dish.setPrice(dishPrice);
 		dish.setDescription(dishDescription);
 		dish.setCategory(dishCategory);
 		dish.setIngredient(dishIngredient);
-		dish.setStatus(Boolean.valueOf(dishStatus));		
+	
 		return dishRepository.save(dish);
 	}
 	

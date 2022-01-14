@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnpm.dto.TableDTO;
+
 import com.cnpm.entity.BillDetail;
+
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.TableEntity;
+import com.cnpm.repository.TableRepository;
 import com.cnpm.service.BillService;
 import com.cnpm.service.CustomerService;
 import com.cnpm.service.TableService;
@@ -26,6 +29,8 @@ public class BillController {
 	private TableService tableService;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired 
+	private TableRepository tableRepository;
 	@GetMapping(value = "/bill")
 	public String display(Model model) {
 		List<BillEntity> bills = billService.findUnpaidBill();
@@ -58,9 +63,8 @@ public class BillController {
 		CustomerEntity customer = new CustomerEntity();
 		if(customerId != "") {
 			customer = customerService.getById(Long.valueOf(customerId).longValue());
-		}
-		else  customer = customerService.newCustomer(customerName, phone, (long) 1);
-		customerService.addCustomer(customer);
+		}else  customer = customerService.newCustomer(customerName, phone, (long) 6);
+		customerService.addStranger(customer);
 		List<TableEntity> tables = tableService.getByIds(selectTables);
 		
 		
@@ -70,6 +74,8 @@ public class BillController {
 				
 			}
 			table.setBill(bill);
+			table.setGuest(customerName);
+			table.setPhone(phone);
 			table.setStatus("occupied");
 		}
 		bill.setCustomer(customer);
@@ -110,5 +116,5 @@ public class BillController {
 //		}
 //		this.billService.deleteById(id);
 //		return "redirect:/bill";
-	}
+//	}
 }

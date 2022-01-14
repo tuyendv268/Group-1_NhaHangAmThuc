@@ -30,8 +30,9 @@ CREATE TABLE `event` (
   `time_end` datetime DEFAULT NULL,
   `time_start` datetime DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `is_displayed` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (2,'Khuyến mại cho đoàn thể giáo viên',5,'Nhà Giáo VN','2021-11-13 00:00:00','2021-11-20 00:00:00','8-3.jpg'),(1,'Dành cho các cặp đôi và gia đình',5,'Phụ nữ VN','2021-10-13 00:00:00','2021-10-20 00:00:00','event.png'),(4,'Tết an khang !',5,'Happy new year','2021-12-27 00:00:00','2022-01-02 00:00:00','1-6.jpg'),(3,'Noel ấm áp',5,'Noel','2021-12-24 00:00:00','2021-12-25 00:00:00','merry_christmas.jpg');
+INSERT INTO `event` VALUES (2,'Khuyến mại cho đoàn thể giáo viên',5,'Nhà Giáo VN','2022-11-13 00:00:00','2022-11-20 00:00:00','8-3.jpg',_binary '\0'),(1,'Dành cho các cặp đôi và gia đình',5,'Phụ nữ VN','2022-01-15 00:00:00','2022-01-11 00:00:00','event.png',_binary ''),(4,'Tết an khang !',5,'Happy new year','2022-01-15 00:00:00','2022-01-11 00:00:00','1-6.jpg',_binary ''),(3,'Noel ấm áp',5,'Noel','2022-12-24 00:00:00','2022-12-25 00:00:00','merry_christmas.jpg',_binary '\0');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-10 14:14:33
+-- Dump completed on 2022-01-14  0:33:34

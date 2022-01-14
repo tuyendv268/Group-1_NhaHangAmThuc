@@ -50,6 +50,12 @@
 							<span>Menu</span>
 						</a>
 
+					<li>
+						<a href="/membership">
+							<i class="material-icons">person</i>
+							<span>Membership</span>
+						</a>
+
 					</li>
 
 					<li>
@@ -59,15 +65,6 @@
 						</a>
 
 					</li>
-
-					<li>
-						<a href="./membership.html">
-							<i class="material-icons">person</i>
-							<span>Membership</span>
-						</a>
-
-					</li>
-
 					<li>
 						<a href="#">
 							<i class="material-icons">note_alt</i>
@@ -99,16 +96,14 @@
 					</thead>
 					<tbody class="customer-list">
 						<tr class="customer" th:each="bill,bill_index : ${bills}">
-							<td th:id="${bill_index.index}" 
-								th:data-billid="${bill.billId}"
+							<td th:id="${bill_index.index}" th:data-billid="${bill.billId}"
 								th:data-phone="${bill.customer.telephone}"
-								th:data-customer="${bill.customer.custormerName}"
-								th:data-total="${bill.finalTotal}"
+								th:data-customer="${bill.customer.customerName}" th:data-total="${bill.finalTotal}"
 								th:data-statuspayment="${bill.statusPayment}"
-								th:data-memberank="${bill.customer?.membership?.type}"
+								th:data-memberank="${bill.customer.membership.name}"
 								th:data-createdtime="${bill.createdDate}"></td>
 							<td th:text="${bill.billId}"></td>
-							<td th:text="${bill.customer.custormerName}"></td>
+							<td th:text="${bill.customer.customerName}"></td>
 							<td>
 								<p th:each="table : ${bill.tables}">
 									<span th:text="${table.tableName}"></span>
@@ -133,19 +128,19 @@
 				<div id="bill">
 					<h2>Infomation</h2>
 					<div class="bill-id">
-						<h3 class="popup-bill-id">ID:</h3 >
+						<h3 class="popup-bill-id">ID:</h3>
 						<span></span>
 					</div>
 					<div id="bill-name">
-						<h3 class="popup-bill-name">Customer’s name: </h3 >
+						<h3 class="popup-bill-name">Customers name: </h3>
 						<span></span>
 					</div>
 					<div id="bill-phone">
-						<h3 class="popup-bill-phone">Phone:</h3 >
+						<h3 class="popup-bill-phone">Phone:</h3>
 						<span></span>
 					</div>
 					<div id="bill-rank">
-						<h3 class="popup-bill-rank">Member Rank:</h3 >
+						<h3 class="popup-bill-rank">Member Rank:</h3>
 						<span></span>
 					</div>
 					<div id="bill-seat">
@@ -153,16 +148,16 @@
 						<span></span>
 					</div>
 					<div id="bill-total">
-						<h3 class="popup-bill-total">Total: </h3 >
+						<h3 class="popup-bill-total">Total: </h3>
 						<span></span>
 					</div>
 
 					<div id="bill-creation-time">
-						<h3 class="popup-bill-creation-time">Created:</h3 >
+						<h3 class="popup-bill-creation-time">Created:</h3>
 						<span></span>
 					</div>
 					<div id="bill-completion-time">
-						<h3 class="popup-bill-completion-time">Status:</h3 >
+						<h3 class="popup-bill-completion-time">Status:</h3>
 						<span></span>
 					</div>
 					<div id="dish-list">
@@ -184,7 +179,7 @@
 					<button id="pay-btn">Pay</button>
 				</div>
 
-				<form  th:action="@{/newBill}" method="POST">
+				<form th:action="@{/newBill}" method="POST">
 					<div id="new">
 						<h2>Create a new bill</h2>
 						<h3>Customer’s name</h3>
@@ -195,51 +190,43 @@
 						<h3>Customer’s ID </h3>
 						<input id="code-input" type="text" placeholder = "Enter Customer's ID'"th:name="customerId">
 						<h3>Seat</h3>
-						<span id = "checked-table"></span >
-			
-						<div id="new-select-btn">Select</div>					
+						<span id="checked-table"></span>
+
+						<div id="new-select-btn">Select</div>
 						<!--<input id="seat-input" type="text"> -->
-						<button id="new-done-btn" type = "submit"  >Done</button>
+						<button id="new-done-btn" type="submit">Done</button>
 						<div id="cancel-new-btn"> Cancel</div>
 						<div id="select-table">
-		                    <h2>Select table</h2>
-		                    <div>
-		                        <ul>
-									<li th:each="table : ${tables}" th:switch= "${table.status}">
-										<label class="container" th:case  = "available">
-										    <span class="table-free"></span>
-		                                    <p class="table-name" th:text ="${table.tableName}" ></p>
-		                                    <p >Available</p >
-		                                    <input id="checkbox-table" 
-		                                    	th:data-name = "${table.tableName}" 
-		                                    	type="checkbox" 
-		                                    	name="selectTables" 
-		                                    	th:value="${table.tableId}"/>
-		                                    <span class="checkmark"></span>
-		                                    
-		                                </label>
-		                                <label class="container" th:case  = "reserved">
-										    <span class="table-reserved"></span>
-		                                    <p class="table-name" th:text ="${table.tableName}" ></p>
-		                                    <p th:text = "'Reserved by: ' + ${table.guestName }"></p >
-		                                    <input id="checkbox-table" 
-		                                    	th:data-name = "${table.tableName}" 
-		                                    	type="checkbox" 
-		                                    	name="selectTables" 
-		                                    	th:value="${table.tableId}"/>
-		                                    <span class="checkmark"></span>
-		                                    
-		                                </label>
-		                                
-						        	</li>
-						 
-		                        </ul>
-		                    </div>
-		                    <a id= "done-select-table">
-		                        Done
-		                    </a >
-			             </div>
-						        	
+							<h2>Select table</h2>
+							<div>
+								<ul>
+									<li th:each="table : ${tables}" th:switch="${table.status}">
+										<label class="container" th:case="available">
+											<span class="table-free"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p>Available</p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												type="checkbox" name="selectTables" th:value="${table.tableId}" />
+											<span class="checkmark"></span>
+										</label>
+										<label class="container" th:case="reserved">
+											<span class="table-reserved"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												th:data-customername="${table.guestName}" id="${table.tableId}"
+												th:data-customerphone="${table.telephone}" type="checkbox"
+												name="selectTables" th:value="${table.tableId}" />
+											<span class="checkmark"></span>
+										</label>
+									</li>
+								</ul>
+							</div>
+							<a id="done-select-table" onclick="getCustomerInfo()">
+								Done
+							</a>
+						</div>
+
 					</div>
 				</form>
 
@@ -253,7 +240,6 @@
 					<input type="text">
 					<h3>Seat</h3>
 					<input type="text">
-					
 					<button id="edit-done-btn">Done</button>
 				</div>
 
@@ -291,13 +277,56 @@
 					<input type="text">
 					<button id="atm-conf-btn">Payment confirm</button>
 				</div>
-				
-				
+
+
 			</div>
 		</div>
 	</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// lấy thông tin của khách đã đặt bàn
+	function getCustomerInfo() {
+		var checkedValue = null;
+		var inputElements = document.getElementsByClassName('checkbox-table');
+		var customername = null, customerphone = null;
+		var name_array = [], phone_array = [];
+
+		for (var i = 0; inputElements[i]; ++i) {
+			if (inputElements[i].checked) {
+				checkedValue = inputElements[i].value;
+				if((inputElements[i].dataset.customername != null) 
+				|| (inputElements[i].dataset.customerphone != null)){
+					name_array.push(inputElements[i].dataset.customername);
+					phone_array.push(inputElements[i].dataset.customerphone);
+				}
+			}
+		}
+		let flag = 1;
+		for (var i = 0; i < name_array.length; i++) {
+			flag = 1;
+			for (var j = 0; j < name_array.length; j++) {
+				if((name_array[i]!=name_array[j]) || (phone_array[i]!=phone_array[j])){
+					alert("Khác Thông Tin Của Khách");
+					flag = 0;
+					break;
+				}
+			}
+			if(!flag){
+				break;
+			}
+		}
+		if(flag){
+			document.getElementById('name-input').setAttribute('value', name_array[0]);
+			document.getElementById('phone-input').setAttribute('value', phone_array[0]);
+		}else{
+			document.getElementById('name-input').setAttribute('value', "");
+			document.getElementById('phone-input').setAttribute('value', "");
+		}
+		name_array = [];
+		phone_array = [];
+	}
+</script>
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/bill.js"></script>
 

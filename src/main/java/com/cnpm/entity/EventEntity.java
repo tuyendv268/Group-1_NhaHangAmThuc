@@ -1,6 +1,5 @@
 package com.cnpm.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +48,9 @@ public class EventEntity {
 	@Column(name = "discount_rate")
 	private int discountRate;
 	
+	@Column(name ="is_displayed")
+	private boolean isDisplayed;
+	
 	public EventEntity() {
 		
 	}
@@ -93,6 +95,15 @@ public class EventEntity {
 		this.bills = bills;
 	}
 
+	
+	public boolean isDisplayed() {
+		return isDisplayed;
+	}
+
+	public void setDisplayed(boolean isDisplayed) {
+		this.isDisplayed = isDisplayed;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -130,8 +141,4 @@ public class EventEntity {
 	public void setDiscountRate(int discountRate) {
 		this.discountRate = discountRate;
 	}
-
-	
-	
-	
 }

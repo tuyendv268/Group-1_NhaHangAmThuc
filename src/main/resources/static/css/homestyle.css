@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Gotu&family=Oldenburg&family=Poppins&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+body{   
+    height: 100%;
+    width: 100%;
+    background-image: url("/image/bgimg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Gotu";
+}
+
+.top{
+    width: 100%;
+    height: 75px;
+    color: white;
+    border-bottom-style: groove;
+    display: flex;
+    font-size: 45px;
+}
+
+.top-welcome{
+    background: rgba(0,0,0,0);
+    width: 250px;
+    font-size: 50px;
+    /* font-weight: bold; */
+    text-align: center;
+    margin: auto 0;
+    margin-right: 20px;
+    margin-left: 25px ;
+}
+
+.top-home, .top-login{
+    height: 70%;
+    margin: auto;
+    font-size: 26px;
+    border: none;
+    background: rgba(0,0,0,0);
+    color: white;
+    font-weight: 15px;;
+    margin: auto 5px;
+    cursor: pointer;
+}
+
+.top-login{
+    margin-left: 1050px;
+}
+
+.top img{
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+.content{
+    display: flex;
+}
+
+.featured-dish{
+    width: 315px;
+    height: 600px;
+    background: linear-gradient(to bottom, rgb(29, 168, 143), rgb(55, 47, 77));
+    margin-top: 25px;
+    margin-left: 55px;
+    border-radius: 30px;
+}
+
+.dish-head{
+    width: 90%;
+    font-size: 30px;
+    text-align: center;
+    margin: 18px auto 0 ;
+    border-bottom: 3px solid;
+    font-family: "Poppins";
+}
+
+.dish{
+    height: 125px;
+    width: 210px;
+    background: rgb(161, 180, 186);
+    margin: 35px auto 0;
+    border-radius: 30px;
+    display: flex;
+}
+
+.dish-info{
+    width: 110px;
+    height: 100%;
+}
+
+.dish-info div{
+    margin-left: 20px;
+}
+
+.dish-name{
+    margin-top: 20px;
+    font-size: 23px;
+    color: rgb(82,7,74);
+}
+
+.dish-price{
+    margin-top: 5px;
+    font-size: 18px;
+    color:rgb(255,0,0);
+}
+
+.dish-img{
+    width: 95px;
+    height: 95px;
+    margin: auto;
+}
+
+.dish-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.event{
+    width: 975px;
+    height: 600px;
+    background-image: url("/image/bgevent.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: 25px;
+    margin-left: 55px;
+    border-radius: 30px;
+}
+
+.serve-meal{
+    height: 108px;
+    width: 364px;
+    background: rgb(202, 119, 119);
+    margin-top: 400px;
+    margin-left: 15px;
+    border-radius: 55px;
+    cursor: pointer;
+    padding-top: 19px;
+}
+
+.serve-meal span{
+    display: block;
+    text-align: center;
+}
+
+.serve-meal :first-child{
+    font-size: 27px;
+    color: #FAFF00;
+}
+
+.serve-meal :last-child{
+    font-size: 18px;
+    color: white;
+    margin-top: -7px;
+    
+}
+
+
+.show-event{
+	position: relative;
+    display: none;
+}
+
+.mySlides {
+    margin: 25px auto;
+    background: rgba(244, 212, 220, 0.81);
+    height: 500px;
+    width: 729px;
+    border-radius: 30px;
+    /* display: none */
+}
+
+/* img {
+    vertical-align: middle;
+} */
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    user-select: none;
+    background-color: rgba(139, 139, 139, 0.8);
+    left: 50px;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+      left: unset;
+    right: 50px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(105, 105, 105, 0.8);
+  }
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 23px;
+  width: 23px;
+  margin: 0 20px;
+  background-color: rgb(0, 255, 209);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: rgb(0, 136, 111);
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+.mySlides img{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+

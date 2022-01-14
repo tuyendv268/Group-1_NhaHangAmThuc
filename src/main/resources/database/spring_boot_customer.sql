@@ -30,7 +30,7 @@ CREATE TABLE `customer` (
   `membership_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKnfl9gus1w7pr4didc4cxorh1t` (`membership_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',1),(2,'Phạm Bá Chinh',670,'0143567982',2),(3,'Đào Minh Tiến',700,'0987654312',3),(4,'Lê Văn Đức',4454,'0968754123',4),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',5);
+INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',4),(2,'Phạm Bá Chinh',670,'0143567982',1),(3,'Đào Minh Tiến',700,'0987654312',1),(4,'Lê Văn Đức',4454,'0968754123',3),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',4),(6,'Lê Văn Đức',0,'0999999999',1),(7,'Lê Văn Đức',0,'0999999999',1),(8,'Lê Văn Đức',0,'0999999999',1),(9,'Lê Văn Đức',0,'0999999999',1),(10,'Lê Văn Đức',0,'0999999999',1),(14,'Dương Văn Tuyển',0,'0999999999',1),(15,'Dương Văn Tuyển',0,'0999999999',1),(16,'Nguyễn Văn B',0,'0999999999',1),(17,'Dương Văn Tuyển',0,'0999999991',1),(18,'Pagani',0,'Imola',1),(19,'Anh bán đồ chơi tóc cam đầu ngõ',0,'Số điện thoại của người Nga',1),(20,'Chủ tịch Tung Của',0,'Số điện thoại của Quần Ngọc Các',1),(21,'1',-1,'1',6),(23,'Lê Văn Đức',-1,'0999999999',6);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-10 14:14:33
+-- Dump completed on 2022-01-14  0:33:34

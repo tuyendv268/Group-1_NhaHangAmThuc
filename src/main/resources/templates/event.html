@@ -27,10 +27,12 @@
 			</h1>
 
 			<div class="search">
-				<input type="text" placeholder="search">
-				<a href="#">
-					<i class="material-icons">search</i>
-				</a>
+				<form th:action="@{/event/search}" method="GET">
+					<input type="text" placeholder="search" th:name="eventName" required>
+					<a href="#">
+						<i class="material-icons">search</i>
+					</a>
+				</form>
 			</div>
 
 			<div class="home">
@@ -68,7 +70,7 @@
 					</li>
 
 					<li>
-						<a href="#">
+						<a href="/membership">
 							<i class="material-icons">person</i>
 							<span>Membership</span>
 						</a>
@@ -98,7 +100,7 @@
 
 				<div class="event">
 					<div class="event-item" th:each="event, event_index: ${events}">
-						<img th:src="@{'getimage/'+${event.url}}" alt="">
+						<img th:src="@{'/getimage/'+${event.url}}" alt="">
 						<span th:id="${event_index.index}" 
 							th:text="${event.eventName}" 
 							th:data-url="${event.url}"
@@ -106,7 +108,7 @@
 							th:data-eventname="${event.eventName}"
 							th:data-discount="${event.discountRate}" 
 							th:data-starttime="${event.timeStart}"
-							th:data-endtime="${event.timeEnd}"
+							th:data-endtime="${event.timeEnd}" 
 							th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
@@ -116,34 +118,35 @@
 						<ul>
 							<li id="name_event">
 								<span>Name event</span>
-								<input type="text" class="text" th:name="eventName">
+								<input type="text" class="text" th:name="eventName" required>
 							</li>
 							<li id="describe_event">
 								<span>Event description</span>
-								<input type="text" class="text" th:name="description">
+								<input type="text" class="text" th:name="description" required>
 							</li>
 							<div id="poster_upload">
 								<p>Poster</p>
 								<label for="fileImage">Upload
 								</label>
 								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg"
-									style="display:none;" />
+									required />
 							</div>
 							<!--<p>
 								<img id="thumbnail" alt="Image Preview" />
 							</p>-->
 							<li id="start_event">
 								<span>Start time</span>
-								<input type="datetime-local" class="text" th:name="timeStart">
+								<input type="datetime-local" class="text" th:name="timeStart" required>
 							</li>
 							<li id="end_event">
 								<span>End time</span>
-								<input type="datetime-local" class="text" th:name="timeEnd">
+								<input type="datetime-local" class="text" th:name="timeEnd" required>
 							</li>
 							<div class="discount">
 								<li>
 									<span>Sale</span>
-									<p>Preferential rate<input type="text" class="text" th:name="discountRate">%</p>
+									<p>Preferential rate<input type="text" class="text" th:name="discountRate"
+											required>%</p>
 								</li>
 								<button>Select in menu</button>
 							</div>

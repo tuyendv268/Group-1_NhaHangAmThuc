@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -76,9 +75,9 @@ public class EventController {
 	public String display(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
 		model.addAttribute("events", events);
-		for (EventEntity eventEntity : events) {
-			System.out.println(eventEntity.getUrl());
-		}
+//		for (EventEntity eventEntity : events) {
+//			System.out.println(eventEntity.getUrl());
+//		}
 		return "event";
 	}
 	
@@ -116,11 +115,14 @@ public class EventController {
 	/*
 	 * This method is used to search event with name of event
 	 */ 
-	@GetMapping(value = "/test")
-	public String searchEvent(@RequestParam String eventName) {
-		EventEntity event = eventService.findEventByName(eventName);
-		System.out.println(event.getEventName());
-		return "login";
+	@GetMapping(value = "/event/search")
+	public String searchEvent(@RequestParam String eventName, Model model) {
+		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findEventByName(eventName);
+		if(events.size() != 0) {
+			model.addAttribute("events", events);
+			return "event";
+		}
+		return "redirect:/event";
 	}
 	
 	/*
