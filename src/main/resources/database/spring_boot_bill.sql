@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bill` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `date` datetime DEFAULT NULL,
-  `total` bigint(20) DEFAULT NULL,
+  `total` bigint DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
   `time_payment` datetime DEFAULT NULL,
-  `customer_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
+  `customer_id` bigint DEFAULT NULL,
+  `event_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKcdveik90g4pvk7m249scu73pg` (`customer_id`),
   KEY `FK2ubo8vibk4o1lk1erd9kpxd8r` (`event_id`)
@@ -42,7 +42,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (1,'2021-11-20 00:00:00',2350000,_binary '','2021-11-20 00:00:00',2,2),(2,'2021-12-24 00:00:00',4000000,_binary '','2021-12-24 00:00:00',3,3),(3,'2022-01-01 00:00:00',5000000,_binary '','2022-01-01 00:00:00',4,4),(5,'2022-01-01 00:00:00',800000,_binary '','2022-01-01 00:00:00',5,4),(8,NULL,NULL,_binary '\0',NULL,9,NULL),(13,NULL,NULL,_binary '\0',NULL,14,NULL),(14,NULL,NULL,_binary '\0',NULL,15,NULL),(15,NULL,NULL,_binary '\0',NULL,16,NULL),(16,NULL,NULL,_binary '\0',NULL,17,NULL),(17,NULL,NULL,_binary '\0',NULL,19,NULL),(18,NULL,NULL,_binary '\0',NULL,20,NULL),(19,NULL,NULL,_binary '\0',NULL,21,NULL),(21,NULL,NULL,_binary '\0',NULL,23,NULL);
+INSERT INTO `bill` VALUES (1,'2021-11-20 00:00:00',2350000,_binary '','2021-11-20 00:00:00',1,2),(2,'2021-12-24 00:00:00',4000000,_binary '','2021-12-24 00:00:00',2,3),(3,'2022-01-01 00:00:00',5000000,_binary '','2022-01-01 00:00:00',3,4),(4,'2022-01-01 00:00:00',800000,_binary '','2022-01-14 00:00:00',4,4),(5,'2022-01-14 00:00:00',NULL,_binary '\0','2022-01-14 00:00:00',5,2),(6,'2022-01-15 00:00:00',NULL,_binary '\0','2022-01-15 00:00:00',6,2),(7,'2022-01-16 00:00:00',NULL,_binary '\0','2022-01-16 00:00:00',7,3),(8,'2022-01-16 00:00:00',NULL,_binary '\0','2022-01-16 00:00:00',8,3),(9,'2022-01-16 00:00:00',NULL,_binary '\0','2022-01-16 00:00:00',9,3),(10,'2022-01-16 00:00:00',NULL,_binary '\0','2022-01-16 00:00:00',10,3),(11,'2022-01-17 00:00:00',NULL,_binary '\0','2022-01-17 00:00:00',11,2),(12,'2022-01-17 00:00:00',NULL,_binary '\0','2022-01-17 00:00:00',12,2),(13,'2022-01-17 00:00:00',NULL,_binary '\0','2022-01-17 00:00:00',13,2);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14  0:33:34
+-- Dump completed on 2022-01-14 21:38:33
