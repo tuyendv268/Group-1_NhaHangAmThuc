@@ -100,7 +100,7 @@
 }
 
 #action{
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 280px;
     height: 220px;

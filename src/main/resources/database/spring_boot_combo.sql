@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `combo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `combo` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `combo_name` varchar(255) DEFAULT NULL,
   `created_time` date DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `discount_rate` int DEFAULT NULL,
+  `discount_rate` int(11) DEFAULT NULL,
   `modified_time` date DEFAULT NULL,
-  `number_of_people_recommend` int DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `price` int DEFAULT NULL,
+  `number_of_people_recommend` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -43,7 +43,7 @@ CREATE TABLE `combo` (
 
 LOCK TABLES `combo` WRITE;
 /*!40000 ALTER TABLE `combo` DISABLE KEYS */;
-INSERT INTO `combo` VALUES (1,'Đặng Hữu','2021-10-01','Combo tươi mát',10,'2022-01-14',3,1,5000,'combo.jpg'),(2,'Đào Minh Tiến','2021-10-01','Combo healthy',99,'2021-10-10',2,0,5005,'combo.png'),(3,'Tien','2021-10-01','Tiennnnnnn',5,'2022-01-14',6,0,4,'monthly.png'),(4,'Tien','2022-01-14','Tien',6,NULL,4,1,5,'microsoftteams-image (5).png');
+INSERT INTO `combo` VALUES (1,'Đặng Hữu','2021-10-01','Combo tươi mát',10,'2022-01-14',3,1,5000,'combo.jpg'),(2,'Đào Minh Tiến','2021-10-01','Combo healthy',99,'2021-10-10',2,0,5005,'combo.png'),(3,'Tien','2021-10-01','Tiennnnnnn',5,'2022-01-14',6,0,4,'monthly.png'),(4,'Tien1','2022-01-14','Tien',6,'2022-01-14',4,0,5,'microsoftteams-image (5).png');
 /*!40000 ALTER TABLE `combo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14 21:38:34
+-- Dump completed on 2022-01-14 22:43:48

@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `bill_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bill_detail` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `modify_time` datetime DEFAULT NULL,
-  `quatity` int DEFAULT NULL,
-  `total` int DEFAULT NULL,
-  `bill_id` bigint DEFAULT NULL,
-  `combo_id` bigint DEFAULT NULL,
-  `dish_id` bigint DEFAULT NULL,
+  `quatity` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `bill_id` bigint(20) DEFAULT NULL,
+  `combo_id` bigint(20) DEFAULT NULL,
+  `dish_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKeolgwyayei3o80bb7rj7t207q` (`bill_id`),
   KEY `FKint78u367s0ppc8vn417g650h` (`combo_id`),
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14 21:38:34
+-- Dump completed on 2022-01-14 22:43:47
