@@ -34,7 +34,7 @@ CREATE TABLE `combo` (
   `price` int(11) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `combo` (
 
 LOCK TABLES `combo` WRITE;
 /*!40000 ALTER TABLE `combo` DISABLE KEYS */;
-INSERT INTO `combo` VALUES (1,'Đặng Hữu','2021-10-01','Combo tươi mát',10,'2021-10-10',3,1,5000,'combo.jpg'),(2,'Đào Minh Tiến','2021-10-01','Combo healthy',99,'2021-10-10',2,1,5000,'combo.png');
+INSERT INTO `combo` VALUES (1,'Đặng Hữu','2021-10-01','Combo tươi mát',10,'2022-01-14',3,1,5000,'combo.jpg'),(2,'Đào Minh Tiến','2021-10-01','Combo healthy',99,'2021-10-10',2,0,5005,'combo.png'),(3,'Tien','2021-10-01','Tiennnnnnn',5,'2022-01-14',6,0,4,'monthly.png'),(4,'Tien1','2022-01-14','Tien',6,'2022-01-14',4,0,5,'microsoftteams-image (5).png');
 /*!40000 ALTER TABLE `combo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14  0:33:33
+-- Dump completed on 2022-01-14 22:43:48

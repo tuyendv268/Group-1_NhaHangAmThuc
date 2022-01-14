@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,6 +91,8 @@ public class ComboController {
 				
 			}
 			newCombo.setDishInComboEntities(listOfDishInComboEntity);
+			LocalDate date = LocalDate.now();			
+			newCombo.setCreatedTime(date);
 			comboService.addCombo(newCombo);
 			
 		
@@ -113,8 +117,9 @@ public class ComboController {
 			@RequestParam(value = "comboPrice") int comboPrice,
 			@RequestParam(value = "comboDescription") String comboDescription,
 			@RequestParam(value = "comboAmountOfPeople") int comboAmountOfPeople,
-			@RequestParam(value = "comboDiscountRate") int comboDiscountRate) {		
-			comboService.editCombo(comboId, comboName, comboPrice, comboDescription, comboAmountOfPeople, comboDiscountRate);
+			@RequestParam(value = "comboDiscountRate") int comboDiscountRate,
+			@RequestParam(value= "list_of_dishes_in_combo_edit") String list_of_dishes_in_combo_edit) {		
+			comboService.editCombo(comboId, comboName, comboPrice, comboDescription, comboAmountOfPeople, comboDiscountRate, list_of_dishes_in_combo_edit);
 		return "redirect:/menu";
 	}
 	

@@ -116,11 +116,11 @@ for (let j = 0; j < colorChange.length; j++) {
 			show_reservation_info()
 		} else if (tableColor == 'red') {
 			// Thay đổi màu trạng thái
-			var id = $('#' + 'table'+table_index).data('tableid');
-			$(".close_status").attr("href", "/table/use/" + id);
+			//var id = $('#' + 'table'+table_index).data('tableid');
+			//$(".close_status").attr("href", "/table/use/" + id);
 			//alert(id);
-			mid[table_index].classList.remove(midColor)
-			mid[table_index].classList.add(tableColor)
+			//mid[table_index].classList.remove(midColor)
+			//mid[table_index].classList.add(tableColor)
 		} else if (tableColor == 'green') {
 			// Thay đổi màu trạng thái
 			var id = $('#' + 'table'+table_index).data('tableid');

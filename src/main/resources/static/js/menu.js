@@ -58,8 +58,8 @@ let getInfoDish = () => {
 			document.getElementsByClassName("dish description")[0].innerHTML = $('#' + index).data('dishdescription');
 			document.getElementsByClassName("dish category")[0].innerHTML = $('#' + index).data('dishcategory');
 			document.getElementsByClassName("dish ingredient")[0].innerHTML = $('#' + index).data('dishingredient');
-			//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-			//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+			document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + index).data('dishcreatetime');
+			document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + index).data('dishmodifytime');
 			document.getElementsByClassName("dish status of existence")[0].innerHTML = $('#' + index).data('dishstatus');
         })
     }
@@ -82,8 +82,7 @@ let getInfoDish = () => {
 		document.getElementsByClassName("dish description")[1].value = $('#' + index).data('dishdescription');
 		document.getElementsByClassName("dish category")[1].value = $('#' + index).data('dishcategory');
 		document.getElementsByClassName("dish ingredient")[1].value = $('#' + index).data('dishingredient');
-		//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-		//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+		
 		
     })
 }
@@ -174,7 +173,7 @@ let comboDetail = () => {
 				boxComboItem.style.display = 'block'
 	            isDisplay=true  
 					
-				index=document.getElementsByClassName('temp2')[i].id;
+				index=document.getElementsByClassName('temp2')[i].id;								
 				id = $('#' + index).data('comboid');
 			
 				$("#remove_combo0").attr("href", "/menu/delete/combo/"+id);
@@ -185,12 +184,27 @@ let comboDetail = () => {
 				document.getElementsByClassName("combo description")[0].innerHTML = $('#' + index).data('combodescription');		
 				document.getElementsByClassName("combo amount of people")[0].innerHTML = $('#' + index).data('combonumberofpeoplerecommend');
 				document.getElementsByClassName("combo discount rate")[0].innerHTML = $('#' + index).data('combodiscountrate');
-				//document.getElementsByClassName("dish creation time")[0].innerHTML = $('#' + i).data('dishID');
-				//document.getElementsByClassName("dish modification time")[0].innerHTML = $('#' + i).data('dishID');
+				document.getElementsByClassName("combo creation time")[0].innerHTML = $('#' + index).data('combocreatetime');
+				document.getElementsByClassName("combo modification time")[0].innerHTML = $('#' + index).data('combomodifytime');
 			}			
             
         })
     }
+
+	buttonEditCombo.addEventListener('click', () => {
+        boxComboEdit.style.display = 'block'
+        boxComboItem.style.display = 'none'
+		
+		document.getElementsByClassName("combo id")[1].value = $('#' + index).data('comboid');
+		document.getElementsByClassName("combo name")[1].value = $('#' + index).data('comboname');
+		document.getElementsByClassName("combo price")[1].value = $('#' + index).data('comboprice');
+		document.getElementsByClassName("combo description")[1].value = $('#' + index).data('combodescription');
+		
+		document.getElementsByClassName("combo amount of people")[1].value = $('#' + index).data('combonumberofpeoplerecommend');
+		document.getElementsByClassName("combo discount rate")[1].value = $('#' + index).data('combodiscountrate');
+		document.getElementById("list_of_dishes_in_combo_edit").value=$('#' + index).data('listofdishes');
+	
+	})
 
 }
 comboDetail()
@@ -202,17 +216,7 @@ boxComboClose.addEventListener('click', () => {
 	comboDetail()
 })
 
-buttonEditCombo.addEventListener('click', () => {
-        boxComboEdit.style.display = 'block'
-        boxComboItem.style.display = 'none'
-		document.getElementsByClassName("combo id")[1].value = $('#' + index).data('comboid');
-		document.getElementsByClassName("combo name")[1].value = $('#' + index).data('comboname');
-		document.getElementsByClassName("combo price")[1].value = $('#' + index).data('comboprice');
-		document.getElementsByClassName("combo description")[1].value = $('#' + index).data('combodescription');
-		
-		document.getElementsByClassName("combo amount of people")[1].value = $('#' + index).data('combonumberofpeoplerecommend');
-		document.getElementsByClassName("combo discount rate")[1].value = $('#' + index).data('combodiscountrate');
-})
+
 
 doneEditCombo.addEventListener('click', () => {
     boxComboEdit.style.display = 'none'
@@ -236,6 +240,7 @@ exitListChooseFood.addEventListener('click', (e) => {
 		    	 
 	}
 	document.getElementById('list_of_dishes_in_combo').value= listSelectedFoodValue;
+	document.getElementById('list_of_dishes_in_combo_edit').value= listSelectedFoodValue;
 })
 //----------------------------------------
 
@@ -284,9 +289,17 @@ add_or_remove_food.addEventListener('click', (e) => {
 })
 
 // Change food when edit combo
-changeFood.addEventListener('click', (e) => {
+changeFood.addEventListener('click', (e) => {		
 		boxComboEdit.style.display = 'block'
 		listAddFood.style.display = 'block'   
+			
+		var countEachDish = document.getElementsByName('count'); 
+	
+		/*	var checkboxes = document.getElementsByName('listFood');
+		for (var i=0; i<checkboxes.length; i++) {  
+			checkboxes[i].onclick= myFuction;
+		}*/
+		var checkboxes = document.getElementsByName('listFood');
 		for (let i=0; i<checkboxes.length; i++) {     
 			 (function(index){
         		checkboxes[i].onclick = function(){

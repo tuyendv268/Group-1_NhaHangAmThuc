@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `dish`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dish` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) DEFAULT NULL,
   `created_time` datetime DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `dish` (
   `status` int(11) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `dish` (
 
 LOCK TABLES `dish` WRITE;
 /*!40000 ALTER TABLE `dish` DISABLE KEYS */;
-INSERT INTO `dish` VALUES (1,'Khai vị','2021-10-01 00:00:00','Salad rau củ tươi','Salad',1,'Xà lách, dưa chuột, cà chua, sốt mayone',NULL,200000,1,'dish01.jpg'),(2,'Món Chính','2021-10-01 00:00:00','Sashimi cá ngừ Nhật tươi mới','Sashimi',1,'Cá ngừ, Cá tầm, Rong biển,...',NULL,800000,1,'dish02.jpg'),(3,'Món tráng miệng','2021-10-01 00:00:00','Kem tươi + dâu tây tươi','Kem',1,'Kem tươi, cốm màu, dâu tây,...',NULL,300000,1,'dish03.jpg'),(4,'Món Chính','2021-10-01 00:00:00','Cá basa tươi, trứng cuộn, canh rong biển','Bento',1,'Gạo tám thơm, Cá basa, Trứng gà, Rong biển,...',NULL,1200000,1,'dish04.jpg'),(5,'Món tráng','2021-10-01 00:00:00','Hoa quả cắt','Fruit',1,'Dưa hấu, Kiwi, Việt Quất,...',NULL,400000,1,'dish05.jpg');
+INSERT INTO `dish` VALUES (1,'Khai vị','2021-10-01 00:00:00','Salad rau củ tươi','Salad',1,'Xà lách, dưa chuột, cà chua, sốt mayone','2022-01-14 00:00:00',200000,1,'dish01.jpg'),(2,'Món Chính','2021-10-01 00:00:00','Sashimi cá ngừ Nhật tươi mới','Sashimi',1,'Cá ngừ, Cá tầm, Rong biển,...','2022-01-14 00:00:00',800000,1,'dish02.jpg'),(3,'Món tráng miệng','2021-10-01 00:00:00','Kem tươi + dâu tây tươi','Kem',1,'Kem tươi, cốm màu, dâu tây,...','2022-01-14 00:00:00',300000,1,'dish03.jpg'),(4,'Món Chính','2021-10-01 00:00:00','Cá basa tươi, trứng cuộn, canh rong biển','Bento',1,'Gạo tám thơm, Cá basa, Trứng gà, Rong biển,...','2022-01-14 00:00:00',1200000,1,'dish04.jpg'),(5,'Món tráng','2021-10-01 00:00:00','Hoa quả cắt','Fruit',1,'Dưa hấu, Kiwi, Việt Quất,...','2022-01-14 00:00:00',400000,0,'dish05.jpg'),(6,'Tien',NULL,'Tien','Tien',NULL,'Tien','2022-01-14 00:00:00',4,0,'microsoftteams-image (5).png'),(7,'Tien','2022-01-14 00:00:00','Tien','Tien1',NULL,'Tien','2022-01-14 00:00:00',5,0,'microsoftteams-image (5).png');
 /*!40000 ALTER TABLE `dish` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14  0:33:34
+-- Dump completed on 2022-01-14 22:43:48

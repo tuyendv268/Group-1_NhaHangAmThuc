@@ -49,7 +49,13 @@
 							<i class="material-icons">menu</i>
 							<span>Menu</span>
 						</a>
+					<li>
+						<a href="/event">
+							<i class="material-icons">event_available</i>
+							<span>Event</span>
+						</a>
 
+					</li>
 					<li>
 						<a href="/membership">
 							<i class="material-icons">person</i>
@@ -58,13 +64,7 @@
 
 					</li>
 
-					<li>
-						<a href="/event">
-							<i class="material-icons">event_available</i>
-							<span>Event</span>
-						</a>
 
-					</li>
 					<li>
 						<a href="#">
 							<i class="material-icons">note_alt</i>
@@ -96,19 +96,21 @@
 					</thead>
 					<tbody class="customer-list">
 						<tr class="customer" th:each="bill,bill_index : ${bills}">
-							<td th:id="${bill_index.index}" th:data-billid="${bill.billId}"
+							<td th:id="${bill_index.index}" 
+								th:data-billid="${bill.billId}"
 								th:data-phone="${bill.customer.telephone}"
-								th:data-customer="${bill.customer.customerName}" th:data-total="${bill.finalTotal}"
+								th:data-customer="${bill.customer.customerName}" 
+								th:data-total="${bill.finalTotal}"
 								th:data-statuspayment="${bill.statusPayment}"
 								th:data-memberank="${bill.customer.membership.name}"
 								th:data-createdtime="${bill.createdDate}"></td>
 							<td th:text="${bill.billId}"></td>
 							<td th:text="${bill.customer.customerName}"></td>
-							<td>
+							<td th:id="${'table'+bill_index.index}">
 								<p th:each="table : ${bill.tables}">
 									<span th:text="${table.tableName}"></span>
 								</p>
-							</td>
+							</td >
 							<td th:text="${bill.finalTotal}"></td>
 							<td>
 								<p th:if="${bill.statusPayment}">
@@ -144,8 +146,8 @@
 						<span></span>
 					</div>
 					<div id="bill-seat">
-						<h3>Seat:</h3>
-						<span></span>
+						<h3>Seat:</h3 >
+						<span class="popup-bill-seat"></span  >
 					</div>
 					<div id="bill-total">
 						<h3 class="popup-bill-total">Total: </h3>
@@ -197,18 +199,23 @@
 											<span class="table-free"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p>Available</p>
-											<input class="checkbox-table" th:data-name="${table.tableName}"
-												type="checkbox" name="selectTables" th:value="${table.tableId}" />
+											<input class="checkbox-table" 
+												th:data-name="${table.tableName}"
+												type="checkbox" name="selectTables" 
+												th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
 										<label class="container" th:case="reserved">
 											<span class="table-reserved"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
-											<input class="checkbox-table" th:data-name="${table.tableName}"
-												th:data-customername="${table.guestName}" id="${table.tableId}"
+											<input class="checkbox-table" 
+												th:data-name="${table.tableName}"
+												th:data-customername="${table.guestName}" 
+												id="${table.tableId}"
 												th:data-customerphone="${table.telephone}" type="checkbox"
-												name="selectTables" th:value="${table.tableId}" />
+												name="selectTables" 
+												th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
 									</li>
@@ -295,7 +302,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-// lấy thông tin của khách đã đặt bàn
+	// lấy thông tin của khách đã đặt bàn
 	function getCustomerInfo() {
 		var checkedValue = null;
 		var inputElements = document.getElementsByClassName('checkbox-table');
@@ -305,8 +312,8 @@
 		for (var i = 0; inputElements[i]; ++i) {
 			if (inputElements[i].checked) {
 				checkedValue = inputElements[i].value;
-				if((inputElements[i].dataset.customername != null) 
-				|| (inputElements[i].dataset.customerphone != null)){
+				if ((inputElements[i].dataset.customername != null)
+					|| (inputElements[i].dataset.customerphone != null)) {
 					name_array.push(inputElements[i].dataset.customername);
 					phone_array.push(inputElements[i].dataset.customerphone);
 				}
@@ -316,20 +323,20 @@
 		for (var i = 0; i < name_array.length; i++) {
 			flag = 1;
 			for (var j = 0; j < name_array.length; j++) {
-				if((name_array[i]!=name_array[j]) || (phone_array[i]!=phone_array[j])){
+				if ((name_array[i] != name_array[j]) || (phone_array[i] != phone_array[j])) {
 					alert("Khác Thông Tin Của Khách");
 					flag = 0;
 					break;
 				}
 			}
-			if(!flag){
+			if (!flag) {
 				break;
 			}
 		}
-		if(flag){
+		if (flag) {
 			document.getElementById('name-input').setAttribute('value', name_array[0]);
 			document.getElementById('phone-input').setAttribute('value', phone_array[0]);
-		}else{
+		} else {
 			document.getElementById('name-input').setAttribute('value', "");
 			document.getElementById('phone-input').setAttribute('value', "");
 		}
