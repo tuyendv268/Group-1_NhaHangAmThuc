@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/report.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
+	<link rel="stylesheet" href="http://localhost:8080/css/report.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
     <title>Nhà Hàng Ẩm Thực</title>
@@ -35,7 +35,7 @@
             <div class="menu">
                 <ul>
                     <li>
-                        <a href="./seat.html">
+                        <a href="/seat">
                             <i class="material-icons">event_seat</i>
                             <span>Seat</span>
                         </a>
@@ -43,7 +43,7 @@
                     </li>
 
                     <li>
-                        <a href="./menu.html">
+                        <a href="/menu">
                             <i class="material-icons">menu</i>
                             <span>Menu</span>
                         </a>
@@ -51,7 +51,7 @@
                     </li>
 
                     <li>
-                        <a href="./event.html">
+                        <a href="/event">
                             <i class="material-icons">event_available</i>
                             <span>Event</span>
                         </a>
@@ -59,7 +59,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="membership">
                             <i class="material-icons">person</i>
                             <span>Membership</span>
                         </a>
@@ -67,7 +67,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="./report.html">
+                        <a href="/report">
                             <i class="material-icons">note_alt</i>
                             <span>Report</span>
                         </a>
@@ -75,7 +75,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/bill">
                             <i class="material-icons">receipt_long</i>
                             <span>Bill</span>
                         </a>
@@ -93,23 +93,20 @@
                 </div>
 
                 <div class="tabcontent" id="bill-history">
-                    <table>
-                        <tr>
-                            <th>Code</th>
-                            <th>Time</th>
-                            <th>Money</th>
-                        </tr>
-                        <tr>
-                            <td>#HD000003</td>
-                            <td>1/1/2022</td>
-                            <td>1.000.000 <span>VND</span></td>
-                        </tr>
-                        <tr>
-                            <td>#HD000005</td>
-                            <td>1/1/2022</td>
-                            <td>1.250.000 <span>VND</span></td>
-                        </tr>
-                    </table>
+					<table id="paid-bill-table">
+						<thead>
+							<th>Bill ID</th>
+							<th>Total</th>
+							<th>Payment Time</th>
+						</thead>
+						<tbody class="paid-bill-list">
+							<tr class="paid-bill" th:each="bill,bill_index : ${bills}">
+								<td th:text="${bill.billId}"></td>
+								<td th:text="${bill.finalTotal}"></td>
+								<td th:text="${bill.timePayment}"></td>
+							</tr>
+						</tbody>
+					</table>
                 </div>
 
                 <div class="tabcontent" id="chart">
@@ -132,6 +129,6 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/report.js"></script>
+<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://localhost:8080/js/report.js"></script>
 </html>

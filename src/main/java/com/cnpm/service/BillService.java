@@ -1,5 +1,8 @@
 package com.cnpm.service;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,5 +111,15 @@ public class BillService {
 		return false;
 	}
 	
+	public List<BillEntity> findAllPaidBills()
+	{
+		ArrayList<BillEntity> paidBills = (ArrayList<BillEntity>) billRepository.findAllByOrderByTimePaymentDesc();
+		for(int i = paidBills.size() - 1; i>=0; i--)
+		{
+			if(!paidBills.get(i).isStatusPayment())
+				paidBills.remove(i);
+		}
+		return paidBills;
+	}
 	
 }
