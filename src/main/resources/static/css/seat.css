@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+#message{
+	position: fixed;
+	left: 50%;
+	bottom: 20px;
+	transform: translate(0%, -50%);
+	margin: 0 auto;
+}
+
 .active {
     background-color: #C3C3C4;
     background: linear-gradient(180deg, #1326D6, #BDBEC0);
