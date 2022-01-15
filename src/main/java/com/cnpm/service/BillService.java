@@ -117,6 +117,7 @@ public class BillService {
 				paidBills.remove(i);
 		}
 		return paidBills;
+	}
 	public ArrayList<Object[]> findRevenueDueYear(int start, int end) {
 		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueYear(start, end);
 		return cursor;
