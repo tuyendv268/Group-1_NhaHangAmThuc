@@ -80,4 +80,11 @@ public class MembershipController {
 		return "redirect:/membership";
 	}
 
+	@RequestMapping(value = "/membership/edit-discountrate/", method = RequestMethod.POST, params = "edit")
+	public String editDiscountRate(Model model,
+				 @RequestParam(value = "customerId") Long id,
+				 @RequestParam(value = "discountRate") int discountRate) {
+		membershipService.editDiscountRate(id, discountRate);
+		return "redirect:/membership";
+	}
 }
