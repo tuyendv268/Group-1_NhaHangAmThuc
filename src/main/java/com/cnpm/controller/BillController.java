@@ -1,5 +1,6 @@
 package com.cnpm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,18 @@ import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.BillDetail;
 
 import com.cnpm.entity.BillEntity;
+import com.cnpm.entity.ComboEntity;
 import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.TableEntity;
+import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.TableRepository;
 import com.cnpm.service.BillService;
+import com.cnpm.service.ComboService;
 import com.cnpm.service.CustomerService;
 import com.cnpm.service.DishService;
 import com.cnpm.service.TableService;
+
 @Controller
 public class BillController {
 	@Autowired
@@ -31,21 +36,28 @@ public class BillController {
 	private TableService tableService;
 	@Autowired
 	private CustomerService customerService;
-	@Autowired 
+	@Autowired
 	private DishService dishService;
+	@Autowired 
+	private ComboService comboService;
+	@Autowired
+	private BillDetailRepository billDetailRepository ;
 	@GetMapping(value = "/bill")
 	public String display(Model model) {
 		List<BillEntity> bills = billService.findUnpaidBill();
 		List<TableDTO> tables = tableService.findAvailable();
 		tables.addAll(tableService.findReserved());
 		List<DishEntity> dishes = dishService.findAll();
+		List<ComboEntity> combos = comboService.findAll();
 		model.addAttribute("tables", tables);
 		model.addAttribute("bills", bills);
 		model.addAttribute("dishes", dishes);
+		model.addAttribute("combos", combos);
 		return "bill";
 	}
+
 	@GetMapping("/deleteBill/{id}")
-	public String deleteBill(@PathVariable (value = "id") Long id) {
+	public String deleteBill(@PathVariable(value = "id") Long id) {
 
 		BillEntity bill = billService.findBillById(id);
 		List<TableEntity> tables = bill.getTables();
@@ -56,26 +68,23 @@ public class BillController {
 		this.billService.deleteById(id);
 		return "redirect:/bill";
 	}
-	
+
 	@PostMapping(value = "/newBill")
-	public String newBill(@RequestParam(value = "customerName") String customerName, 
-			@RequestParam String phone,
-			@RequestParam String customerId,
-			@RequestParam List<Long> selectTables, 
-			Model model) {
+	public String newBill(@RequestParam(value = "customerName") String customerName, @RequestParam String phone,
+			@RequestParam String customerId, @RequestParam List<Long> selectTables, Model model) {
 		BillEntity bill = new BillEntity();
 		CustomerEntity customer = new CustomerEntity();
-		if(customerId != "") {
+		if (customerId != "") {
 			customer = customerService.getById(Long.valueOf(customerId).longValue());
-		}else  customer = customerService.newCustomer(customerName, phone, (long) 6);
+		} else
+			customer = customerService.newCustomer(customerName, phone, (long) 6);
 		customerService.addStranger(customer);
 		List<TableEntity> tables = tableService.getByIds(selectTables);
-		
-		
+
 		bill.setTables(tables);
-		for(TableEntity table : tables ) {
-			if(table.getStatus() == "reserved") {
-				
+		for (TableEntity table : tables) {
+			if (table.getStatus() == "reserved") {
+
 			}
 			table.setBill(bill);
 			table.setGuest(customerName);
@@ -85,9 +94,31 @@ public class BillController {
 		bill.setCustomer(customer);
 		billService.save(bill);
 		System.out.println(selectTables.get(0));
-		return("redirect:/bill");
+		return ("redirect:/bill");
 	}
-	
+
+	@PostMapping(value = "/addDishtobill")
+	public String addDishtoBill( @RequestParam Long billId,
+			@RequestParam(required=false, defaultValue = "") List<Integer> quantityDish,
+			@RequestParam(required=false, defaultValue = "")List<Long> dishId ) {
+		List<BillDetail> billdetails = billService.findBillById(billId).getBillDetails();
+		billService.findBillById(billId).setBillDetails(null);
+		for(BillDetail billdetail : billdetails) {
+			billdetail.setBill(null);
+			billDetailRepository.delete(billdetail);
+		}
+		if(dishId.size()>0) {
+		
+			
+			for(int i = 0; i < dishId.size(); i++) {
+				billService.addDish(billId, dishId.get(i), quantityDish.get(i));
+			}
+			
+			
+		}
+		return ("redirect:/bill");
+	}
+
 	@GetMapping("/payBill/{id}")
 	public String payBill(@PathVariable (value = "id") Long id) {
 
@@ -100,10 +131,7 @@ public class BillController {
 		this.billService.deleteById(id);
 		return "redirect:/bill";
 	}
-	
-	
-	
-	
+
 //	@GetMapping("/editBill/{id}")
 //	public String editBill(@PathVariable (value = "id") Long id,
 //			@RequestParam(value = "customerName") String customerName, 

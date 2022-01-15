@@ -22,7 +22,9 @@ import com.cnpm.repository.DishRepository;
 public class BillService {
 @Autowired
 	private BillRepository billRepository;
+@Autowired
 	private DishRepository dishRepositoty;
+@Autowired
 	private BillDetailRepository billdetailRepository;  
 	public boolean save(BillEntity bill) {
 		BillEntity bill1 = billRepository.save(bill);
@@ -66,8 +68,10 @@ public class BillService {
 			BillDetail billdetail = new BillDetail();
 			billdetail.setDish(dish);
 			billdetail.setQuantity(quantity);
+			billdetail.setBill(bill);
+			int total =  billdetail.getDish().getPrice()*quantity;
+			billdetail.setTotal(total);
 			billdetailRepository.save(billdetail);
-			bill.getBillDetails().add(billdetail);
 			billRepository.save(bill);	
 			return true;
 		}

@@ -1,5 +1,8 @@
 //Hiển thị hóa đơn
+const dishlist = document.getElementsByClassName("dish-list")[0];
 const customer = document.querySelector('.customer-list');
+const listCheckbox = document.getElementsByName("dish-checkbox");
+const quantity = document.getElementsByName("quantityDish");
 customer.addEventListener('click', function(event) {
 	var list = Array.prototype.slice.call(customer.children);
 
@@ -31,15 +34,39 @@ customer.addEventListener('click', function(event) {
 	const createtime = document.querySelector('#bill-creation-time span')
 	createtime.innerHTML = $('#' + billindex).data('createdtime');
 	const rank = document.querySelector('#bill-rank span');
-	if ($('#' +   billindex).data('memberank') =  null){
-		rank.innerHTML = $('#' + billindex).data('memberank');
-	}
-	else {
-		rank.innerHTML = "Khách vãng lai";
-	}
 	const seat = document.querySelector('#bill-seat span')
 	seat.innerHTML = event.target.parentElement.children[3].innerHTML;
+	
+	rank.innerHTML = $('#' + billindex).data('memberank');
+	
 	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
+	dishlist.innerHTML = '';
+	for (let i = 0; i < listCheckbox.length; i++){
+		listCheckbox[i].checked = false;
+		quantity[i].value = 1;
+		quantity[i].style.display = "none";
+	}
+	document.getElementById("bill-id-for-dish").value = id;
+	var dishinbill = $('#dish-in-bill' + id);
+	var dishes = dishinbill[0].children;
+	for (let i =0; i < dishes.length; i++){
+	$('#dishcheckbox' + $(dishes[i]).data('dishid') ).prop('checked', true);
+	$('#dishnumber' + $(dishes[i]).data('dishid') ).css("display", "inline-block");
+	$('#dishnumber' + $(dishes[i]).data('dishid') )[0].value = $(dishes[i]).data('quantity')
+	}
+	
+	for (let i = 0; i < listCheckbox.length; i++) {
+		if (listCheckbox[i].checked) {
+			var dish = document.createElement("UL");
+			dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[4].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[5].cloneNode(true));
+			dishlist.appendChild(dish);
+		}
+	}
+	
 });
 
 
@@ -69,6 +96,8 @@ deleteBill.addEventListener('click', function() {
 	var delete1 = document.getElementById("delete");
 	delete1.style.display = "block";
 });
+
+
 
 
 //Xác nhận xóa hóa đơn
@@ -158,6 +187,7 @@ billDone.addEventListener('click', function() {
 	var bill = document.getElementById("bill");
 	bill.style.display = "none";
 	create.style.display = "block";
+	
 });
 
 
@@ -205,30 +235,33 @@ selectDishbtn.addEventListener('click', function() {
 
 
 // bật số lượng
-const listCheckbox = document.getElementsByName("dish-checkbox");
-const quantity = document.getElementsByName("quantity-dish");
+
 for (let i = 0; i < listCheckbox.length; i++) {
 	(function(index) {
 		listCheckbox[i].onclick = function() {
 			if (listCheckbox[index].checked) {
-				listCheckbox[index].parentElement.children[3].style.display = "inline-block"
+				listCheckbox[index].parentElement.children[4].style.display = "inline-block"
+				listCheckbox[index].parentElement.children[4].value = 1;
 			} else {
-				listCheckbox[index].parentElement.children[3].style.display = "none";
+				listCheckbox[index].parentElement.children[4].style.display = "none";
 			}
 		}
 
 	})(i);
 }
 
-const dishlist = document.getElementsByClassName("dish-list")[0];
+// hiển thị sang list
 doneSelectDish.addEventListener('click', function() {
 	selectDish.style.display = "none";
 	dishlist.innerHTML = '';
 	for (let i = 0; i < listCheckbox.length; i++) {
 		if (listCheckbox[i].checked) {
-			var dish = document.createElement("LI");
+			var dish = document.createElement("UL");
 			dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
-			dish.appendChild(listCheckbox[i].parentElement.children[3].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[4].cloneNode(true));
+			dish.appendChild(listCheckbox[i].parentElement.children[5].cloneNode(true));
 			dishlist.appendChild(dish);
 		}
 	}

@@ -155,9 +155,11 @@ tbody tr td{
     right: 15px;
     top: 15px;
     overflow-y: scroll;
+    padding:20px;
 }
 #dish-select{
     position: fixed;
+    padding:10px;
     background: rgb(196, 196, 196);
     border-radius: 15px;
     width: 500px;
@@ -178,7 +180,8 @@ tbody tr td{
     /* border-radius: 15px; */
     width:460px;
     height: 330px;
-    margin-left: 21.5px;
+    left:30px;
+    margin-left: 10px;
     overflow-y: scroll;
 }
 
@@ -869,4 +872,9 @@ tbody tr td{
     left : 180px;
     bottom: 20px;
     cursor: pointer;
+}
+#save-dish{
+	right: 30px;
+	top:335px;
+	background:rgb(72,72,72);
 }

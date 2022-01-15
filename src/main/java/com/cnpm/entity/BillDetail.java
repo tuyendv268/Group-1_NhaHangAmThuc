@@ -26,14 +26,14 @@ public class BillDetail {
 	private DishEntity dish;
 	
 	@Column(name = "quatity")
-	private int quantity;
+	private Integer quantity;
 	
 	@ManyToOne
 	@JoinColumn(name = "bill_id")
 	private BillEntity bill;
 	
 	@Column(name = "total")
-	private int total;
+	private Integer total;
 	
 	@Column(name = "modify_time",columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
