@@ -26,7 +26,7 @@ public class WebController {
 	@Autowired
 	DishService dishService;
 
-	@GetMapping(value = {"/home" })
+	@GetMapping(value = {"/" ,"/home"})
 	public String homepage(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
 		System.out.println(events.size());
@@ -48,7 +48,7 @@ public class WebController {
 		return "home";
 	}
 
-	@GetMapping(value = {"/" ,"/login"})
+	@GetMapping(value = {"/login"})
 	public String login() {
 //		UserEntity user = new UserEntity();
 //		user.setUserName("tien");
