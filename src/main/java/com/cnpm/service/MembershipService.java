@@ -24,17 +24,18 @@ public class MembershipService {
 	}
 	
 	
-	public MembershipEntity findById(Long id) {
-		return membershipRepository.findByMembershipId(id);
-	}
 	
 	
-	public MembershipEntity editMembership(Long id, int exp, int discountRate) {
-		MembershipEntity membership = findById(id);
-		membership.setExp(exp);
-		membership.setDiscountRate(discountRate);
-	
-		return membershipRepository.save(membership);
+	public MembershipEntity editDiscountRate(Long id, int discountRate) {
+		MembershipEntity rank = membershipRepository.findByMembershipId(id);
+		if((discountRate >= 0)||(discountRate <= 100))
+			rank.setDiscountRate(discountRate);
+		else
+			if(discountRate < 0)
+				rank.setDiscountRate(0);
+			if(discountRate > 100)
+				rank.setDiscountRate(100);
+		return membershipRepository.save(rank);
 	}
 
 	

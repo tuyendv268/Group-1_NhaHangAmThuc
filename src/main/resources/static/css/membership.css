@@ -16,6 +16,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.member{
+  cursor: pointer;
+}
+
+
+.member:hover{
+  background-color : #B1D0E0;
+  border-color : #406882;
+}
+
+
 #table-head{
 	position: sticky;
     top: 80px;
@@ -291,7 +302,7 @@
     font-size: 18px;
 }
 
-#delete-yes-btn{
+#delete-yes-real-btn{
     background: white;
     left: 100px;
 }
@@ -303,7 +314,7 @@
 
 #manage{
     position: absolute;
-    width: 435px;
+    width: auto;
     height: auto;
     background: rgb(255, 219, 219);
     top: 100px;
@@ -374,17 +385,17 @@
     background: rgb(72,72,72);
 }
 
-#edit-discount{
-    position: absolute;
-    border-radius: 35px;
-    width: 350px;
-    height: 300px;
-    background: rgb(196, 196, 196);
-    top: 90px;
-    left: 470px;
-    display: none;
+
+.manage-form input{
+    text-align: center;
+    width: 25%;
 }
 
+.change-done-btn
+{
+	float: right;
+	padding: 5px;
+}
 
 
 

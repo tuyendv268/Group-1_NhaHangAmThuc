@@ -7,27 +7,25 @@ serveMeal.addEventListener('click', function() {
     event.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('image/bgevent.png')";
 });
 
+let eventInfoBoxes = document.getElementsByClassName("eventInfo");
 
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function currentSlide(n) {
-	showSlides(slideIndex = n);
+for (let i = 0; i < eventInfoBoxes.length; i++) {
+	var eventImage = document.getElementById("event" + i);
+	var infoBox = document.getElementById("eventInfo" + i);
+	
+	infoBox.style.display = "none";
+	infoBox.click(function () {
+    	infoBox.style.display = "none";
+	}); 
+	eventImage.addEventListener('click', function() {
+		infoBox.style.display = "block";
+	})
+	
+	infoBox.click(function () {
+    	infoBox.style.display = "none";
+	}); 
 }
 
-function showSlides(n) {
-	var i;
-	var slides = document.getElementsByClassName("mySlides");
-	var dots = document.getElementsByClassName("dot");
-	if (n > slides.length) { slideIndex = 1 }
-	if (n < 1) { slideIndex = slides.length }
-	for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
-	}
-	for (i = 0; i < dots.length; i++) {
-		dots[i].className = dots[i].className.replace(" active", "");
-	}
-	slides[slideIndex - 1].style.display = "block";
-	dots[slideIndex - 1].className += " active";
-}
+
+
+

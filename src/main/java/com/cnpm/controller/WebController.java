@@ -26,18 +26,17 @@ public class WebController {
 	public String homepage(Model model) {
 		ArrayList<EventEntity> events = (ArrayList<EventEntity>)eventService.findAll();
 		System.out.println(events.size());
-		for(int i = 0; i < events.size();i++) {
-			EventEntity event = events.get(i);
-			System.out.println(event.getEventName());
-			System.out.println(event.isDisplayed());
-			if(event.isDisplayed() == true) {
-				events.remove(i);
+		for(int i = events.size(); i > 0; i--) {
+			if(!events.get(i-1).isDisplayed()) {
+				events.remove(i-1);
 			}
+		}
+		for(int i = 0; i < events.size(); i++) {
+			System.out.println(events.get(i).getEventName());
 		}
 		if(events.size() != 0) {
 			model.addAttribute("events", events);
 		}
-		
 		return "home";
 	}
 

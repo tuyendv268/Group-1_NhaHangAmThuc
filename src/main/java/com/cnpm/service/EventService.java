@@ -30,13 +30,13 @@ public class EventService {
 			if(event.isDisplayed()) {
 				if(event.getTimeEnd().before(new Date())) {
 					event.setDisplayed(false);
-					System.out.println("Event ended : "+event.getEventName());
+					System.out.println("Event ended : " + event.getEventName());
 					eventRepository.save(event);
 				}
 			}else {
 				if(event.getTimeStart().before(new Date()) && event.getTimeEnd().after(new Date())) {
 					event.setDisplayed(true);
-					System.out.println("Event started : "+event.getEventName());
+					System.out.println("Event started : " + event.getEventName());
 					eventRepository.save(event);
 				}
 			}
