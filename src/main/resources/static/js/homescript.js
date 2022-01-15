@@ -7,24 +7,6 @@ serveMeal.addEventListener('click', function() {
     event.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('image/bgevent.png')";
 });
 
-let eventInfoBoxes = document.getElementsByClassName("eventInfo");
-
-for (let i = 0; i < eventInfoBoxes.length; i++) {
-	var eventImage = document.getElementById("event" + i);
-	var infoBox = document.getElementById("eventInfo" + i);
-	
-	infoBox.style.display = "none";
-	infoBox.click(function () {
-    	infoBox.style.display = "none";
-	}); 
-	eventImage.addEventListener('click', function() {
-		infoBox.style.display = "block";
-	})
-	
-	infoBox.click(function () {
-    	infoBox.style.display = "none";
-	}); 
-}
 
 
 
