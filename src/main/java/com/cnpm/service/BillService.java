@@ -72,6 +72,7 @@ public class BillService {
 			BillDetail billdetail = new BillDetail();
 			billdetail.setDish(dish);
 			billdetail.setQuantity(quantity);
+			billdetail.setTotal(quantity*dish.getPrice());
 			billdetail.setBill(bill);
 			int total =  billdetail.getDish().getPrice()*quantity;
 			billdetail.setTotal(total);
@@ -88,6 +89,7 @@ public class BillService {
 			BillDetail billdetail = new BillDetail();
 			billdetail.setCombo(combo);
 			billdetail.setQuantity(quantity);
+			billdetail.setTotal(quantity*combo.getPrice());
 			billdetail.setBill(bill);
 			int total =  billdetail.getCombo().getPrice()*quantity;
 			billdetail.setTotal(total);
@@ -132,12 +134,19 @@ public class BillService {
 	public Long updateTotal(BillEntity bill) {
 		Long Total = (long) 0;
 		List<BillDetail> billdetails = bill.getBillDetails();
+		if(billdetails == null) {
+			bill.setFinalTotal(Total);
+			billRepository.save(bill);
+			return(Total);
+		}
 		for(BillDetail billdetail : billdetails) {
 			Total = Total + billdetail.getTotal();
 		}
-		Total = Total*(100 + bill.getCustomer().getMembership().getDiscountRate())/100;
-		Total = Total*(100 + bill.getEvent().getDiscountRate())/100;
+		if(bill.getEvent() != null)
+		Total = Total*(100 -bill.getEvent().getDiscountRate() -bill.getCustomer().getMembership().getDiscountRate())/100;
+		else Total = Total*(100 -bill.getCustomer().getMembership().getDiscountRate())/100;
 		bill.setFinalTotal(Total);
+		billRepository.save(bill);
 		return Total;
 	}
 	public boolean deleteById(Long id) {

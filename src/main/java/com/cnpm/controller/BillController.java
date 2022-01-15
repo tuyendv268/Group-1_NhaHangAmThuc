@@ -21,6 +21,7 @@ import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.BillDetailRepository;
+import com.cnpm.repository.BillRepository;
 import com.cnpm.repository.TableRepository;
 import com.cnpm.service.BillService;
 import com.cnpm.service.ComboService;
@@ -46,6 +47,9 @@ public class BillController {
 	@GetMapping(value = "/bill")
 	public String display(Model model) {
 		List<BillEntity> bills = billService.findUnpaidBill();
+		for (BillEntity bill : bills) {
+			billService.updateTotal(bill);
+		}
 		List<TableDTO> tables = tableService.findAvailable();
 		tables.addAll(tableService.findReserved());
 		List<DishEntity> dishes = dishService.findAll();
@@ -72,7 +76,8 @@ public class BillController {
 
 	@PostMapping(value = "/newBill")
 	public String newBill(@RequestParam(value = "customerName") String customerName, @RequestParam String phone,
-			@RequestParam String customerId, @RequestParam List<Long> selectTables, Model model) {
+			@RequestParam String customerId, 
+			@RequestParam(required = false, defaultValue = "") List<Long> selectTables, Model model) {
 		BillEntity bill = new BillEntity();
 		CustomerEntity customer = new CustomerEntity();
 		if (customerId != "") {
@@ -80,6 +85,7 @@ public class BillController {
 		} else
 			customer = customerService.newCustomer(customerName, phone, (long) 6);
 		customerService.addStranger(customer);
+		if(selectTables.size()>0) {
 		List<TableEntity> tables = tableService.getByIds(selectTables);
 
 		bill.setTables(tables);
@@ -92,9 +98,10 @@ public class BillController {
 			table.setPhone(phone);
 			table.setStatus("occupied");
 		}
+		}
 		bill.setCustomer(customer);
 		billService.save(bill);
-		System.out.println(selectTables.get(0));
+		
 		return ("redirect:/bill");
 	}
 
@@ -139,21 +146,25 @@ public class BillController {
 		return "redirect:/bill";
 	}
 
-//	@GetMapping("/editBill/{id}")
-//	public String editBill(@PathVariable (value = "id") Long id,
-//			@RequestParam(value = "customerName") String customerName, 
-//			@RequestParam String phone,
-//			@RequestParam String customerId,
+	@PostMapping("/editBill")
+	public String editBill(@RequestParam Long billId,
+			@RequestParam String customerName, 
+			@RequestParam String phone,
+			
 //			@RequestParam List<Long> selectTables, 
-//			Model model) {
-//		
-//		BillEntity bill = billService.findBillById(id);
+			Model model) {
+		
+		BillEntity bill = billService.findBillById(billId);
+		bill.getCustomer().setCustomerName(customerName);
+		bill.getCustomer().setTelephone(phone);
+		
+		billService.save(bill);
 //		List<TableEntity> tables = bill.getTables();
 //		for (TableEntity tableEntity : tables) {
 //			tableEntity.setBill(null);
 //			tableService.save(tableEntity);
 //		}
-//		this.billService.deleteById(id);
-//		return "redirect:/bill";
-//	}
+		System.out.println(billId);
+		return "redirect:/bill";
+	}
 }

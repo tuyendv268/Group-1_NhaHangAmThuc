@@ -281,18 +281,18 @@
 						Done
 					</button>
 				</div>
-				<div id="edit">
+				<form id="edit" th:action = "@{/editBill}" method="POST">
 					<h2>Edit</h2>
 					<h3>Customer’s name</h3>
-					<input type="text">
+					<input type ="hidden" id="edit-bill-id" th:name = "billId">
+					<input type="text" id="edit-name" th:name = "customerName">
 					<h3>Phone</h3>
-					<input type="text">
-					<h3>Customer’s Code</h3>
-					<input type="text">
+					<input type="text" id="edit-phone" th:name = "phone" >
+					
 					<h3>Seat</h3>
-					<input type="text">
-					<button id="edit-done-btn">Done</button>
-				</div>
+					
+					<button id="edit-done-btn" type = "submit">Done</button>
+				</form >
 
 				<div id="delete">
 					<h3>Do you really want to delete this bill?</h3>

@@ -25,6 +25,7 @@ customer.addEventListener('click', function(event) {
 	billid.innerHTML = id
 	const name = document.querySelector('#bill-name span')
 	name.innerHTML = event.target.parentElement.children[2].innerText;
+	
 	const phone = document.querySelector('#bill-phone span')
 	phone.innerHTML = $('#' + billindex).data('phone');
 	const status = document.querySelector('#bill-completion-time span')
@@ -75,7 +76,9 @@ customer.addEventListener('click', function(event) {
 			dishlist.appendChild(dish);
 		}
 	}
-	
+	document.getElementById("edit-bill-id").value = id;
+	document.getElementById("edit-name").value = event.target.parentElement.children[2].innerText;
+	document.getElementById("edit-phone").value = $('#' + billindex).data('phone');
 });
 
 
@@ -86,6 +89,7 @@ editBill.addEventListener('click', function() {
 	bill.style.display = "none";
 	var edit = document.getElementById("edit");
 	edit.style.display = "block";
+	
 });
 
 
