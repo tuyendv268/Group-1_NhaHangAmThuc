@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.EventEntity;
 import com.cnpm.entity.UserEntity;
 import com.cnpm.repository.UserRepository;
+import com.cnpm.service.DishService;
 import com.cnpm.service.EventService;
 
 @Controller
@@ -21,6 +23,8 @@ public class WebController {
 	PasswordEncoder passwordEncoder;
 	@Autowired
 	EventService eventService;
+	@Autowired
+	DishService dishService;
 
 	@GetMapping(value = {"/home" })
 	public String homepage(Model model) {
@@ -37,6 +41,10 @@ public class WebController {
 		if(events.size() != 0) {
 			model.addAttribute("events", events);
 		}
+		
+		ArrayList<DishEntity> dishes = (ArrayList<DishEntity>) dishService.findTopFeaturedDish();
+		model.addAttribute("dishes", dishes);
+		
 		return "home";
 	}
 

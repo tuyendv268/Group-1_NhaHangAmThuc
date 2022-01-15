@@ -30,7 +30,7 @@ public class MembershipController {
 	public String display(Model model) {
 		customerService.updateRankAllCustomers();		
 		ArrayList<MembershipEntity> memberships = (ArrayList<MembershipEntity>)membershipService.findAll();
-		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>)customerService.findAll();
+		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>)customerService.findAllMembers();
 		
 		
 		model.addAttribute("memberships", memberships);

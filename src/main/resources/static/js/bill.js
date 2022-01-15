@@ -163,44 +163,31 @@ const newSeatInput = document.querySelector('#seat-input');
 
 //Thêm hóa đơn mới
 const create = document.querySelector('#create-btn');
+
 create.addEventListener('click', function(){   
-    var createBill = document.getElementById("new");
+	var createBill = document.getElementById("new");
     createBill.style.display = "block";
     create.style.display = "none";
 });
+//tat nút tạo mới
+const cancel_new = document.querySelector('#cancel-new-btn')
+cancel_new.addEventListener('click', function(){
+	var createBill = document.getElementById("new");
+	createBill.style.display = 'none';
+	create.style.display = 'block';
+})
 
-//Xác nhận hoá đơn mới
-const newDone = document.querySelector('#new-done-btn');
-newDone.addEventListener('click', function(){
-    var createBill = document.getElementById("new");
-    createBill.style.display = "none";
-    create.style.display = "block";
-    
-    //Thêm dòng
-    const customerTr = document.createElement("tr");
-    customerTr.classList.add('customer');
+// bật tab chọn bàn
 
-    const newCustomerStt = document.createElement('td');
-    const newCustomerCode = document.createElement('td');
-    const newCustomerName = document.createElement('td');
-    const newCustomerMoney = document.createElement('td');
-    const newCustomerStatus = document.createElement('td');
-
-    customerTr.appendChild(newCustomerStt);
-    newCustomerCode.innerText = newCodeInput.value;
-    customerTr.appendChild(newCustomerCode);
-    console.log(newCustomerCode);
-    newCustomerName.innerText = newNameInput.value;
-    customerTr.appendChild(newCustomerName);
-    console.log(newCustomerName);
-    customerTr.appendChild(newCustomerMoney);
-    customerTr.appendChild(newCustomerStatus);
-    customer.appendChild(customerTr);
-    console.log(customerTr);
-    newCodeInput.value = '';
-    newNameInput.value = '';
-    newPhoneInput.value = '';
-    newSeatInput.value = '';
+const selectTablebtn = document.getElementById('new-select-btn');
+selectTablebtn.addEventListener('click', function(){
+	var selectTable = document.getElementById('select-table');
+	selectTable.style.display = "block";
+});
+const doneTablebtn = document.getElementById('done-select-table');
+doneTablebtn.addEventListener('click', function(){
+	var selectTable = document.getElementById('select-table');
+	selectTable.style.display = "none";
 });
 
 var bill_id_get_from_table = sessionStorage.getItem("bill_id_get_from_table");
@@ -218,11 +205,16 @@ if(bill_id_get_from_table != null){
 			var total = $('#'+idx).data('total');
 			var statuspayment = $('#'+idx).data('statuspayment');
 			var createdtime = $('#'+idx).data('createdtime');
+			var memberank = $('#'+idx).data('memberank');
 			document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : " + billID;
 			document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : " + customername;
 			document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : " + phone;
 			document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : " + total;
-			document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :" + createdtime;
+			document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created : " + createdtime;
+			document.getElementsByClassName("popup-bill-rank")[0].innerHTML = "Member Rank : " + memberank;
+			document.getElementsByClassName("popup-bill-completion-time")[0].innerHTML = "Status : " + statuspayment;
+   			document.getElementsByClassName("popup-bill-seat")[0].innerHTML =document.getElementById("table"+idx).innerHTML;
+   			
    			break;
 		}
 		idx = idx + 1;

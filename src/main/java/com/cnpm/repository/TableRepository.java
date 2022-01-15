@@ -11,4 +11,5 @@ public interface TableRepository extends CrudRepository<TableEntity, Long>{
 	TableEntity findByTableId(Long tableId);
 	List<TableEntity> findByBill(Long Bill);
 	List<TableEntity> findByTableName(String tableName);
+	
 }

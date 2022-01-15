@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,40 +34,60 @@ public class DishController {
 	private DishService dishService;
 	@Autowired
 	private ComboService comboService;
-
+	
+	
 	@GetMapping(value = "/menu")
 	public String menu(Model model, @RequestParam(value = "combo_dish",required= false) String combo_dish) {
 		if(combo_dish==null || combo_dish=="") {
+			
 			ArrayList<DishEntity> dishes = (ArrayList<DishEntity>) dishService.findAll();
 			model.addAttribute("dishes", dishes);
 			ArrayList<ComboEntity> combos = (ArrayList<ComboEntity>) comboService.findAll();
 			model.addAttribute("combos", combos);
+			
+			HashMap<Integer,String> listOfDishesHashMap = new HashMap<Integer,String>();
+			for(int j=0;j<combos.size();j++) {
+				ArrayList<Object[]> cursor = dishService.findDishesInCombo(combos.get(j).getComboId());
+				String listOfDishes="";
+				for(int i=0;i<cursor.size();i++) {
+					if(i==cursor.size()-1)
+						listOfDishes=listOfDishes + String.valueOf(cursor.get(i)[0]) +"," + String.valueOf(cursor.get(i)[1]);
+					else
+						listOfDishes=listOfDishes + String.valueOf(cursor.get(i)[0]) +"," + String.valueOf(cursor.get(i)[1])+",";
+				}
+				
+				listOfDishesHashMap.put(combos.get(j).getComboId().intValue(), listOfDishes);				
+			}
+//			System.out.println(listOfDishesHashMap);
+			model.addAttribute("listofdishes",listOfDishesHashMap);
+			
+			
 		}else {
-			//thử tìm combo trước
+			//thá»­ tÃ¬m combo trÆ°á»›c
 			ArrayList<ComboEntity> combos =(ArrayList<ComboEntity>) comboService.findByName(combo_dish);
-			//thấy combo
+			//tháº¥y combo
 			if(combos.size()!=0) {
-				System.out.println(" thấy combo");	
+				System.out.println(" tháº¥y combo");	
 				model.addAttribute("combos", combos);
 				ArrayList<DishEntity> dishes = (ArrayList<DishEntity>) dishService.findAll();
 				model.addAttribute("dishes", dishes);
 			}
-			//combo không thấy thì thử tìm bằng dish
+			//combo khÃ´ng tháº¥y thÃ¬ thá»­ tÃ¬m báº±ng dish
 			else {
-				System.out.println("không thấy combo");
+				System.out.println("khÃ´ng tháº¥y combo");
 				ArrayList<DishEntity> dishes = new ArrayList<DishEntity>();
 				DishEntity dish= dishService.findByName(combo_dish);
-				//thấy dish
+				//tháº¥y dish
 				if(dish!=null) {
-					System.out.println("thấy dish");
+					System.out.println("tháº¥y dish");
 					dishes.add(dish);
 					model.addAttribute("dishes", dishes);
 					combos = (ArrayList<ComboEntity>) comboService.findAll();
 					model.addAttribute("combos", combos);
 				}
-				//không thấy dish và combo
+				//khÃ´ng tháº¥y dish vÃ  combo
 				else {
-					System.out.println("không thấy dish");
+					System.out.println("khÃ´ng tháº¥y dish");
 					combos = (ArrayList<ComboEntity>) comboService.findAll();
 					model.addAttribute("combos", combos);
 					dishes = (ArrayList<DishEntity>) dishService.findAll();
@@ -86,6 +109,7 @@ public class DishController {
 		
 		Path path = Paths.get("uploads/");
 		try {
+			System.out.println(dishName);
 			InputStream inputStream = file.getInputStream();
 			Files.copy(inputStream, path.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 			DishEntity newDish = new DishEntity();
@@ -96,10 +120,13 @@ public class DishController {
 			newDish.setIngredient(dishIngredient);
 			newDish.setStatus(true);
 			newDish.setUrl(file.getOriginalFilename().toLowerCase());
+			LocalDate date = LocalDate.now();
+			Date datesql=java.sql.Date.valueOf(date);
+			newDish.setCreatedTime(datesql);
 			dishService.addDish(newDish);
 
 		} catch (Exception e) {
-
+			System.out.println(e.getMessage());
 		}
 		return "redirect:/menu";
 	}
