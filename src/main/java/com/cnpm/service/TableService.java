@@ -39,7 +39,7 @@ public class TableService {
 	}
 	
 	@Scheduled(fixedDelay = 2000)
-	  public void updateTime() throws InterruptedException {
+	public void updateTime() throws InterruptedException {
 	    List<TableEntity> tables = tableRepository.findAll();
 	    for (TableEntity table : tables) {
 	    	if(table.getExpired_time()!=null) {
@@ -53,8 +53,7 @@ public class TableService {
 				}
 	    	}
 		}
-	    // added sleep to simulate method 
-	    // which takes longer to execute.   
+	       
 	    Thread.sleep(4000); 
 	}
 	

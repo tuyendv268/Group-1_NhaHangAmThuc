@@ -105,10 +105,24 @@ addDone.addEventListener('click', function(){
 });
 
 //Quản lý khuyến mãi
+
+
+
+let discountEditButtons = document.getElementsByClassName('manage-change-btn');
+let discountDoneButtons = document.getElementsByClassName('change-done-btn');
+
 const manageDiscount = document.querySelector('#manage-btn');
 manageDiscount.addEventListener('click', function(){
     var manage = document.getElementById("manage");
     manage.style.display = "block";
+    
+    for (let i = 0; i < discountDoneButtons.length; i++) { 
+		document.getElementById("discountChange" + i).style.display = "none";
+	}
+	
+	for (let i = 0; i < discountEditButtons.length; i++) { 
+		document.getElementById("discountLabel" + i).style.display = "block";
+	}
 });
 
 //Xác nhận thay đổi
@@ -117,3 +131,15 @@ manageDone.addEventListener('click', function(){
     var manage = document.getElementById("manage");
     manage.style.display = "none";
 });
+
+//Hiển thị action
+
+for (let i = 0; i < discountEditButtons.length; i++) {
+	discountEditButtons[i].addEventListener('click', () => {
+		document.getElementById("discountLabel" + i).style.display = "none";
+		document.getElementById("discountChange" + i).style.display = "block";
+		
+		document.getElementById("rank" + i).value = $('#' + "discountPanel" + i).data('rankid');
+		document.getElementById("discountRateInput" + i).value = $('#' + "discountPanel" + i).data('discountrate');
+	})
+}

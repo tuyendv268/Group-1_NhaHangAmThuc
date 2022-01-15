@@ -15,6 +15,7 @@
 	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese}" rel="stylesheet">
 	<title>Seat</title>
 	<link rel="icon" type="x-icon" href="image\favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -30,7 +31,8 @@
 					<a href="#">
 						<i class="material-icons">search</i>
 					</a>
-				</form >
+				</form>
+
 			</div>
 
 			<div class="home">
@@ -38,8 +40,8 @@
 					<i class="material-icons">home</i>
 				</a>
 			</div>
-		</header>
 
+		</header>
 		<div id="main">
 			<div class="menu">
 				<ul>
@@ -72,7 +74,7 @@
 					</li>
 
 					<li>
-						<a href="#">
+						<a href="/report">
 							<i class="material-icons">note_alt</i>
 							<span>Report</span>
 						</a>
@@ -114,7 +116,7 @@
 							<span>Table Name</span>
 							<span>Reserved</span>
 						</div>
-						<div class="expired time">Reservation Timeout: </div >
+						<div class="expired time">Reservation Timeout: </div>
 						<p class="customer reserved">Customer: </p>
 						<p class="tel reserved">Tel: </p>
 					</ul>
@@ -223,14 +225,10 @@
 								<span></span>
 							</div>
 
-							<h2 th:data-tableid="${table.getTableId()}" 
-								th:data-customername="${table.guestName}"
-								th:data-telephone="${table.telephone}"
-								th:data-tblbillid="${table.billId}"
-								th:data-expiredtime="${table.expired_time}"
-								th:data-tablestatus="${table.status}"
-								th:data-statuspayment="${table.statusPayment}" 
-								th:id="${'table'+table_index.index}"
+							<h2 th:data-tableid="${table.getTableId()}" th:data-customername="${table.guestName}"
+								th:data-telephone="${table.telephone}" th:data-tblbillid="${table.billId}"
+								th:data-expiredtime="${table.expired_time}" th:data-tablestatus="${table.status}"
+								th:data-statuspayment="${table.statusPayment}" th:id="${'table'+table_index.index}"
 								th:text="${table.getTableName()}"></h2>
 						</div>
 					</tr>
@@ -251,7 +249,9 @@
 						</ul>
 					</form>
 				</div>
-
+				<div th:if="${message}" th:text="${message}" id="message">
+					<!--<script>alert($('#message').data('mess'));</script>-->
+				</div>
 				<!-- pop-up confirm Delete -->
 				<div class="confirmDelete">
 					<h2>Delete Table?</h2>
@@ -296,7 +296,7 @@
 	</div>
 	</div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/seat.js"></script>
 <script>

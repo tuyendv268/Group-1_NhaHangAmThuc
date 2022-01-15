@@ -74,8 +74,8 @@ tbody tr td{
     width: 800px;
     height: 500px;
     background: rgb(196, 196, 196);
-    top: 120px;
-    left: 400px;
+    top: 155px;
+    left: 500px;
     display: none;
 }
 
@@ -106,34 +106,33 @@ tbody tr td{
 #bill #edit-btn{
     left: 15px;
     background: rgb(72,72,72);
+    bottom: 20px;
 }
 
 #bill #delete-btn{
-    left: 150px; 
-    color: black;
+    left: 150px;
+    bottom: 20px;
+    background: rgb(72,72,72);
 }
 
 #bill #done-btn{
-    left: 60px;
+    color: black;
+    right: 20px;
     bottom: 20px;
-    background: black;
+    background: #34AED4;
 }
 
 #bill #add-btn{
     right: 150px;
     bottom: 130px;
     background: rgb(72,72,72);
+    bottom: 20px;
 }
 
 #bill #pay-btn{
     right: 20px;
-    background: rgb(72,72,72);
-}
-
-#bill #edit-btn,
-#bill #delete-btn,
-#bill #pay-btn{
-    bottom: 90px;
+    background: #FF3D00;
+    bottom: 80px;
 }
 
 #bill div{
@@ -151,7 +150,7 @@ tbody tr td{
     background: white;
     border-radius: 15px;
     width: 350px;
-    height: 300px;
+    height: 350px;
     right: 15px;
     top: 15px;
     overflow-y: scroll;
@@ -662,6 +661,7 @@ tbody tr td{
   }
 
 #new #new-select-btn{
+    text-align: center;
     font-size: 17px;
     color: white;
     height: 30px;
@@ -669,6 +669,8 @@ tbody tr td{
     border: none;
     background: rgb(72,72,72);
     cursor: pointer;
+    margin-left: 40px;
+    padding: 2px 0;
 }
 
 #select-table>div{
@@ -858,6 +860,7 @@ tbody tr td{
     right: 60px;
     bottom: 20px;
     cursor: pointer;
+    padding: 4px 0;
 }
 #done-select-table{
 	text-align: center;

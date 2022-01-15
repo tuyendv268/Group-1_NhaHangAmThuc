@@ -124,6 +124,7 @@ body{
 .dish-img img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
 }
 
 .event{
@@ -262,6 +263,51 @@ body{
     width: 100%;
     height: 100%;
     border-radius: 30px;
+}
+
+
+.carousel
+{
+	border-radius: 30px;
+	width: 100%;
+    height: 100%;
+	overflow: hidden;
+}
+
+.eventInfo
+{
+	position: absolute;
+	border-radius: 30px;
+	width: 90%;
+    height: 90%;
+    max-height: 470px;
+    top: 5%;
+    left: 5%;
+    display: none;
+    
+    background-color: rgba(192, 192, 192, 0.8);
+}
+
+.eventInfo h2{
+  text-align: center;
+  line-height: 100px;
+  font-size: 35px;
+}
+
+.eventDescription {
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 18px;
+}
+
+.importantInfo
+{
+	text-align: left;
+  	margin-left: 10%;
+  	margin-right: 10%;
+	font-size: 22px;
+	color: red;
 }
 
 

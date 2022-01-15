@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.TableEntity;
@@ -41,24 +42,28 @@ public class TableController {
 	}
 
 	@GetMapping(value = "/table/search")
-	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model) {
+	public String searchTable(@RequestParam(value = "tableName") String tableName, Model model, RedirectAttributes redirectAttributes) {
 		ArrayList<TableDTO> tables = (ArrayList<TableDTO>) tableService.find(tableName);
 		if (tables != null) {
 			model.addAttribute("tables", tables);
 			return "seat";
 		} else {
+			redirectAttributes.addFlashAttribute("message", "Không Tìm Thấy Bàn!!!");
 			return "redirect:/table";
 		}
 	}
 
 	@RequestMapping(value = "/table/new-table", method = RequestMethod.POST, params = "add")
-	public String newTable(@RequestParam(value = "tableName") String tableName) {
+	public String newTable(@RequestParam(value = "tableName") String tableName, RedirectAttributes redirectAttributes) {
 		TableEntity newTable = new TableEntity();
 		newTable.setTableName(tableName);
 		newTable.setStatus(TableDTO.available);
 
 		if (tableService.save(newTable) == null) {
 			System.out.println("Trùng Tên");
+			redirectAttributes.addFlashAttribute("message", "Trùng Tên Bàn. Vui Lòng Thử Lại !!!");
+		}else {
+			redirectAttributes.addFlashAttribute("message", "Thêm Bàn Thành Công!!!");
 		}
 		return "redirect:/table";
 	}
@@ -70,8 +75,10 @@ public class TableController {
 
 	@GetMapping(value = "/table/order", params = "add")
 	public String orderTable(@RequestParam(value = "id") Long id, @RequestParam(value = "guestName") String guestName,
-			@RequestParam(value = "phone") String phone) {
-		tableService.orderTable(id, guestName, phone);
+			@RequestParam(value = "phone") String phone, RedirectAttributes redirectAttributes) {
+		if(tableService.orderTable(id, guestName, phone) == null) {
+			redirectAttributes.addFlashAttribute("message", "Vui Lòng Nhập Đầy Đủ Thông Tin !!!");
+		}
 		return "redirect:/table";
 	}
 

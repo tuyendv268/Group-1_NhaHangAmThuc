@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnpm.entity.EventEntity;
 import com.cnpm.service.EventService;
@@ -45,7 +46,8 @@ public class EventController {
 			  @RequestParam("description") String description,
 			  @RequestParam("timeStart") String timeStart,
 			  @RequestParam("timeEnd") String timeEnd,
-			  @RequestParam("discountRate") int discountRate){
+			  @RequestParam("discountRate") int discountRate,
+			  RedirectAttributes redirectAttributes){
 		 Path path = Paths.get("uploads/");
 		 try {
 			 InputStream inputStream = file.getInputStream();
@@ -61,6 +63,7 @@ public class EventController {
 			 if(eventService.save(newEvent) != null) {
 				 System.out.println("Success");
 			 }else {
+				 redirectAttributes.addFlashAttribute("message", "Thời Gian Không Hợp Lệ !!!");
 				 System.out.println("False");
 			 }
 		 }catch (Exception e) {

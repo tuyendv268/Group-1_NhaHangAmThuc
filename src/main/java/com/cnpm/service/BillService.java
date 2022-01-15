@@ -1,5 +1,5 @@
 package com.cnpm.service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import com.cnpm.repository.DishRepository;
 
 @Service 
 public class BillService {
-@Autowired
+	@Autowired
 	private BillRepository billRepository;
 @Autowired
 	private DishRepository dishRepositoty;
@@ -158,5 +158,23 @@ public class BillService {
 		return false;
 	}
 	
+	public List<BillEntity> findAllPaidBills()
+	{
+		ArrayList<BillEntity> paidBills = (ArrayList<BillEntity>) billRepository.findAllByOrderByTimePaymentDesc();
+		for(int i = paidBills.size() - 1; i>=0; i--)
+		{
+			if(!paidBills.get(i).isStatusPayment())
+				paidBills.remove(i);
+		}
+		return paidBills;
+	}
+	public ArrayList<Object[]> findRevenueDueYear(int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueYear(start, end);
+		return cursor;
+	}
 	
+	public ArrayList<Object[]> findRevenueDueMonth(int year,int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueMonth(year,start, end);
+		return cursor;
+	}
 }

@@ -68,7 +68,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/report">
                             <i class="material-icons">note_alt</i>
                             <span>Report</span>
                         </a>
@@ -109,7 +109,7 @@
                     </tbody>
                 </table>
 
-                <button id="manage-btn">Manage discounts</button>
+                <button id="manage-btn" href="manage">Manage discounts</button>
                 <button id="add-btn">Add</button>
 
                 <div id=action>
@@ -144,7 +144,7 @@
 
                 <div id="delete">
                     <h3>Do you really want to delete this customer?</h3>
-                    <a id="delete-yes-btn" href="#" method="GET"><button>Yes</button></a>
+                    <a id="delete-yes-btn" href="#" method="GET"><button id="delete-yes-real-btn">Yes</button ></a>
                     <button id="delete-no-btn">No</button>
                 </div>
 
@@ -160,17 +160,21 @@
                         <tr th:each="rank, rank_index : ${memberships}">
 							<td th:text="${rank.name}"></td>
 							<td th:text="${rank.exp} "></td>
-							<td th:inline="text">[[${rank.discountRate}]]%
-								<button th:id="'discountChange' + ${rank_index.index}" class="manage-change-btn">Edit</button >
-								<form th:id="'discountChange' + ${rank_index.index}" class="manage-form" th:action="@{/membership/edit-discountrate/}" method="post" enctype="multipart/form-data">
-				                    <input id="edit-membershipid" type="hidden" th:name="customerId">
-				                    <input id="edit-discountrate" type="text" th:name="customerName">
-								</form >
-							</td>
+							<td th:id="'discountPanel' + ${rank_index.index}"
+								th:data-rankid = "${rank.membershipId}"
+								th:data-discountrate = "${rank.discountRate}">
+								<p th:id="'discountLabel' + ${rank_index.index}" th:inline="text" class="manage-label">[[${rank.discountRate}]]%
+									<button th:id="'discountEditBtn' + ${rank_index.index}" class="manage-change-btn">Edit</button  ></p>
+								<form  th:id="'discountChange' + ${rank_index.index}" class="manage-form" th:action="@{/membership/edit-discountrate/}" method="post" enctype="multipart/form-data">
+				                    <input th:id="'rank' + ${rank_index.index}" class="edit-membershipid" type="hidden" th:name="customerId">
+				                    <input th:id="'discountRateInput' + ${rank_index.index}" class="edit-discountrate" type="number" th:name="discountRate">
+				                    <button th:id="'discountChangeDone' + ${rank_index.index}" class="change-done-btn" name="edit" value="edit">Done</button>
+								</form  >
+							</td >
 						</tr>
                         </tbody>
                     </table>
-                    <button id="manage-done-btn">Done</button>
+                    <button id="manage-done-btn">Back</button>
                 </div>
                 
                                 
