@@ -80,7 +80,12 @@ customer.addEventListener('click', function(event) {
 	document.getElementById("edit-name").value = event.target.parentElement.children[2].innerText;
 	document.getElementById("edit-phone").value = $('#' + billindex).data('phone');
 });
-
+document.getElementById("cancel-edit").addEventListener('click',function(){
+	var edit = document.getElementById("edit");
+	edit.style.display = "none";
+	var bill = document.getElementById("bill");
+	bill.style.display = "block";
+})
 
 //Chỉnh sửa hóa đơn
 const editBill = document.querySelector('#edit-btn');
