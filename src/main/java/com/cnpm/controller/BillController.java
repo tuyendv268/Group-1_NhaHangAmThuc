@@ -38,10 +38,11 @@ public class BillController {
 	private CustomerService customerService;
 	@Autowired
 	private DishService dishService;
-	@Autowired 
+	@Autowired
 	private ComboService comboService;
 	@Autowired
-	private BillDetailRepository billDetailRepository ;
+	private BillDetailRepository billDetailRepository;
+
 	@GetMapping(value = "/bill")
 	public String display(Model model) {
 		List<BillEntity> bills = billService.findUnpaidBill();
@@ -98,29 +99,35 @@ public class BillController {
 	}
 
 	@PostMapping(value = "/addDishtobill")
-	public String addDishtoBill( @RequestParam Long billId,
-			@RequestParam(required=false, defaultValue = "") List<Integer> quantityDish,
-			@RequestParam(required=false, defaultValue = "")List<Long> dishId ) {
+	public String addDishtoBill(@RequestParam Long billId,
+			@RequestParam(required = false, defaultValue = "") List<Integer> quantityDish,
+			@RequestParam(required = false, defaultValue = "") List<Long> dishId,
+			@RequestParam(required = false, defaultValue = "") List<Integer> quantityCombo,
+			@RequestParam(required = false, defaultValue = "") List<Long> comboId) {
 		List<BillDetail> billdetails = billService.findBillById(billId).getBillDetails();
 		billService.findBillById(billId).setBillDetails(null);
-		for(BillDetail billdetail : billdetails) {
+		for (BillDetail billdetail : billdetails) {
 			billdetail.setBill(null);
 			billDetailRepository.delete(billdetail);
 		}
-		if(dishId.size()>0) {
-		
-			
-			for(int i = 0; i < dishId.size(); i++) {
+		if (dishId.size() > 0) {
+
+			for (int i = 0; i < dishId.size(); i++) {
 				billService.addDish(billId, dishId.get(i), quantityDish.get(i));
 			}
-			
-			
+		}
+		if (comboId.size() > 0) {
+
+			for (int i = 0; i < comboId.size(); i++) {
+				billService.addCombo(billId, comboId.get(i), quantityCombo.get(i));
+			}
+
 		}
 		return ("redirect:/bill");
 	}
 
 	@GetMapping("/payBill/{id}")
-	public String payBill(@PathVariable (value = "id") Long id) {
+	public String payBill(@PathVariable(value = "id") Long id) {
 
 		BillEntity bill = billService.findBillById(id);
 		List<TableEntity> tables = bill.getTables();

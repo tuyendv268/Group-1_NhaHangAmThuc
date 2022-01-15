@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.cnpm.entity.BillDetail;
 import com.cnpm.entity.BillEntity;
+import com.cnpm.entity.ComboEntity;
 import com.cnpm.entity.DishEntity;
 import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.BillRepository;
+import com.cnpm.repository.ComboRepository;
 import com.cnpm.repository.DishRepository;
 
 
@@ -26,6 +28,8 @@ public class BillService {
 	private DishRepository dishRepositoty;
 @Autowired
 	private BillDetailRepository billdetailRepository;  
+@Autowired
+	private ComboRepository comboRepository;
 	public boolean save(BillEntity bill) {
 		BillEntity bill1 = billRepository.save(bill);
 		if(bill1 == null) {
@@ -70,6 +74,22 @@ public class BillService {
 			billdetail.setQuantity(quantity);
 			billdetail.setBill(bill);
 			int total =  billdetail.getDish().getPrice()*quantity;
+			billdetail.setTotal(total);
+			billdetailRepository.save(billdetail);
+			billRepository.save(bill);	
+			return true;
+		}
+		return false;		
+	}
+	public boolean addCombo(long billID, long comboID, int quantity) {
+		BillEntity bill = billRepository.getById(billID);
+		ComboEntity combo = comboRepository.getById(comboID);
+		if(combo != null && quantity > 0) {
+			BillDetail billdetail = new BillDetail();
+			billdetail.setCombo(combo);
+			billdetail.setQuantity(quantity);
+			billdetail.setBill(bill);
+			int total =  billdetail.getCombo().getPrice()*quantity;
 			billdetail.setTotal(total);
 			billdetailRepository.save(billdetail);
 			billRepository.save(bill);	

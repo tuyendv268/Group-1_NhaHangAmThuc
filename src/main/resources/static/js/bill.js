@@ -1,8 +1,8 @@
 //Hiển thị hóa đơn
 const dishlist = document.getElementsByClassName("dish-list")[0];
 const customer = document.querySelector('.customer-list');
-const listCheckbox = document.getElementsByName("dish-checkbox");
-const quantity = document.getElementsByName("quantityDish");
+const listCheckbox = document.getElementsByClassName("dish-checkbox");
+const quantity = document.getElementsByClassName("quantityDish");
 customer.addEventListener('click', function(event) {
 	var list = Array.prototype.slice.call(customer.children);
 
@@ -46,6 +46,7 @@ customer.addEventListener('click', function(event) {
 		quantity[i].value = 1;
 		quantity[i].style.display = "none";
 	}
+	
 	document.getElementById("bill-id-for-dish").value = id;
 	var dishinbill = $('#dish-in-bill' + id);
 	var dishes = dishinbill[0].children;
@@ -53,6 +54,14 @@ customer.addEventListener('click', function(event) {
 	$('#dishcheckbox' + $(dishes[i]).data('dishid') ).prop('checked', true);
 	$('#dishnumber' + $(dishes[i]).data('dishid') ).css("display", "inline-block");
 	$('#dishnumber' + $(dishes[i]).data('dishid') )[0].value = $(dishes[i]).data('quantity')
+	}
+	
+	var comboinbill = $('#combo-in-bill' + id);
+	var combos = comboinbill[0].children;
+	for (let i =0; i < combos.length; i++){
+	$('#combocheckbox' + $(combos[i]).data('comboid') ).prop('checked', true);
+	$('#combonumber' + $(combos[i]).data('comboid') ).css("display", "inline-block");
+	$('#combonumber' + $(combos[i]).data('comboid') )[0].value = $(combos[i]).data('quantity')
 	}
 	
 	for (let i = 0; i < listCheckbox.length; i++) {
