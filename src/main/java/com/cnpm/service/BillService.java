@@ -1,7 +1,4 @@
 package com.cnpm.service;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,7 @@ import com.cnpm.repository.DishRepository;
 
 @Service 
 public class BillService {
-@Autowired
+	@Autowired
 	private BillRepository billRepository;
 	private DishRepository dishRepositoty;
 	private BillDetailRepository billdetailRepository;  
@@ -120,6 +117,13 @@ public class BillService {
 				paidBills.remove(i);
 		}
 		return paidBills;
+	public ArrayList<Object[]> findRevenueDueYear(int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueYear(start, end);
+		return cursor;
 	}
 	
+	public ArrayList<Object[]> findRevenueDueMonth(int year,int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueMonth(year,start, end);
+		return cursor;
+	}
 }

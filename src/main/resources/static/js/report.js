@@ -1,6 +1,5 @@
 document.getElementById('start-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 document.getElementById('end-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-
 function openTab(evt, tab) {
     var i, tabcontent, tablinks;
 
@@ -17,3 +16,9 @@ function openTab(evt, tab) {
     document.getElementById(tab).style.display = "block";
     evt.currentTarget.className += " active-tab";
 }
+
+openTab(event,'chart');
+
+
+
+    		   	
