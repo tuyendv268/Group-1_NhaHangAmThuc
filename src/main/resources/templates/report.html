@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/report.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/main.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/report.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
     <title>Nhà Hàng Ẩm Thực</title>
@@ -115,23 +115,70 @@
                 <div class="tabcontent" id="chart">
                     <h2>Report Graph</h2>
 
-                    <div class="input-time">
-                        <form action="">
-                            <label for="start-day">From </label>
-                            <input type="date" id="start-day" name="start-day" min="2015-01-01">
-                        </form>
-                        <form action="">
-                            <label for="end-day">To </label>
-                            <input type="date" id="end-day" name="end-day" min="2015-01-01">
-                        </form>
-                    </div>
-
-                </div>
-
+					<div class="input-time">
+						<form th:action="@{/report/statistic}" method="GET" enctype="multipart/form-data">
+							<span> 
+								<label for="start-day">From </label> 
+								<input	type="datetime-local" id="start-day" th:name="startday" min="2020-01-01" required>
+							</span> 
+							<span> 
+								<label for="end-day">To </label> 
+								<input type="datetime-local" id="end-day" th:name="endday" min="2020-01-01" required>
+							</span>
+							<button id=statistic name="statistic" value="statistic" >Statistic Due Year</button>
+							<button id=statisticDueMonth name="statisticDueMonth" value="statisticDueMonth" >Statistic Due Month</button>
+						</form>
+					</div>
+					
+					<div id="containergraph" style="width: 550px; height: 400px; margin: 0 auto"></div>
+				</div>
             </div>
         </div>
     </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script th:inline="javascript">
+    $(function(){  	
+    	
+    	Highcharts.chart('containergraph', {
+    		chart: {
+    		    type: 'line'
+    		  },
+    		  title: {
+    		    text: 'Revenue report'
+    		  },
+    		  subtitle: {
+    		    text: 'Cre: DaoMinhTien'
+    		  },
+    		  xAxis: {
+    		    categories: [[${Categories}]]
+    		  },
+    		  yAxis: {
+    		    title: {
+    		      text: 'Unit (VND)'
+    		    }
+    		  },
+    		  plotOptions: {
+    		    line: {
+    		      dataLabels: {
+    		        enabled: true
+    		      },
+    		      enableMouseTracking: false
+    		    }
+    		  },
+    		  series: [{
+    		    name: 'Revenue',
+    		    data: [[${Revenue}]]
+    		  }]
+    		});
+    	
+    });
+</script>
 </body>
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/report.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://localhost:8080/js/report.js"></script>
 </html>
