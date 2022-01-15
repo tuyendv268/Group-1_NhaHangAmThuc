@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/report.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700&subset=vietnamese" rel="stylesheet">
+    <title>Nhà Hàng Ẩm Thực</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 class="logo">
+                <a href="#">Manager</a>
+            </h1>
+
+            <div class="search">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="material-icons">search</i>
+                </a>
+            </div>
+
+            <div class="home">
+                <a href="#">
+                    <i class="material-icons">home</i>
+                </a>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="./seat.html">
+                            <i class="material-icons">event_seat</i>
+                            <span>Seat</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="./menu.html">
+                            <i class="material-icons">menu</i>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="./event.html">
+                            <i class="material-icons">event_available</i>
+                            <span>Event</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">person</i>
+                            <span>Membership</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="active">
+                        <a href="./report.html">
+                            <i class="material-icons">note_alt</i>
+                            <span>Report</span>
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">receipt_long</i>
+                            <span>Bill</span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="content">
+
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'bill-history')">Bill History</button>
+                    <button class="tablinks" onclick="openTab(event, 'chart')">Chart</button>
+                </div>
+
+                <div class="tabcontent" id="bill-history">
+                    <table>
+                        <tr>
+                            <th>Code</th>
+                            <th>Time</th>
+                            <th>Money</th>
+                        </tr>
+                        <tr>
+                            <td>#HD000003</td>
+                            <td>1/1/2022</td>
+                            <td>1.000.000 <span>VND</span></td>
+                        </tr>
+                        <tr>
+                            <td>#HD000005</td>
+                            <td>1/1/2022</td>
+                            <td>1.250.000 <span>VND</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tabcontent" id="chart">
+                    <h2>Report Graph</h2>
+
+                    <div class="input-time">
+                        <form action="">
+                            <label for="start-day">From </label>
+                            <input type="date" id="start-day" name="start-day" min="2015-01-01">
+                        </form>
+                        <form action="">
+                            <label for="end-day">To </label>
+                            <input type="date" id="end-day" name="end-day" min="2015-01-01">
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/report.js"></script>
+</html>
