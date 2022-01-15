@@ -25,7 +25,7 @@ customer.addEventListener('click', function(event) {
 	billid.innerHTML = id
 	const name = document.querySelector('#bill-name span')
 	name.innerHTML = event.target.parentElement.children[2].innerText;
-	
+
 	const phone = document.querySelector('#bill-phone span')
 	phone.innerHTML = $('#' + billindex).data('phone');
 	const status = document.querySelector('#bill-completion-time span')
@@ -37,34 +37,34 @@ customer.addEventListener('click', function(event) {
 	const rank = document.querySelector('#bill-rank span');
 	const seat = document.querySelector('#bill-seat span')
 	seat.innerHTML = event.target.parentElement.children[3].innerHTML;
-	
+
 	rank.innerHTML = $('#' + billindex).data('memberank');
-	
+
 	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
 	dishlist.innerHTML = '';
-	for (let i = 0; i < listCheckbox.length; i++){
+	for (let i = 0; i < listCheckbox.length; i++) {
 		listCheckbox[i].checked = false;
 		quantity[i].value = 1;
 		quantity[i].style.display = "none";
 	}
-	
+
 	document.getElementById("bill-id-for-dish").value = id;
 	var dishinbill = $('#dish-in-bill' + id);
 	var dishes = dishinbill[0].children;
-	for (let i =0; i < dishes.length; i++){
-	$('#dishcheckbox' + $(dishes[i]).data('dishid') ).prop('checked', true);
-	$('#dishnumber' + $(dishes[i]).data('dishid') ).css("display", "inline-block");
-	$('#dishnumber' + $(dishes[i]).data('dishid') )[0].value = $(dishes[i]).data('quantity')
+	for (let i = 0; i < dishes.length; i++) {
+		$('#dishcheckbox' + $(dishes[i]).data('dishid')).prop('checked', true);
+		$('#dishnumber' + $(dishes[i]).data('dishid')).css("display", "inline-block");
+		$('#dishnumber' + $(dishes[i]).data('dishid'))[0].value = $(dishes[i]).data('quantity')
 	}
-	
+
 	var comboinbill = $('#combo-in-bill' + id);
 	var combos = comboinbill[0].children;
-	for (let i =0; i < combos.length; i++){
-	$('#combocheckbox' + $(combos[i]).data('comboid') ).prop('checked', true);
-	$('#combonumber' + $(combos[i]).data('comboid') ).css("display", "inline-block");
-	$('#combonumber' + $(combos[i]).data('comboid') )[0].value = $(combos[i]).data('quantity')
+	for (let i = 0; i < combos.length; i++) {
+		$('#combocheckbox' + $(combos[i]).data('comboid')).prop('checked', true);
+		$('#combonumber' + $(combos[i]).data('comboid')).css("display", "inline-block");
+		$('#combonumber' + $(combos[i]).data('comboid'))[0].value = $(combos[i]).data('quantity')
 	}
-	
+
 	for (let i = 0; i < listCheckbox.length; i++) {
 		if (listCheckbox[i].checked) {
 			var dish = document.createElement("UL");
@@ -80,7 +80,7 @@ customer.addEventListener('click', function(event) {
 	document.getElementById("edit-name").value = event.target.parentElement.children[2].innerText;
 	document.getElementById("edit-phone").value = $('#' + billindex).data('phone');
 });
-document.getElementById("cancel-edit").addEventListener('click',function(){
+document.getElementById("cancel-edit").addEventListener('click', function() {
 	var edit = document.getElementById("edit");
 	edit.style.display = "none";
 	var bill = document.getElementById("bill");
@@ -94,7 +94,7 @@ editBill.addEventListener('click', function() {
 	bill.style.display = "none";
 	var edit = document.getElementById("edit");
 	edit.style.display = "block";
-	
+
 });
 
 
@@ -205,7 +205,7 @@ billDone.addEventListener('click', function() {
 	var bill = document.getElementById("bill");
 	bill.style.display = "none";
 	create.style.display = "block";
-	
+
 });
 
 
@@ -295,15 +295,15 @@ if (bill_id_get_from_table != null) {
 	while (temp != undefined) {
 		if (temp == bill_id_get_from_table) {
 			bill.style.display = "block";
-   			create.style.display = "none";
-   			
-   			var billID = bill_id_get_from_table;
-   			var customername = $('#'+idx).data('customer');
-			var phone = $('#'+idx).data('phone');
-			var total = $('#'+idx).data('total');
-			var statuspayment = $('#'+idx).data('statuspayment');
-			var createdtime = $('#'+idx).data('createdtime');
-			var memberank = $('#'+idx).data('memberank');
+			create.style.display = "none";
+
+			var billID = bill_id_get_from_table;
+			var customername = $('#' + idx).data('customer');
+			var phone = $('#' + idx).data('phone');
+			var total = $('#' + idx).data('total');
+			var statuspayment = $('#' + idx).data('statuspayment');
+			var createdtime = $('#' + idx).data('createdtime');
+			var memberank = $('#' + idx).data('memberank');
 			document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : " + billID;
 			document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : " + customername;
 			document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : " + phone;
@@ -311,9 +311,50 @@ if (bill_id_get_from_table != null) {
 			document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created : " + createdtime;
 			document.getElementsByClassName("popup-bill-rank")[0].innerHTML = "Member Rank : " + memberank;
 			document.getElementsByClassName("popup-bill-completion-time")[0].innerHTML = "Status : " + statuspayment;
-   			document.getElementsByClassName("popup-bill-seat")[0].innerHTML =document.getElementById("table"+idx).innerHTML;
-   			
-   			break;
+			document.getElementsByClassName("popup-bill-seat")[0].innerHTML = document.getElementById("table" + idx).innerHTML;
+			//alert(document.getElementById("dish-in-bill"+billID).innerHTML);
+			//document.getElementsByClassName("dish-list")[0].innerHTML = document.getElementById("dish-in-bill" + billID).innerHTML;
+
+
+
+			for (let i = 0; i < listCheckbox.length; i++) {
+				listCheckbox[i].checked = false;
+				quantity[i].value = 1;
+				quantity[i].style.display = "none";
+			}
+
+			var dishinbill = $('#dish-in-bill' + billID);
+			var dishes = dishinbill[0].children;
+			for (let i = 0; i < dishes.length; i++) {
+				$('#dishcheckbox' + $(dishes[i]).data('dishid')).prop('checked', true);
+				$('#dishnumber' + $(dishes[i]).data('dishid')).css("display", "inline-block");
+				$('#dishnumber' + $(dishes[i]).data('dishid'))[0].value = $(dishes[i]).data('quantity')
+			}
+
+			var comboinbill = $('#combo-in-bill' + billID);
+			var combos = comboinbill[0].children;
+			for (let i = 0; i < combos.length; i++) {
+				$('#combocheckbox' + $(combos[i]).data('comboid')).prop('checked', true);
+				$('#combonumber' + $(combos[i]).data('comboid')).css("display", "inline-block");
+				$('#combonumber' + $(combos[i]).data('comboid'))[0].value = $(combos[i]).data('quantity')
+			}
+
+			for (let i = 0; i < listCheckbox.length; i++) {
+				if (listCheckbox[i].checked) {
+					var dish = document.createElement("UL");
+					dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
+					dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
+					dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));
+					dish.appendChild(listCheckbox[i].parentElement.children[4].cloneNode(true));
+					dish.appendChild(listCheckbox[i].parentElement.children[5].cloneNode(true));
+					dishlist.appendChild(dish);
+				}
+			}
+
+
+
+
+			break;
 		}
 		idx = idx + 1;
 		temp = $('#' + idx).data('billid');

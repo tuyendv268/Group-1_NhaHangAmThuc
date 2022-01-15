@@ -108,7 +108,6 @@
 								<span th:each="billdetail : ${bill.billDetails}" th:if="${billdetail.dish} != null"
 									th:data-dishid="${billdetail.dish.dishId}"
 									th:data-quantity="${billdetail.quantity}">
-
 								</span>
 							</p>
 							<p th:id="'combo-in-bill'+${bill.billId}" type="hidden">
@@ -241,23 +240,22 @@
 				</form>
 				<div id="dish-select">
 					<h2>Select Dish</h2>
-					<div>
+					<div >
 						<li style="padding:20px">
 							<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
-
 								<img th:src="@{'getimage/'+${dish.url}}" alt="">
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
 								<span th:text="${dish.price} + 'đ'">
 								</span>
-								<input type="checkbox" class= "dish-checkbox" th:id="'dishcheckbox'+${dish.dishId}" name="dish-checkbox">
+								<input type="checkbox" class="dish-checkbox" th:id="'dishcheckbox'+${dish.dishId}"
+									name="dish-checkbox">
 
-								<input type="number"class = "quantityDish" th:id="'dishnumber'+${dish.dishId}" style="display:none"
-									name="quantityDish" min="1">
-								<input type="hidden" name="dishId" th:value="${dish.dishId}" 
-							</ul>
+								<input type="number" class="quantityDish" th:id="'dishnumber'+${dish.dishId}"
+									style="display:none" name="quantityDish" min="1">
+								<input type="hidden" name="dishId" th:value="${dish.dishId}" </ul>
 						</li>
-							<br>
+						<br>
 						<li style="padding:20px">
 							<h2> Combo</h2>
 							<ul class="ulDish" th:each="combo, combo_index: ${combos}">
@@ -265,34 +263,34 @@
 								<img th:src="@{'getimage/'+${combo.url}}" alt="">
 								<span class="dish-name" th:id="'combo' + ${combo.comboId}"
 									th:text="'Combo: '+${combo.comboName}">
-									
+
 								</span>
 								<span th:text="${combo.price} + 'đ'">
 								</span>
-								<input type="checkbox" class= "dish-checkbox" th:id="'combocheckbox'+${combo.comboId}" name="combo-checkbox">
+								<input type="checkbox" class="dish-checkbox" th:id="'combocheckbox'+${combo.comboId}"
+									name="combo-checkbox">
 
-								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}" style="display:none"
-									name="quantityCombo" min="1">
-								<input type="hidden" name="comboId" th:value="${combo.comboId}" 
-							</ul>
-						</li >
-					</div>
+								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}"
+									style="display:none" name="quantityCombo" min="1">
+								<input type="hidden" name="comboId" th:value="${combo.comboId}" </ul>
+						</li>
+					</div >
 					<button id="done-select-dish">
 						Done
 					</button>
 				</div>
-				<form id="edit" th:action = "@{/editBill}" method="POST">
+				<form id="edit" th:action="@{/editBill}" method="POST">
 					<h2>Edit</h2>
 					<h3>Customer’s name</h3>
-					<input type ="hidden" id="edit-bill-id" th:name = "billId">
-					<input type="text" id="edit-name" th:name = "customerName">
+					<input type="hidden" id="edit-bill-id" th:name="billId">
+					<input type="text" id="edit-name" th:name="customerName">
 					<h3>Phone</h3>
-					<input type="text" id="edit-phone" th:name = "phone" >
-					
+					<input type="text" id="edit-phone" th:name="phone">
+
 					<h3>Seat</h3>
-					<button id= "cancel-edit" type="button" style="left:300px">Cancel </button> 
-					<button id="edit-done-btn" type = "submit" style="left:30px">Done</button>
-				</form >
+					<button id="cancel-edit" type="button" style="left:300px">Cancel </button>
+					<button id="edit-done-btn" type="submit" style="left:30px">Done</button>
+				</form>
 
 				<div id="delete">
 					<h3>Do you really want to delete this bill?</h3>
