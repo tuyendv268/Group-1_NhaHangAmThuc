@@ -1,5 +1,5 @@
-document.getElementById('start-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-document.getElementById('end-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+document.getElementById('start-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]+"T00:00";
+document.getElementById('end-day').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]+"T23:59";
 
 function openTab(evt, tab) {
     var i, tabcontent, tablinks;

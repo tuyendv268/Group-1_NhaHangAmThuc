@@ -90,7 +90,7 @@
 
                 <div class="tab">
                     <button class="tablinks" onclick="openTab(event, 'bill-history')">Bill History</button>
-                    <button class="tablinks" onclick="openTab(event, 'chart')">Chart</button>
+                    <button class="tablinks active-tab" onclick="openTab(event, 'chart')">Chart</button>
                 </div>
 
                 <div class="tabcontent" id="bill-history">
@@ -117,11 +117,11 @@
 						<form th:action="@{/report/statistic}" method="GET" enctype="multipart/form-data">
 							<span> 
 								<label for="start-day">From </label> 
-								<input	type="datetime-local" id="start-day" th:name="startday" min="2020-01-01" required>
+								<input	type="datetime-local" id="start-day" th:name="startday" min="2020-01-01T20:20" required>
 							</span> 
 							<span> 
 								<label for="end-day">To </label> 
-								<input type="datetime-local" id="end-day" th:name="endday" min="2020-01-01" required>
+								<input type="datetime-local" id="end-day" th:name="endday" min="2020-01-01T20:20" required>
 							</span>
 							<button id=statistic name="statistic" value="statistic" >Statistic Due Year</button>
 							<button id=statisticDueMonth name="statisticDueMonth" value="statisticDueMonth" >Statistic Due Month</button>
