@@ -24,7 +24,7 @@
 				<div class="search" >
 					
 					<input type="text" placeholder="search" th:value="${searchvalue}" th:name="customerName">
-					<button type ="submit">
+					<button type ="submit" style ="color : fff;">
 						<i class="material-icons">search</i>
 					</button>
 				</div>
@@ -253,8 +253,8 @@
 				<div id="dish-select">
 					<h2>Select Dish</h2>
 					<div >
-						<li style="padding:20px">
-							<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
+						<ul style="padding:20px">
+							<li class="ulDish" th:each="dish, dish_index: ${dishes}">
 								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140px" height= "140px">
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
@@ -265,7 +265,8 @@
 
 								<input type="number" class="quantityDish" th:id="'dishnumber'+${dish.dishId}"
 									style="display:none" name="quantityDish" min="1"  onchange="updateTotal()" onkeyup="updateTotal()"  required >
-								<input type="hidden" name="dishId" th:value="${dish.dishId}" ></li>
+								<input type="hidden" name="dishId" th:value="${dish.dishId}" >
+								</li>
 							</ul>
 						<br>
 						<ul style="padding:20px">
@@ -284,7 +285,8 @@
 
 								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}"
 									style="display:none" name="quantityCombo" min="1">
-								<input type="hidden" name="comboId" th:value="${combo.comboId}" ></li>
+								<input type="hidden" name="comboId" th:value="${combo.comboId}" >
+								</li>
 							</ul>
 					</div >
 					<button id="done-select-dish">
@@ -318,7 +320,7 @@
 											<input class="checkbox-table" th:data-name="${table.tableName}"
 												th:data-customername="${table.guestName}" id="${table.tableId}"
 												th:data-customerphone="${table.telephone}" type="checkbox"
-												name="selectTables" th:value="${table.tableId}" checked / >
+												name="selectTables" th:value="${table.tableId}"  / >
 											<span class="checkmark"></span>
 										</label>
 									</div >
