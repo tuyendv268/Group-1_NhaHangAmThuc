@@ -23,7 +23,11 @@ public class MembershipService {
 		return membershipRepository.findAll();
 	}
 	
-	
+	public List<MembershipEntity> findRealRanks(){
+		List<MembershipEntity> realRanks =  membershipRepository.findAll();
+		realRanks.remove(realRanks.size()-1);
+		return realRanks;
+	}
 	
 	
 	public MembershipEntity editDiscountRate(Long id, int discountRate) {
