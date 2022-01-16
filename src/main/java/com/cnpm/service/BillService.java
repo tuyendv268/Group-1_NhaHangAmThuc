@@ -13,10 +13,14 @@ import com.cnpm.entity.BillDetail;
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.ComboEntity;
 import com.cnpm.entity.DishEntity;
+import com.cnpm.entity.EventEntity;
+import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.BillRepository;
 import com.cnpm.repository.ComboRepository;
 import com.cnpm.repository.DishRepository;
+import com.cnpm.repository.EventRepository;
+import com.cnpm.repository.TableRepository;
 
 
 
@@ -30,12 +34,42 @@ public class BillService {
 	private BillDetailRepository billdetailRepository;  
 @Autowired
 	private ComboRepository comboRepository;
+@Autowired
+	private TableRepository tableRepository;
+@Autowired 
+	private EventRepository eventRepository;
 	public boolean save(BillEntity bill) {
 		BillEntity bill1 = billRepository.save(bill);
 		if(bill1 == null) {
 			return false;
 		}
 		return true;
+	}
+	public BillEntity payBill(Long billId) {
+		BillEntity bill = billRepository.getById(billId);
+		List<TableEntity> tables = bill.getTables();
+		for (TableEntity tableEntity : tables) {
+			tableEntity.setBill(null);
+			tableRepository.save(tableEntity);
+		}
+		bill.setStatusPayment(true);
+		java.util.Date date=new java.util.Date();  
+		bill.setTimePayment(date);
+		billRepository.save(bill);
+		return bill;
+	}
+	public BillEntity setDateandEvent(BillEntity bill) {
+		java.util.Date date=new java.util.Date();  
+		bill.setCreatedDate(date);
+		List<EventEntity> events = eventRepository.findByOrderByDiscountRateDesc();
+		for(EventEntity event : events) {
+			if(event.isAvailable()) {
+				bill.setEvent(event);
+				break;
+			}
+		}
+		billRepository.save(bill);
+		return bill;
 	}
 	public Page<BillEntity> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :

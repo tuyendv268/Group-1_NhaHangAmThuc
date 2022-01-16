@@ -75,13 +75,13 @@ public class CustomerService {
 		return false;
 	}
 	
-	public CustomerEntity addPoint(Long id, Long billPrice) {
+	public CustomerEntity addPoint(CustomerEntity customer, Long billPrice) {
 		
-		CustomerEntity customer = findById(id);
+		
 		//TODO: Sửa công thức tính điểm tại đây
 		Long point = billPrice/10000;
-		
-		customer.setPoint(point + customer.getPoint());
+		Long prePoint = customer.getPoint();
+		customer.setPoint(point + prePoint);
 		
 		//Update Membership Rank
 		if(customer.getPoint() < 0)

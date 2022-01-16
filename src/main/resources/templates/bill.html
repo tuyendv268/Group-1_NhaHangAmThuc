@@ -101,7 +101,9 @@
 								th:data-customer="${bill.customer.customerName}" th:data-total="${bill.finalTotal}"
 								th:data-statuspayment="${bill.statusPayment}"
 								th:data-memberank="${bill.customer.membership.name}"
-								th:data-createdtime="${bill.createdDate}"></td>
+								th:data-createdtime="${bill.createdDate}"
+								th:data-eventdiscountrate="${bill.event?.discountRate}?:'0'"
+								th:data-memberdiscountrate= "${bill.customer.membership.discountRate}"></td>
 							<td th:text="${bill.billId}"></td>
 							<td th:text="${bill.customer.customerName}"></td>
 							<p th:id="'dish-in-bill'+${bill.billId}" type="hidden">
@@ -162,7 +164,11 @@
 					</div>
 					<div id="bill-total">
 						<h3 class="popup-bill-total">Total: </h3>
-						<span></span>
+						<input type="hidden"  id="discoutrate" value="0">
+						<span style="color:springgreen; font-weight: bold;text-shadow: 
+						2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 
+						1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;"></span >
+						<del style="left: 500px;padding-left: 20px;color:red"> </del>
 					</div>
 
 					<div id="bill-creation-time">
@@ -204,19 +210,12 @@
 						<!--<input id="seat-input" type="text"> -->
 						<button id="new-done-btn" type="submit">Done</button>
 						<div id="cancel-new-btn"> Cancel</div>
-						<div id="select-table">
+						<div class = "pop-select-table" id="select-table">
 							<h2>Select table</h2>
 							<div>
 								<ul>
 									<li th:each="table : ${tables}" th:switch="${table.status}">
-										<label class="container" th:case="available">
-											<span class="table-free"></span>
-											<p class="table-name" th:text="${table.tableName}"></p>
-											<p>Available</p>
-											<input class="checkbox-table" th:data-name="${table.tableName}"
-												type="checkbox" name="selectTables" th:value="${table.tableId}" />
-											<span class="checkmark"></span>
-										</label>
+										
 										<label class="container" th:case="reserved">
 											<span class="table-reserved"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
@@ -225,6 +224,14 @@
 												th:data-customername="${table.guestName}" id="${table.tableId}"
 												th:data-customerphone="${table.telephone}" type="checkbox"
 												name="selectTables" th:value="${table.tableId}" />
+											<span class="checkmark"></span>
+										</label>
+										<label class="container" th:case="available">
+											<span class="table-free"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p>Available</p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												type="checkbox" name="selectTables" th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
 									</li>
@@ -242,7 +249,7 @@
 					<div >
 						<li style="padding:20px">
 							<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
-								<img th:src="@{'getimage/'+${dish.url}}" alt="">
+								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140" height= "140">
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
 								<span th:text="${dish.price} + 'đ'">
@@ -251,7 +258,7 @@
 									name="dish-checkbox">
 
 								<input type="number" class="quantityDish" th:id="'dishnumber'+${dish.dishId}"
-									style="display:none" name="quantityDish" min="1">
+									style="display:none" name="quantityDish" min="1"  onchange="updateTotal()" onkeyup="updateTotal()"  required >
 								<input type="hidden" name="dishId" th:value="${dish.dishId}" </ul>
 						</li>
 						<br>
@@ -259,7 +266,7 @@
 							<h2> Combo</h2>
 							<ul class="ulDish" th:each="combo, combo_index: ${combos}">
 
-								<img th:src="@{'getimage/'+${combo.url}}" alt="">
+								<img th:src="@{'getimage/'+${combo.url}}" alt="" width="140" height= "140">
 								<span class="dish-name" th:id="'combo' + ${combo.comboId}"
 									th:text="'Combo: '+${combo.comboName}">
 
@@ -267,7 +274,7 @@
 								<span th:text="${combo.price} + 'đ'">
 								</span>
 								<input type="checkbox" class="dish-checkbox" th:id="'combocheckbox'+${combo.comboId}"
-									name="combo-checkbox">
+									name="combo-checkbox" onchange="updateTotal()" onkeyup="updateTotal()"required>
 
 								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}"
 									style="display:none" name="quantityCombo" min="1">
@@ -278,7 +285,8 @@
 						Done
 					</button>
 				</div>
-				<form id="edit" th:action="@{/editBill}" method="POST">
+				<form  th:action="@{/editBill}" method="POST">
+				<div id="edit">
 					<h2>Edit</h2>
 					<h3>Customer’s name</h3>
 					<input type="hidden" id="edit-bill-id" th:name="billId">
@@ -288,7 +296,52 @@
 
 					<h3>Seat</h3>
 					<button id="cancel-edit" type="button" style="left:300px">Cancel </button>
+					<button id="edit-table-btn" type="button" style="left:40px;bottom:190px;">Select </button>
 					<button id="edit-done-btn" type="submit" style="left:30px">Done</button>
+					<div class="pop-select-table" id="edit-select-table">
+							<h2>Select table</h2>
+							<div>
+								<ul>
+									<li th:each="table : ${tables}" th:switch="${table.status}">
+									<div th:case="occupied" class = "occupied"
+										 th:name= "occupied+${table.billId}" style="display:none;">
+										<label class="container"  >
+											<span class="table-occupied"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p th:text="'Occupied by: ' + ${table.guestName }"></p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												th:data-customername="${table.guestName}" id="${table.tableId}"
+												th:data-customerphone="${table.telephone}" type="checkbox"
+												name="selectTables" th:value="${table.tableId}" checked / >
+											<span class="checkmark"></span>
+										</label>
+									</div >
+										<label class="container" th:case="reserved">
+											<span class="table-reserved"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												th:data-customername="${table.guestName}" id="${table.tableId}"
+												th:data-customerphone="${table.telephone}" type="checkbox"
+												name="selectTables" th:value="${table.tableId}" />
+											<span class="checkmark"></span>
+										</label>
+										<label class="container" th:case="available">
+											<span class="table-free"></span>
+											<p class="table-name" th:text="${table.tableName}"></p>
+											<p>Available</p>
+											<input class="checkbox-table" th:data-name="${table.tableName}"
+												type="checkbox" name="selectTables" th:value="${table.tableId}" />
+											<span class="checkmark"></span>
+										</label>
+									</li>
+								</ul>
+							</div>
+							<a id="done-edit-table" >
+								Done
+							</a>
+						</div >
+				</div>
 				</form>
 
 				<div id="delete">
@@ -315,7 +368,9 @@
 				<div id="pay-cash-conf">
 					<h4>Amount paid by customer</h4>
 					<h4>Excess amount</h4>
-					<button id="cash-conf-btn">Payment confirm</button>
+					<form id="cash-conf" action="/">
+					<button id="cash-conf-btn" type = "submit">Payment confirm</button>
+					</form>
 				</div>
 
 				<div id="pay-atm">
@@ -323,7 +378,9 @@
 					<h4>Money</h4>
 					<h4>Trading code</h4>
 					<input type="text">
-					<button id="atm-conf-btn">Payment confirm</button>
+					<form id="atm-conf" action="/">
+					<button type="submit" id="atm-conf-btn">Payment confirm</button >
+					</form >
 				</div>
 
 
@@ -333,6 +390,18 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+function updateTotal(){
+	dishList = document.getElementsByClassName("dish-list")[0];
+	dishes = dishList.children;
+	var total = 0;
+	for(dish of dishes){
+		total = total+ parseInt(dish.children[2].innerText) * dish.children[3].value;
+	}
+	final = total *(100 - document.getElementById("discoutrate").value)/100;
+	document.querySelector('#bill-total span').innerHTML = final;
+	document.querySelector('#bill-total del').innerHTML = total
+	
+}
 	// lấy thông tin của khách đã đặt bàn
 	function getCustomerInfo() {
 		var checkedValue = null;

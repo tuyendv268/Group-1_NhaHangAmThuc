@@ -3,6 +3,7 @@ const dishlist = document.getElementsByClassName("dish-list")[0];
 const customer = document.querySelector('.customer-list');
 const listCheckbox = document.getElementsByClassName("dish-checkbox");
 const quantity = document.getElementsByClassName("quantityDish");
+const tableOccu = document.getElementsByClassName("occupied");
 customer.addEventListener('click', function(event) {
 	var list = Array.prototype.slice.call(customer.children);
 
@@ -41,6 +42,8 @@ customer.addEventListener('click', function(event) {
 	rank.innerHTML = $('#' + billindex).data('memberank');
 
 	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
+	$("#atm-conf").attr("action", "/payBill/" + id);
+	$("#cash-conf").attr("action", "/payBill/" + id);
 	dishlist.innerHTML = '';
 	for (let i = 0; i < listCheckbox.length; i++) {
 		listCheckbox[i].checked = false;
@@ -79,6 +82,22 @@ customer.addEventListener('click', function(event) {
 	document.getElementById("edit-bill-id").value = id;
 	document.getElementById("edit-name").value = event.target.parentElement.children[2].innerText;
 	document.getElementById("edit-phone").value = $('#' + billindex).data('phone');
+	
+	document.getElementById("discoutrate").value = $('#'+billindex).data('eventdiscountrate')+ $('#'+billindex).data('memberdiscountrate')
+
+	
+	updateTotal();
+	
+	
+	for(let i = 0; i<tableOccu.length;i++){
+		tableOccu[i].style.display = "none";
+	}
+		
+	var tableOfBill = document.getElementsByName("occupied"+id); 
+	
+	tableOfBill.forEach(function(item){
+  		item.style.display="block";
+	});
 });
 document.getElementById("cancel-edit").addEventListener('click', function() {
 	var edit = document.getElementById("edit");
@@ -283,9 +302,38 @@ doneSelectDish.addEventListener('click', function() {
 			dishlist.appendChild(dish);
 		}
 	}
+	updateTotal();
+	
+	alert(numberinList[0].children[3].nodeName);
 });
 
+//Hiển thị Total 
+function updateTotal(){
+	dishList = document.getElementsByClassName("dish-list")[0];
+	dishes = dishList.children;
+	var total = 0;
+	for(dish of dishes){
+		total = total+ parseInt(dish.children[2].innerText) * dish.children[3].value;
+	}
+	final = total *(100 - document.getElementById("discoutrate").value)/100;
+	document.querySelector('#bill-total span').innerHTML = final;
+	if(final != total){
+		document.querySelector('#bill-total del').innerHTML = total
+	}
+	else{
+		document.querySelector('#bill-total del').innerHTML = "";
+	}
+}
 
+document.getElementById("edit-table-btn").addEventListener('click',function(){
+	document.getElementById("edit-select-table").style.display = "block";
+	
+})
+
+document.getElementById("done-edit-table").addEventListener('click',function(){
+	document.getElementById("edit-select-table").style.display = "none";
+	
+})
 
 
 var bill_id_get_from_table = sessionStorage.getItem("bill_id_get_from_table");

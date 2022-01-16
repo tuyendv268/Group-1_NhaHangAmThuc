@@ -26,6 +26,9 @@ public class ComboService {
 	public List<ComboEntity> findAll(){
 		return comboRepository.findAll();
 	}
+	public List<ComboEntity> findAvailable(){
+		return comboRepository.findAllByStatus(true);
+	}
 	
 	public List<ComboEntity> findByName(String comboName){
 		return comboRepository.findByComboName(comboName);

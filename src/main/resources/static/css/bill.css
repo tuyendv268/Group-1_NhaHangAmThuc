@@ -505,38 +505,38 @@ tbody tr td{
     left: 63px;
 }
 
-#select-table{
+.pop-select-table{
     position: absolute;
     border-radius: 30px;
-    width: 560px;
+    width: 500px;
     height: 538px;
     background: rgb(196, 196, 196);
-    left: 0;
+    left: -60px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    top: 65px;
+    top: 40px;
     /* top: 80px;
     left: 240px; */
     display: none;
 }
 
-#select-table h2{
+.pop-select-table h2{
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-#select-table>div{
+.pop-select-table>div{
     background: white;
     /* border-radius: 15px; */
-    width: 517px;
+    width: 470px;
     height: 351px;
     margin-left: 21.5px;
     overflow-y: scroll;
 }
 
-#select-table>button{
+.pop-select-table>button{
     font-size: 30px;
     color: white;
     background: rgb(72, 72, 72);
@@ -553,22 +553,25 @@ tbody tr td{
     cursor: pointer;
 }
 
-#select-table ul input{
+.pop-select-table ul input{
     margin: auto;
 }
 
-#select-table ul p{
+.pop-select-table ul p{
     margin: auto;
 }
 
-#select-table li{
+.pop-select-table li{
     display: flex;
     /* position: absolute; */
     margin-top: 25px;
     margin-left: 5px;
+    max-width:400px;
 }
-
-#select-table span.table-free{
+.pop-select-table ul{
+	width: 440;
+}
+.pop-select-table span.table-free{
     display: block;
     background: rgb(0, 255, 0);
     width: 90px;
@@ -576,7 +579,7 @@ tbody tr td{
     margin: 0 8px;
     text-align: center;
 }
-#select-table span.table-reserved{
+.pop-select-table span.table-reserved{
     display: block;
     background: rgb(255, 255, 0);
     width: 90px;
@@ -586,7 +589,7 @@ tbody tr td{
 }
 
 
-#select-table p.table-name{
+.pop-select-table p.table-name{
     position: absolute;
     top: 35px;
     left: 73px;
@@ -673,16 +676,16 @@ tbody tr td{
     padding: 2px 0;
 }
 
-#select-table>div{
+.pop-select-table>div{
     background: white;
     /* border-radius: 15px; */
-    width: 517px;
+    width: 470px;
     height: 351px;
     margin-left: 21.5px;
     overflow-y: scroll;
 }
 
-#select-table>button{
+.pop-select-table>button{
     font-size: 30px;
     color: white;
     background: rgb(72, 72, 72);
@@ -699,22 +702,22 @@ tbody tr td{
     cursor: pointer;
 }
 
-#select-table ul input{
+.pop-select-table ul input{
     margin: auto;
 }
 
-#select-table ul p{
+.pop-select-table ul p{
     margin: auto;
 }
 
-#select-table li{
+.pop-select-table li{
     display: flex;
     /* position: absolute; */
     margin-top: 25px;
     margin-left: 5px;
 }
 
-#select-table span.table-free{
+.pop-select-table span.table-free{
     display: block;
     background: rgb(0, 255, 0);
     width: 90px;
@@ -722,9 +725,17 @@ tbody tr td{
     margin: 0 8px;
     text-align: center;
 }
-#select-table span.table-reserved{
+.pop-select-table span.table-reserved{
     display: block;
     background: rgb(255, 255, 0);
+    width: 90px;
+    height: 38px;
+    margin: 0 8px;
+    text-align: center;
+}
+.pop-select-table span.table-occupied{
+    display: block;
+    background: rgb(255, 0, 0);
     width: 90px;
     height: 38px;
     margin: 0 8px;
@@ -746,7 +757,7 @@ tbody tr td{
     cursor: pointer;
 }
 
-#select-table p.table-name{
+.pop-select-table p.table-name{
     position: absolute;
     top: 35px;
     left: 73px;
@@ -863,6 +874,21 @@ tbody tr td{
     padding: 4px 0;
 }
 #done-select-table{
+	text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: 500;
+    height: 45px;
+    width: 120px;
+    border: none;
+    border-radius: 30px;
+    background: rgb(72,72,72);
+    position: absolute;
+    left : 180px;
+    bottom: 20px;
+    cursor: pointer;
+}
+#done-edit-table{
 	text-align: center;
     color: white;
     font-size: 25px;

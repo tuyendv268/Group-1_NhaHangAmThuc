@@ -50,10 +50,11 @@ public class BillController {
 		for (BillEntity bill : bills) {
 			billService.updateTotal(bill);
 		}
-		List<TableDTO> tables = tableService.findAvailable();
+		List<TableDTO> tables = tableService.findOccupied();
+		tables.addAll(tableService.findAvailable());
 		tables.addAll(tableService.findReserved());
-		List<DishEntity> dishes = dishService.findAll();
-		List<ComboEntity> combos = comboService.findAll();
+		List<DishEntity> dishes = dishService.findAvailable();
+		List<ComboEntity> combos = comboService.findAvailable();
 		model.addAttribute("tables", tables);
 		model.addAttribute("bills", bills);
 		model.addAttribute("dishes", dishes);
@@ -68,7 +69,9 @@ public class BillController {
 		List<TableEntity> tables = bill.getTables();
 		for (TableEntity tableEntity : tables) {
 			tableEntity.setBill(null);
-			tableEntity.setStatus(TableDTO.available);
+			tableEntity.setGuest("");
+			tableEntity.setPhone("");
+			tableEntity.setStatus("available");
 			tableService.save(tableEntity);
 		}
 		this.billService.deleteById(id);
@@ -80,20 +83,21 @@ public class BillController {
 			@RequestParam String customerId, 
 			@RequestParam(required = false, defaultValue = "") List<Long> selectTables, Model model) {
 		BillEntity bill = new BillEntity();
+		billService.setDateandEvent(bill);
 		CustomerEntity customer = new CustomerEntity();
 		if (customerId != "") {
 			customer = customerService.getById(Long.valueOf(customerId).longValue());
-		} else
+		} 
+		else {
 			customer = customerService.newCustomer(customerName, phone, (long) 6);
-		customerService.addStranger(customer);
+			customerService.addStranger(customer);
+		}
 		if(selectTables.size()>0) {
 		List<TableEntity> tables = tableService.getByIds(selectTables);
 
 		bill.setTables(tables);
 		for (TableEntity table : tables) {
-			if (table.getStatus() == "reserved") {
-
-			}
+			
 			table.setBill(bill);
 			table.setGuest(customerName);
 			table.setPhone(phone);
@@ -101,6 +105,7 @@ public class BillController {
 		}
 		}
 		bill.setCustomer(customer);
+		
 		billService.save(bill);
 		
 		return ("redirect:/bill");
@@ -136,14 +141,10 @@ public class BillController {
 
 	@GetMapping("/payBill/{id}")
 	public String payBill(@PathVariable(value = "id") Long id) {
-
-		BillEntity bill = billService.findBillById(id);
-		List<TableEntity> tables = bill.getTables();
-		for (TableEntity tableEntity : tables) {
-			tableEntity.setBill(null);
-			tableService.save(tableEntity);
-		}
-		this.billService.deleteById(id);
+		
+		BillEntity bill = billService.payBill(id);
+		if(bill.getCustomer().getMembership().getName() !="Stranger")
+		customerService.addPoint(bill.getCustomer(), bill.getFinalTotal());
 		return "redirect:/bill";
 	}
 
@@ -152,7 +153,7 @@ public class BillController {
 			@RequestParam String customerName, 
 			@RequestParam String phone,
 			
-//			@RequestParam List<Long> selectTables, 
+			@RequestParam(required = false, defaultValue = "") List<Long> selectTables, 
 			Model model) {
 		
 		BillEntity bill = billService.findBillById(billId);
@@ -160,11 +161,30 @@ public class BillController {
 		bill.getCustomer().setTelephone(phone);
 		
 		billService.save(bill);
-//		List<TableEntity> tables = bill.getTables();
-//		for (TableEntity tableEntity : tables) {
-//			tableEntity.setBill(null);
-//			tableService.save(tableEntity);
-//		}
+		
+		
+		List<TableEntity> billtables = bill.getTables();
+		for (TableEntity tableEntity : billtables) {
+			tableEntity.setBill(null);
+			tableEntity.setGuest("");
+			tableEntity.setPhone("");
+			tableEntity.setStatus("available");
+			tableService.save(tableEntity);
+		}
+		
+		if(selectTables.size()>0) {
+			List<TableEntity> tables = tableService.getByIds(selectTables);
+			
+			bill.setTables(tables);
+			for (TableEntity table : tables) {
+				
+				table.setBill(bill);
+				table.setGuest(customerName);
+				table.setPhone(phone);
+				table.setStatus("occupied");
+			}
+			}
+		billService.save(bill);
 		System.out.println(billId);
 		return "redirect:/bill";
 	}

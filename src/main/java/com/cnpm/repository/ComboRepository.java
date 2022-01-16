@@ -9,5 +9,6 @@ import com.cnpm.entity.DishEntity;
 
 public interface ComboRepository extends JpaRepository<ComboEntity, Long>{
 	public List<ComboEntity> findByComboName(String comboName);
+	public List<ComboEntity> findAllByStatus(Boolean status);
 	public ComboEntity findByComboId(Long id);
 }

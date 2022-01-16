@@ -11,4 +11,5 @@ public interface EventRepository extends CrudRepository<EventEntity, Long>{
 	EventEntity findByEventId(Long id);
 	EventEntity save(EventEntity event);
 	List<EventEntity> findAll();
+	List<EventEntity> findByOrderByDiscountRateDesc();
 }
