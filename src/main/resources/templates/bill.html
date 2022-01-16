@@ -222,7 +222,7 @@
 								<ul>
 									<li th:each="table : ${tables}" th:switch="${table.status}">
 										
-										<label class="container" th:case="reserved">
+										<label class="container" th:case="reserved" style="margin-top: 25px;">
 											<span class="table-reserved"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
@@ -232,7 +232,7 @@
 												name="selectTables" th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
-										<label class="container" th:case="available">
+										<label class="container" th:case="available" style="margin-top: 25px;">
 											<span class="table-free"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p>Available</p>
@@ -253,13 +253,15 @@
 				<div id="dish-select">
 					<h2>Select Dish</h2>
 					<div >
-						<ul style="padding:20px">
-							<li class="ulDish" th:each="dish, dish_index: ${dishes}">
-								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140px" height= "140px">
+						<ul style="padding:20px;">
+							<li class="ulDish" th:each="dish, dish_index: ${dishes}" style="height: 140px">
+								<img th:src="@{'getimage/'+${dish.url}}" alt="" max-width="140px" max-height= "140">
+						
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
 								<span th:text="${dish.price} + 'đ'">
 								</span>
+			
 								<input type="checkbox" class="dish-checkbox" th:id="'dishcheckbox'+${dish.dishId}"
 									name="dish-checkbox">
 
