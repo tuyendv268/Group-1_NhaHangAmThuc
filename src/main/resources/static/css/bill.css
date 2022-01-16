@@ -124,15 +124,14 @@ tbody tr td{
 
 #bill #add-btn{
     right: 150px;
-    bottom: 130px;
+    bottom: 80px;
     background: rgb(72,72,72);
-    bottom: 20px;
 }
 
 #bill #pay-btn{
-    right: 20px;
+    right: 150px;
     background: #FF3D00;
-    bottom: 80px;
+    bottom: 20px;
 }
 
 #bill div{
@@ -161,7 +160,7 @@ tbody tr td{
     padding:10px;
     background: rgb(196, 196, 196);
     border-radius: 15px;
-    width: 500px;
+    width: 600px;
     height: 500px;
     left: 500px;
     top: 160px;
@@ -177,7 +176,7 @@ tbody tr td{
 #dish-select>div{
     background: white;
     /* border-radius: 15px; */
-    width:460px;
+    width:560px;
     height: 330px;
     left:30px;
     margin-left: 10px;
@@ -258,13 +257,13 @@ tbody tr td{
 
 
 #edit{
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 450px;
     height: 500px;
     background: rgb(196, 196, 196);
-    top: 70px;
-    left: 400px;
+    top: 150px;
+    left: 600px;
     display: none;
 }
 
@@ -307,13 +306,13 @@ tbody tr td{
 
 #delete{
     color: white;
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 550px;
     height: 130px;
     background: rgb(61, 61, 61);
-    top: 240px;
-    left: 370px;
+    top: 320px;
+    left: 640px;
     display: none;
 }
 
@@ -904,7 +903,7 @@ tbody tr td{
     cursor: pointer;
 }
 #save-dish{
-	right: 30px;
-	top:335px;
+	right: 20px;
+	top:385px;
 	background:rgb(72,72,72);
 }
