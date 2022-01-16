@@ -122,4 +122,13 @@ public class BillService {
 		return paidBills;
 	}
 	
+	public ArrayList<Object[]> findRevenueDueYear(int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueYear(start, end);
+		return cursor;
+	}
+	
+	public ArrayList<Object[]> findRevenueDueMonth(int year,int start, int end) {
+		ArrayList<Object[]> cursor = (ArrayList<Object[]>) billRepository.findRevenueDueMonth(year,start, end);
+		return cursor;
+	}
 }
