@@ -16,11 +16,11 @@ customer.addEventListener('click', function(event) {
 
 	var id = event.target.parentElement.children[1].innerText;
 
-	document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID : ";
-	document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Customer’s name : ";
-	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : ";
-	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : ";
-	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :";
+	document.getElementsByClassName("popup-bill-id")[0].innerHTML = "ID: ";
+	document.getElementsByClassName("popup-bill-name")[0].innerHTML = "Name: ";
+	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone: ";
+	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total: ";
+	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created:";
 
 	const billid = document.querySelector('.bill-id span')
 	billid.innerHTML = id
@@ -40,7 +40,20 @@ customer.addEventListener('click', function(event) {
 	seat.innerHTML = event.target.parentElement.children[3].innerHTML;
 
 	rank.innerHTML = $('#' + billindex).data('memberank');
-
+	const paybutton = document.getElementById("pay-btn");
+	var savedishbtn = document.getElementById("save-dish");
+	var adddishbtn = document.getElementById("add-btn");
+	if(event.target.parentElement.children[5].innerText != "Waiting"){
+		paybutton.style.display ="none";
+		savedishbtn.style.display ="none";
+		adddishbtn.style.display ="none";
+	}
+	else{
+		paybutton.style.display ="block";
+		savedishbtn.style.display ="block";
+		adddishbtn.style.display ="block";
+	}
+	
 	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
 	$("#atm-conf").attr("action", "/payBill/" + id);
 	$("#cash-conf").attr("action", "/payBill/" + id);
@@ -70,7 +83,7 @@ customer.addEventListener('click', function(event) {
 
 	for (let i = 0; i < listCheckbox.length; i++) {
 		if (listCheckbox[i].checked) {
-			var dish = document.createElement("UL");
+			var dish = document.createElement("LI");
 			dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
 			dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
 			dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));
@@ -293,7 +306,7 @@ doneSelectDish.addEventListener('click', function() {
 	dishlist.innerHTML = '';
 	for (let i = 0; i < listCheckbox.length; i++) {
 		if (listCheckbox[i].checked) {
-			var dish = document.createElement("UL");
+			var dish = document.createElement("li");
 			dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
 			dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
 			dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));
@@ -389,7 +402,7 @@ if (bill_id_get_from_table != null) {
 
 			for (let i = 0; i < listCheckbox.length; i++) {
 				if (listCheckbox[i].checked) {
-					var dish = document.createElement("UL");
+					var dish = document.createElement("li");
 					dish.appendChild(listCheckbox[i].parentElement.children[0].cloneNode(true));
 					dish.appendChild(listCheckbox[i].parentElement.children[1].cloneNode(true));
 					dish.appendChild(listCheckbox[i].parentElement.children[2].cloneNode(true));

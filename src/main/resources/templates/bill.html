@@ -17,15 +17,18 @@
 		<header>
 			<h1 class="logo">
 				<a href="#">Manager</a>
+				
+				
 			</h1>
-
-			<div class="search">
-				<input type="text" placeholder="search">
-				<a href="#">
-					<i class="material-icons">search</i>
-				</a>
-			</div>
-
+			<form th:action="@{/searchBill}" method="GET">
+				<div class="search" >
+					
+					<input type="text" placeholder="search" th:value="${searchvalue}" th:name="customerName">
+					<button type ="submit">
+						<i class="material-icons">search</i>
+					</button>
+				</div>
+			</form >
 			<div class="home">
 				<a href="#">
 					<i class="material-icons">home</i>
@@ -143,42 +146,44 @@
 
 				<div id="bill">
 					<h2>Infomation</h2>
-					<div class="bill-id">
-						<h3 class="popup-bill-id">ID:</h3>
-						<span></span>
-					</div>
-					<div id="bill-name">
-						<h3 class="popup-bill-name">Customers name: </h3>
-						<span></span>
-					</div>
-					<div id="bill-phone">
-						<h3 class="popup-bill-phone">Phone:</h3>
-						<span></span>
-					</div>
-					<div id="bill-rank">
-						<h3 class="popup-bill-rank">Member Rank:</h3>
-						<span></span>
-					</div>
-					<div id="bill-seat">
-						<h3>Seat:</h3>
-						<span class="popup-bill-seat"></span>
-					</div>
-					<div id="bill-total">
-						<h3 class="popup-bill-total">Total: </h3>
-						<input type="hidden"  id="discoutrate" value="0">
-						<span style="color:springgreen; font-weight: bold;text-shadow: 
-						2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 
-						1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;"></span >
-						<del style="left: 500px;padding-left: 20px;color:red"> </del>
-					</div>
-
-					<div id="bill-creation-time">
-						<h3 class="popup-bill-creation-time">Created:</h3>
-						<span></span>
-					</div>
-					<div id="bill-completion-time">
-						<h3 class="popup-bill-completion-time">Status:</h3>
-						<span></span>
+					<div style="width: 53%;display:block;">	
+						<div class="bill-id">
+							<h3 class="popup-bill-id">ID:</h3>
+							<span></span>
+						</div>
+						<div id="bill-name">
+							<h3 class="popup-bill-name">Name: </h3>
+							<span></span>
+						</div>
+						<div id="bill-phone">
+							<h3 class="popup-bill-phone">Phone:</h3>
+							<span></span>
+						</div>
+						<div id="bill-rank">
+							<h3 class="popup-bill-rank">Member Rank:</h3>
+							<span></span>
+						</div>
+						<div id="bill-seat">
+							<h3>Seat:</h3>
+							<span class="popup-bill-seat"></span>
+						</div>
+						<div id="bill-total">
+							<h3 class="popup-bill-total">Total: </h3>
+							<input type="hidden"  id="discoutrate" value="0">
+							<span style="color:springgreen; font-weight: bold;text-shadow: 
+							2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 
+							1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;"></span >
+							<del style="left: 500px;padding-left: 20px;color:red"> </del>
+						</div>
+	
+						<div id="bill-creation-time">
+							<h3 class="popup-bill-creation-time">Created:</h3>
+							<span></span>
+						</div>
+						<div id="bill-completion-time">
+							<h3 class="popup-bill-completion-time">Status:</h3>
+							<span></span>
+						</div>
 					</div>
 					<form th:action="@{/addDishtobill}" method="POST">
 						<input id="bill-id-for-dish" type="hidden" th:name="billId">
@@ -217,7 +222,7 @@
 								<ul>
 									<li th:each="table : ${tables}" th:switch="${table.status}">
 										
-										<label class="container" th:case="reserved">
+										<label class="container" th:case="reserved" style="margin-top: 25px;">
 											<span class="table-reserved"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
@@ -227,7 +232,7 @@
 												name="selectTables" th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
-										<label class="container" th:case="available">
+										<label class="container" th:case="available" style="margin-top: 25px;">
 											<span class="table-free"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p>Available</p>
@@ -248,24 +253,26 @@
 				<div id="dish-select">
 					<h2>Select Dish</h2>
 					<div >
-						<li style="padding:20px">
-							<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
-								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140" height= "140">
+						<ul style="padding:20px;">
+							<li class="ulDish" th:each="dish, dish_index: ${dishes}" style="height: 140px">
+								<img th:src="@{'getimage/'+${dish.url}}" alt="" max-width="140px" max-height= "140">
+						
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
 								<span th:text="${dish.price} + 'đ'">
 								</span>
+			
 								<input type="checkbox" class="dish-checkbox" th:id="'dishcheckbox'+${dish.dishId}"
 									name="dish-checkbox">
 
 								<input type="number" class="quantityDish" th:id="'dishnumber'+${dish.dishId}"
 									style="display:none" name="quantityDish" min="1"  onchange="updateTotal()" onkeyup="updateTotal()"  required >
-								<input type="hidden" name="dishId" th:value="${dish.dishId}" </ul>
-						</li>
+								<input type="hidden" name="dishId" th:value="${dish.dishId}" ></li>
+							</ul>
 						<br>
-						<li style="padding:20px">
+						<ul style="padding:20px">
 							<h2> Combo</h2>
-							<ul class="ulDish" th:each="combo, combo_index: ${combos}">
+							<li class="ulDish" th:each="combo, combo_index: ${combos}">
 
 								<img th:src="@{'getimage/'+${combo.url}}" alt="" width="140" height= "140">
 								<span class="dish-name" th:id="'combo' + ${combo.comboId}"
@@ -279,8 +286,8 @@
 
 								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}"
 									style="display:none" name="quantityCombo" min="1">
-								<input type="hidden" name="comboId" th:value="${combo.comboId}" </ul>
-						</li>
+								<input type="hidden" name="comboId" th:value="${combo.comboId}" ></li>
+							</ul>
 					</div >
 					<button id="done-select-dish">
 						Done

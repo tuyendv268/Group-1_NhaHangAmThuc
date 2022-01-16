@@ -124,15 +124,14 @@ tbody tr td{
 
 #bill #add-btn{
     right: 150px;
-    bottom: 130px;
+    bottom: 80px;
     background: rgb(72,72,72);
-    bottom: 20px;
 }
 
 #bill #pay-btn{
-    right: 20px;
+    right: 150px;
     background: #FF3D00;
-    bottom: 80px;
+    bottom: 20px;
 }
 
 #bill div{
@@ -161,7 +160,7 @@ tbody tr td{
     padding:10px;
     background: rgb(196, 196, 196);
     border-radius: 15px;
-    width: 500px;
+    width: 600px;
     height: 500px;
     left: 500px;
     top: 160px;
@@ -177,7 +176,7 @@ tbody tr td{
 #dish-select>div{
     background: white;
     /* border-radius: 15px; */
-    width:460px;
+    width:560px;
     height: 330px;
     left:30px;
     margin-left: 10px;
@@ -258,13 +257,13 @@ tbody tr td{
 
 
 #edit{
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 450px;
     height: 500px;
     background: rgb(196, 196, 196);
-    top: 70px;
-    left: 400px;
+    top: 150px;
+    left: 600px;
     display: none;
 }
 
@@ -307,13 +306,13 @@ tbody tr td{
 
 #delete{
     color: white;
-    position: absolute;
+    position: fixed;
     border-radius: 30px;
     width: 550px;
     height: 130px;
     background: rgb(61, 61, 61);
-    top: 240px;
-    left: 370px;
+    top: 320px;
+    left: 640px;
     display: none;
 }
 
@@ -508,7 +507,7 @@ tbody tr td{
 .pop-select-table{
     position: absolute;
     border-radius: 30px;
-    width: 500px;
+    width: 600px;
     height: 538px;
     background: rgb(196, 196, 196);
     left: -60px;
@@ -530,7 +529,7 @@ tbody tr td{
 .pop-select-table>div{
     background: white;
     /* border-radius: 15px; */
-    width: 470px;
+    width: 550px;
     height: 351px;
     margin-left: 21.5px;
     overflow-y: scroll;
@@ -564,7 +563,6 @@ tbody tr td{
 .pop-select-table li{
     display: flex;
     /* position: absolute; */
-    margin-top: 25px;
     margin-left: 5px;
     max-width:400px;
 }
@@ -592,7 +590,7 @@ tbody tr td{
 .pop-select-table p.table-name{
     position: absolute;
     top: 35px;
-    left: 73px;
+    left: 41px;
 }
 
 /* The container */
@@ -676,15 +674,6 @@ tbody tr td{
     padding: 2px 0;
 }
 
-.pop-select-table>div{
-    background: white;
-    /* border-radius: 15px; */
-    width: 470px;
-    height: 351px;
-    margin-left: 21.5px;
-    overflow-y: scroll;
-}
-
 .pop-select-table>button{
     font-size: 30px;
     color: white;
@@ -708,13 +697,6 @@ tbody tr td{
 
 .pop-select-table ul p{
     margin: auto;
-}
-
-.pop-select-table li{
-    display: flex;
-    /* position: absolute; */
-    margin-top: 25px;
-    margin-left: 5px;
 }
 
 .pop-select-table span.table-free{
@@ -755,12 +737,6 @@ tbody tr td{
     left: 60px;
     bottom: 20px;
     cursor: pointer;
-}
-
-.pop-select-table p.table-name{
-    position: absolute;
-    top: 35px;
-    left: 73px;
 }
 
 /* The container */
@@ -884,7 +860,7 @@ tbody tr td{
     border-radius: 30px;
     background: rgb(72,72,72);
     position: absolute;
-    left : 180px;
+    left : 235px;
     bottom: 20px;
     cursor: pointer;
 }
@@ -904,7 +880,7 @@ tbody tr td{
     cursor: pointer;
 }
 #save-dish{
-	right: 30px;
-	top:335px;
+	right: 20px;
+	top:385px;
 	background:rgb(72,72,72);
 }
