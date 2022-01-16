@@ -83,12 +83,15 @@ public class BillController {
 			@RequestParam String customerId, 
 			@RequestParam(required = false, defaultValue = "") List<Long> selectTables, Model model) {
 		BillEntity bill = new BillEntity();
+		billService.setDateandEvent(bill);
 		CustomerEntity customer = new CustomerEntity();
 		if (customerId != "") {
 			customer = customerService.getById(Long.valueOf(customerId).longValue());
-		} else
+		} 
+		else {
 			customer = customerService.newCustomer(customerName, phone, (long) 6);
-		customerService.addStranger(customer);
+			customerService.addStranger(customer);
+		}
 		if(selectTables.size()>0) {
 		List<TableEntity> tables = tableService.getByIds(selectTables);
 
@@ -102,6 +105,7 @@ public class BillController {
 		}
 		}
 		bill.setCustomer(customer);
+		
 		billService.save(bill);
 		
 		return ("redirect:/bill");

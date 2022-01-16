@@ -13,11 +13,13 @@ import com.cnpm.entity.BillDetail;
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.ComboEntity;
 import com.cnpm.entity.DishEntity;
+import com.cnpm.entity.EventEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.BillRepository;
 import com.cnpm.repository.ComboRepository;
 import com.cnpm.repository.DishRepository;
+import com.cnpm.repository.EventRepository;
 import com.cnpm.repository.TableRepository;
 
 
@@ -34,6 +36,8 @@ public class BillService {
 	private ComboRepository comboRepository;
 @Autowired
 	private TableRepository tableRepository;
+@Autowired 
+	private EventRepository eventRepository;
 	public boolean save(BillEntity bill) {
 		BillEntity bill1 = billRepository.save(bill);
 		if(bill1 == null) {
@@ -51,6 +55,19 @@ public class BillService {
 		bill.setStatusPayment(true);
 		java.util.Date date=new java.util.Date();  
 		bill.setTimePayment(date);
+		billRepository.save(bill);
+		return bill;
+	}
+	public BillEntity setDateandEvent(BillEntity bill) {
+		java.util.Date date=new java.util.Date();  
+		bill.setCreatedDate(date);
+		List<EventEntity> events = eventRepository.findByOrderByDiscountRateDesc();
+		for(EventEntity event : events) {
+			if(event.isAvailable()) {
+				bill.setEvent(event);
+				break;
+			}
+		}
 		billRepository.save(bill);
 		return bill;
 	}

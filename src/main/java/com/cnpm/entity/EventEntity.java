@@ -141,4 +141,11 @@ public class EventEntity {
 	public void setDiscountRate(int discountRate) {
 		this.discountRate = discountRate;
 	}
+	public boolean isAvailable() {
+		java.util.Date date=new java.util.Date();  
+		if(date.after(this.timeEnd) || date.before(this.timeStart)) {
+			return false;
+		}
+		return true;
+	}
 }

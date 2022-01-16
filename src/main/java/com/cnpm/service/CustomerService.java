@@ -80,8 +80,8 @@ public class CustomerService {
 		
 		//TODO: Sửa công thức tính điểm tại đây
 		Long point = billPrice/10000;
-		
-		customer.setPoint(point + customer.getPoint());
+		Long prePoint = customer.getPoint();
+		customer.setPoint(point + prePoint);
 		
 		//Update Membership Rank
 		if(customer.getPoint() < 0)

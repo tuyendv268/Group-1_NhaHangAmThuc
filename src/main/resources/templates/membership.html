@@ -90,6 +90,7 @@
                 <table id="customer-table">
                     <thead id="table-head">
                         <th>No.</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Point</th>
@@ -101,6 +102,7 @@
 								th:data-customerid="${customer.customerId}"
 								th:data-name="${customer.customerName}"
 								th:data-phone="${customer.telephone}"></td>
+							<td th:text="${customer.getCustomerId()}"></td>
 							<td th:text="${customer.customerName}"></td>
 							<td th:text="${customer.telephone}"></td>
 							<td th:text="${customer.point}"></td>
