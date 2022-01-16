@@ -49,7 +49,7 @@ public class ComboController {
 			@RequestParam(value= "list_of_dishes_in_combo") String list_of_dishes_in_combo) {
 		
 		ComboEntity newCombo = new ComboEntity();
-		Path path = Paths.get("uploads/");
+		Path path = Paths.get("C:\\uploads");
 		try {
 			InputStream inputStream = file.getInputStream();
 			Files.copy(inputStream, path.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);

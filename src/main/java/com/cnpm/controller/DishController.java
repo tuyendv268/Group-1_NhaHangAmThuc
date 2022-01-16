@@ -107,7 +107,7 @@ public class DishController {
 			@RequestParam(value = "dishCategory") String dishCategory,
 			@RequestParam(value = "dishIngredient") String dishIngredient) {
 		
-		Path path = Paths.get("uploads/");
+		Path path = Paths.get("C:\\uploads");
 		try {
 			System.out.println(dishName);
 			InputStream inputStream = file.getInputStream();

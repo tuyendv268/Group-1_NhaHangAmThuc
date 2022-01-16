@@ -49,7 +49,7 @@ public class EventController {
 			  @RequestParam("timeEnd") String timeEnd,
 			  @RequestParam("discountRate") int discountRate,
 			  RedirectAttributes redirectAttributes){
-		 Path path = Paths.get("uploads/");
+		 Path path = Paths.get("C:\\uploads");
 		 try {
 			 InputStream inputStream = file.getInputStream();
 			 Files.copy(inputStream, path.resolve(file.getOriginalFilename()),

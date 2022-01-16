@@ -104,12 +104,14 @@ customer.addEventListener('click', function(event) {
 	
 	for(let i = 0; i<tableOccu.length;i++){
 		tableOccu[i].style.display = "none";
+		tableOccu[i].children[0].children[3].checked = false;
 	}
 		
 	var tableOfBill = document.getElementsByName("occupied"+id); 
 	
 	tableOfBill.forEach(function(item){
   		item.style.display="block";
+  		item.children[0].children[3].checked = true;
 	});
 });
 document.getElementById("cancel-edit").addEventListener('click', function() {
