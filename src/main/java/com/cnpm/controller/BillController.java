@@ -68,6 +68,7 @@ public class BillController {
 		List<TableEntity> tables = bill.getTables();
 		for (TableEntity tableEntity : tables) {
 			tableEntity.setBill(null);
+			tableEntity.setStatus(TableDTO.available);
 			tableService.save(tableEntity);
 		}
 		this.billService.deleteById(id);
