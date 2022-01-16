@@ -58,6 +58,7 @@ public class BillController {
 		model.addAttribute("tables", tables);
 		model.addAttribute("bills", bills);
 		model.addAttribute("dishes", dishes);
+		
 		model.addAttribute("combos", combos);
 		return "bill";
 	}
@@ -148,6 +149,35 @@ public class BillController {
 		return "redirect:/bill";
 	}
 
+	@GetMapping(value = "/searchBill")
+	public String search (@RequestParam String customerName, Model model){
+		String customername = customerName.toLowerCase();
+		List<BillEntity> bills = new ArrayList<BillEntity>();
+		List<CustomerEntity> customers = customerService.findAll();
+		for(CustomerEntity customer : customers) {
+			System.out.println(customer.getCustomerName());
+			if(customer.getCustomerName().toLowerCase().contains(customername)) {
+				
+				bills.addAll(customer.getBills());
+			}
+		}
+		
+		for (BillEntity bill : bills) {
+			billService.updateTotal(bill);
+		}
+		List<TableDTO> tables = tableService.findOccupied();
+		tables.addAll(tableService.findAvailable());
+		tables.addAll(tableService.findReserved());
+		List<DishEntity> dishes = dishService.findAvailable();
+		List<ComboEntity> combos = comboService.findAvailable();
+		model.addAttribute("tables", tables);
+		model.addAttribute("bills", bills);
+		model.addAttribute("dishes", dishes);
+		model.addAttribute("searchvalue", customerName);
+		model.addAttribute("combos", combos);
+		return "bill";
+	}
+	
 	@PostMapping("/editBill")
 	public String editBill(@RequestParam Long billId,
 			@RequestParam String customerName, 

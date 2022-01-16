@@ -21,7 +21,7 @@ customer.addEventListener('click', function(event) {
 	document.getElementsByClassName("popup-bill-phone")[0].innerHTML = "Phone : ";
 	document.getElementsByClassName("popup-bill-total")[0].innerHTML = "Total : ";
 	document.getElementsByClassName("popup-bill-creation-time")[0].innerHTML = "Created :";
-
+	
 	const billid = document.querySelector('.bill-id span')
 	billid.innerHTML = id
 	const name = document.querySelector('#bill-name span')
@@ -40,7 +40,20 @@ customer.addEventListener('click', function(event) {
 	seat.innerHTML = event.target.parentElement.children[3].innerHTML;
 
 	rank.innerHTML = $('#' + billindex).data('memberank');
-
+	const paybutton = document.getElementById("pay-btn");
+	var savedishbtn = document.getElementById("save-dish");
+	var adddishbtn = document.getElementById("add-btn");
+	if(event.target.parentElement.children[5].innerText != "Waiting"){
+		paybutton.style.display ="none";
+		savedishbtn.style.display ="none";
+		adddishbtn.style.display ="none";
+	}
+	else{
+		paybutton.style.display ="block";
+		savedishbtn.style.display ="block";
+		adddishbtn.style.display ="block";
+	}
+	
 	$("#delete-yes-btn").attr("href", "/deleteBill/" + id);
 	$("#atm-conf").attr("action", "/payBill/" + id);
 	$("#cash-conf").attr("action", "/payBill/" + id);
