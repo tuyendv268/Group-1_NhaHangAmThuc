@@ -18,6 +18,7 @@
 }
 
 .content_seat {
+	padding-bottom: 100px;
 	min-height: 100vh;
     box-shadow: inset 0 0 5px 2px #282a2a;
     background:linear-gradient(-90deg, rgba(0, 0, 25, 0.3), rgba(0, 0, 25, 0.5)), url("/image/bgr_seat.png");
@@ -91,7 +92,7 @@
     margin-top: 20px;
     z-index: 1000;
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 60%;
     transform: translate(-50%, -50%);
@@ -117,16 +118,6 @@
     width: 200px;
 }
 
-/* .wrap-right_content button {
-    padding: 7px 15px;
-    text-align: right!important;
-    display: block;
-    border-radius: 20px;
-    border: none;
-    background-color: #484848;
-    color: #fff;
-} */
-
 .wrap-left_content {
     border-right: 1px solid #333;
     padding-right: 18px;
@@ -150,18 +141,23 @@
 }
 .free .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
+    cursor: not-allowed;
 }
 .reserved .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
+    cursor: not-allowed;
 }
 .outOfOrder .wrap-right_content li:nth-child(2) a {
     background-color:whitesmoke ;
+    cursor: not-allowed;
 }
 .reserved .wrap-right_content li:nth-child(3) a {
     background-color:whitesmoke ;
+    cursor: not-allowed;
 }
 .occupied .wrap-right_content li:nth-child(3) a {
     background-color:whitesmoke ;
+    cursor: not-allowed;
 }
 .free .wrap-left_content div:first-child > span:nth-child(2) {
     background-color: #1CC136;    
@@ -210,7 +206,7 @@
     padding-top: 20px;
     border-radius: 45px;
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -338,7 +334,7 @@
     top: 35%;
     left: 45%;
     padding: 16px 20px;
-    position: absolute;
+    position: fixed;
     border-radius: 45px;
     background-color: #C4C4C4;
     display: none;
@@ -397,7 +393,7 @@
     top: 30%;
     left: 45%;
     padding: 16px 20px;
-    position: absolute;
+    position: fixed;
     border-radius: 45px;
     background-color: #C4C4C4;
     z-index: 1000;

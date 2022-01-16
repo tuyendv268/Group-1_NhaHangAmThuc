@@ -108,7 +108,6 @@ for (let j = 0; j < colorChange.length; j++) {
 		let tableColor = colorChange[j].className // Màu option      
 		let midClass = mid[table_index].className
 		let midColor = midClass.split(' ')[1] // Màu hiện tại
-		// Nếu chuyển sang reserved thì hiện pop-up lấy thông tin
 
 		if (midColor == 'red') {
 			// Nếu bàn đang sử dụng thì không thay đổi được
@@ -133,6 +132,8 @@ for (let j = 0; j < colorChange.length; j++) {
 			mid[table_index].classList.remove(midColor)
 			mid[table_index].classList.add(tableColor)
 		}
+		change_status_display.style.display = 'none'
+		isDisplay = false
 	})
 }
 
@@ -265,7 +266,7 @@ billDetail.addEventListener('click', () => {
 
 //if (mess != undefined) {
 //	if (mess == 'NewTable-Fail') {
-//		alert("Trùng Tên Bàn. Vui Lòng Thêm Lại !!!");
+//		alert("Trùng Tên Bàn.	 Vui Lòng Thêm Lại !!!");
 //		popup_message.style.display = 'block'
 //	} else if (mess = 'NewTable-Success') {
 //		alert("Thêm Bàn Thành Công!");
