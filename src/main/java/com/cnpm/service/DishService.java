@@ -29,7 +29,9 @@ public class DishService {
 	public List<DishEntity> findAll(){
 		return dishRepository.findAll();
 	}
-	
+	public List<DishEntity> findAvailable(){
+		return dishRepository.findAllByStatus(true);
+	}
 	public List<DishEntity> findElementsByName(String dishName){
 		return dishRepository.findAll();
 	}

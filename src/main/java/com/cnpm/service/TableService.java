@@ -29,7 +29,9 @@ public class TableService {
 	public List<TableDTO> findReserved(){
 		return convert2DTO(tableRepository.findByStatus("reserved"));
 	}
-	
+	public List<TableDTO> findOccupied(){
+		return convert2DTO(tableRepository.findByStatus("occupied"));
+	}
 	public List<TableEntity> getByIds(List<Long> Ids){
 		List<TableEntity> tables = new ArrayList<TableEntity>();
 		for (Long id : Ids ) {

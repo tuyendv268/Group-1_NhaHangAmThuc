@@ -39,6 +39,7 @@ public class EventController {
 		  return "redirect:/event";
 	  }
 
+	
 	 @RequestMapping(value = "/event/new", method = RequestMethod.POST, params="create")
 	 public String newEvent(Model model,
 			  @RequestParam("files") MultipartFile file,
