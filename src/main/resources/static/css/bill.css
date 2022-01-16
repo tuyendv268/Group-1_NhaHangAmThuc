@@ -507,7 +507,7 @@ tbody tr td{
 .pop-select-table{
     position: absolute;
     border-radius: 30px;
-    width: 500px;
+    width: 600px;
     height: 538px;
     background: rgb(196, 196, 196);
     left: -60px;
@@ -529,7 +529,7 @@ tbody tr td{
 .pop-select-table>div{
     background: white;
     /* border-radius: 15px; */
-    width: 470px;
+    width: 550px;
     height: 351px;
     margin-left: 21.5px;
     overflow-y: scroll;
@@ -563,7 +563,6 @@ tbody tr td{
 .pop-select-table li{
     display: flex;
     /* position: absolute; */
-    margin-top: 25px;
     margin-left: 5px;
     max-width:400px;
 }
@@ -591,7 +590,7 @@ tbody tr td{
 .pop-select-table p.table-name{
     position: absolute;
     top: 35px;
-    left: 73px;
+    left: 41px;
 }
 
 /* The container */
@@ -675,15 +674,6 @@ tbody tr td{
     padding: 2px 0;
 }
 
-.pop-select-table>div{
-    background: white;
-    /* border-radius: 15px; */
-    width: 470px;
-    height: 351px;
-    margin-left: 21.5px;
-    overflow-y: scroll;
-}
-
 .pop-select-table>button{
     font-size: 30px;
     color: white;
@@ -707,13 +697,6 @@ tbody tr td{
 
 .pop-select-table ul p{
     margin: auto;
-}
-
-.pop-select-table li{
-    display: flex;
-    /* position: absolute; */
-    margin-top: 25px;
-    margin-left: 5px;
 }
 
 .pop-select-table span.table-free{
@@ -754,12 +737,6 @@ tbody tr td{
     left: 60px;
     bottom: 20px;
     cursor: pointer;
-}
-
-.pop-select-table p.table-name{
-    position: absolute;
-    top: 35px;
-    left: 73px;
 }
 
 /* The container */
@@ -883,7 +860,7 @@ tbody tr td{
     border-radius: 30px;
     background: rgb(72,72,72);
     position: absolute;
-    left : 180px;
+    left : 235px;
     bottom: 20px;
     cursor: pointer;
 }
