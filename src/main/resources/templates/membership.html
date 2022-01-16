@@ -159,7 +159,7 @@
                         </thead>
                         
                         <tbody>
-                        <tr th:each="rank, rank_index : ${memberships}">
+                        <tr th:each="rank, rank_index : ${realRanks}">
 							<td th:text="${rank.name}"></td>
 							<td th:text="${rank.exp} "></td>
 							<td th:id="'discountPanel' + ${rank_index.index}"

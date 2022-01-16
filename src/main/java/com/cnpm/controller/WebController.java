@@ -50,11 +50,6 @@ public class WebController {
 
 	@GetMapping(value = {"/login"})
 	public String login() {
-//		UserEntity user = new UserEntity();
-//		user.setUserName("tien");
-//		user.setPassword(passwordEncoder.encode("tien"));
-//		userRepository.save(user);
-//		System.out.println(user);
 		return "login";
 	}
 

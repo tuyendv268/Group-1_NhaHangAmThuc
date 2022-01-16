@@ -29,11 +29,12 @@ public class MembershipController {
 	@GetMapping(value = "/membership")
 	public String display(Model model) {
 		customerService.updateRankAllCustomers();		
-		ArrayList<MembershipEntity> memberships = (ArrayList<MembershipEntity>)membershipService.findAll();
+//		ArrayList<MembershipEntity> memberships = (ArrayList<MembershipEntity>)membershipService.findAll();
 		ArrayList<CustomerEntity> customers = (ArrayList<CustomerEntity>)customerService.findAllMembers();
+		ArrayList<MembershipEntity> realRanks = (ArrayList<MembershipEntity>)membershipService.findRealRanks();
 		
-		
-		model.addAttribute("memberships", memberships);
+//		model.addAttribute("memberships", memberships);
+		model.addAttribute("realRanks", realRanks);
 		model.addAttribute("customers", customers);
 		return "membership";
 	}

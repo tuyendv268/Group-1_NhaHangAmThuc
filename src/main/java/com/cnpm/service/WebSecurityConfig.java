@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//http.anonymous().principal("guest").authorities("GUEST_ROLE").and().authorizeRequests().antMatchers("/resources/**").permitAll();
 		http.authorizeRequests().antMatchers("/", "/home", "/login").permitAll();
 		http.authorizeRequests().antMatchers("/table/**","/report/**","/menu/**","/bill/**","/event/**","/membership/**").authenticated();
-		http.formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login").defaultSuccessUrl("/home",true).usernameParameter("userId").passwordParameter("password").permitAll();
+		http.formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login").defaultSuccessUrl("/table",true).usernameParameter("userId").passwordParameter("password").permitAll();
 		http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository()).tokenValiditySeconds(1 * 24 * 60 * 60);
 	}
 	@Bean
