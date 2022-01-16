@@ -40,6 +40,7 @@
 }
 
 #customer-table th {
+    text-align: center;
     border: 1px solid #ddd;
     background: linear-gradient(180deg, rgb(196, 196, 196), rgb(154, 154, 154));
 }
@@ -58,13 +59,6 @@
 }
   
 /* #customers tr:nth-child(even){background-color: #f2f2f2;} */
-  
-#customer-table th {
-    text-align: center;
-    background-color: #AEB1B4;
-    color: #1a150e;
-}
-
 .member-list tr{
     background-color: rgb(255,249,249);
     height: 80px;
