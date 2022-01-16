@@ -17,15 +17,18 @@
 		<header>
 			<h1 class="logo">
 				<a href="#">Manager</a>
+				
+				
 			</h1>
-
-			<div class="search">
-				<input type="text" placeholder="search">
-				<a href="#">
-					<i class="material-icons">search</i>
-				</a>
-			</div>
-
+			<form th:action="@{/searchBill}" method="GET">
+				<div class="search" >
+					
+					<input type="text" placeholder="search" th:value="${searchvalue}" th:name="customerName">
+					<button type ="submit">
+						<i class="material-icons">search</i>
+					</button>
+				</div>
+			</form >
 			<div class="home">
 				<a href="#">
 					<i class="material-icons">home</i>

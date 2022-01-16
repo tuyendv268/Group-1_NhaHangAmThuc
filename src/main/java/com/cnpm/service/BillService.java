@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 import com.cnpm.entity.BillDetail;
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.ComboEntity;
+import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.EventEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.BillRepository;
 import com.cnpm.repository.ComboRepository;
+import com.cnpm.repository.CustomerRepository;
 import com.cnpm.repository.DishRepository;
 import com.cnpm.repository.EventRepository;
 import com.cnpm.repository.TableRepository;
@@ -45,6 +47,7 @@ public class BillService {
 		}
 		return true;
 	}
+	
 	public BillEntity payBill(Long billId) {
 		BillEntity bill = billRepository.getById(billId);
 		List<TableEntity> tables = bill.getTables();
