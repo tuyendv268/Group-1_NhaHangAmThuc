@@ -15,8 +15,3 @@ eventInfo.addEventListener('click', function(event) {
 		info.style.display = "none";
 	});
 });
-
-
-
-
-
