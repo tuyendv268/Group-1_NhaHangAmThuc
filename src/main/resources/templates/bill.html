@@ -17,6 +17,8 @@
 		<header>
 			<h1 class="logo">
 				<a href="#">Manager</a>
+				
+				
 			</h1>
 			<form th:action="@{/searchBill}" method="GET">
 				<div class="search" >
@@ -251,7 +253,7 @@
 					<div >
 						<li style="padding:20px">
 							<ul class="ulDish" th:each="dish, dish_index: ${dishes}">
-								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140" height= "140">
+								<img th:src="@{'getimage/'+${dish.url}}" alt="" width="140px" height= "140px">
 								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
 								</span>
 								<span th:text="${dish.price} + 'đ'">
