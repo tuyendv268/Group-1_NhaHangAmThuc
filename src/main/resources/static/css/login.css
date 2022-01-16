@@ -18,9 +18,10 @@ img{
     background-repeat: repeat-y;
 }
 
-.login-box{
+.login-box {
     /* flex-shrink: 1; */
     left: 45%;
+    top: 10%;
     position: absolute;
     width: 45%;
     padding: 20px;
