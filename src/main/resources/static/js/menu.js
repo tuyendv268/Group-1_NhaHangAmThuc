@@ -268,11 +268,6 @@ doneCombo.addEventListener('click', (e) => {
 add_or_remove_food.addEventListener('click', (e) => {
         listAddFood.style.display = 'block'   
 		var countEachDish = document.getElementsByName('count'); 
-	
-		/*	var checkboxes = document.getElementsByName('listFood');
-		for (var i=0; i<checkboxes.length; i++) {  
-			checkboxes[i].onclick= myFuction;
-		}*/
 		var checkboxes = document.getElementsByName('listFood');
 		for (let i=0; i<checkboxes.length; i++) {     
 			 (function(index){
@@ -281,12 +276,15 @@ add_or_remove_food.addEventListener('click', (e) => {
 						countEachDish[index].type="text";
 					}else{
 						countEachDish[index].type="hidden";
-					}
-						
+					}					
         		}    
    			 })(i);
 		}
 })
+
+let image_combo = document.querySelector('#fileImageCombo')
+console.log(image_combo.value)
+
 
 // Change food when edit combo
 changeFood.addEventListener('click', (e) => {		
@@ -294,11 +292,7 @@ changeFood.addEventListener('click', (e) => {
 		listAddFood.style.display = 'block'   
 			
 		var countEachDish = document.getElementsByName('count'); 
-	
-		/*	var checkboxes = document.getElementsByName('listFood');
-		for (var i=0; i<checkboxes.length; i++) {  
-			checkboxes[i].onclick= myFuction;
-		}*/
+
 		var checkboxes = document.getElementsByName('listFood');
 		for (let i=0; i<checkboxes.length; i++) {     
 			 (function(index){

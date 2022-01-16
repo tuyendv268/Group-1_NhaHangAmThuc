@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `membership`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `membership` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `discount_rate` int(11) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `discount_rate` int DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `exp` int(11) DEFAULT NULL,
+  `exp` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +37,7 @@ CREATE TABLE `membership` (
 
 LOCK TABLES `membership` WRITE;
 /*!40000 ALTER TABLE `membership` DISABLE KEYS */;
-INSERT INTO `membership` VALUES (1,5,'Bronze',0),(2,10,'Sliver',1000),(3,15,'Gold',3000),(4,20,'Diamond',5000),(6,0,'Stranger',-1);
+INSERT INTO `membership` VALUES (1,10,'Bronze',0),(2,10,'Sliver',1000),(3,15,'Gold',3000),(4,20,'Diamond',5000),(6,0,'Stranger',-1);
 /*!40000 ALTER TABLE `membership` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-16 10:20:55
+-- Dump completed on 2022-01-16 23:25:58

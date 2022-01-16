@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: spring_boot
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `customer_name` varchar(255) DEFAULT NULL,
-  `point` bigint(20) DEFAULT NULL,
+  `point` bigint DEFAULT NULL,
   `telephone` varchar(255) DEFAULT NULL,
-  `membership_id` bigint(20) DEFAULT NULL,
+  `membership_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKnfl9gus1w7pr4didc4cxorh1t` (`membership_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -39,7 +39,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',4),(2,'Phạm Bá Chinh',670,'0143567982',1),(3,'Đào Minh Tiến',700,'0987654312',1),(4,'Lê Văn Đức',4454,'0968754123',3),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',4),(6,'Lê Văn Đức',0,'0999999999',1),(7,'Lê Văn Đức',0,'0999999999',1),(8,'Lê Văn Đức',0,'0999999999',1),(9,'Lê Văn Đức',0,'0999999999',1),(10,'Lê Văn Đức',0,'0999999999',1),(11,'Dương Văn Tuyển',0,'0999999999',1),(12,'Dương Văn Tuyển',0,'0999999999',1),(13,'Nguyễn Văn B',0,'0999999999',1),(14,'Dương Văn Tuyển',0,'0999999991',1),(15,'Pagani',0,'Imola',1),(16,'Anh bán đồ chơi tóc cam đầu ngõ',0,'Số điện thoại của người Nga',1);
+INSERT INTO `customer` VALUES (1,'Dương Văn Tuyển',10000,'0123654987',4),(2,'Phạm Bá Chinh',670,'0143567982',1),(3,'Đào Minh Tiến',700,'0987654312',1),(4,'Lê Văn Đức',4454,'0968754123',3),(5,'Nguyễn Mạnh Luynh',7900,'0129873645',4);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-16 10:20:55
+-- Dump completed on 2022-01-16 23:25:57
