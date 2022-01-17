@@ -884,3 +884,28 @@ tbody tr td{
 	top:385px;
 	background:rgb(72,72,72);
 }
+li.ulDish{
+	height: 140px;
+	width: 500px;
+	position: relative;
+	padding:10px;
+	border-bottom: 1px solid rgb(72,72,72);
+}
+li.dish-list>li{
+	height: 120px;
+	width: 300px;
+	position: relative;
+	padding:10px;
+	border-bottom: 1px solid rgb(72,72,72);
+}
+.quantityDish{
+	left:80%; 
+	top:50%;
+	margin-top:-15px;
+	height:30px;
+	width :60px;
+	position:absolute;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+}
