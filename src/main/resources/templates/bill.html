@@ -30,7 +30,7 @@
 				</div>
 			</form >
 			<div class="home">
-				<a href="#">
+				<a href="/home">
 					<i class="material-icons">home</i>
 				</a>
 			</div>
@@ -351,7 +351,7 @@
 											<span class="checkmark"></span>
 										</label>
 									</div >
-										<label class="container" th:case="reserved">
+										<label style="margin:20px" class="container" th:case="reserved">
 											<span class="table-reserved"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p th:text="'Reserved by: ' + ${table.guestName }"></p>
@@ -361,7 +361,7 @@
 												name="selectTables" th:value="${table.tableId}" />
 											<span class="checkmark"></span>
 										</label>
-										<label class="container" th:case="available">
+										<label style="margin:20px" class="container" th:case="available">
 											<span class="table-free"></span>
 											<p class="table-name" th:text="${table.tableName}"></p>
 											<p>Available</p>

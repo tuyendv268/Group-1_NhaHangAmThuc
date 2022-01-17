@@ -33,7 +33,7 @@ public class EventService {
 					System.out.println("Event ended : " + event.getEventName());
 					eventRepository.save(event);
 				}
-			}else {
+			}else {				
 				if(event.getTimeStart().before(new Date()) && event.getTimeEnd().after(new Date())) {
 					event.setDisplayed(true);
 					System.out.println("Event started : " + event.getEventName());

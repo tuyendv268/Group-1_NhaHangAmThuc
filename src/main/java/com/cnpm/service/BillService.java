@@ -9,17 +9,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.cnpm.dto.TableDTO;
 import com.cnpm.entity.BillDetail;
 import com.cnpm.entity.BillEntity;
 import com.cnpm.entity.ComboEntity;
-import com.cnpm.entity.CustomerEntity;
 import com.cnpm.entity.DishEntity;
 import com.cnpm.entity.EventEntity;
 import com.cnpm.entity.TableEntity;
 import com.cnpm.repository.BillDetailRepository;
 import com.cnpm.repository.BillRepository;
 import com.cnpm.repository.ComboRepository;
-import com.cnpm.repository.CustomerRepository;
 import com.cnpm.repository.DishRepository;
 import com.cnpm.repository.EventRepository;
 import com.cnpm.repository.TableRepository;
@@ -50,23 +49,30 @@ public class BillService {
 	
 	public BillEntity payBill(Long billId) {
 		BillEntity bill = billRepository.getById(billId);
+		
 		List<TableEntity> tables = bill.getTables();
 		for (TableEntity tableEntity : tables) {
 			tableEntity.setBill(null);
+			tableEntity.setStatus(TableDTO.available);
+			tableEntity.setGuest(null);
+			tableEntity.setPhone(null);
 			tableRepository.save(tableEntity);
 		}
+		
 		bill.setStatusPayment(true);
+		
 		java.util.Date date=new java.util.Date();  
 		bill.setTimePayment(date);
 		billRepository.save(bill);
 		return bill;
 	}
 	public BillEntity setDateandEvent(BillEntity bill) {
-		java.util.Date date=new java.util.Date();  
+		java.util.Date date = new java.util.Date();  
 		bill.setCreatedDate(date);
 		List<EventEntity> events = eventRepository.findByOrderByDiscountRateDesc();
 		for(EventEntity event : events) {
-			if(event.isAvailable()) {
+			if(event.isDisplayed()) {
+				System.out.println(event.getEventId() + event.getEventName());
 				bill.setEvent(event);
 				break;
 			}
@@ -176,11 +182,13 @@ public class BillService {
 			billRepository.save(bill);
 			return(Total);
 		}
+		
 		for(BillDetail billdetail : billdetails) {
 			Total = Total + billdetail.getTotal();
 		}
+		
 		if(bill.getEvent() != null)
-		Total = Total*(100 -bill.getEvent().getDiscountRate() -bill.getCustomer().getMembership().getDiscountRate())/100;
+			Total = Total*(100 -bill.getEvent().getDiscountRate() -bill.getCustomer().getMembership().getDiscountRate())/100;
 		else Total = Total*(100 -bill.getCustomer().getMembership().getDiscountRate())/100;
 		bill.setFinalTotal(Total);
 		billRepository.save(bill);
