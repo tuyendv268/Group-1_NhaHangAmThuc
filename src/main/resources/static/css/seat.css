@@ -6,10 +6,11 @@
 
 #message{
 	position: fixed;
-	left: 50%;
+	left: 45%;
 	bottom: 20px;
 	transform: translate(0%, -50%);
 	margin: 0 auto;
+	color: red;
 }
 
 .active {

@@ -107,8 +107,8 @@
 							th:data-endtime="${event.timeEnd}" th:data-eventdescription="${event.description}"></span>
 					</div>
 				</div>
-				<div th:if="${message}" th:text="${message}" id="message"></div>
-
+				<h2 th:if="${message}" th:text="${message}" id="message"></h2>
+				
 				<form th:action="@{/event/new}" method="post" th:object="${event}" enctype="multipart/form-data">
 					<div class="new_event">
 						<ul>
