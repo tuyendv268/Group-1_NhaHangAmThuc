@@ -254,39 +254,64 @@
 					<h2>Select Dish</h2>
 					<div >
 						<ul style="padding:20px;">
-							<li class="ulDish" th:each="dish, dish_index: ${dishes}" style="height: 140px">
-								<img th:src="@{'getimage/'+${dish.url}}" alt="" max-width="140px" max-height= "140">
+							<li class="ulDish" th:each="dish, dish_index: ${dishes}" >
+								<img th:src="@{'getimage/'+${dish.url}}" alt="" 
+								 style ="max-width:25%; max-height:100%;position:absolute" >
 						
-								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}">
+								<span class="dish-name" th:id="'dish' + ${dish.dishId}" th:text="${dish.getDishName()}"
+								 style ="left:30%; top :3%;position:absolute;font-size: 20px;font-weight: bold;" >
 								</span>
-								<span th:text="${dish.price} + 'đ'">
+								<span th:text="${dish.price} + ' đ'"
+								 style ="left:30%; top:60%;position:absolute;    padding: 0;
+									    margin: 0;
+									    box-sizing: border-box;
+									    font-family: 'Poppins', sans-serif;
+									    font-size: 18px;
+									    margin-left: 6px;
+									    color: springgreen;
+									    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 
+																1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;" >
 								</span>
 			
 								<input type="checkbox" class="dish-checkbox" th:id="'dishcheckbox'+${dish.dishId}"
-									name="dish-checkbox">
+									style ="left:60%; top:50%;margin-top:-15px;width: 30px;height:30px; position:absolute" name="dish-checkbox">
 
 								<input type="number" class="quantityDish" th:id="'dishnumber'+${dish.dishId}"
-									style="display:none" name="quantityDish" min="1"  onchange="updateTotal()" onkeyup="updateTotal()"  required >
+									style="display:none" name="quantityDish" min="1"  
+									onchange="updateTotal()" onkeyup="updateTotal()"  required >
 								<input type="hidden" name="dishId" th:value="${dish.dishId}" >
 								</li>
 							</ul>
 						<br>
 						<ul style="padding:20px">
-							<h2> Combo</h2>
+							<h2 style="border-bottom: 1px solid ;"> Combo</h2 >
 							<li class="ulDish" th:each="combo, combo_index: ${combos}">
 
-								<img th:src="@{'getimage/'+${combo.url}}" alt="" width="140" height= "140">
+								<img th:src="@{'getimage/'+${combo.url}}" alt=""
+									 style ="max-width:25%; max-height:100%;position:absolute">
 								<span class="dish-name" th:id="'combo' + ${combo.comboId}"
-									th:text="'Combo: '+${combo.comboName}">
+									th:text="'Combo: '+${combo.comboName}"
+									 style ="left:30%; top :3%;position:absolute;font-size: 20px;font-weight: bold;" >>
 
 								</span>
-								<span th:text="${combo.price} + 'đ'">
+								<span th:text="${combo.price} + 'đ'" 
+								style ="left:30%; top:60%;position:absolute;    padding: 0;
+									    margin: 0;
+									    box-sizing: border-box;
+									    font-family: 'Poppins', sans-serif;
+									    font-size: 18px;
+									    margin-left: 6px;
+									    color: springgreen;
+									    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 
+																1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;" >
+								
 								</span>
-								<input type="checkbox" class="dish-checkbox" th:id="'combocheckbox'+${combo.comboId}"
-									name="combo-checkbox" onchange="updateTotal()" onkeyup="updateTotal()"required>
+								<input type="checkbox" class="dish-checkbox" th:id="'combocheckbox'+${combo.comboId}"	name="combo-checkbox"
+									style ="left:60%; top:50%;margin-top:-15px;width: 30px;height:30px; position:absolute" >
 
 								<input type="number" class="quantityDish" th:id="'combonumber'+${combo.comboId}"
-									style="display:none" name="quantityCombo" min="1">
+									 name="quantityCombo" min="1"  onchange="updateTotal()" onkeyup="updateTotal()"required
+									style="display:none"    >
 								<input type="hidden" name="comboId" th:value="${combo.comboId}" >
 								</li>
 							</ul>
