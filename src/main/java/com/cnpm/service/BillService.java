@@ -1,4 +1,5 @@
 package com.cnpm.service;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +120,7 @@ public class BillService {
 			billdetail.setBill(bill);
 			int total =  billdetail.getDish().getPrice()*quantity;
 			billdetail.setTotal(total);
+			billdetail.setModifyTime(new Date());
 			billdetailRepository.save(billdetail);
 			billRepository.save(bill);	
 			return true;
@@ -136,6 +138,7 @@ public class BillService {
 			billdetail.setBill(bill);
 			int total =  billdetail.getCombo().getPrice()*quantity;
 			billdetail.setTotal(total);
+			billdetail.setModifyTime(new Date());
 			billdetailRepository.save(billdetail);
 			billRepository.save(bill);	
 			return true;

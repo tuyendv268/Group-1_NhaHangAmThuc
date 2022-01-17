@@ -51,7 +51,7 @@ public class ReportController {
 		for (int i = 1; i <= 12; i++) {
 			revenue.add(0);
 		}
-		ArrayList<Object[]> cursor = billService.findRevenueDueMonth(2021, 1, 12);
+		ArrayList<Object[]> cursor = billService.findRevenueDueMonth(2022, 1, 12);
 		for (Object[] ob : cursor) {
 			int month = Integer.valueOf(String.valueOf(ob[0]));
 			int revenueAMonth = Integer.valueOf(String.valueOf(ob[1]));
