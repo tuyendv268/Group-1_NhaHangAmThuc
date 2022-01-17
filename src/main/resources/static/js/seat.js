@@ -115,6 +115,8 @@ for (let j = 0; j < colorChange.length; j++) {
 			// Nếu bàn đang được đặt mà đặt tiếp thì không được
 			change_status_display.style.display = 'none'
 			show_reservation_info()
+			change_status_display.style.display = 'none'
+			isDisplay = false
 		} else if (tableColor == 'red') {
 			// Thay đổi màu trạng thái
 			//var id = $('#' + 'table'+table_index).data('tableid');
@@ -131,9 +133,9 @@ for (let j = 0; j < colorChange.length; j++) {
 		} else {
 			mid[table_index].classList.remove(midColor)
 			mid[table_index].classList.add(tableColor)
+			change_status_display.style.display = 'none'
+		    isDisplay = false
 		}
-		change_status_display.style.display = 'none'
-		isDisplay = false
 	})
 }
 

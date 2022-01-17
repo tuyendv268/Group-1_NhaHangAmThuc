@@ -29,7 +29,7 @@ li {
     padding: 15px 25px;
     position: absolute;
     border-radius: 45px;
-    background-color: rgba(250, 160, 150, 0.95);
+    background-color: rgb(192, 192, 192);
     display: none;
     z-index: 1000;
 }
@@ -158,7 +158,7 @@ li {
 
 /* event-info-popup */
 .event-info-popup {
-    background-color: #F7A298;
+    background-color: rgb(192, 192, 192);
     height: auto;
     max-height: 600px;
     width: 400px;
